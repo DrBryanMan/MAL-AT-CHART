@@ -40,6 +40,7 @@ function enrich(a, enrichedMap) {
     media_type: enr.media_type ?? 'unknown',
     image:      enr.image      ?? null,
     hikka_slug: enr.hikka_slug ?? null,
+    banner_image: enr.banner_image ?? null,
   };
 }
 
@@ -100,14 +101,18 @@ export function computeCategoryTopHistory(allSnapshots, enrichedMap, threshold) 
   };
 
   for (const snap of allSnapshots) {
-    const eligible = snap.anime
-      .filter(a => a.score != null && a.score >= threshold)
+    const makeEligible = min => snap.anime
+      .filter(a => a.score != null && a.score >= min)
       .map(a => enrich(a, enrichedMap))
       .toSorted((a, b) => b.score - a.score);
 
+    const eligible    = makeEligible(threshold);
+    const eligibleLow = makeEligible(8.5);
+
     updateCat('all', eligible[0] ?? null, snap.date);
     for (const cat of allCats) {
-      updateCat(cat, eligible.find(a => a.media_type === cat) ?? null, snap.date);
+      const pool = (cat === 'tv' || cat === 'movie') ? eligible : eligibleLow;
+      updateCat(cat, pool.find(a => a.media_type === cat) ?? null, snap.date);
     }
   }
 
@@ -136,6 +141,7 @@ export function computeChartData(snapshot, prevSnap, enrichedMap) {
       media_type:   enr.media_type ?? 'unknown',
       image:        enr.image      ?? null,
       hikka_slug:   enr.hikka_slug ?? null,
+      banner_image: enr.banner_image ?? null,
       rank,
       prevRank,
       rankDelta:    prevRank !== null ? prevRank - rank : null,

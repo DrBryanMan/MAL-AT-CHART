@@ -81,6 +81,10 @@ function pluralUk(n, genPlural, genSingularFew, nominativeSingular) {
   return genPlural;
 }
 
+function bannerStyle(url) {
+  return url ? `style="--banner:url('${escAttr(url)}')"` : '';
+}
+
 // ─── Tooltip ──────────────────────────────────────────────────────────────────
 
 let _activeAnchor = null;
@@ -133,11 +137,51 @@ export function setupShowMore(container) {
       btn.remove();
     });
   });
+
+  container.querySelectorAll('.session-group-header[data-toggle]').forEach(header => {
+    header.addEventListener('click', () => {
+      const body    = header.nextElementSibling;
+      const chevron = header.querySelector('.group-chevron');
+      const open    = !body.classList.contains('hidden');
+      body.classList.toggle('hidden', open);
+      header.closest('.session-group').classList.toggle('open', !open);
+      chevron.style.transform = open ? '' : 'rotate(90deg)';
+    });
+  });
 }
 
 // ═══════════════════════════════════════════════════════
 // SECTION 1: Snapshot Chart
 // ═══════════════════════════════════════════════════════
+
+function animateChartFlip(contentEl) {
+  const prevPositions = new Map();
+  contentEl.querySelectorAll('.chart-row[data-id]').forEach(el => {
+    prevPositions.set(el.dataset.id, el.getBoundingClientRect().top);
+  });
+  return prevPositions;
+}
+
+function playChartFlip(contentEl, prevPositions) {
+  if (!prevPositions.size) return;
+  contentEl.querySelectorAll('.chart-row[data-id]').forEach(el => {
+    const prev = prevPositions.get(el.dataset.id);
+    if (prev === undefined) {
+      el.classList.add('row-enter');
+      return;
+    }
+    const delta = prev - el.getBoundingClientRect().top;
+    if (delta === 0) return;
+    el.style.transform = `translateY(${delta}px)`;
+    el.style.transition = 'none';
+    requestAnimationFrame(() => {
+      requestAnimationFrame(() => {
+        el.style.transition = 'transform 320ms cubic-bezier(.25,.46,.45,.94)';
+        el.style.transform  = '';
+      });
+    });
+  });
+}
 
 export function renderChartSection(snap, prevSnap, enrichedMap, index, currentIndex) {
   const navEl     = $('snapshot-nav');
@@ -195,7 +239,7 @@ export function renderChartSection(snap, prevSnap, enrichedMap, index, currentIn
       ? `<span class="delta ${deltaClass(a.membersDelta)}">${fmtDelta(a.membersDelta)}</span>` : '';
     const borderClass  = a.rank <= 3 ? ` rank-top-${a.rank}` : '';
 
-    return `<div class="chart-row${borderClass}">
+    return `<div class="chart-row${borderClass}${a.banner_image ? ' has-banner' : ''}" data-id="${a.id}" ${bannerStyle(a.banner_image)}>
       <div class="chart-rank">
         <span class="rank-num">#${a.rank}</span>
         ${rankBadgeHTML(a.rankDelta, a.isNew)}
@@ -234,9 +278,11 @@ export function renderChartSection(snap, prevSnap, enrichedMap, index, currentIn
       <button class="show-more-btn" data-chart-more>Показати ще ${rowsHTML.length - 10} →</button>`;
   }
 
+  const prevPositions = animateChartFlip(contentEl);
   contentEl.innerHTML = rows.length
     ? `<div class="chart-list" id="chart-list">${chartInner}</div>`
     : `<div class="empty-state"><p>Знімок не містить даних.</p></div>`;
+  playChartFlip(contentEl, prevPositions);
 
   // Спеціальний show-more для чарту — вставляємо рядки напряму в chart-list
   contentEl.querySelector('[data-chart-more]')?.addEventListener('click', function() {
@@ -252,6 +298,23 @@ export function renderChartSection(snap, prevSnap, enrichedMap, index, currentIn
 // ═══════════════════════════════════════════════════════
 // SECTION 2: Category Top History
 // ═══════════════════════════════════════════════════════
+
+function groupSessions(list) {
+  const result = [];
+  let i = 0;
+  while (i < list.length) {
+    let j = i + 1;
+    while (j < list.length && list[j].animeId === list[i].animeId) j++;
+    const count = j - i;
+    if (count >= 3) {
+      result.push({ grouped: true, animeId: list[i].animeId, items: list.slice(i, j) });
+    } else {
+      for (let k = i; k < j; k++) result.push({ grouped: false, item: list[k] });
+    }
+    i = j;
+  }
+  return result;
+}
 
 export function renderCategorySection(categoryTopHistory) {
   const container = $('categories-content');
@@ -285,29 +348,38 @@ export function renderCategorySection(categoryTopHistory) {
     // Сортуємо від новішого до старішого
     const list = [...(sessions[cat] ?? [])].reverse();
 
-    const rows = list.map(s => {
-      const origTitle = s.title_ua ? `<span class="session-orig">${escHtml(s.title)}</span>` : '';
-      const scoreStr  = s.maxScore !== s.firstScore
-        ? `${fmtScore(s.firstScore)} (${fmtScore(s.maxScore)})`
-        : fmtScore(s.firstScore);
-      const sessionBadge = s.sessionNum > 1
-        ? `<span class="session-num-badge" title="Потрапив у ТОП-1 вже ${s.sessionNum}-й раз">${s.sessionNum}</span>`
-        : '';
-      const dateRange = s.startDate === s.endDate
-        ? archiveLink(s.startDate, formatDateShort(s.startDate))
-        : `${archiveLink(s.startDate, formatDateShort(s.startDate))} → ${archiveLink(s.endDate, formatDateShort(s.endDate))}`;
+    const grouped = groupSessions(list);
+    const rows = grouped.map(g => {
+      if (!g.grouped) return buildSessionRow(g.item);
 
-      return `<div class="session-row">
-        ${thumbHTML(s.image, s.title_ua ?? s.title, 'small')}
-        <div class="session-info">
-          <div class="session-title">
-            ${animeTitleHTML(s, 'session-title-text')} ${sessionBadge}${origTitle}
+      const s     = g.items[0];
+      const first = g.items.at(-1);
+      const last  = g.items[0];
+      const scoreStr = s.maxScore !== s.firstScore
+        ? `${fmtScore(first.firstScore)} (${fmtScore(s.maxScore)})`
+        : fmtScore(s.maxScore);
+
+      const inner = g.items.map(buildSessionRow).join('');
+      return `<div class="session-group">
+        <div class="session-group-header" data-toggle>
+          ${thumbHTML(s.image, s.title_ua ?? s.title, 'small')}
+          <div class="session-info">
+            <div class="session-title">
+              ${animeTitleHTML(s, 'session-title-text')}
+              <span class="session-num-badge">${g.items.length}×</span>
+              ${s.title_ua ? `<span class="session-orig">${escHtml(s.title)}</span>` : ''}
+            </div>
+            <div class="session-meta">
+              <span class="score-val">${icon('star', 14)} ${scoreStr}</span>
+              <span class="session-date">
+                ${archiveLink(first.startDate, formatDateShort(first.startDate))} →
+                ${archiveLink(last.endDate, formatDateShort(last.endDate))}
+              </span>
+            </div>
           </div>
-          <div class="session-meta">
-            <span class="score-val">${icon('star', 14)} ${scoreStr}</span>
-            <span class="session-date">${dateRange}</span>
-          </div>
+          <span class="group-chevron">${icon('chevron-right', 16)}</span>
         </div>
+        <div class="session-group-body hidden">${inner}</div>
       </div>`;
     });
 
@@ -326,6 +398,32 @@ export function renderCategorySection(categoryTopHistory) {
 
   setupTabs(container);
   setupShowMore(container);
+}
+
+function buildSessionRow(s) {
+  const origTitle = s.title_ua ? `<span class="session-orig">${escHtml(s.title)}</span>` : '';
+  const scoreStr  = s.maxScore !== s.firstScore
+    ? `${fmtScore(s.firstScore)} (${fmtScore(s.maxScore)})`
+    : fmtScore(s.firstScore);
+  const sessionBadge = s.sessionNum > 1
+    ? `<span class="session-num-badge" title="Потрапив у ТОП-1 вже ${s.sessionNum}-й раз">${s.sessionNum}</span>`
+    : '';
+  const dateRange = s.startDate === s.endDate
+    ? archiveLink(s.startDate, formatDateShort(s.startDate))
+    : `${archiveLink(s.startDate, formatDateShort(s.startDate))} → ${archiveLink(s.endDate, formatDateShort(s.endDate))}`;
+
+  return `<div class="session-row${s.banner_image ? ' has-banner' : ''}" ${bannerStyle(s.banner_image)}>
+    ${thumbHTML(s.image, s.title_ua ?? s.title, 'small')}
+    <div class="session-info">
+      <div class="session-title">
+        ${animeTitleHTML(s, 'session-title-text')} ${sessionBadge}${origTitle}
+      </div>
+      <div class="session-meta">
+        <span class="session-date">${dateRange}</span>
+      </div>
+    </div>
+    <span class="score-val">${icon('star', 14)} ${scoreStr}</span>
+  </div>`;
 }
 
 // ═══════════════════════════════════════════════════════
@@ -352,9 +450,10 @@ export function renderEventsSection(analytics) {
 
 // ─── Event Card Template ──────────────────────────────────────────────────────
 
-function eventCard(ico, title, infoKey, body) {
-  return `<div class="event-card">
-    <div class="event-card-header">
+function eventCard(ico, title, infoKey, body, bgImage = null) {
+  const bg = bgImage ? `style="--card-bg:url('${escAttr(bgImage)}')"` : '';
+  return `<div class="event-card${bgImage ? ' has-card-bg' : ''}" ${bg}>
+      <div class="event-card-header">
       <span class="event-icon">${ico}</span>
       <h3 class="event-title">${title}</h3>
       <button class="info-btn small" data-info-key="${infoKey}" aria-label="Інформація">${icon('info', 12)}</button>
@@ -434,7 +533,7 @@ function buildHighestEverCard(data) {
       </div>
     </div>
     ${runnerUpRows(data.top3, 'score', 'date')}
-    ${categoryWinnersHTML(w.animeId ?? w.id, data.tvWinner, data.movieWinner, data.otherWinner, 'score', 'date')}`);
+    ${categoryWinnersHTML(w.animeId ?? w.id, data.tvWinner, data.movieWinner, data.otherWinner, 'score', 'date')}`, w.image);
 }
 
 // ─── Card: Stable Score ───────────────────────────────────────────────────────
@@ -460,7 +559,7 @@ function buildStableScoreCard(data) {
       </div>
     </div>
     ${runnerUpRows(data.top3.map(s => ({ ...s, score: s.score ?? 0 })), 'score', 'startDate', 'endDate')}
-    ${categoryWinnersHTML(w.animeId, data.tvWinner, data.movieWinner, data.otherWinner, 'score', 'startDate', 'endDate')}`);
+    ${categoryWinnersHTML(w.animeId, data.tvWinner, data.movieWinner, data.otherWinner, 'score', 'startDate', 'endDate')}`, w.image);
 }
 
 // ─── Card: Longest Top-1 ─────────────────────────────────────────────────────
@@ -485,7 +584,7 @@ function buildLongestTop1Card(data) {
       </div>
     </div>
     ${runnerUpRows(data.top3, 'maxScore', 'startDate', 'endDate')}
-    ${categoryWinnersHTML(w.animeId, data.tvWinner, data.movieWinner, data.otherWinner, 'maxScore', 'startDate', 'endDate')}`);
+    ${categoryWinnersHTML(w.animeId, data.tvWinner, data.movieWinner, data.otherWinner, 'maxScore', 'startDate', 'endDate')}`, w.image);
 }
 
 // ─── Events Tabs ──────────────────────────────────────────────────────────────
@@ -561,7 +660,6 @@ function buildTop1HistoryPanel(list) {
     const ms = a.maxScore   ?? 0;
     const scoreStr = ms !== fs ? `${fmtScore(fs)} (${fmtScore(ms)})` : fmtScore(fs);
 
-    // Деталі кожної сесії
     const sessionDetails = a.sessions.map((s, si) => {
       const dateStr = s.startDate === s.endDate
         ? archiveLink(s.startDate, formatDateShort(s.startDate))
@@ -569,16 +667,19 @@ function buildTop1HistoryPanel(list) {
       return `<span class="session-detail">#${si + 1}: ${dateStr}</span>`;
     }).join('');
 
-    return `<div class="list-row top1-row">
+    return `<div class="list-row top1-row${a.banner_image ? ' has-banner' : ''}" ${bannerStyle(a.banner_image)}>
       ${thumbHTML(a.image, a.title_ua ?? a.title, 'small')}
       <div class="list-info">
-        ${animeTitleHTML(a, 'list-title')}
+        <div class="list-title-row">
+          ${animeTitleHTML(a, 'list-title')}
+          <span class="session-num-badge" title="Кількість заходів на вершину">${a.sessionCount}×</span>
+        </div>
         <span class="list-meta">
-          <span class="score-badge inline">${icon('star', 12)} ${scoreStr}</span>
+          ${mediaBadgeHTML(a.media_type)}
         </span>
         <div class="session-details">${sessionDetails}</div>
       </div>
-      <span class="count-badge large" title="Кількість заходів на вершину">${a.sessionCount}</span>
+      <span class="score-val">${icon('star', 14)} ${scoreStr}</span>
     </div>`;
   });
 

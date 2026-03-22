@@ -8,6 +8,7 @@ import {
   hideTooltip,
 } from './renderer.js';
 import { CONFIG } from './config.js';
+import { icon } from './icons.js';
 
 // ─── State ────────────────────────────────────────────────────────────────────
 
@@ -47,6 +48,7 @@ async function init() {
 
     renderAll();
     setupEventListeners();
+    setupTheme();
 
   } catch (err) {
     loadingEl.innerHTML = `
@@ -117,6 +119,24 @@ function setupEventListeners() {
     if (e.key === 'ArrowLeft')  jumpTo(state.currentIndex - 1);
     if (e.key === 'ArrowRight') jumpTo(state.currentIndex + 1);
     if (e.key === 'Escape')     hideTooltip();
+  });
+}
+
+function setupTheme() {
+  const btn   = document.getElementById('theme-toggle');
+
+  const updateIcon = theme =>
+    btn.innerHTML = icon(theme === 'dark' ? 'sun' : 'moon', 18);
+
+  const saved = localStorage.getItem('theme') ?? 'dark';
+  document.documentElement.dataset.theme = saved;
+  updateIcon(saved);
+
+  btn.addEventListener('click', () => {
+    const next = document.documentElement.dataset.theme === 'dark' ? 'light' : 'dark';
+    document.documentElement.dataset.theme = next;
+    localStorage.setItem('theme', next);
+    updateIcon(next);
   });
 }
 
