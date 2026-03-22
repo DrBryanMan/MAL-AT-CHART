@@ -12,9 +12,10 @@
 
 export const CONFIG = {
   dataDir:            './data/',
-  enrichedFile:        'data/anime_enriched.json',
-  analyticsFile:       'data/analytics.json',
-  snapshotsIndexFile:  'data/snapshots-index.json',
+  snapshotsDir:       './snapshots/',
+  enrichedFile:        'anime_enriched.json',
+  analyticsFile:       'analytics.json',
+  snapshotsIndexFile:  'snapshots-index.json',
 
   thresholds: {
     topRated: 9.0,

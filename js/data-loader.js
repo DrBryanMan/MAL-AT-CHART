@@ -44,7 +44,7 @@ export async function loadSnapshotsIndex() {
  * @returns {Promise<object>}
  */
 export async function loadSnapshot(date) {
-  return fetchJSON(`${CONFIG.dataDir}snapshots/${date}.json`);
+  return fetchJSON(`${CONFIG.snapshotsDir}${date}.json`);
 }
 
 /**
