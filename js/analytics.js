@@ -118,9 +118,7 @@ export function computeCategoryTopHistory(allSnapshots, enrichedMap, threshold) 
 
 // ─── Section 2: Chart Data ────────────────────────────────────────────────────
 
-export function computeChartData(allSnapshots, index, enrichedMap) {
-  const snapshot = allSnapshots[index];
-  const prevSnap = index > 0 ? allSnapshots[index - 1] : null;
+export function computeChartData(snapshot, prevSnap, enrichedMap) {
 
   const sorted     = sortedAnime(snapshot);
   const prevSorted = prevSnap ? sortedAnime(prevSnap) : [];

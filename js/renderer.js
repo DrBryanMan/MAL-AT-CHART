@@ -139,13 +139,12 @@ export function setupShowMore(container) {
 // SECTION 1: Snapshot Chart
 // ═══════════════════════════════════════════════════════
 
-export function renderChartSection(allSnapshots, currentIndex, enrichedMap) {
+export function renderChartSection(snap, prevSnap, enrichedMap, index, currentIndex) {
   const navEl     = $('snapshot-nav');
   const contentEl = $('top-rated-content');
   if (!navEl || !contentEl) return;
 
-  const total = allSnapshots.length;
-  const snap  = allSnapshots[currentIndex];
+  const total = index.length;
   const label = snap?.config?.label ?? snap?.date ?? '—';
 
   navEl.innerHTML = `
@@ -186,7 +185,7 @@ export function renderChartSection(allSnapshots, currentIndex, enrichedMap) {
     input.addEventListener('keydown', e => { if (e.key === 'Enter') input.dispatchEvent(new Event('change')); });
   }
 
-  const { rows } = computeChartData(allSnapshots, currentIndex, enrichedMap);
+  const { rows } = computeChartData(snap, prevSnap, enrichedMap);
 
   const rowsHTML = rows.map(a => {
     const origTitle    = a.title_ua ? `<div class="chart-title-orig">${escHtml(a.title)}</div>` : '';

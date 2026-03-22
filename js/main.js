@@ -1,9 +1,5 @@
-/**
- * main.js — Application entry point
- */
-
-import { loadAll }                      from './data-loader.js';
-import { buildEnrichedMap, computeAll } from './analytics.js';
+import { buildEnrichedMap } from './analytics.js';
+import { loadAll, loadSnapshotPair } from './data-loader.js';
 import {
   renderCategorySection,
   renderChartSection,
@@ -16,7 +12,9 @@ import { CONFIG } from './config.js';
 // ─── State ────────────────────────────────────────────────────────────────────
 
 const state = {
-  snapshots:    [],
+  index:        [],
+  currentSnap:  null,
+  prevSnap:     null,
   enrichedMap:  new Map(),
   analytics:    null,
   currentIndex: 0,
@@ -29,19 +27,20 @@ async function init() {
   const contentEl = document.getElementById('content');
 
   try {
-    const { snapshots, enriched } = await loadAll();
+    const { index, analytics, enriched } = await loadAll();
 
     if (!snapshots.length) throw new Error('Не вдалося завантажити жодного знімку.');
-
-    state.snapshots   = snapshots;
+    
+    state.index       = index;                        // список дат
     state.enrichedMap = buildEnrichedMap(enriched);
-    state.currentIndex = snapshots.length - 1;
+    state.currentIndex = index.length - 1;
+    state.analytics   = analytics;                    // вже обраховано
 
-    state.analytics = computeAll(
-      state.snapshots,
-      state.enrichedMap,
-      CONFIG.thresholds.topRated,
-    );
+    // Завантажуємо перший снепшот (останній за датою) одразу
+    const dates = index.map(s => s.date);
+    const { current, prev } = await loadSnapshotPair(dates, state.currentIndex);
+    state.currentSnap = current;
+    state.prevSnap    = prev;
 
     loadingEl.classList.add('hidden');
     contentEl.classList.remove('hidden');
@@ -62,7 +61,7 @@ async function init() {
 
 function renderAll() {
   const sections = [
-    () => renderChartSection(state.snapshots, state.currentIndex, state.enrichedMap),
+    () => renderChartSection(state.currentSnap, state.prevSnap, state.enrichedMap, state.index, state.currentIndex),
     () => renderCategorySection(state.analytics.categoryTopHistory),
     () => renderEventsSection(state.analytics),
   ];
@@ -73,14 +72,20 @@ function renderAll() {
 
 function renderChart() {
   try {
-    renderChartSection(state.snapshots, state.currentIndex, state.enrichedMap);
+    renderChartSection(state.currentSnap, state.prevSnap, state.enrichedMap, state.index, state.currentIndex);
   } catch (e) { console.error('[MAL Charts] Chart:', e); }
 }
 
-function jumpTo(idx) {
-  const clamped = Math.max(0, Math.min(state.snapshots.length - 1, idx));
+async function jumpTo(idx) {
+  const clamped = Math.max(0, Math.min(state.index.length - 1, idx));
   if (clamped === state.currentIndex) return;
   state.currentIndex = clamped;
+
+  const dates = state.index.map(s => s.date);
+  const { current, prev } = await loadSnapshotPair(dates, clamped);
+  state.currentSnap = current;
+  state.prevSnap    = prev;
+
   renderChart();
 }
 

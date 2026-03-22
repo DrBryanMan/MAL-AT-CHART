@@ -1,51 +1,64 @@
 /**
- * data-loader.js — Fetch + cache snapshot and enriched anime data
+ * data-loader.js — Завантаження даних для MAL Charts
  *
- * Знімки беруться з snapshots-manifest.json (генерується скриптом
- * scripts/generate-manifest.js). Файл CONFIG.snapshots більше не
- * потрібно оновлювати вручну.
+ * Схема:
+ *   analytics.json      — всі обраховані дані (секції 2 і 3), генерується precompute.js
+ *   snapshots-index.json — список дат снепшотів для навігації
+ *   snapshots/YYYY-MM-DD.json — окремі снепшоти, завантажуються ліниво
+ *
+ * Переваги:
+ *   - При завантаженні сторінки тягнемо лише 2 файли (~100-300 KB)
+ *   - Снепшоти завантажуються по одному при перемиканні дати (~5-20 KB кожен)
+ *   - In-memory кеш: повторне відвідування тієї ж дати без мережевого запиту
  */
 
 import { CONFIG } from './config.js';
 
-/** In-memory cache: url → parsed JSON */
+/** In-memory кеш: url → parsed JSON */
 const _cache = new Map();
 
 async function fetchJSON(path) {
   if (_cache.has(path)) return _cache.get(path);
-
-  const response = await fetch(path);
-
-  if (!response.ok) {
-    throw new Error(`HTTP ${response.status} при завантаженні "${path}"`);
-  }
-
-  const data = await response.json();
+  const resp = await fetch(path);
+  if (!resp.ok) throw new Error(`HTTP ${resp.status} при завантаженні "${path}"`);
+  const data = await resp.json();
   _cache.set(path, data);
   return data;
 }
 
+// ── Публічне API ──────────────────────────────────────────────────────────────
+
 /**
- * Завантажує маніфест знімків (згенерований скриптом).
- * Маніфест — JSON-файл формату { snapshots: [{ date, file, label }] }.
- *
- * @returns {Promise<{ date: string, file: string, label: string }[]>}
+ * Завантажує індекс снепшотів (список дат).
+ * @returns {Promise<{ date, timestamp, label, total }[]>}
  */
-async function loadManifest() {
-  const manifest = await fetchJSON(`${CONFIG.dataDir}${CONFIG.manifestFile}`);
-  if (!Array.isArray(manifest.snapshots)) {
-    throw new Error(`Маніфест "${CONFIG.manifestFile}" не містить масиву snapshots.`);
-  }
-  return manifest.snapshots;
+export async function loadSnapshotsIndex() {
+  const { snapshots } = await fetchJSON(`${CONFIG.dataDir}${CONFIG.snapshotsIndexFile}`);
+  return snapshots;
 }
 
 /**
- * Завантажує один знімок за об'єктом з маніфесту.
- * @param {{ file: string, date: string, label: string }} entry
+ * Завантажує один снепшот за датою.
+ * Результат кешується — повторний виклик з тією ж датою не робить мережевого запиту.
+ * @param {string} date  YYYY-MM-DD
  * @returns {Promise<object>}
  */
-async function loadSnapshot(entry) {
-  return fetchJSON(`${CONFIG.dataDir}${entry.file}`);
+export async function loadSnapshot(date) {
+  return fetchJSON(`${CONFIG.dataDir}snapshots/${date}.json`);
+}
+
+/**
+ * Завантажує пару снепшотів (поточний + попередній) для секції 1.
+ * @param {string[]} dates  масив всіх дат відсортованих хронологічно
+ * @param {number}   index  індекс поточного снепшота
+ * @returns {Promise<{ current: object, prev: object|null }>}
+ */
+export async function loadSnapshotPair(dates, index) {
+  const [current, prev] = await Promise.all([
+    loadSnapshot(dates[index]),
+    index > 0 ? loadSnapshot(dates[index - 1]) : Promise.resolve(null),
+  ]);
+  return { current, prev };
 }
 
 /**
@@ -56,54 +69,43 @@ export async function loadEnrichedData() {
   return fetchJSON(`${CONFIG.dataDir}${CONFIG.enrichedFile}`);
 }
 
-/** Максимум паралельних fetch-запитів за раз */
-const BATCH_SIZE = 8;
-
 /**
- * Promise.allSettled пачками по BATCH_SIZE — не вішає браузер
- * при великій кількості знімків.
+ * Завантажує попередньо обраховані аналітичні дані (секції 2 і 3).
+ * @returns {Promise<object>}
  */
-async function allSettledBatched(items, fn) {
-  const results = [];
-  for (let i = 0; i < items.length; i += BATCH_SIZE) {
-    const chunk = await Promise.allSettled(items.slice(i, i + BATCH_SIZE).map(fn));
-    results.push(...chunk);
-  }
-  return results;
+export async function loadAnalytics() {
+  return fetchJSON(`${CONFIG.dataDir}${CONFIG.analyticsFile}`);
 }
 
 /**
- * Головна функція: завантажує маніфест, потім знімки пачками по BATCH_SIZE.
- * Невдалі знімки пропускаються з попередженням у консолі.
+ * Головна функція ініціалізації.
+ * Завантажує лише легкі файли — індекс і аналітику.
+ * Окремі снепшоти завантажуються ліниво через loadSnapshot() / loadSnapshotPair().
  *
- * @returns {Promise<{ snapshots: object[], enriched: object[] }>}
+ * @returns {Promise<{
+ *   index:     { date, timestamp, label, total }[],
+ *   analytics: object,
+ *   enriched:  object[],
+ * }>}
  */
 export async function loadAll() {
-  const manifestEntries = await loadManifest();
+  const [indexResult, analyticsResult, enrichedResult] = await Promise.allSettled([
+    loadSnapshotsIndex(),
+    loadAnalytics(),
+    loadEnrichedData(),
+  ]);
 
-  // Збагачені дані та знімки завантажуємо окремо:
-  // allSettledBatched вже повертає SettledResult[] — не можна мішати з Promise.allSettled
-  const [enrichedResult]  = await Promise.allSettled([loadEnrichedData()]);
-  const snapshotResults   = await allSettledBatched(manifestEntries, loadSnapshot);
+  const index = indexResult.status === 'fulfilled'
+    ? indexResult.value
+    : (console.warn('⚠️  Індекс снепшотів недоступний:', indexResult.reason), []);
 
-  const enriched =
-    enrichedResult.status === 'fulfilled'
-      ? enrichedResult.value
-      : (console.warn('⚠️ Збагачені дані недоступні:', enrichedResult.reason), []);
+  const analytics = analyticsResult.status === 'fulfilled'
+    ? analyticsResult.value
+    : (console.warn('⚠️  Аналітика недоступна:', analyticsResult.reason), null);
 
-  const snapshots = snapshotResults
-    .map((result, i) => {
-      const entry = manifestEntries[i];
-      if (result.status === 'fulfilled') {
-        const data = result.value;
-        if (!data.date) data.date = entry.date;
-        return { ...data, config: entry };
-      }
-      console.warn(`⚠️ Пропущено знімок "${entry.file}":`, result.reason);
-      return null;
-    })
-    .filter(Boolean)
-    .toSorted((a, b) => new Date(a.date) - new Date(b.date));
+  const enriched = enrichedResult.status === 'fulfilled'
+    ? enrichedResult.value
+    : (console.warn('⚠️  Збагачені дані недоступні:', enrichedResult.reason), []);
 
-  return { snapshots, enriched };
+  return { index, analytics, enriched };
 }
