@@ -29,7 +29,7 @@ async function init() {
   try {
     const { index, analytics, enriched } = await loadAll();
 
-    if (!snapshots.length) throw new Error('Не вдалося завантажити жодного знімку.');
+    if (!index.length) throw new Error('Не вдалося завантажити жодного знімку.');
     
     state.index       = index;                        // список дат
     state.enrichedMap = buildEnrichedMap(enriched);
