@@ -150,13 +150,32 @@ export function renderChartSection(allSnapshots, currentIndex, enrichedMap) {
 
   navEl.innerHTML = `
     <button class="nav-btn" id="snap-prev" ${currentIndex === 0 ? 'style="cursor: default;" disabled' : ''} aria-label="Попередній">${icon('chevron-left', 18)}</button>
-    <span class="snap-label">${icon('calendar', 14)} ${archiveLink(snap.date, label)}</span>
+    <span class="snap-label">
+      <input class="snap-date-input" id="snap-date-input" type="date"
+        value="${snap.date}"
+        min="${allSnapshots[0].date}"
+        max="${allSnapshots[total - 1].date}"
+        aria-label="Дата знімку">
+      <a class="nav-btn nav-btn-archive" href="${archiveUrl(snap.date)}" target="_blank" rel="noopener" title="Відкрити архів MAL">${icon('globe', 16)}</a>
+    </span>
     <button class="nav-btn" id="snap-next" ${currentIndex === total - 1 ? 'style="cursor: default;" disabled' : ''} aria-label="Наступний">${icon('chevron-right', 18)}</button>
     <span class="snap-counter">
       <input class="snap-page-input" id="snap-page-input" type="number" min="1" max="${total}"
         value="${currentIndex + 1}" aria-label="Номер знімку">
       <span>/ ${total}</span>
     </span>`;
+
+  const dateInput = $('snap-date-input');
+    if (dateInput) {
+      dateInput.addEventListener('change', () => {
+        const target = new Date(dateInput.value).getTime();
+        const closest = allSnapshots.reduce((best, s, i) => {
+          const diff = Math.abs(new Date(s.date).getTime() - target);
+          return diff < best.diff ? { i, diff } : best;
+        }, { i: 0, diff: Infinity }).i;
+        dateInput.dispatchEvent(new CustomEvent('snap-jump', { bubbles: true, detail: closest }));
+      });
+    }
 
   const input = $('snap-page-input');
   if (input) {

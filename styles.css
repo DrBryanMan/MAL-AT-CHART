@@ -828,6 +828,39 @@ section[id] { scroll-margin-top: 70px; }
 }
 
 /* ─── Page Input (snapshot nav) ─────────────────────────────────────── */
+/* ─── Snap Date Input ──────────────────────────────────────────────────────── */
+.snap-label {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.snap-date-input {
+  padding: 4px 8px;
+  background: var(--bg-input);
+  border: 1px solid var(--border);
+  border-radius: var(--r);
+  color: var(--text);
+  font-family: var(--font-mono);
+  font-size: 13px;
+  color-scheme: dark;
+  cursor: pointer;
+}
+.snap-date-input:focus {
+  outline: none;
+  border-color: var(--accent);
+  box-shadow: 0 0 0 2px rgba(88,166,255,.15);
+}
+
+.nav-btn-archive {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  text-decoration: none;
+  color: var(--text-2);
+}
+.nav-btn-archive:hover { color: var(--text); border-color: var(--accent); text-decoration: none; }
+
 .snap-page-input {
   width: 54px;
   padding: 4px 6px;
