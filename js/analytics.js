@@ -1,109 +1,147 @@
 /**
  * analytics.js — All statistical computations over MAL snapshots
- *
- * Кожна функція є чистою (pure), не має побічних ефектів.
  */
 
 // ─── Utilities ────────────────────────────────────────────────────────────────
 
-/**
- * Створює Map: mal_id → збагачені дані аніме.
- * @param {object[]} enrichedData
- * @returns {Map<number, object>}
- */
 export function buildEnrichedMap(enrichedData) {
   return new Map(enrichedData.map(a => [a.mal_id, a]));
 }
 
-/**
- * Форматує дату рядком до людиночитабельного вигляду (uk-UA).
- * @param {string} dateStr YYYY-MM-DD
- * @returns {string}
- */
 export function formatDate(dateStr) {
   return new Date(dateStr + 'T00:00:00').toLocaleDateString('uk-UA', {
     year: 'numeric', month: 'long', day: 'numeric',
   });
 }
 
-/**
- * Повертає список аніме з певного знімку, збагачений даними з enrichedMap.
- * @param {object}            snapshot
- * @param {Map<number,object>} enrichedMap
- * @returns {object[]}
- */
-function enrichSnapshot(snapshot, enrichedMap) {
-  return snapshot.anime.map(a => {
-    const enr = enrichedMap.get(a.id) ?? {};
-    return {
-      ...a,
-      title_ua:   enr.title_ua   ?? null,
-      media_type: enr.media_type ?? 'unknown',
-      image:      enr.image      ?? null,
-    };
-  });
+export function formatDateShort(dateStr) {
+  const [y, m, d] = dateStr.split('-');
+  return `${d}.${m}.${y}`;
 }
 
-// ─── Section 1: Top by Category ───────────────────────────────────────────────
-
-/**
- * Групує аніме останнього знімку за типом медіа.
- * В кожній категорії — відсортовано за оцінкою (спадання).
- *
- * @param {object[]}          allSnapshots
- * @param {Map<number,object>} enrichedMap
- * @returns {Record<string, object[]>}  { tv: [...], movie: [...], ... }
- */
-export function computeTopByCategory(allSnapshots, enrichedMap) {
-  if (!allSnapshots.length) return {};
-
-  const latest  = allSnapshots.at(-1);
-  const tagged  = enrichSnapshot(latest, enrichedMap);
-  const grouped = Object.groupBy(tagged, a => a.media_type);
-
-  return Object.fromEntries(
-    Object.entries(grouped).map(([cat, list]) => [
-      cat,
-      list.toSorted((a, b) => b.score - a.score),
-    ])
+/** Точна кількість днів між двома датами YYYY-MM-DD */
+export function daysBetween(d1, d2) {
+  return Math.abs(
+    Math.round((new Date(d2 + 'T00:00:00') - new Date(d1 + 'T00:00:00')) / 86_400_000)
   );
+}
+
+/** Посилання на web.archive.org для конкретної дати */
+export function archiveUrl(dateStr) {
+  const compact = dateStr.replace(/-/g, '');
+  return `https://web.archive.org/web/${compact}120000/https://myanimelist.net/topanime.php`;
+}
+
+function enrich(a, enrichedMap) {
+  const enr = enrichedMap.get(a.id) ?? {};
+  return {
+    ...a,
+    title_ua:    enr.title_ua    ?? null,
+    media_type:  enr.media_type  ?? 'unknown',
+    image:       enr.image       ?? null,
+    hikka_slug:  enr.hikka_slug  ?? null,
+  };
+}
+
+function sortedAnime(snap) {
+  return snap.anime.filter(a => a.score != null).toSorted((a, b) => b.score - a.score);
+}
+
+// ─── Section 1: Category Top History ─────────────────────────────────────────
+//
+// Для кожної категорії + 'all' відстежуємо, хто утримував #1 позицію протягом часу.
+// Результат: { sessions: { all:[...], tv:[...], ... }, categories: [...] }
+// Кожна "сесія" = безперервний проміжок, де одне аніме було #1 у своїй категорії.
+
+export function computeCategoryTopHistory(allSnapshots, enrichedMap, threshold) {
+  // Збираємо всі категорії з усіх знімків
+  const allCats = new Set();
+  for (const snap of allSnapshots) {
+    for (const a of snap.anime) {
+      const enr = enrichedMap.get(a.id) ?? {};
+      allCats.add(enr.media_type ?? 'unknown');
+    }
+  }
+
+  const catList = ['all', ...allCats];
+  const sessions       = Object.fromEntries(catList.map(c => [c, []]));
+  const currentSession = Object.fromEntries(catList.map(c => [c, null]));
+  const sessionCounts  = Object.fromEntries(catList.map(c => [c, new Map()]));
+
+  const closeSession = (cat) => {
+    if (currentSession[cat]) {
+      sessions[cat].push({ ...currentSession[cat] });
+      currentSession[cat] = null;
+    }
+  };
+
+  const openSession = (cat, anime, date) => {
+    const cnt = (sessionCounts[cat].get(anime.id) ?? 0) + 1;
+    sessionCounts[cat].set(anime.id, cnt);
+    currentSession[cat] = {
+      animeId:    anime.id,
+      title:      anime.title,
+      title_ua:   anime.title_ua,
+      media_type: anime.media_type,
+      image:      anime.image,
+      firstScore: anime.score,
+      maxScore:   anime.score,
+      startDate:  date,
+      endDate:    date,
+      sessionNum: cnt,
+    };
+  };
+
+  const updateCat = (cat, top, date) => {
+    const cur = currentSession[cat];
+    if (!top) { closeSession(cat); return; }
+
+    if (cur?.animeId === top.id) {
+      cur.endDate  = date;
+      cur.maxScore = Math.max(cur.maxScore, top.score);
+    } else {
+      closeSession(cat);
+      openSession(cat, top, date);
+    }
+  };
+
+  for (const snap of allSnapshots) {
+    const eligible = snap.anime
+      .filter(a => a.score != null && a.score >= threshold)
+      .map(a => enrich(a, enrichedMap))
+      .toSorted((a, b) => b.score - a.score);
+
+    // 'all'
+    updateCat('all', eligible[0] ?? null, snap.date);
+
+    // Per category
+    for (const cat of allCats) {
+      const topCat = eligible.find(a => a.media_type === cat) ?? null;
+      updateCat(cat, topCat, snap.date);
+    }
+  }
+
+  // Закриваємо відкриті сесії
+  for (const cat of catList) closeSession(cat);
+
+  return { sessions, categories: catList };
 }
 
 // ─── Section 2: Chart Data ────────────────────────────────────────────────────
 
-/**
- * Формує дані для рядків чарту за конкретним знімком.
- * Обчислює дельти відносно попереднього знімку.
- *
- * @param {object[]}          allSnapshots
- * @param {number}            index        — індекс обраного знімку
- * @param {number}            threshold    — мінімальна оцінка (напр. 9.0)
- * @param {Map<number,object>} enrichedMap
- * @returns {{ snapshot: object, rows: object[] }}
- */
-export function computeChartData(allSnapshots, index, threshold, enrichedMap) {
+export function computeChartData(allSnapshots, index, enrichedMap) {
   const snapshot = allSnapshots[index];
   const prevSnap = index > 0 ? allSnapshots[index - 1] : null;
 
-  // Поточний список (вже відсортований за оцінкою у файлі)
-  const sorted  = snapshot.anime.toSorted((a, b) => b.score - a.score);
-  const above   = sorted.filter(a => a.score >= threshold);
+  const sorted     = sortedAnime(snapshot);
+  const prevSorted = prevSnap ? sortedAnime(prevSnap) : [];
 
-  // Попередній знімок — для дельт
-  const prevSorted = prevSnap
-    ? prevSnap.anime.toSorted((a, b) => b.score - a.score)
-    : [];
-  const prevAbove = prevSorted.filter(a => a.score >= threshold);
-
-  const rows = above.map((a, i) => {
-    const rank     = i + 1;
-    const enr      = enrichedMap.get(a.id) ?? {};
-
-    // Позиція в попередньому знімку (серед усіх, не лише ≥ порогу)
-    const prevAllIdx = prevSorted.findIndex(p => p.id === a.id);
-    const prevAboveIdx = prevAbove.findIndex(p => p.id === a.id);
-    const prevRank   = prevAboveIdx >= 0 ? prevAboveIdx + 1 : null;
-    const prevEntry  = prevSnap?.anime.find(p => p.id === a.id);
+  const rows = sorted.map((a, i) => {
+    const rank       = i + 1;
+    const enr        = enrichedMap.get(a.id) ?? {};
+    const prevIdx    = prevSorted.findIndex(p => p.id === a.id);
+    const prevRank   = prevIdx >= 0 ? prevIdx + 1 : null;
+    const prevEntry  = prevSnap?.anime.find(p => p.id === a.id) ?? null;
 
     return {
       ...a,
@@ -113,9 +151,9 @@ export function computeChartData(allSnapshots, index, threshold, enrichedMap) {
       rank,
       prevRank,
       rankDelta:    prevRank !== null ? prevRank - rank : null,
-      scoreDelta:   prevEntry ? +(a.score - prevEntry.score).toFixed(2)   : null,
-      membersDelta: prevEntry ? a.members - prevEntry.members             : null,
-      isNew:        prevSnap !== null && prevAllIdx === -1,
+      scoreDelta:   prevEntry ? +(a.score - prevEntry.score).toFixed(2) : null,
+      membersDelta: prevEntry ? a.members - prevEntry.members           : null,
+      isNew:        prevSnap !== null && prevIdx === -1,
     };
   });
 
@@ -124,259 +162,287 @@ export function computeChartData(allSnapshots, index, threshold, enrichedMap) {
 
 // ─── Section 3: Notable Events ────────────────────────────────────────────────
 
-/**
- * 3a. Найвища оцінка за всю доступну історію.
- */
-export function computeHighestEver(allSnapshots) {
-  let best = null;
-
-  for (const snap of allSnapshots) {
-    for (const a of snap.anime) {
-      if (!best || a.score > best.score) {
-        best = { ...a, date: snap.date };
-      }
-    }
-  }
-
-  return best;
+// Повертає top-3 + переможця TV + переможця Movie + переможця з іншого
+function topWithCategories(sorted, enrichedMap) {
+  // Збагачуємо лише один раз і нормалізуємо animeId = id
+  const enriched = sorted.map(a => ({ ...enrich(a, enrichedMap), animeId: a.id }));
+  const top3 = enriched.slice(0, 3);
+  const find  = (pred) => enriched.find(pred) ?? null;
+  return {
+    top3,
+    tvWinner:    find(a => a.media_type === 'tv'),
+    movieWinner: find(a => a.media_type === 'movie'),
+    otherWinner: find(a => a.media_type !== 'tv' && a.media_type !== 'movie'),
+  };
 }
 
-/**
- * 3b. Найстабільніша оцінка:
- * Аніме, що найдовше тримало одну й ту саму оцінку підряд.
- * Повертає запис з кількістю знімків (count) та датами початку/кінця.
- */
-export function computeMostStableScore(allSnapshots) {
+/** 3a. Найвища оцінка за всю доступну історію — топ-3 + категорії */
+export function computeHighestEver(allSnapshots, enrichedMap) {
+  // Для кожного аніме — максимальна оцінка
+  const best = new Map();
+  for (const snap of allSnapshots) {
+    for (const a of snap.anime) {
+      if (a.score == null) continue;
+      const ex = best.get(a.id);
+      if (!ex || a.score > ex.score) best.set(a.id, { ...a, date: snap.date });
+    }
+  }
+  const sorted = [...best.values()].toSorted((a, b) => b.score - a.score);
+  const enrichedFirst = enrich(sorted[0], enrichedMap);
+  return sorted.length ? { ...topWithCategories(sorted, enrichedMap), winner: { ...enrichedFirst, animeId: sorted[0].id } } : null;
+}
+
+/** 3b. Найстабільніша оцінка — топ-3 по довжині серії + категорії */
+export function computeMostStableScore(allSnapshots, enrichedMap) {
   if (allSnapshots.length < 2) return null;
 
-  /** animeId → поточна серія */
   const active = new Map();
-  let best = null;
+  const completed = [];
 
-  const promote = streak => {
-    if (!best || streak.count > best.count) best = { ...streak };
-  };
+  const promote = streak => completed.push({ ...streak });
 
   for (const snap of allSnapshots) {
     const seen = new Set();
-
     for (const a of snap.anime) {
+      if (a.score == null) continue;
       seen.add(a.id);
       const cur = active.get(a.id);
-
       if (!cur) {
-        active.set(a.id, {
-          animeId: a.id, title: a.title, score: a.score,
-          startDate: snap.date, endDate: snap.date, count: 1,
-        });
+        active.set(a.id, { animeId: a.id, title: a.title, score: a.score, startDate: snap.date, endDate: snap.date, count: 1 });
       } else if (cur.score === a.score) {
-        cur.endDate = snap.date;
-        cur.count++;
+        cur.endDate = snap.date; cur.count++;
       } else {
         promote(cur);
-        active.set(a.id, {
-          animeId: a.id, title: a.title, score: a.score,
-          startDate: snap.date, endDate: snap.date, count: 1,
-        });
+        active.set(a.id, { animeId: a.id, title: a.title, score: a.score, startDate: snap.date, endDate: snap.date, count: 1 });
       }
     }
-
-    // Аніме, яке зникло зі знімку — завершуємо серію
     for (const [id, streak] of active) {
-      if (!seen.has(id)) {
-        promote(streak);
-        active.delete(id);
-      }
+      if (!seen.has(id)) { promote(streak); active.delete(id); }
     }
   }
-
   for (const s of active.values()) promote(s);
-  return best;
-}
 
-/**
- * 3c. Найдовше утримання топ-1.
- */
-export function computeLongestAtTop1(allSnapshots) {
-  if (!allSnapshots.length) return null;
+  const sorted = completed
+    .filter(s => s.count > 1)
+    .toSorted((a, b) => b.count - a.count || daysBetween(a.startDate, a.endDate) - daysBetween(b.startDate, b.endDate));
 
-  let best = null;
-  let cur  = null;
+  if (!sorted.length) return null;
 
-  const promote = s => {
-    if (s && (!best || s.count > best.count)) best = { ...s };
+  // Enriched top-3
+  const top3 = sorted.slice(0, 3).map(s => ({
+    ...s, ...enrich({ id: s.animeId, title: s.title, score: s.score, members: 0 }, enrichedMap),
+  }));
+
+  // Category winners (by longest streak)
+  const getWinner = (cat) => {
+    const match = sorted.find(s => {
+      const m = enrichedMap.get(s.animeId)?.media_type ?? 'unknown';
+      return cat === 'other' ? (m !== 'tv' && m !== 'movie') : m === cat;
+    });
+    return match ? { ...match, ...enrich({ id: match.animeId, title: match.title, score: match.score, members: 0 }, enrichedMap) } : null;
   };
 
-  for (const snap of allSnapshots) {
-    const top = snap.anime.toSorted((a, b) => b.score - a.score)[0];
-    if (!top) continue;
-
-    if (cur?.animeId === top.id) {
-      cur.endDate  = snap.date;
-      cur.count++;
-      cur.maxScore = Math.max(cur.maxScore, top.score);
-    } else {
-      promote(cur);
-      cur = {
-        animeId: top.id, title: top.title,
-        startDate: snap.date, endDate: snap.date,
-        count: 1, firstScore: top.score, maxScore: top.score,
-      };
-    }
-  }
-
-  promote(cur);
-  return best;
+  return {
+    winner:       top3[0],
+    top3,
+    tvWinner:     getWinner('tv'),
+    movieWinner:  getWinner('movie'),
+    otherWinner:  getWinner('other'),
+  };
 }
 
-/**
- * 3d-1. Усі аніме, що коли-небудь мали оцінку ≥ threshold.
- * Відсортовано за максимальною досягнутою оцінкою.
- */
-export function computeAllAboveThreshold(allSnapshots, threshold, enrichedMap) {
-  const seen = new Map(); // id → запис
+/** 3c. Найдовше утримання топ-1 — топ-3 + категорії */
+export function computeLongestAtTop1(allSnapshots, enrichedMap) {
+  if (!allSnapshots.length) return null;
+
+  // Рахуємо сесії на вершині для всіх аніме
+  const sessions = [];
+  let cur = null;
+
+  const close = () => { if (cur) { sessions.push({ ...cur }); cur = null; } };
 
   for (const snap of allSnapshots) {
+    const top = sortedAnime(snap)[0];
+    if (!top) { close(); continue; }
+    if (cur?.animeId === top.id) {
+      cur.endDate = snap.date;
+      cur.days    = daysBetween(cur.startDate, cur.endDate);
+      cur.maxScore = Math.max(cur.maxScore, top.score);
+    } else {
+      close();
+      cur = { animeId: top.id, title: top.title, startDate: snap.date, endDate: snap.date, days: 0, firstScore: top.score, maxScore: top.score };
+    }
+  }
+  close();
+
+  const sorted = sessions.toSorted((a, b) => b.days - a.days);
+  if (!sorted.length) return null;
+
+  const top3 = sorted.slice(0, 3).map(s => ({
+    ...s, ...enrich({ id: s.animeId, title: s.title, score: s.maxScore, members: 0 }, enrichedMap),
+  }));
+
+  const getWinner = (cat) => {
+    const match = sorted.find(s => {
+      const m = enrichedMap.get(s.animeId)?.media_type ?? 'unknown';
+      return cat === 'other' ? (m !== 'tv' && m !== 'movie') : m === cat;
+    });
+    return match ? { ...match, ...enrich({ id: match.animeId, title: match.title, score: match.maxScore, members: 0 }, enrichedMap) } : null;
+  };
+
+  return {
+    winner:      top3[0],
+    top3,
+    tvWinner:    getWinner('tv'),
+    movieWinner: getWinner('movie'),
+    otherWinner: getWinner('other'),
+  };
+}
+
+/** 3d-1. Усі аніме, що коли-небудь мали оцінку ≥ threshold. */
+export function computeAllAboveThreshold(allSnapshots, threshold, enrichedMap) {
+  const seen = new Map();
+  for (const snap of allSnapshots) {
     for (const a of snap.anime) {
-      if (a.score < threshold) continue;
-
-      const enr = enrichedMap.get(a.id) ?? {};
-      const ex  = seen.get(a.id);
-
+      if (a.score == null || a.score < threshold) continue;
+      const ex = seen.get(a.id);
       if (!ex) {
-        seen.set(a.id, {
-          animeId:    a.id,
-          title:      a.title,
-          title_ua:   enr.title_ua   ?? null,
-          media_type: enr.media_type ?? 'unknown',
-          image:      enr.image      ?? null,
-          maxScore:   a.score,
-          firstDate:  snap.date,
-        });
+        seen.set(a.id, { animeId: a.id, title: a.title, ...enrich(a, enrichedMap), maxScore: a.score, firstDate: snap.date });
       } else {
         ex.maxScore = Math.max(ex.maxScore, a.score);
       }
     }
   }
-
   return [...seen.values()].toSorted((a, b) => b.maxScore - a.maxScore);
 }
 
 /**
- * 3d-2. Хто тримав топ-1 і скільки разів.
- * Відсортовано хронологічно за першою появою на вершині.
+ * 3d-2. Хто тримав топ-1 (рахуємо сесії, а не знімки).
+ * Сесія = безперервний проміжок на #1. Якщо впав і повернувся — нова сесія.
  */
 export function computeTop1History(allSnapshots, enrichedMap) {
-  const orderArr = []; // порядок першої появи
-  const dataMap  = new Map();
+  const sessions = [];
+  let cur = null;
+
+  const close = () => { if (cur) { sessions.push({ ...cur }); cur = null; } };
 
   for (const snap of allSnapshots) {
-    const sorted = snap.anime.toSorted((a, b) => b.score - a.score);
-    const top    = sorted[0];
-    if (!top) continue;
+    const top = sortedAnime(snap)[0];
+    if (!top) { close(); continue; }
 
-    const enr = enrichedMap.get(top.id) ?? {};
-    const ex  = dataMap.get(top.id);
-
-    if (!ex) {
-      orderArr.push(top.id);
-      dataMap.set(top.id, {
+    if (cur?.animeId === top.id) {
+      cur.endDate  = snap.date;
+      cur.maxScore = Math.max(cur.maxScore, top.score);
+    } else {
+      close();
+      const enr = enrichedMap.get(top.id) ?? {};
+      cur = {
         animeId:    top.id,
         title:      top.title,
         title_ua:   enr.title_ua   ?? null,
         media_type: enr.media_type ?? 'unknown',
         image:      enr.image      ?? null,
-        count:      1,
         firstScore: top.score,
         maxScore:   top.score,
-        firstDate:  snap.date,
-      });
-    } else {
-      ex.count++;
-      ex.maxScore = Math.max(ex.maxScore, top.score);
-    }
-  }
-
-  return orderArr
-    .map(id => dataMap.get(id))
-    .toSorted((a, b) => new Date(a.firstDate) - new Date(b.firstDate));
-}
-
-/**
- * 3d-3. Найстабільніший топ-N:
- * Найдовший підряд де одні й ті ж N аніме в тому ж порядку.
- */
-export function computeMostStableTopN(allSnapshots, n = 10) {
-  if (allSnapshots.length < 2) return null;
-
-  const key = snap =>
-    snap.anime.toSorted((a, b) => b.score - a.score).slice(0, n).map(a => a.id).join(',');
-
-  let best = null;
-  let cur  = null;
-
-  const promote = s => {
-    if (s && (!best || s.count > best.count)) best = { ...s };
-  };
-
-  for (const snap of allSnapshots) {
-    const k = key(snap);
-
-    if (cur?.key === k) {
-      cur.endDate = snap.date;
-      cur.count++;
-    } else {
-      promote(cur);
-      cur = {
-        key, n,
-        topN:      snap.anime.toSorted((a, b) => b.score - a.score).slice(0, n),
-        startDate: snap.date,
-        endDate:   snap.date,
-        count:     1,
+        startDate:  snap.date,
+        endDate:    snap.date,
       };
     }
   }
+  close();
 
-  promote(cur);
+  // Групуємо по аніме: підраховуємо кількість сесій та знаходимо першу дату
+  const byAnime = new Map();
+  for (const s of sessions) {
+    const ex = byAnime.get(s.animeId);
+    if (!ex) {
+      byAnime.set(s.animeId, { ...s, sessionCount: 1, sessions: [s] });
+    } else {
+      ex.sessionCount++;
+      ex.maxScore = Math.max(ex.maxScore, s.maxScore);
+      ex.sessions.push(s);
+    }
+  }
+
+  return [...byAnime.values()].toSorted((a, b) => new Date(a.startDate) - new Date(b.startDate));
+}
+
+/**
+ * 3d-3. Найстабільніший топ:
+ * Знаходить найдовший проміжок де перші N позицій не змінювали порядку між послідовними знімками.
+ * N вибирається так, щоб максимізувати (N × кількість_знімків).
+ */
+export function computeMostStableTopN(allSnapshots, enrichedMap) {
+  if (allSnapshots.length < 2) return null;
+
+  // Стабільний префікс між кожною парою знімків
+  const prefixes = [];
+  for (let i = 0; i < allSnapshots.length - 1; i++) {
+    const a = sortedAnime(allSnapshots[i]);
+    const b = sortedAnime(allSnapshots[i + 1]);
+    let k = 0;
+    while (k < a.length && k < b.length && a[k].id === b[k].id) k++;
+    prefixes.push(k);
+  }
+
+  const maxN = Math.max(0, ...prefixes);
+  if (maxN === 0) return null;
+
+  let best = null;
+
+  for (let n = maxN; n >= 1; n--) {
+    let runStart = -1;
+
+    for (let i = 0; i <= prefixes.length; i++) {
+      const ok = i < prefixes.length && prefixes[i] >= n;
+      if (ok) {
+        if (runStart === -1) runStart = i;
+      } else if (runStart !== -1) {
+        const snapCount = i - runStart + 1;
+        const startDate = allSnapshots[runStart].date;
+        const endDate   = allSnapshots[i].date;
+        const days      = daysBetween(startDate, endDate);
+        const score     = n * snapCount;
+
+        if (!best || score > best.score) {
+          const topN = sortedAnime(allSnapshots[runStart]).slice(0, n);
+          best = { n, startDate, endDate, snapCount, days, topN, score };
+        }
+        runStart = -1;
+      }
+    }
+  }
+
   return best;
 }
 
-/**
- * 3d-4. В якому знімку одночасно було найбільше аніме з оцінкою ≥ threshold.
- */
-export function computeMostHighRatedAtOnce(allSnapshots, threshold) {
+/** 3d-4. В якому знімку одночасно було найбільше аніме з оцінкою ≥ threshold. */
+export function computeMostHighRatedAtOnce(allSnapshots, threshold, enrichedMap) {
   let best = null;
-
   for (const snap of allSnapshots) {
-    const high = snap.anime.filter(a => a.score >= threshold);
+    const high = snap.anime.filter(a => a.score != null && a.score >= threshold);
     if (!best || high.length > best.count) {
       best = {
-        date:   snap.date,
-        config: snap.config,
-        count:  high.length,
-        anime:  high.toSorted((a, b) => b.score - a.score),
+        date:  snap.date,
+        count: high.length,
+        anime: high.toSorted((a, b) => b.score - a.score).map(a => enrich(a, enrichedMap)),
       };
     }
   }
-
   return best;
 }
 
 // ─── Master computation ───────────────────────────────────────────────────────
 
-/**
- * Запускає всі аналітичні функції одразу.
- * @returns {object} Об'єкт з усіма обчисленими даними.
- */
-export function computeAll(snapshots, enrichedMap, threshold = 9.0, stableN = 10) {
+export function computeAll(snapshots, enrichedMap, threshold = 9.0) {
   return {
-    topByCategory:      computeTopByCategory(snapshots, enrichedMap),
-    highestEver:        computeHighestEver(snapshots),
-    mostStableScore:    computeMostStableScore(snapshots),
-    longestTop1:        computeLongestAtTop1(snapshots),
-    allAboveThreshold:  computeAllAboveThreshold(snapshots, threshold, enrichedMap),
-    top1History:        computeTop1History(snapshots, enrichedMap),
-    mostStableTopN:     computeMostStableTopN(snapshots, stableN),
-    mostAtOnce:         computeMostHighRatedAtOnce(snapshots, threshold),
+    categoryTopHistory:  computeCategoryTopHistory(snapshots, enrichedMap, threshold),
+    highestEver:         computeHighestEver(snapshots, enrichedMap),
+    mostStableScore:     computeMostStableScore(snapshots, enrichedMap),
+    longestTop1:         computeLongestAtTop1(snapshots, enrichedMap),
+    allAboveThreshold:   computeAllAboveThreshold(snapshots, threshold, enrichedMap),
+    top1History:         computeTop1History(snapshots, enrichedMap),
+    mostStableTopN:      computeMostStableTopN(snapshots, enrichedMap),
+    mostAtOnce:          computeMostHighRatedAtOnce(snapshots, threshold, enrichedMap),
   };
 }

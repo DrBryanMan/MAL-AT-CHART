@@ -56,33 +56,45 @@ export async function loadEnrichedData() {
   return fetchJSON(`${CONFIG.dataDir}${CONFIG.enrichedFile}`);
 }
 
+/** Максимум паралельних fetch-запитів за раз */
+const BATCH_SIZE = 8;
+
 /**
- * Головна функція: завантажує маніфест, потім паралельно всі знімки
- * та збагачені дані. Невдалі знімки пропускаються з попередженням.
+ * Promise.allSettled пачками по BATCH_SIZE — не вішає браузер
+ * при великій кількості знімків.
+ */
+async function allSettledBatched(items, fn) {
+  const results = [];
+  for (let i = 0; i < items.length; i += BATCH_SIZE) {
+    const chunk = await Promise.allSettled(items.slice(i, i + BATCH_SIZE).map(fn));
+    results.push(...chunk);
+  }
+  return results;
+}
+
+/**
+ * Головна функція: завантажує маніфест, потім знімки пачками по BATCH_SIZE.
+ * Невдалі знімки пропускаються з попередженням у консолі.
  *
  * @returns {Promise<{ snapshots: object[], enriched: object[] }>}
  */
 export async function loadAll() {
-  // Спочатку маніфест (без нього нема сенсу продовжувати)
   const manifestEntries = await loadManifest();
 
-  const [enrichedResult, ...snapshotResults] = await Promise.allSettled([
-    loadEnrichedData(),
-    ...manifestEntries.map(loadSnapshot),
-  ]);
+  // Збагачені дані та знімки завантажуємо окремо:
+  // allSettledBatched вже повертає SettledResult[] — не можна мішати з Promise.allSettled
+  const [enrichedResult]  = await Promise.allSettled([loadEnrichedData()]);
+  const snapshotResults   = await allSettledBatched(manifestEntries, loadSnapshot);
 
-  // Збагачені дані (не критично якщо відсутні)
   const enriched =
     enrichedResult.status === 'fulfilled'
       ? enrichedResult.value
       : (console.warn('⚠️ Збагачені дані недоступні:', enrichedResult.reason), []);
 
-  // Знімки — пропускаємо невдалі, зберігаємо мета-дані з маніфесту
   const snapshots = snapshotResults
     .map((result, i) => {
       const entry = manifestEntries[i];
       if (result.status === 'fulfilled') {
-        // Гарантуємо наявність поля date навіть якщо у файлі його немає
         const data = result.value;
         if (!data.date) data.date = entry.date;
         return { ...data, config: entry };

@@ -1,30 +1,28 @@
 /**
  * main.js — Application entry point
- *
- * Завантажує дані, запускає аналітику, рендерить UI та налаштовує події.
  */
 
-import { loadAll }                               from './data-loader.js';
-import { buildEnrichedMap, computeAll }          from './analytics.js';
+import { loadAll }                      from './data-loader.js';
+import { buildEnrichedMap, computeAll } from './analytics.js';
 import {
   renderCategorySection,
   renderChartSection,
   renderEventsSection,
   showTooltip,
   hideTooltip,
-}                                                from './renderer.js';
-import { CONFIG }                                from './config.js';
+} from './renderer.js';
+import { CONFIG } from './config.js';
 
-// ─── App State ────────────────────────────────────────────────────────────────
+// ─── State ────────────────────────────────────────────────────────────────────
 
 const state = {
-  snapshots:     [],
-  enrichedMap:   new Map(),
-  analytics:     null,
-  currentIndex:  0,   // індекс поточного знімку в секції 2
+  snapshots:    [],
+  enrichedMap:  new Map(),
+  analytics:    null,
+  currentIndex: 0,
 };
 
-// ─── Entry ───────────────────────────────────────────────────────────────────
+// ─── Init ─────────────────────────────────────────────────────────────────────
 
 async function init() {
   const loadingEl = document.getElementById('loading');
@@ -33,19 +31,16 @@ async function init() {
   try {
     const { snapshots, enriched } = await loadAll();
 
-    if (!snapshots.length) {
-      throw new Error('Не вдалося завантажити жодного знімку. Перевірте CONFIG.snapshots та наявність файлів.');
-    }
+    if (!snapshots.length) throw new Error('Не вдалося завантажити жодного знімку.');
 
     state.snapshots   = snapshots;
     state.enrichedMap = buildEnrichedMap(enriched);
-    state.currentIndex = snapshots.length - 1; // за замовчуванням — останній (найновіший)
+    state.currentIndex = snapshots.length - 1;
 
     state.analytics = computeAll(
       state.snapshots,
       state.enrichedMap,
       CONFIG.thresholds.topRated,
-      CONFIG.stableTopN,
     );
 
     loadingEl.classList.add('hidden');
@@ -66,26 +61,37 @@ async function init() {
   }
 }
 
-// ─── Render All ───────────────────────────────────────────────────────────────
+// ─── Render ───────────────────────────────────────────────────────────────────
 
 function renderAll() {
-  renderCategorySection(state.analytics.topByCategory);
-  renderChartSection(
-    state.snapshots,
-    state.currentIndex,
-    state.enrichedMap,
-    CONFIG.thresholds.topRated,
-  );
-  renderEventsSection(state.analytics);
+  const sections = [
+    () => renderChartSection(state.snapshots, state.currentIndex, state.enrichedMap),
+    () => renderCategorySection(state.analytics.categoryTopHistory),
+    () => renderEventsSection(state.analytics),
+  ];
+  for (const fn of sections) {
+    try { fn(); } catch (e) { console.error('[MAL Charts] Секція:', e); }
+  }
 }
 
-// ─── Event Listeners ──────────────────────────────────────────────────────────
+function renderChart() {
+  try {
+    renderChartSection(state.snapshots, state.currentIndex, state.enrichedMap);
+  } catch (e) { console.error('[MAL Charts] Chart:', e); }
+}
+
+function jumpTo(idx) {
+  const clamped = Math.max(0, Math.min(state.snapshots.length - 1, idx));
+  if (clamped === state.currentIndex) return;
+  state.currentIndex = clamped;
+  renderChart();
+}
+
+// ─── Events ───────────────────────────────────────────────────────────────────
 
 function setupEventListeners() {
-  // ─ Global delegated click ─
   document.addEventListener('click', e => {
-
-    // 1. Info buttons у секційних заголовках (статичний HTML)
+    // Info buttons
     const infoBtn = e.target.closest('[data-info-key]');
     if (infoBtn) {
       e.stopPropagation();
@@ -93,57 +99,23 @@ function setupEventListeners() {
       return;
     }
 
-    // 2. Навігація по знімках (prev / next)
-    const navBtn = e.target.closest('#snap-prev, #snap-next');
-    if (navBtn) {
-      const delta   = navBtn.id === 'snap-prev' ? -1 : 1;
-      const newIdx  = state.currentIndex + delta;
+    // Snap prev/next
+    if (e.target.closest('#snap-prev')) { jumpTo(state.currentIndex - 1); return; }
+    if (e.target.closest('#snap-next')) { jumpTo(state.currentIndex + 1); return; }
 
-      if (newIdx < 0 || newIdx >= state.snapshots.length) return;
-
-      state.currentIndex = newIdx;
-      renderChartSection(
-        state.snapshots,
-        state.currentIndex,
-        state.enrichedMap,
-        CONFIG.thresholds.topRated,
-      );
-      return;
-    }
-
-    // 3. Закрити тултип при кліку деінде
     hideTooltip();
   });
 
-  // ─ Keyboard navigation для знімків ─
+  // Snap page input
+  document.addEventListener('snap-jump', e => jumpTo(e.detail));
+
+  // Keyboard
   document.addEventListener('keydown', e => {
     if (e.target.matches('input, textarea, select')) return;
-
-    if (e.key === 'ArrowLeft' && state.currentIndex > 0) {
-      state.currentIndex--;
-      renderChartSection(
-        state.snapshots,
-        state.currentIndex,
-        state.enrichedMap,
-        CONFIG.thresholds.topRated,
-      );
-    } else if (e.key === 'ArrowRight' && state.currentIndex < state.snapshots.length - 1) {
-      state.currentIndex++;
-      renderChartSection(
-        state.snapshots,
-        state.currentIndex,
-        state.enrichedMap,
-        CONFIG.thresholds.topRated,
-      );
-    }
-  });
-
-  // ─ Закрити тултип на Escape ─
-  document.addEventListener('keydown', e => {
-    if (e.key === 'Escape') hideTooltip();
+    if (e.key === 'ArrowLeft')  jumpTo(state.currentIndex - 1);
+    if (e.key === 'ArrowRight') jumpTo(state.currentIndex + 1);
+    if (e.key === 'Escape')     hideTooltip();
   });
 }
-
-// ─── Bootstrap ────────────────────────────────────────────────────────────────
 
 init();

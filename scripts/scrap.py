@@ -33,16 +33,16 @@ MAL_URL   = "http://myanimelist.net/topanime.php"
 CDX_API   = "https://web.archive.org/cdx/search/cdx"
 WB_PREFIX = "https://web.archive.org/web"
 
-OUT_DIR        = Path(__file__).parent / "snapshots"
+OUT_DIR        = Path(__file__).parent / "../snapshots"
 DELAY_SEC      = 1.5
 MAX_SNAPSHOTS  = None   # None = всі; число = ліміт (наприклад 5 для тесту)
-USE_CDX_CACHE  = False   # True = брати список днів з файлу; False = новий запит до CDX API
-CDX_CACHE_FILE  = Path(__file__).parent / "cdx_snapshots.json"
-EMPTY_LIST_FILE = Path(__file__).parent / "empty_snapshots.json"
+USE_CDX_CACHE  = True   # True = брати список днів з файлу; False = новий запит до CDX API
+CDX_CACHE_FILE  = Path(__file__).parent / "../data/cdx_snapshots.json"
+EMPTY_LIST_FILE = Path(__file__).parent / "../data/empty_snapshots.json"
 
 # Знімки які завідомо повертають помилку — пропускаємо одразу.
 # Файл містить JSON-масив рядків: ["20070509192624", "20070312083156"]
-SKIP_FILE = Path(__file__).parent / "skip_timestamps.json"
+SKIP_FILE = Path(__file__).parent / "../data/skip_timestamps.json"
 
 # Таблиця версій розмітки MAL по датах (включно з датою початку).
 # Якщо дата знімка >= ключ — використовується відповідна версія.
@@ -539,15 +539,29 @@ def _row_v6(row) -> AnimeEntry | None:
     score_tag = row.select_one(".score-label")
     score     = _parse_score(score_tag.get_text() if score_tag else None)
 
-    anchor   = row.select_one(".anime_ranking_h3 a")
-    href     = anchor.get("href") if anchor else None
-    anime_id = _id_from_href(href)
-    title    = anchor.get_text(strip=True) if anchor else None
+    # Основний варіант v6: назва у .anime_ranking_h3 a
+    anchor = row.select_one(".anime_ranking_h3 a")
+    if anchor:
+        href     = anchor.get("href")
+        anime_id = _id_from_href(href)
+        title    = anchor.get_text(strip=True)
+    else:
+        # Перехідний період (~2020): score-label є, але структура ще v5-подібна
+        # Назва — a.fw-b, як у v5
+        a_fw = row.find("a", class_=lambda c: c and "fw-b" in (c or "").split())
+        href     = a_fw.get("href") if a_fw else None
+        anime_id = _id_from_href(href)
+        title    = a_fw.get_text(strip=True) if a_fw else None
 
     info      = row.select_one(".information")
-    info_t    = info.get_text() if info else ""
+    info_t    = info.get_text(separator="\n") if info else ""
     members_m = re.search(r"([\d,]+)\s+members", info_t, re.I)
     members   = _parse_members(members_m.group(1) if members_m else None)
+
+    # Якщо .score-label не знайдено (старий v5-подібний період) — пробуємо span.text
+    if score is None:
+        text_span = row.find("span", class_="text")
+        score = _parse_score(text_span.get_text() if text_span else None)
 
     return AnimeEntry(id=anime_id, title=title, members=members, score=score)
 
@@ -593,16 +607,30 @@ def _parse_with_version(soup: BeautifulSoup, version: str) -> list[AnimeEntry]:
     return entries
 
 
+def _entries_quality(entries: list[AnimeEntry]) -> tuple[int, int, int]:
+    """Повертає (total, з id, з title) — для оцінки якості результату."""
+    has_id    = sum(1 for e in entries if e.id    is not None)
+    has_title = sum(1 for e in entries if e.title is not None)
+    return len(entries), has_id, has_title
+
+
 def parse_page(html: str, version: str) -> tuple[list[AnimeEntry], str]:
     soup    = BeautifulSoup(html, "lxml")
     entries = _parse_with_version(soup, version)
 
-    # Якщо по даті отримали 0 — пробуємо автодетект як fallback
-    if not entries:
+    # Fallback на автодетект якщо:
+    # 1) отримали 0 записів, або
+    # 2) є записи, але жоден не має id або жоден не має title
+    total, has_id, has_title = _entries_quality(entries)
+    need_fallback = (total == 0) or (has_id == 0) or (has_title == 0)
+
+    if need_fallback:
         auto = detect_version(soup)
         if auto != version:
             fallback = _parse_with_version(soup, auto)
-            if fallback:
+            fb_total, fb_id, fb_title = _entries_quality(fallback)
+            # Беремо fallback якщо він кращий за поточний результат
+            if fb_total > 0 and (fb_id > has_id or fb_title > has_title):
                 return fallback, f"{auto}(auto)"
 
     return entries, version
@@ -811,7 +839,7 @@ def main() -> None:
         out_file = OUT_DIR / f"{snap.date}.json"
 
         if snap.timestamp in skip_timestamps:
-            print(f"[{i:>4}/{total}] ⏭️  {snap.date} — у списку виключень, пропускаємо")
+            # print(f"[{i:>4}/{total}] ⏭️  {snap.date} — у списку виключень, пропускаємо")
             continue
 
         if out_file.exists():

@@ -22,8 +22,8 @@
           </div>
         </div>
         <nav class="header-nav">
-          <a href="#section-categories">Категорії</a>
-          <a href="#section-top-rated">Топ ≥ 9.0</a>
+          <a href="#section-chart">Знімки</a>
+          <a href="#section-categories">Топ категорій</a>
           <a href="#section-events">Рекорди</a>
         </nav>
       </div>
@@ -35,33 +35,31 @@
         <div id="loading" class="loading-screen">
           <div class="spinner"></div>
           <p>Завантаження даних…</p>
-          <p class="loading-hint">Потрібен локальний HTTP-сервер (напр. <code>npx serve .</code>)</p>
         </div>
 
         <div id="content" class="hidden">
 
-          <!-- ═══ SECTION 1: Top by Category ═══ -->
-          <section class="section" id="section-categories">
+          <!-- ═══ SECTION 1: Snapshot Chart ═══ -->
+          <section class="section" id="section-chart">
             <div class="section-header">
               <h2 class="section-title">
-                <span>🏷️ Топ за категоріями</span>
-                <button class="info-btn" data-info-key="categories" aria-label="Інформація">ℹ</button>
-              </h2>
-              <p class="section-hint">На основі останнього знімку</p>
-            </div>
-            <div id="categories-content"></div>
-          </section>
-
-          <!-- ═══ SECTION 2: Top ≥ 9.0 ═══ -->
-          <section class="section" id="section-top-rated">
-            <div class="section-header">
-              <h2 class="section-title">
-                <span>⭐ Топ з рейтингом ≥ 9.0</span>
-                <button class="info-btn" data-info-key="topRated" aria-label="Інформація">ℹ</button>
+                <span>📋 Рейтинг на дату</span>
+                <button class="info-btn" data-info-key="chart" aria-label="Інформація">ℹ</button>
               </h2>
               <div class="snapshot-nav" id="snapshot-nav"></div>
             </div>
             <div id="top-rated-content"></div>
+          </section>
+
+          <!-- ═══ SECTION 2: Category Top History ═══ -->
+          <section class="section" id="section-categories">
+            <div class="section-header">
+              <h2 class="section-title">
+                <span>🏷️ Топ-1 за категоріями (з оцінкою ≥ 9.0)</span>
+                <button class="info-btn" data-info-key="categories" aria-label="Інформація">ℹ</button>
+              </h2>
+            </div>
+            <div id="categories-content"></div>
           </section>
 
           <!-- ═══ SECTION 3: Notable Events ═══ -->
@@ -75,21 +73,19 @@
             <div id="events-content"></div>
           </section>
 
-        </div><!-- /#content -->
+        </div>
       </div>
     </main>
 
     <footer class="site-footer">
       <div class="container">
-        <span>Дані: MyAnimeList (архів) · Побудовано на чистому JS (ES2025)</span>
+        <span>Дані: MyAnimeList (Wayback Machine архів)</span>
       </div>
     </footer>
 
-  </div><!-- /#app -->
+  </div>
 
-  <!-- Global tooltip overlay -->
   <div class="tooltip-popup" id="tooltip-popup" role="tooltip" aria-hidden="true"></div>
-
   <script type="module" src="js/main.js"></script>
 </body>
 </html>

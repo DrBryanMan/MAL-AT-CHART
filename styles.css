@@ -79,6 +79,9 @@ code {
   border: 1px solid var(--border);
 }
 
+/* ─── Scroll offset (sticky header) ─────────────────────── */
+section[id] { scroll-margin-top: 70px; }
+
 /* ─── Layout ─────────────────────────────────────────── */
 .container {
   max-width: var(--container);
@@ -418,9 +421,7 @@ code {
 }
 
 /* Rank #1, #2, #3 styling */
-.chart-row:nth-child(1) { border-left: 3px solid var(--rank-gold); }
-.chart-row:nth-child(2) { border-left: 3px solid var(--rank-silver); }
-.chart-row:nth-child(3) { border-left: 3px solid var(--rank-bronze); }
+
 
 .chart-rank {
   display: flex;
@@ -439,9 +440,7 @@ code {
   text-align: center;
 }
 
-.chart-row:nth-child(1) .rank-num { color: var(--rank-gold); }
-.chart-row:nth-child(2) .rank-num { color: var(--rank-silver); }
-.chart-row:nth-child(3) .rank-num { color: var(--rank-bronze); }
+
 
 /* ─── Rank Badge (change indicator) ─────────────────── */
 .rank-badge {
@@ -822,3 +821,268 @@ code {
   .chart-title { font-size: 13px; }
   .highlight-score { font-size: 22px; }
 }
+
+/* ─── Page Input (snapshot nav) ─────────────────────────────────────── */
+.snap-page-input {
+  width: 54px;
+  padding: 4px 6px;
+  background: var(--bg-input);
+  border: 1px solid var(--border);
+  border-radius: var(--r);
+  color: var(--text);
+  font-family: var(--font-mono);
+  font-size: 13px;
+  text-align: center;
+  -moz-appearance: textfield;
+}
+.snap-page-input::-webkit-inner-spin-button,
+.snap-page-input::-webkit-outer-spin-button { -webkit-appearance: none; }
+.snap-page-input:focus {
+  outline: none;
+  border-color: var(--accent);
+  box-shadow: 0 0 0 2px rgba(88,166,255,.15);
+}
+.snap-counter {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  font-family: var(--font-mono);
+  font-size: 13px;
+  color: var(--text-muted);
+}
+
+/* ─── Archive Link ───────────────────────────────────────────────────── */
+.archive-link {
+  color: inherit;
+  text-decoration: none;
+  border-bottom: 1px dashed var(--text-muted);
+  transition: border-color var(--t), color var(--t);
+}
+.archive-link:hover {
+  color: var(--accent);
+  border-bottom-color: var(--accent);
+  text-decoration: none;
+}
+
+/* ─── Session List (Section 2) ───────────────────────────────────────── */
+.session-list   { display: flex; flex-direction: column; gap: 5px; }
+
+.session-row {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 9px 14px;
+  background: var(--bg-card);
+  border: 1px solid var(--border-subtle);
+  border-radius: var(--r-lg);
+  transition: background var(--t), border-color var(--t);
+}
+.session-row:hover { background: var(--bg-card-h); border-color: var(--border); }
+
+.session-info  { display: flex; flex-direction: column; gap: 3px; flex: 1; min-width: 0; }
+
+.session-title {
+  font-size: 14px;
+  font-weight: 600;
+  color: var(--text);
+  display: flex;
+  align-items: baseline;
+  gap: 6px;
+  flex-wrap: wrap;
+}
+
+.session-orig  { font-size: 12px; font-weight: 400; color: var(--text-muted); }
+
+.session-num-badge {
+  font-size: 11px;
+  font-weight: 700;
+  font-family: var(--font-mono);
+  color: var(--purple);
+  background: rgba(188,140,255,.12);
+  padding: 1px 5px;
+  border-radius: 4px;
+  flex-shrink: 0;
+}
+
+.session-meta {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  font-size: 12px;
+  color: var(--text-muted);
+  flex-wrap: wrap;
+}
+
+.session-date  { color: var(--text-muted); }
+
+/* ─── Collapsible ────────────────────────────────────────────────────── */
+.collapsed-rows { display: flex; flex-direction: column; gap: 5px; }
+.collapsed-rows.hidden { display: none; }
+
+.show-more-btn {
+  display: block;
+  width: 100%;
+  margin-top: 8px;
+  padding: 8px 16px;
+  background: var(--bg-card);
+  border: 1px dashed var(--border);
+  border-radius: var(--r-lg);
+  color: var(--accent);
+  font-size: 13px;
+  font-weight: 500;
+  text-align: center;
+  cursor: pointer;
+  transition: background var(--t), border-color var(--t);
+}
+.show-more-btn:hover { background: var(--bg-card-h); border-color: var(--accent); }
+
+/* ─── Event Card: winner with poster ────────────────────────────────── */
+.event-winner {
+  display: flex;
+  gap: 14px;
+  align-items: flex-start;
+  margin-bottom: 12px;
+}
+
+.anime-thumb.event-poster {
+  width: 56px;
+  height: 80px;
+  border-radius: var(--r);
+  object-fit: cover;
+  flex-shrink: 0;
+}
+div.anime-thumb.event-poster.placeholder {
+  width: 56px;
+  height: 80px;
+}
+
+.highlight-orig {
+  font-size: 12px;
+  color: var(--text-muted);
+  margin-top: -2px;
+}
+
+/* ─── Runner-up rows ─────────────────────────────────────────────────── */
+.runner-up-row {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 5px 0;
+  border-top: 1px solid var(--border-subtle);
+  font-size: 12px;
+  color: var(--text-2);
+}
+.runner-medal  { font-size: 14px; flex-shrink: 0; }
+.runner-title  { flex: 1; min-width: 0; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+.runner-score  { font-family: var(--font-mono); font-size: 12px; color: var(--gold); white-space: nowrap; }
+
+/* ─── Category winners ───────────────────────────────────────────────── */
+.cat-winners {
+  margin-top: 10px;
+  border-top: 1px solid var(--border-subtle);
+  padding-top: 8px;
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+.cat-winner-row {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 12px;
+}
+.cat-winner-label { color: var(--text-muted); flex-shrink: 0; min-width: 74px; }
+.cat-winner-title { flex: 1; min-width: 0; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; color: var(--text-2); }
+.cat-winner-score { font-family: var(--font-mono); color: var(--gold); white-space: nowrap; }
+
+/* ─── Tab info button (inside tab-btn) ───────────────────────────────── */
+.tab-info-btn {
+  margin-left: 6px;
+  vertical-align: middle;
+  position: relative;
+  z-index: 1;
+}
+
+/* ─── List meta inline score ─────────────────────────────────────────── */
+.score-badge.inline {
+  font-size: 12px;
+  color: var(--gold);
+  background: none;
+  padding: 0;
+}
+
+/* ─── Count badge large ──────────────────────────────────────────────── */
+.count-badge.large {
+  font-size: 17px;
+  font-weight: 700;
+  color: var(--accent);
+}
+
+/* ─── List meta date ─────────────────────────────────────────────────── */
+.list-date { color: var(--text-muted); }
+
+/* ─── Stable header ──────────────────────────────────────────────────── */
+.stable-header {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  justify-content: space-between;
+  align-items: center;
+  padding: 10px 14px;
+  background: rgba(88,166,255,.06);
+  border: 1px solid rgba(88,166,255,.2);
+  border-radius: var(--r-lg);
+  font-size: 13px;
+  color: var(--text-2);
+  margin-bottom: 10px;
+  line-height: 1.6;
+}
+
+/* ─── Chart row rank borders (по класу, не nth-child) ────────── */
+.chart-row { border-left: 3px solid transparent; }
+.chart-row.rank-top-1 { border-left-color: var(--rank-gold); }
+.chart-row.rank-top-2 { border-left-color: var(--rank-silver); }
+.chart-row.rank-top-3 { border-left-color: var(--rank-bronze); }
+.chart-row.rank-top-1 .rank-num { color: var(--rank-gold); }
+.chart-row.rank-top-2 .rank-num { color: var(--rank-silver); }
+.chart-row.rank-top-3 .rank-num { color: var(--rank-bronze); }
+
+/* ─── Anime link ─────────────────────────────────────────────────── */
+.anime-link {
+  color: inherit;
+  text-decoration: none;
+  transition: color var(--t);
+}
+.anime-link:hover { color: var(--accent); text-decoration: none; }
+
+/* ─── Rank medal (inline, поруч з номером) ───────────────────────── */
+.rank-medal { font-size: 14px; display: block; line-height: 1; }
+
+/* ─── Runner-up date ─────────────────────────────────────────────── */
+.runner-date  { font-size: 11px; color: var(--text-muted); margin-left: auto; }
+.runner-up-row { gap: 4px 6px; flex-wrap: wrap; }
+.runner-up-row .runner-date { flex-basis: 100%; padding-left: 26px; margin-left: 0; }
+
+/* ─── Cat winner date ────────────────────────────────────────────── */
+.cat-winner-date { font-size: 11px; color: var(--text-muted); flex-basis: 100%; padding-left: 80px; }
+.cat-winner-title { flex: 1; min-width: 0; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+
+/* ─── Top-1 history sessions ─────────────────────────────────────── */
+.session-details {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 4px 10px;
+  margin-top: 4px;
+}
+.session-detail {
+  font-size: 11px;
+  color: var(--text-muted);
+  white-space: nowrap;
+}
+.top1-row { align-items: flex-start; padding-top: 10px; padding-bottom: 10px; }
+
+/* ─── Stable-row title link ──────────────────────────────────────── */
+.stable-title { flex: 1; min-width: 0; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+
+/* ─── Most-at-once list-row (no thumb) ──────────────────────────── */
+.ranked-list .list-row { align-items: center; }
