@@ -36,10 +36,10 @@ function enrich(a, enrichedMap) {
   const enr = enrichedMap.get(a.id) ?? {};
   return {
     ...a,
-    title_ua:    enr.title_ua    ?? null,
-    media_type:  enr.media_type  ?? 'unknown',
-    image:       enr.image       ?? null,
-    hikka_slug:  enr.hikka_slug  ?? null,
+    title_ua:   enr.title_ua   ?? null,
+    media_type: enr.media_type ?? 'unknown',
+    image:      enr.image      ?? null,
+    hikka_slug: enr.hikka_slug ?? null,
   };
 }
 
@@ -48,27 +48,21 @@ function sortedAnime(snap) {
 }
 
 // ─── Section 1: Category Top History ─────────────────────────────────────────
-//
-// Для кожної категорії + 'all' відстежуємо, хто утримував #1 позицію протягом часу.
-// Результат: { sessions: { all:[...], tv:[...], ... }, categories: [...] }
-// Кожна "сесія" = безперервний проміжок, де одне аніме було #1 у своїй категорії.
 
 export function computeCategoryTopHistory(allSnapshots, enrichedMap, threshold) {
-  // Збираємо всі категорії з усіх знімків
   const allCats = new Set();
   for (const snap of allSnapshots) {
     for (const a of snap.anime) {
-      const enr = enrichedMap.get(a.id) ?? {};
-      allCats.add(enr.media_type ?? 'unknown');
+      allCats.add(enrichedMap.get(a.id)?.media_type ?? 'unknown');
     }
   }
 
-  const catList = ['all', ...allCats];
+  const catList        = ['all', ...allCats];
   const sessions       = Object.fromEntries(catList.map(c => [c, []]));
   const currentSession = Object.fromEntries(catList.map(c => [c, null]));
   const sessionCounts  = Object.fromEntries(catList.map(c => [c, new Map()]));
 
-  const closeSession = (cat) => {
+  const closeSession = cat => {
     if (currentSession[cat]) {
       sessions[cat].push({ ...currentSession[cat] });
       currentSession[cat] = null;
@@ -96,7 +90,6 @@ export function computeCategoryTopHistory(allSnapshots, enrichedMap, threshold) 
   const updateCat = (cat, top, date) => {
     const cur = currentSession[cat];
     if (!top) { closeSession(cat); return; }
-
     if (cur?.animeId === top.id) {
       cur.endDate  = date;
       cur.maxScore = Math.max(cur.maxScore, top.score);
@@ -112,17 +105,12 @@ export function computeCategoryTopHistory(allSnapshots, enrichedMap, threshold) 
       .map(a => enrich(a, enrichedMap))
       .toSorted((a, b) => b.score - a.score);
 
-    // 'all'
     updateCat('all', eligible[0] ?? null, snap.date);
-
-    // Per category
     for (const cat of allCats) {
-      const topCat = eligible.find(a => a.media_type === cat) ?? null;
-      updateCat(cat, topCat, snap.date);
+      updateCat(cat, eligible.find(a => a.media_type === cat) ?? null, snap.date);
     }
   }
 
-  // Закриваємо відкриті сесії
   for (const cat of catList) closeSession(cat);
 
   return { sessions, categories: catList };
@@ -138,11 +126,11 @@ export function computeChartData(allSnapshots, index, enrichedMap) {
   const prevSorted = prevSnap ? sortedAnime(prevSnap) : [];
 
   const rows = sorted.map((a, i) => {
-    const rank       = i + 1;
-    const enr        = enrichedMap.get(a.id) ?? {};
-    const prevIdx    = prevSorted.findIndex(p => p.id === a.id);
-    const prevRank   = prevIdx >= 0 ? prevIdx + 1 : null;
-    const prevEntry  = prevSnap?.anime.find(p => p.id === a.id) ?? null;
+    const rank      = i + 1;
+    const enr       = enrichedMap.get(a.id) ?? {};
+    const prevIdx   = prevSorted.findIndex(p => p.id === a.id);
+    const prevRank  = prevIdx >= 0 ? prevIdx + 1 : null;
+    const prevEntry = prevSnap?.anime.find(p => p.id === a.id) ?? null;
 
     return {
       ...a,
@@ -164,12 +152,10 @@ export function computeChartData(allSnapshots, index, enrichedMap) {
 
 // ─── Section 3: Notable Events ────────────────────────────────────────────────
 
-// Повертає top-3 + переможця TV + переможця Movie + переможця з іншого
 function topWithCategories(sorted, enrichedMap) {
-  // Збагачуємо лише один раз і нормалізуємо animeId = id
   const enriched = sorted.map(a => ({ ...enrich(a, enrichedMap), animeId: a.id }));
-  const top3 = enriched.slice(0, 3);
-  const find  = (pred) => enriched.find(pred) ?? null;
+  const top3     = enriched.slice(0, 3);
+  const find     = pred => enriched.find(pred) ?? null;
   return {
     top3,
     tvWinner:    find(a => a.media_type === 'tv'),
@@ -178,9 +164,8 @@ function topWithCategories(sorted, enrichedMap) {
   };
 }
 
-/** 3a. Найвища оцінка за всю доступну історію — ТОП-3 + категорії */
+/** 3a. Найвища оцінка за всю доступну історію */
 export function computeHighestEver(allSnapshots, enrichedMap) {
-  // Для кожного аніме — максимальна оцінка
   const best = new Map();
   for (const snap of allSnapshots) {
     for (const a of snap.anime) {
@@ -190,18 +175,18 @@ export function computeHighestEver(allSnapshots, enrichedMap) {
     }
   }
   const sorted = [...best.values()].toSorted((a, b) => b.score - a.score);
+  if (!sorted.length) return null;
   const enrichedFirst = enrich(sorted[0], enrichedMap);
-  return sorted.length ? { ...topWithCategories(sorted, enrichedMap), winner: { ...enrichedFirst, animeId: sorted[0].id } } : null;
+  return { ...topWithCategories(sorted, enrichedMap), winner: { ...enrichedFirst, animeId: sorted[0].id } };
 }
 
-/** 3b. Найстабільніша оцінка — ТОП-3 по довжині серії + категорії */
+/** 3b. Найстабільніша оцінка */
 export function computeMostStableScore(allSnapshots, enrichedMap) {
   if (allSnapshots.length < 2) return null;
 
-  const active = new Map();
+  const active    = new Map();
   const completed = [];
-
-  const promote = streak => completed.push({ ...streak });
+  const promote   = streak => completed.push({ ...streak });
 
   for (const snap of allSnapshots) {
     const seen = new Set();
@@ -230,13 +215,11 @@ export function computeMostStableScore(allSnapshots, enrichedMap) {
 
   if (!sorted.length) return null;
 
-  // Enriched top-3
   const top3 = sorted.slice(0, 3).map(s => ({
     ...s, ...enrich({ id: s.animeId, title: s.title, score: s.score, members: 0 }, enrichedMap),
   }));
 
-  // Category winners (by longest streak)
-  const getWinner = (cat) => {
+  const getWinner = cat => {
     const match = sorted.find(s => {
       const m = enrichedMap.get(s.animeId)?.media_type ?? 'unknown';
       return cat === 'other' ? (m !== 'tv' && m !== 'movie') : m === cat;
@@ -245,19 +228,18 @@ export function computeMostStableScore(allSnapshots, enrichedMap) {
   };
 
   return {
-    winner:       top3[0],
+    winner:      top3[0],
     top3,
-    tvWinner:     getWinner('tv'),
-    movieWinner:  getWinner('movie'),
-    otherWinner:  getWinner('other'),
+    tvWinner:    getWinner('tv'),
+    movieWinner: getWinner('movie'),
+    otherWinner: getWinner('other'),
   };
 }
 
-/** 3c. Найдовше утримання ТОП-1 — ТОП-3 + категорії */
+/** 3c. Найдовше утримання ТОП-1 */
 export function computeLongestAtTop1(allSnapshots, enrichedMap) {
   if (!allSnapshots.length) return null;
 
-  // Рахуємо сесії на вершині для всіх аніме
   const sessions = [];
   let cur = null;
 
@@ -267,8 +249,8 @@ export function computeLongestAtTop1(allSnapshots, enrichedMap) {
     const top = sortedAnime(snap)[0];
     if (!top) { close(); continue; }
     if (cur?.animeId === top.id) {
-      cur.endDate = snap.date;
-      cur.days    = daysBetween(cur.startDate, cur.endDate);
+      cur.endDate  = snap.date;
+      cur.days     = daysBetween(cur.startDate, cur.endDate);
       cur.maxScore = Math.max(cur.maxScore, top.score);
     } else {
       close();
@@ -284,7 +266,7 @@ export function computeLongestAtTop1(allSnapshots, enrichedMap) {
     ...s, ...enrich({ id: s.animeId, title: s.title, score: s.maxScore, members: 0 }, enrichedMap),
   }));
 
-  const getWinner = (cat) => {
+  const getWinner = cat => {
     const match = sorted.find(s => {
       const m = enrichedMap.get(s.animeId)?.media_type ?? 'unknown';
       return cat === 'other' ? (m !== 'tv' && m !== 'movie') : m === cat;
@@ -319,8 +301,8 @@ export function computeAllAboveThreshold(allSnapshots, threshold, enrichedMap) {
 }
 
 /**
- * 3d-2. Хто тримав ТОП-1 (рахуємо сесії, а не знімки).
- * Сесія = безперервний проміжок на #1. Якщо впав і повернувся — нова сесія.
+ * 3d-2. Хто тримав ТОП-1.
+ * Сесія = безперервний проміжок на #1.
  */
 export function computeTop1History(allSnapshots, enrichedMap) {
   const sessions = [];
@@ -331,7 +313,6 @@ export function computeTop1History(allSnapshots, enrichedMap) {
   for (const snap of allSnapshots) {
     const top = sortedAnime(snap)[0];
     if (!top) { close(); continue; }
-
     if (cur?.animeId === top.id) {
       cur.endDate  = snap.date;
       cur.maxScore = Math.max(cur.maxScore, top.score);
@@ -354,7 +335,6 @@ export function computeTop1History(allSnapshots, enrichedMap) {
   }
   close();
 
-  // Групуємо по аніме: підраховуємо кількість сесій та знаходимо першу дату
   const byAnime = new Map();
   for (const s of sessions) {
     const ex = byAnime.get(s.animeId);
@@ -371,8 +351,13 @@ export function computeTop1History(allSnapshots, enrichedMap) {
 }
 
 /**
- * 3d-3. Найстабільніший ТОП:
- * Знаходить найдовший проміжок де перші N позицій не змінювали порядку між послідовними знімками.
+ * 3d-3. Найстабільніший ТОП-N.
+ *
+ * Первинний критерій: максимальне N (більше позицій = краще).
+ * Вторинний критерій: найдовша серія (за кількістю знімків).
+ *
+ * Зміна оцінки без зміни позиції — дозволена.
+ * Своп двох аніме з однаковою оцінкою — дозволений.
  */
 export function computeMostStableTopN(allSnapshots, enrichedMap, threshold = 9.0) {
   if (allSnapshots.length < 2) return null;
@@ -381,21 +366,18 @@ export function computeMostStableTopN(allSnapshots, enrichedMap, threshold = 9.0
     .filter(a => a.score != null && a.score >= threshold)
     .toSorted((a, b) => b.score - a.score || a.id - b.id);
 
-  // Повертає довжину стабільного префіксу.
-  // Своп двох аніме з однаковою оцінкою в B — дозволений.
-  // Зміна оцінки без зміни позиції — дозволена.
-  // Нове аніме, що вривається в групу, або стрибок на вищу позицію — розриває інтервал.
+  // Повертає довжину стабільного префіксу між двома послідовними знімками.
+  // Своп аніме з однаковою оцінкою — дозволений.
   const stablePrefix = (a, b) => {
     let k = 0;
     while (k < a.length && k < b.length) {
       if (a[k].id === b[k].id) { k++; continue; }
 
-      // Місматч — знаходимо score-групу в B починаючи з k
+      // Знаходимо score-групу в B починаючи з k
       const scoreK = b[k].score;
       let endB = k;
       while (endB + 1 < b.length && b[endB + 1].score === scoreK) endB++;
 
-      // A має містити ті ж самі ID на позиціях k..endB
       if (endB >= a.length) break;
       const setB = new Set(b.slice(k, endB + 1).map(x => x.id));
       const setA = new Set(a.slice(k, endB + 1).map(x => x.id));
@@ -409,6 +391,7 @@ export function computeMostStableTopN(allSnapshots, enrichedMap, threshold = 9.0
     return k;
   };
 
+  // prefixes[i] = стабільний префікс між знімком i та i+1
   const prefixes = allSnapshots.slice(0, -1)
     .map((_, i) => stablePrefix(getTop(allSnapshots[i]), getTop(allSnapshots[i + 1])));
 
@@ -417,7 +400,11 @@ export function computeMostStableTopN(allSnapshots, enrichedMap, threshold = 9.0
 
   let best = null;
 
+  // Ітеруємо від maxN вниз — перше знайдене best.n буде найбільшим
   for (let n = maxN; n >= 1; n--) {
+    // Якщо вже є результат з більшим n — менші нас не цікавлять
+    if (best && n < best.n) break;
+
     let runStart = -1;
     for (let i = 0; i <= prefixes.length; i++) {
       const ok = i < prefixes.length && prefixes[i] >= n;
@@ -428,10 +415,11 @@ export function computeMostStableTopN(allSnapshots, enrichedMap, threshold = 9.0
         const startDate = allSnapshots[runStart].date;
         const endDate   = allSnapshots[i].date;
         const days      = daysBetween(startDate, endDate);
-        const score     = n * snapCount;
-        if (!best || score > best.score) {
+
+        // Первинний критерій: n більше; вторинний: snapCount більше
+        if (!best || n > best.n || (n === best.n && snapCount > best.snapCount)) {
           best = {
-            n, startDate, endDate, snapCount, days, score,
+            n, startDate, endDate, snapCount, days,
             topN: getTop(allSnapshots[runStart]).slice(0, n).map(a => enrich(a, enrichedMap)),
           };
         }
@@ -463,13 +451,13 @@ export function computeMostHighRatedAtOnce(allSnapshots, threshold, enrichedMap)
 
 export function computeAll(snapshots, enrichedMap, threshold = 9.0) {
   return {
-    categoryTopHistory:  computeCategoryTopHistory(snapshots, enrichedMap, threshold),
-    highestEver:         computeHighestEver(snapshots, enrichedMap),
-    mostStableScore:     computeMostStableScore(snapshots, enrichedMap),
-    longestTop1:         computeLongestAtTop1(snapshots, enrichedMap),
-    allAboveThreshold:   computeAllAboveThreshold(snapshots, threshold, enrichedMap),
-    top1History:         computeTop1History(snapshots, enrichedMap),
-    mostStableTopN:      computeMostStableTopN(snapshots, enrichedMap, threshold),
-    mostAtOnce:          computeMostHighRatedAtOnce(snapshots, threshold, enrichedMap),
+    categoryTopHistory: computeCategoryTopHistory(snapshots, enrichedMap, threshold),
+    highestEver:        computeHighestEver(snapshots, enrichedMap),
+    mostStableScore:    computeMostStableScore(snapshots, enrichedMap),
+    longestTop1:        computeLongestAtTop1(snapshots, enrichedMap),
+    allAboveThreshold:  computeAllAboveThreshold(snapshots, threshold, enrichedMap),
+    top1History:        computeTop1History(snapshots, enrichedMap),
+    mostStableTopN:     computeMostStableTopN(snapshots, enrichedMap, threshold),
+    mostAtOnce:         computeMostHighRatedAtOnce(snapshots, threshold, enrichedMap),
   };
 }

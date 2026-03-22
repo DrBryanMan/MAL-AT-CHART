@@ -149,9 +149,9 @@ export function renderChartSection(allSnapshots, currentIndex, enrichedMap) {
   const label = snap?.config?.label ?? snap?.date ?? '—';
 
   navEl.innerHTML = `
-    <button class="nav-btn" id="snap-prev" ... aria-label="Попередній">${icon('chevron-left', 18)}</button>
+    <button class="nav-btn" id="snap-prev" ${currentIndex === 0 ? 'style="cursor: default;" disabled' : ''} aria-label="Попередній">${icon('chevron-left', 18)}</button>
     <span class="snap-label">${icon('calendar', 14)} ${archiveLink(snap.date, label)}</span>
-    <button class="nav-btn" id="snap-next" ... aria-label="Наступний">${icon('chevron-right', 18)}</button>
+    <button class="nav-btn" id="snap-next" ${currentIndex === total - 1 ? 'style="cursor: default;" disabled' : ''} aria-label="Наступний">${icon('chevron-right', 18)}</button>
     <span class="snap-counter">
       <input class="snap-page-input" id="snap-page-input" type="number" min="1" max="${total}"
         value="${currentIndex + 1}" aria-label="Номер знімку">
@@ -346,41 +346,53 @@ function eventCard(ico, title, infoKey, body) {
 }
 
 /** Рядки призерів (#2, #3) — без постера, з датою */
-function runnerUpRows(top3, scoreField = 'score', dateField = 'date') {
+function runnerUpRows(top3, scoreField = 'score', dateField = 'date', endDateField = null) {
   const medals = ['2', '3'];
   return top3.slice(1, 3).map((a, i) => {
-    const score = a[scoreField] ?? a.score ?? 0;
-    const date  = a[dateField] ?? a.startDate ?? null;
+    const score   = a[scoreField] ?? a.score ?? 0;
+    const date    = a[dateField]  ?? a.startDate ?? null;
+    const endDate = endDateField  ? (a[endDateField] ?? null) : null;
+    const dateHTML = date
+      ? (endDate && endDate !== date
+          ? `${archiveLink(date, formatDateShort(date))} → ${archiveLink(endDate, formatDateShort(endDate))}`
+          : archiveLink(date, formatDateShort(date)))
+      : '';
     return `<div class="runner-up-row">
       <span class="runner-medal runner-medal-${i + 2}">${medals[i]}</span>
       ${animeTitleHTML(a, 'runner-title')}
       <span class="runner-score">${icon('star', 12)} ${fmtScore(score)}</span>
-      ${date ? `<span class="runner-date">${archiveLink(date, formatDateShort(date))}</span>` : ''}
+      ${dateHTML ? `<span class="runner-date">${dateHTML}</span>` : ''}
     </div>`;
   }).join('');
 }
 
 /** Рядки переможців категорій — пропускаємо якщо той самий, що й переможець */
-function categoryWinnersHTML(winnerId, tvW, movieW, otherW, scoreField = 'score', dateField = 'date') {
+function categoryWinnersHTML(winnerId, tvW, movieW, otherW, scoreField = 'score', dateField = 'date', endDateField = null) {
   const getId = a => a?.animeId ?? a?.id ?? null;
   const rows = [
-    tvW    && getId(tvW)    !== winnerId && { label: '📺 Серіал', a: tvW },
-    movieW && getId(movieW) !== winnerId && { label: '🎬 Фільм',  a: movieW },
+    tvW    && getId(tvW)    !== winnerId && { label: `${icon('tv',   14)} Серіал`, a: tvW },
+    movieW && getId(movieW) !== winnerId && { label: `${icon('film', 14)} Фільм`,  a: movieW },
     otherW && getId(otherW) !== winnerId && {
-      label: `${CONFIG.categoryIcons[otherW.media_type] ?? '🎞'} Інше`, a: otherW,
+      label: `${icon(CONFIG.categoryIcons[otherW.media_type] ?? 'help-circle', 14)} Інше`, a: otherW,
     },
   ].filter(Boolean);
 
   if (!rows.length) return '';
   return `<div class="cat-winners">
     ${rows.map(({ label, a }) => {
-      const score = a[scoreField] ?? a.score ?? 0;
-      const date  = a[dateField] ?? a.startDate ?? null;
+      const score   = a[scoreField] ?? a.score ?? 0;
+      const date    = a[dateField]  ?? a.startDate ?? null;
+      const endDate = endDateField  ? (a[endDateField] ?? null) : null;
+      const dateHTML = date
+        ? (endDate && endDate !== date
+            ? `${archiveLink(date, formatDateShort(date))} → ${archiveLink(endDate, formatDateShort(endDate))}`
+            : archiveLink(date, formatDateShort(date)))
+        : '';
       return `<div class="cat-winner-row">
         <span class="cat-winner-label">${label}</span>
         ${animeTitleHTML(a, 'cat-winner-title')}
         <span class="cat-winner-score">${icon('star', 12)} ${fmtScore(score)}</span>
-        ${date ? `<span class="cat-winner-date">${archiveLink(date, formatDateShort(date))}</span>` : ''}
+        ${dateHTML ? `<span class="cat-winner-date">${dateHTML}</span>` : ''}
       </div>`;
     }).join('')}
   </div>`;
@@ -429,8 +441,8 @@ function buildStableScoreCard(data) {
         <div class="highlight-meta">${days} ${pluralUk(days, 'днів', 'дні', 'день')} незмінно</div>
       </div>
     </div>
-    ${runnerUpRows(data.top3.map(s => ({ ...s, score: s.score ?? 0 })), 'score', 'startDate')}
-    ${categoryWinnersHTML(w.animeId, data.tvWinner, data.movieWinner, data.otherWinner, 'score', 'startDate')}`);
+    ${runnerUpRows(data.top3.map(s => ({ ...s, score: s.score ?? 0 })), 'score', 'startDate', 'endDate')}
+    ${categoryWinnersHTML(w.animeId, data.tvWinner, data.movieWinner, data.otherWinner, 'score', 'startDate', 'endDate')}`);
 }
 
 // ─── Card: Longest Top-1 ─────────────────────────────────────────────────────
@@ -454,8 +466,8 @@ function buildLongestTop1Card(data) {
         <div class="highlight-meta">${w.days} ${pluralUk(w.days, 'днів', 'дні', 'день')} на вершині</div>
       </div>
     </div>
-    ${runnerUpRows(data.top3, 'maxScore', 'startDate')}
-    ${categoryWinnersHTML(w.animeId, data.tvWinner, data.movieWinner, data.otherWinner, 'maxScore', 'startDate')}`);
+    ${runnerUpRows(data.top3, 'maxScore', 'startDate', 'endDate')}
+    ${categoryWinnersHTML(w.animeId, data.tvWinner, data.movieWinner, data.otherWinner, 'maxScore', 'startDate', 'endDate')}`);
 }
 
 // ─── Events Tabs ──────────────────────────────────────────────────────────────
