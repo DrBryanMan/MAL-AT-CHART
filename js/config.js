@@ -12,8 +12,8 @@
 
 export const CONFIG = {
   dataDir: './',
-  manifestFile: '../data/snapshots-manifest.json',
-  enrichedFile: '../data/anime_enriched.json',
+  manifestFile: 'data/snapshots-manifest.json',
+  enrichedFile: 'data/anime_enriched.json',
 
   thresholds: {
     topRated: 9.0,

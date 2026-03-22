@@ -53,9 +53,6 @@ async function init() {
     loadingEl.innerHTML = `
       <div class="error-state">
         <p>❌ ${err.message}</p>
-        <p class="error-hint">
-          Запустіть локальний сервер: <code>npx serve .</code> або <code>python -m http.server</code>
-        </p>
       </div>`;
     console.error('[MAL Charts] Помилка:', err);
   }
