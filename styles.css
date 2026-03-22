@@ -28,6 +28,9 @@
   --rank-gold:   #ffd700;
   --rank-silver: #c0c0c0;
   --rank-bronze: #cd7f32;
+  --rank-gold-light:   #ffd70033;
+  --rank-silver-light: #c0c0c033;
+  --rank-bronze-light: #cd7f3233;
 
   --font:        'Inter', system-ui, -apple-system, sans-serif;
   --font-mono:   'JetBrains Mono', 'Fira Code', monospace;
@@ -236,14 +239,14 @@ section[id] { scroll-margin-top: 70px; }
   display: inline-flex;
   align-items: center;
   justify-content: center;
-  width: 22px;
+  /* width: 22px;
   height: 22px;
-  border-radius: 50%;
   font-size: 11px;
-  font-weight: 700;
+  font-weight: 700; */
+  border-radius: 50%;
   color: var(--text-muted);
-  border: 1px solid var(--border);
-  background: var(--bg-card);
+  /* border: 1px solid var(--border);
+  background: var(--bg-card); */
   transition: all var(--t);
   flex-shrink: 0;
   cursor: pointer;
@@ -292,11 +295,13 @@ section[id] { scroll-margin-top: 70px; }
 .tabs { width: 100%; }
 
 .tab-list {
+  width: 99%;
+  margin: auto;
   display: flex;
   gap: 4px;
   flex-wrap: wrap;
-  border-bottom: 1px solid var(--border);
-  margin-bottom: 20px;
+  /* border-bottom: 1px solid var(--border); */
+  /* margin-bottom: 20px; */
   padding-bottom: 0;
 }
 
@@ -403,21 +408,24 @@ section[id] { scroll-margin-top: 70px; }
 .chart-list { display: flex; flex-direction: column; gap: 6px; }
 
 .chart-row {
+  --rank-gold-light:   #ffd70033;
+  --rank-silver-light: #c0c0c033;
+  --rank-bronze-light: #cd7f3233;
+
   display: grid;
   grid-template-columns: 70px 56px 1fr auto;
   align-items: center;
   gap: 14px;
   padding: 12px 16px;
   background: var(--bg-card);
-  border: 1px solid var(--border-subtle);
   border-radius: var(--r-lg);
-  transition: background var(--t), border-color var(--t), transform var(--t);
+  transition: background var(--t), transform var(--t);
 }
 
 .chart-row:hover {
   background: var(--bg-card-h);
   border-color: var(--border);
-  transform: translateX(2px);
+  transform: translateX(5px);
 }
 
 /* Rank #1, #2, #3 styling */
@@ -556,15 +564,20 @@ section[id] { scroll-margin-top: 70px; }
   font-weight: 600;
   padding: 1px 5px;
   border-radius: 4px;
+  min-width: 45px;
+  text-align: center;
 }
 
-.delta.positive { color: var(--green); background: rgba(63,185,80,.12); }
-.delta.negative { color: var(--red);   background: rgba(248,81,73,.12); }
-.delta.neutral  { color: var(--text-muted); }
+.delta.positive { color: var(--green);      background: rgba(63,185,80,.12); }
+.delta.negative { color: var(--red);        background: rgba(248,81,73,.12); }
+.delta.neutral  { color: var(--text-muted); background: var(--border-subtle); }
+.stat-members .delta { color: var(--text-2); background: var(--border-subtle); }
 
 /* ─── Badges ─────────────────────────────────────────── */
 .badge {
-  display: inline-block;
+  display: inline-flex;
+  gap: 5px;
+  align-items: center;
   font-size: 10px;
   font-weight: 600;
   padding: 2px 6px;
@@ -611,12 +624,6 @@ section[id] { scroll-margin-top: 70px; }
   display: flex;
   flex-direction: column;
   gap: 14px;
-  transition: border-color var(--t), box-shadow var(--t);
-}
-
-.event-card:hover {
-  border-color: var(--accent);
-  box-shadow: 0 0 0 1px rgba(88,166,255,.2);
 }
 
 .event-card-header {
@@ -723,7 +730,7 @@ section[id] { scroll-margin-top: 70px; }
 
 /* ─── Stable Top (Section 3 tab 3) ──────────────────── */
 .stable-header {
-  padding: 12px 16px;
+  padding: 8px 12px;
   background: rgba(88,166,255,.06);
   border: 1px solid rgba(88,166,255,.2);
   border-radius: var(--r-lg);
@@ -739,7 +746,7 @@ section[id] { scroll-margin-top: 70px; }
   display: flex;
   align-items: center;
   gap: 10px;
-  padding: 7px 12px;
+  padding: 8px 12px;
   border-radius: var(--r);
   background: var(--bg-card);
   border: 1px solid var(--border-subtle);
@@ -766,19 +773,17 @@ section[id] { scroll-margin-top: 70px; }
   display: flex;
   align-items: center;
   gap: 12px;
-  padding: 12px 16px;
+  padding: 8px 12px;
   background: rgba(63,185,80,.06);
   border: 1px solid rgba(63,185,80,.2);
   border-radius: var(--r-lg);
   margin-bottom: 12px;
   font-size: 14px;
   font-weight: 600;
-  color: var(--text);
+  color: var(--text-2);
 }
 
 .most-date {
-  font-size: 12px;
-  color: var(--text-muted);
   font-weight: 400;
   margin-left: auto;
 }
@@ -944,16 +949,14 @@ section[id] { scroll-margin-top: 70px; }
   margin-bottom: 12px;
 }
 
-.anime-thumb.event-poster {
-  width: 56px;
-  height: 80px;
+.anime-thumb.event-poster,
+div.anime-thumb.event-poster.placeholder {
+	width: 40%;
+	height: auto;
+	aspect-ratio: 2/3;
   border-radius: var(--r);
   object-fit: cover;
   flex-shrink: 0;
-}
-div.anime-thumb.event-poster.placeholder {
-  width: 56px;
-  height: 80px;
 }
 
 .highlight-orig {
@@ -988,7 +991,9 @@ div.anime-thumb.event-poster.placeholder {
 .cat-winner-row {
   display: flex;
   align-items: center;
-  gap: 8px;
+  align-content: center;
+  flex-wrap: wrap;
+  gap: 4px 8px;
   font-size: 12px;
 }
 .cat-winner-label { color: var(--text-muted); flex-shrink: 0; min-width: 74px; }
@@ -1013,7 +1018,7 @@ div.anime-thumb.event-poster.placeholder {
 
 /* ─── Count badge large ──────────────────────────────────────────────── */
 .count-badge.large {
-  font-size: 17px;
+  font-size: 20px;
   font-weight: 700;
   color: var(--accent);
 }
@@ -1032,17 +1037,30 @@ div.anime-thumb.event-poster.placeholder {
   background: rgba(88,166,255,.06);
   border: 1px solid rgba(88,166,255,.2);
   border-radius: var(--r-lg);
-  font-size: 13px;
+  font-size: 14px;
   color: var(--text-2);
   margin-bottom: 10px;
   line-height: 1.6;
 }
 
 /* ─── Chart row rank borders (по класу, не nth-child) ────────── */
-.chart-row { border-left: 3px solid transparent; }
-.chart-row.rank-top-1 { border-left-color: var(--rank-gold); }
-.chart-row.rank-top-2 { border-left-color: var(--rank-silver); }
-.chart-row.rank-top-3 { border-left-color: var(--rank-bronze); }
+.chart-row.rank-top-1 {
+  background:
+    linear-gradient(to right, var(--rank-gold-light) 0%, transparent 10%),
+    var(--bg-card);
+}
+
+.chart-row.rank-top-2 {
+  background:
+    linear-gradient(to right, var(--rank-silver-light) 0%, transparent 10%),
+    var(--bg-card);
+}
+
+.chart-row.rank-top-3 {
+  background:
+    linear-gradient(to right, var(--rank-bronze-light) 0%, transparent 10%),
+    var(--bg-card);
+}
 .chart-row.rank-top-1 .rank-num { color: var(--rank-gold); }
 .chart-row.rank-top-2 .rank-num { color: var(--rank-silver); }
 .chart-row.rank-top-3 .rank-num { color: var(--rank-bronze); }
@@ -1086,3 +1104,26 @@ div.anime-thumb.event-poster.placeholder {
 
 /* ─── Most-at-once list-row (no thumb) ──────────────────────────── */
 .ranked-list .list-row { align-items: center; }
+
+/* ─── Lucide Icons ───────────────────────────────────────────────────── */
+.icon {
+  display: inline-block;
+  vertical-align: middle;
+  flex-shrink: 0;
+}
+
+/* ─── Runner medals (замість emoji) ──────────────────────────────────── */
+.runner-medal {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 20px;
+  height: 20px;
+  border-radius: 50%;
+  font-size: 10px;
+  font-weight: 700;
+  font-family: var(--font-mono);
+  flex-shrink: 0;
+}
+.runner-medal-2 { background: rgba(192,192,192,.12); color: var(--rank-silver); }
+.runner-medal-3 { background: rgba(205,127,50,.12);  color: var(--rank-bronze); }

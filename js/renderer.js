@@ -2,6 +2,7 @@
  * renderer.js — DOM rendering functions for MAL Charts
  */
 
+import { icon } from './icons.js';
 import { CONFIG } from './config.js';
 import { computeChartData, formatDate, formatDateShort, daysBetween, archiveUrl } from './analytics.js';
 
@@ -42,17 +43,9 @@ function animeTitleHTML(a, cls = '') {
 function rankBadgeHTML(delta, isNew) {
   if (isNew)          return `<span class="rank-badge rank-new">New</span>`;
   if (delta === null) return `<span class="rank-badge rank-same">—</span>`;
-  if (delta === 0)    return `<span class="rank-badge rank-same">─</span>`;
-  if (delta > 0)      return `<span class="rank-badge rank-up">▲${delta}</span>`;
-  return `<span class="rank-badge rank-down">▼${Math.abs(delta)}</span>`;
-}
-
-/** Медаль для топ-1/2/3 по абсолютному rank, не по DOM-позиції */
-function rankMedalHTML(rank) {
-  if (rank === 1) return `<span class="rank-medal gold">🥇</span>`;
-  if (rank === 2) return `<span class="rank-medal silver">🥈</span>`;
-  if (rank === 3) return `<span class="rank-medal bronze">🥉</span>`;
-  return '';
+  if (delta === 0)    return `<span class="rank-badge rank-same">${icon('minus', 9)}</span>`;
+  if (delta > 0)      return `<span class="rank-badge rank-up">${icon('arrow-up', 9)} ${delta}</span>`;
+  return `<span class="rank-badge rank-down">${icon('arrow-down', 9)} ${Math.abs(delta)}</span>`;
 }
 
 function thumbHTML(src, alt, cls = '') {
@@ -61,8 +54,9 @@ function thumbHTML(src, alt, cls = '') {
 }
 
 function mediaBadgeHTML(type) {
-  const label = CONFIG.categoryLabels[type] ?? (type?.toUpperCase() ?? '?');
-  return `<span class="badge badge-${type ?? 'unknown'}">${label}</span>`;
+  const label    = CONFIG.categoryLabels[type] ?? (type?.toUpperCase() ?? '?');
+  const iconName = CONFIG.categoryIcons[type]  ?? 'help-circle';
+  return `<span class="badge badge-${type ?? 'unknown'}">${icon(iconName, 10)} ${label}</span>`;
 }
 
 function archiveLink(dateStr, label) {
@@ -155,9 +149,9 @@ export function renderChartSection(allSnapshots, currentIndex, enrichedMap) {
   const label = snap?.config?.label ?? snap?.date ?? '—';
 
   navEl.innerHTML = `
-    <button class="nav-btn" id="snap-prev" ${currentIndex === 0 ? 'disabled' : ''} aria-label="Попередній">‹</button>
-    <span class="snap-label">📅 ${archiveLink(snap.date, label)}</span>
-    <button class="nav-btn" id="snap-next" ${currentIndex === total - 1 ? 'disabled' : ''} aria-label="Наступний">›</button>
+    <button class="nav-btn" id="snap-prev" ... aria-label="Попередній">${icon('chevron-left', 18)}</button>
+    <span class="snap-label">${icon('calendar', 14)} ${archiveLink(snap.date, label)}</span>
+    <button class="nav-btn" id="snap-next" ... aria-label="Наступний">${icon('chevron-right', 18)}</button>
     <span class="snap-counter">
       <input class="snap-page-input" id="snap-page-input" type="number" min="1" max="${total}"
         value="${currentIndex + 1}" aria-label="Номер знімку">
@@ -186,7 +180,6 @@ export function renderChartSection(allSnapshots, currentIndex, enrichedMap) {
     return `<div class="chart-row${borderClass}">
       <div class="chart-rank">
         <span class="rank-num">#${a.rank}</span>
-        ${rankMedalHTML(a.rank)}
         ${rankBadgeHTML(a.rankDelta, a.isNew)}
       </div>
       ${thumbHTML(a.image, a.title_ua ?? a.title)}
@@ -199,11 +192,11 @@ export function renderChartSection(allSnapshots, currentIndex, enrichedMap) {
       </div>
       <div class="chart-stats">
         <div class="stat-score">
-          <span class="score-val large">★ ${fmtScore(a.score)}</span>
+          <span class="score-val large">${icon('star', 18)} ${fmtScore(a.score)}</span>
           ${scoreDelta}
         </div>
         <div class="stat-members">
-          <span class="members-label">👥</span>
+          <span class="members-label">${icon('users', 14)}</span>
           <span>${fmtNum(a.members)}</span>
           ${membersDelta}
         </div>
@@ -261,11 +254,12 @@ export function renderCategorySection(categoryTopHistory) {
   ];
 
   const tabBtns = sorted.map((cat, i) => {
-    const icon  = cat === 'all' ? '🌐' : (CONFIG.categoryIcons[cat] ?? '🎞');
+    const iconName = cat === 'all' ? 'globe' : (CONFIG.categoryIcons[cat] ?? 'help-circle');
+    const catIcon  = icon(iconName, 14);
     const label = cat === 'all' ? 'Усі' : (CONFIG.categoryLabels[cat] ?? cat.toUpperCase());
     const count = sessions[cat]?.length ?? 0;
     return `<button class="tab-btn${i === 0 ? ' active' : ''}" data-tab="${cat}">
-      ${icon} ${label}<span class="tab-count">${count}</span>
+      ${catIcon} ${label}<span class="tab-count">${count}</span>
     </button>`;
   }).join('');
 
@@ -279,7 +273,7 @@ export function renderCategorySection(categoryTopHistory) {
         ? `${fmtScore(s.firstScore)} (${fmtScore(s.maxScore)})`
         : fmtScore(s.firstScore);
       const sessionBadge = s.sessionNum > 1
-        ? `<span class="session-num-badge" title="Потрапив у топ-1 вже ${s.sessionNum}-й раз">[${s.sessionNum}]</span>`
+        ? `<span class="session-num-badge" title="Потрапив у ТОП-1 вже ${s.sessionNum}-й раз">${s.sessionNum}</span>`
         : '';
       const dateRange = s.startDate === s.endDate
         ? archiveLink(s.startDate, formatDateShort(s.startDate))
@@ -292,7 +286,7 @@ export function renderCategorySection(categoryTopHistory) {
             ${animeTitleHTML(s, 'session-title-text')} ${sessionBadge}${origTitle}
           </div>
           <div class="session-meta">
-            <span class="score-val">★ ${scoreStr}</span>
+            <span class="score-val">${icon('star', 14)} ${scoreStr}</span>
             <span class="session-date">${dateRange}</span>
           </div>
         </div>
@@ -340,12 +334,12 @@ export function renderEventsSection(analytics) {
 
 // ─── Event Card Template ──────────────────────────────────────────────────────
 
-function eventCard(icon, title, infoKey, body) {
+function eventCard(ico, title, infoKey, body) {
   return `<div class="event-card">
     <div class="event-card-header">
-      <span class="event-icon">${icon}</span>
+      <span class="event-icon">${ico}</span>
       <h3 class="event-title">${title}</h3>
-      <button class="info-btn small" data-info-key="${infoKey}" aria-label="Інформація">ℹ</button>
+      <button class="info-btn small" data-info-key="${infoKey}" aria-label="Інформація">${icon('info', 12)}</button>
     </div>
     <div class="event-card-body">${body}</div>
   </div>`;
@@ -353,14 +347,14 @@ function eventCard(icon, title, infoKey, body) {
 
 /** Рядки призерів (#2, #3) — без постера, з датою */
 function runnerUpRows(top3, scoreField = 'score', dateField = 'date') {
-  const medals = ['🥈', '🥉'];
+  const medals = ['2', '3'];
   return top3.slice(1, 3).map((a, i) => {
     const score = a[scoreField] ?? a.score ?? 0;
     const date  = a[dateField] ?? a.startDate ?? null;
     return `<div class="runner-up-row">
-      <span class="runner-medal">${medals[i]}</span>
+      <span class="runner-medal runner-medal-${i + 2}">${medals[i]}</span>
       ${animeTitleHTML(a, 'runner-title')}
-      <span class="runner-score">★ ${fmtScore(score)}</span>
+      <span class="runner-score">${icon('star', 12)} ${fmtScore(score)}</span>
       ${date ? `<span class="runner-date">${archiveLink(date, formatDateShort(date))}</span>` : ''}
     </div>`;
   }).join('');
@@ -385,7 +379,7 @@ function categoryWinnersHTML(winnerId, tvW, movieW, otherW, scoreField = 'score'
       return `<div class="cat-winner-row">
         <span class="cat-winner-label">${label}</span>
         ${animeTitleHTML(a, 'cat-winner-title')}
-        <span class="cat-winner-score">★ ${fmtScore(score)}</span>
+        <span class="cat-winner-score">${icon('star', 12)} ${fmtScore(score)}</span>
         ${date ? `<span class="cat-winner-date">${archiveLink(date, formatDateShort(date))}</span>` : ''}
       </div>`;
     }).join('')}
@@ -395,15 +389,15 @@ function categoryWinnersHTML(winnerId, tvW, movieW, otherW, scoreField = 'score'
 // ─── Card: Highest Ever ───────────────────────────────────────────────────────
 
 function buildHighestEverCard(data) {
-  if (!data) return eventCard('🏆', 'Найвища оцінка за всю історію', 'highestEver',
+  if (!data) return eventCard(icon('trophy', 20), 'Найвища оцінка за всю історію', 'highestEver',
     '<div class="empty-state"><p>Недостатньо даних</p></div>');
 
   const w = data.winner;
-  return eventCard('🏆', 'Найвища оцінка за всю історію', 'highestEver', `
+  return eventCard(icon('trophy', 20), 'Найвища оцінка за всю історію', 'highestEver', `
     <div class="event-winner">
       ${thumbHTML(w.image, w.title_ua ?? w.title, 'event-poster')}
       <div class="event-highlight">
-        <span class="highlight-score">★ ${fmtScore(w.score)}</span>
+        <span class="highlight-score">${icon('star', 22)} ${fmtScore(w.score)}</span>
         <div class="highlight-title">${animeTitleHTML(w)}</div>
         ${w.title_ua ? `<div class="highlight-orig">${escHtml(w.title)}</div>` : ''}
         <div class="highlight-date">${archiveLink(w.date, formatDate(w.date))}</div>
@@ -416,16 +410,16 @@ function buildHighestEverCard(data) {
 // ─── Card: Stable Score ───────────────────────────────────────────────────────
 
 function buildStableScoreCard(data) {
-  if (!data) return eventCard('📊', 'Найстабільніша оцінка', 'stableScore',
+  if (!data) return eventCard(icon('bar-chart-2', 20), 'Найстабільніша оцінка', 'stableScore',
     '<div class="empty-state"><p>Потрібно ≥ 2 знімки</p></div>');
 
   const w    = data.winner;
   const days = daysBetween(w.startDate, w.endDate);
-  return eventCard('📊', 'Найстабільніша оцінка', 'stableScore', `
+  return eventCard(icon('bar-chart-2', 20), 'Найстабільніша оцінка', 'stableScore', `
     <div class="event-winner">
       ${thumbHTML(w.image, w.title_ua ?? w.title, 'event-poster')}
       <div class="event-highlight">
-        <span class="highlight-score">★ ${fmtScore(w.score)}</span>
+        <span class="highlight-score">${icon('star', 22)} ${fmtScore(w.score)}</span>
         <div class="highlight-title">${animeTitleHTML(w)}</div>
         ${w.title_ua ? `<div class="highlight-orig">${escHtml(w.title)}</div>` : ''}
         <div class="highlight-date">
@@ -442,15 +436,15 @@ function buildStableScoreCard(data) {
 // ─── Card: Longest Top-1 ─────────────────────────────────────────────────────
 
 function buildLongestTop1Card(data) {
-  if (!data) return eventCard('👑', 'Найдовше утримання топ-1', 'longestTop1',
+  if (!data) return eventCard(icon('crown', 20), 'Найдовше утримання ТОП-1', 'longestTop1',
     '<div class="empty-state"><p>Недостатньо даних</p></div>');
 
   const w = data.winner;
-  return eventCard('👑', 'Найдовше утримання топ-1', 'longestTop1', `
+  return eventCard(icon('crown', 20), 'Найдовше утримання ТОП-1', 'longestTop1', `
     <div class="event-winner">
       ${thumbHTML(w.image, w.title_ua ?? w.title, 'event-poster')}
       <div class="event-highlight">
-        <span class="highlight-score">★ ${fmtScore(w.maxScore)}</span>
+        <span class="highlight-score">${icon('star', 22)} ${fmtScore(w.maxScore)}</span>
         <div class="highlight-title">${animeTitleHTML(w)}</div>
         ${w.title_ua ? `<div class="highlight-orig">${escHtml(w.title)}</div>` : ''}
         <div class="highlight-date">
@@ -468,17 +462,17 @@ function buildLongestTop1Card(data) {
 
 function buildEventsTabs({ allAboveThreshold, top1History, mostStableTopN, mostAtOnce }) {
   const tabs = [
-    { key: 'above9',    icon: '🎯', label: `Усі з оцінкою ≥ ${CONFIG.thresholds.notable}`, info: 'allAbove9' },
-    { key: 'top1hist',  icon: '👑', label: 'Хто тримав топ-1',                             info: 'top1History' },
-    { key: 'stabletop', icon: '🔒', label: 'Найстабільніший топ',                          info: 'stableTop' },
-    { key: 'mosthigh',  icon: '📈', label: 'Найбільше топ-тайтлів',                        info: 'mostAtOnce' },
+    { key: 'above9',    ico: icon('target', 14),      label: `Усі з оцінкою ≥ ${CONFIG.thresholds.notable}`, info: 'allAbove9' },
+    { key: 'top1hist',  ico: icon('crown', 14),        label: 'Хто тримав топ-1',                             info: 'top1History' },
+    { key: 'stabletop', ico: icon('lock', 14),         label: 'Найстабільніший топ',                          info: 'stableTop' },
+    { key: 'mosthigh',  ico: icon('trending-up', 14),  label: 'Найбільше топ-тайтлів',                        info: 'mostAtOnce' },
   ];
 
   const btns = tabs.map((t, i) =>
-    `<button class="tab-btn${i === 0 ? ' active' : ''}" data-tab="${t.key}">
-      ${t.icon} ${t.label}
-      <button class="info-btn small tab-info-btn" data-info-key="${t.info}" aria-label="Інформація" tabindex="-1">ℹ</button>
-    </button>`
+    `<div class="tab-btn-wrap${i === 0 ? ' active' : ''}">
+      <button class="tab-btn${i === 0 ? ' active' : ''}" data-tab="${t.key}">${t.ico} ${t.label}</button>
+      <button class="info-btn small tab-info-btn" data-info-key="${t.info}" aria-label="Інформація" tabindex="-1">${icon('info', 12)}</button>
+    </div>`
   ).join('');
 
   const panels = [
@@ -513,7 +507,7 @@ function buildAbove9Panel(list) {
           <span class="list-date">${archiveLink(a.firstDate, formatDateShort(a.firstDate))}</span>
         </span>
       </div>
-      <span class="score-badge">★ ${fmtScore(a.maxScore)}</span>
+      <span class="score-badge">${icon('star', 12)} ${fmtScore(a.maxScore)}</span>
     </div>`
   );
 
@@ -550,11 +544,11 @@ function buildTop1HistoryPanel(list) {
       <div class="list-info">
         ${animeTitleHTML(a, 'list-title')}
         <span class="list-meta">
-          <span class="score-badge inline">★ ${scoreStr}</span>
+          <span class="score-badge inline">${icon('star', 12)} ${scoreStr}</span>
         </span>
         <div class="session-details">${sessionDetails}</div>
       </div>
-      <span class="count-badge large" title="Кількість заходів на вершину">[${a.sessionCount}]</span>
+      <span class="count-badge large" title="Кількість заходів на вершину">${a.sessionCount}</span>
     </div>`;
   });
 
@@ -570,13 +564,13 @@ function buildStableTopPanel(data) {
     `<div class="stable-row">
       <span class="rank-num">${i + 1}</span>
       ${animeTitleHTML(a, 'stable-title')}
-      <span class="stable-score">★ ${fmtScore(a.score)}</span>
+      <span class="stable-score">${icon('star', 12)} ${fmtScore(a.score)}</span>
     </div>`
   );
 
   return `
     <div class="stable-header">
-      <span>Топ-<strong>${data.n}</strong> без змін позицій:</span>
+      <span>ТОП-<strong>${data.n}</strong> без змін позицій:</span>
       <span>
         ${archiveLink(data.startDate, formatDateShort(data.startDate))}
         → ${archiveLink(data.endDate, formatDateShort(data.endDate))}
@@ -598,13 +592,13 @@ function buildMostAtOncePanel(data) {
       <div class="list-info">
         ${animeTitleHTML(a, 'list-title')}
       </div>
-      <span class="score-badge">★ ${fmtScore(a.score)}</span>
+      <span class="score-badge">${icon('star', 12)} ${fmtScore(a.score)}</span>
     </div>`
   );
 
   return `
     <div class="most-header">
-      <strong>${data.count} аніме з оцінкою ≥ ${CONFIG.thresholds.notable}</strong>
+      <span><strong>${data.count}</strong> аніме з оцінкою ≥ ${CONFIG.thresholds.notable}</span>
       <span class="most-date">${archiveLink(data.date, formatDate(data.date))}</span>
     </div>
     <div class="ranked-list">${collapsibleList(rows, 10)}</div>`;
