@@ -183,13 +183,12 @@ function playChartFlip(contentEl, prevPositions) {
   });
 }
 
-export function renderChartSection(snap, prevSnap, enrichedMap, index, currentIndex) {
+export function renderChartSection(snap, prevSnap, enrichedMap, index, currentIndex, scoreStreaks = {}, maxScoreMap = new Map()) {
   const navEl     = $('snapshot-nav');
   const contentEl = $('top-rated-content');
   if (!navEl || !contentEl) return;
 
   const total = index.length;
-  const label = snap?.config?.label ?? snap?.date ?? '—';
 
   navEl.innerHTML = `
     <button class="nav-btn" id="snap-prev" ${currentIndex === 0 ? 'style="cursor: default;" disabled' : ''} aria-label="Попередній">${icon('chevron-left', 18)}</button>
@@ -206,19 +205,23 @@ export function renderChartSection(snap, prevSnap, enrichedMap, index, currentIn
       <input class="snap-page-input" id="snap-page-input" type="number" min="1" max="${total}"
         value="${currentIndex + 1}" aria-label="Номер знімку">
       <span>/ ${total}</span>
-    </span>`;
+    </span>
+  `;
 
   const dateInput = $('snap-date-input');
-    if (dateInput) {
-      dateInput.addEventListener('change', () => {
-        const target = new Date(dateInput.value).getTime();
-        const closest = allSnapshots.reduce((best, s, i) => {
-          const diff = Math.abs(new Date(s.date).getTime() - target);
-          return diff < best.diff ? { i, diff } : best;
-        }, { i: 0, diff: Infinity }).i;
-        dateInput.dispatchEvent(new CustomEvent('snap-jump', { bubbles: true, detail: closest }));
-      });
-    }
+  if (dateInput) {
+    const jumpToDate = () => {
+      if (!dateInput.value) return;
+      const target  = new Date(dateInput.value).getTime();
+      const closest = index.reduce((best, s, i) => {
+        const diff = Math.abs(new Date(s.date).getTime() - target);
+        return diff < best.diff ? { i, diff } : best;
+      }, { i: 0, diff: Infinity }).i;
+      dateInput.dispatchEvent(new CustomEvent('snap-jump', { bubbles: true, detail: closest }));
+    };
+    dateInput.addEventListener('keydown', e => { if (e.key === 'Enter') jumpToDate(); });
+    dateInput.addEventListener('blur', jumpToDate);
+  }
 
   const input = $('snap-page-input');
   if (input) {
@@ -229,37 +232,49 @@ export function renderChartSection(snap, prevSnap, enrichedMap, index, currentIn
     input.addEventListener('keydown', e => { if (e.key === 'Enter') input.dispatchEvent(new Event('change')); });
   }
 
-  const { rows } = computeChartData(snap, prevSnap, enrichedMap);
+  const { rows } = computeChartData(snap, prevSnap, enrichedMap, scoreStreaks);
 
-  const rowsHTML = rows.map(a => {
-    const origTitle    = a.title_ua ? `<div class="chart-title-orig">${escHtml(a.title)}</div>` : '';
-    const scoreDelta   = a.scoreDelta !== null
-      ? `<span class="delta ${deltaClass(a.scoreDelta)}">${fmtDelta(a.scoreDelta, 2)}</span>` : '';
-    const membersDelta = a.membersDelta !== null
-      ? `<span class="delta ${deltaClass(a.membersDelta)}">${fmtDelta(a.membersDelta)}</span>` : '';
-    const borderClass  = a.rank <= 3 ? ` rank-top-${a.rank}` : '';
+  const rowsHTML = rows.map(row => {
+    const origTitle    = row.title_ua ? `<div class="chart-title-orig">${escHtml(row.title)}</div>` : '';
+    const scoreDelta   = row.scoreDelta !== null
+      ? `<span class="delta ${deltaClass(row.scoreDelta)}">${fmtDelta(row.scoreDelta, 2)}</span>` : '';
+    const streakHTML = row.scoreStreak && row.scoreStreak.count > 1
+      ? `<span class="score-streak" title="Оцінка незмінна з ${formatDateShort(row.scoreStreak.startDate)}">
+          ${icon('lock', 11)} ${row.scoreStreak.count}
+        </span>` : '';
+    const membersDelta = row.membersDelta !== null
+      ? `<span class="delta ${deltaClass(row.membersDelta)}">${fmtDelta(row.membersDelta)}</span>` : '';
+    const borderClass  = row.rank <= 3 ? ` rank-top-${row.rank}` : '';
+    const maxScore  = maxScoreMap.get(row.id) ?? null;
+    const hasRecord = maxScore !== null && maxScore > row.score;
+    const scoreTooltipAttr = hasRecord
+      ? `data-score-tooltip="Рекорд за всю історію: ${fmtScore(maxScore)}"`
+      : '';
 
-    return `<div class="chart-row${borderClass}${a.banner_image ? ' has-banner' : ''}" data-id="${a.id}" ${bannerStyle(a.banner_image)}>
+    return `<div class="chart-row${borderClass}${row.banner_image ? ' has-banner' : ''}" data-id="${row.id}" ${bannerStyle(row.banner_image)}>
       <div class="chart-rank">
-        <span class="rank-num">#${a.rank}</span>
-        ${rankBadgeHTML(a.rankDelta, a.isNew)}
+        <span class="rank-num">#${row.rank}</span>
+        ${rankBadgeHTML(row.rankDelta, row.isNew)}
       </div>
-      ${thumbHTML(a.image, a.title_ua ?? a.title)}
+      ${thumbHTML(row.image, row.title_ua ?? row.title)}
       <div class="chart-info">
-        <div class="chart-title" title="${escAttr(a.title_ua ?? a.title)}">
-          ${animeTitleHTML(a, 'chart-title-text')}
+        <div class="chart-title" title="${escAttr(row.title_ua ?? row.title)}">
+          ${animeTitleHTML(row, 'chart-title-text')}
         </div>
         ${origTitle}
-        <div class="chart-meta">${mediaBadgeHTML(a.media_type)}</div>
+        <div class="chart-meta">${mediaBadgeHTML(row.media_type)}</div>
       </div>
       <div class="chart-stats">
         <div class="stat-score">
-          <span class="score-val large">${icon('star', 18)} ${fmtScore(a.score)}</span>
+          ${streakHTML}
+          <span class="score-val large${hasRecord ? ' score-has-record' : ''}" ${scoreTooltipAttr}>
+            ${icon('star', 18)} ${fmtScore(row.score)}
+          </span>
           ${scoreDelta}
         </div>
         <div class="stat-members">
           <span class="members-label">${icon('users', 14)}</span>
-          <span>${fmtNum(a.members)}</span>
+          <span>${fmtNum(row.members)}</span>
           ${membersDelta}
         </div>
       </div>
@@ -406,7 +421,7 @@ function buildSessionRow(s) {
     ? `${fmtScore(s.firstScore)} (${fmtScore(s.maxScore)})`
     : fmtScore(s.firstScore);
   const sessionBadge = s.sessionNum > 1
-    ? `<span class="session-num-badge" title="Потрапив у ТОП-1 вже ${s.sessionNum}-й раз">${s.sessionNum}</span>`
+    ? `<span class="session-num-badge" title="Потрапило у ТОП-1 вже ${s.sessionNum}-й раз">${s.sessionNum}</span>`
     : '';
   const dateRange = s.startDate === s.endDate
     ? archiveLink(s.startDate, formatDateShort(s.startDate))
@@ -462,15 +477,17 @@ function eventCard(ico, title, infoKey, body, bgImage = null) {
   </div>`;
 }
 
-/** Рядки призерів (#2, #3) — без постера, з датою */
+/** Рядки призерів */
 function runnerUpRows(top3, scoreField = 'score', dateField = 'date', endDateField = null) {
   const medals = ['2', '3'];
   return top3.slice(1, 3).map((a, i) => {
-    const score   = a[scoreField] ?? a.score ?? 0;
-    const date    = a[dateField]  ?? a.startDate ?? null;
-    const endDate = endDateField  ? (a[endDateField] ?? null) : null;
+    const score    = a[scoreField] ?? a.score ?? 0;
+    const date     = a[dateField]  ?? a.startDate ?? null;
+    const endDate  = endDateField  ? (a[endDateField] ?? null) : null;
+    const hasRange = endDate && endDate !== date;
+    const days     = hasRange ? daysBetween(date, endDate) : null;
     const dateHTML = date
-      ? (endDate && endDate !== date
+      ? (hasRange
           ? `${archiveLink(date, formatDateShort(date))} → ${archiveLink(endDate, formatDateShort(endDate))}`
           : archiveLink(date, formatDateShort(date)))
       : '';
@@ -478,12 +495,11 @@ function runnerUpRows(top3, scoreField = 'score', dateField = 'date', endDateFie
       <span class="runner-medal runner-medal-${i + 2}">${medals[i]}</span>
       ${animeTitleHTML(a, 'runner-title')}
       <span class="runner-score">${icon('star', 12)} ${fmtScore(score)}</span>
-      ${dateHTML ? `<span class="runner-date">${dateHTML}</span>` : ''}
+      <span class="runner-date">${dateHTML || ''} <span class="runner-days">${days !== null ? ` ( ${days} ${pluralUk(days, 'днів', 'дні', 'день')} )` : ''}</span></span>
     </div>`;
   }).join('');
 }
 
-/** Рядки переможців категорій — пропускаємо якщо той самий, що й переможець */
 function categoryWinnersHTML(winnerId, tvW, movieW, otherW, scoreField = 'score', dateField = 'date', endDateField = null) {
   const getId = a => a?.animeId ?? a?.id ?? null;
   const rows = [
@@ -497,11 +513,13 @@ function categoryWinnersHTML(winnerId, tvW, movieW, otherW, scoreField = 'score'
   if (!rows.length) return '';
   return `<div class="cat-winners">
     ${rows.map(({ label, a }) => {
-      const score   = a[scoreField] ?? a.score ?? 0;
-      const date    = a[dateField]  ?? a.startDate ?? null;
-      const endDate = endDateField  ? (a[endDateField] ?? null) : null;
+      const score    = a[scoreField] ?? a.score ?? 0;
+      const date     = a[dateField]  ?? a.startDate ?? null;
+      const endDate  = endDateField  ? (a[endDateField] ?? null) : null;
+      const hasRange = endDate && endDate !== date;
+      const days     = hasRange ? daysBetween(date, endDate) : null;
       const dateHTML = date
-        ? (endDate && endDate !== date
+        ? (hasRange
             ? `${archiveLink(date, formatDateShort(date))} → ${archiveLink(endDate, formatDateShort(endDate))}`
             : archiveLink(date, formatDateShort(date)))
         : '';
@@ -509,7 +527,7 @@ function categoryWinnersHTML(winnerId, tvW, movieW, otherW, scoreField = 'score'
         <span class="cat-winner-label">${label}</span>
         ${animeTitleHTML(a, 'cat-winner-title')}
         <span class="cat-winner-score">${icon('star', 12)} ${fmtScore(score)}</span>
-        ${dateHTML ? `<span class="cat-winner-date">${dateHTML}</span>` : ''}
+        <span class="cat-winner-date">${dateHTML || ''}${days !== null ? `<span class="cat-winner-days"> ( ${days} ${pluralUk(days, 'днів', 'дні', 'день')} )</span>` : ''}</span>
       </div>`;
     }).join('')}
   </div>`;

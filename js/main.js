@@ -19,6 +19,7 @@ const state = {
   enrichedMap:  new Map(),
   analytics:    null,
   currentIndex: 0,
+  maxScoreMap:  new Map(),
 };
 
 // ─── Init ─────────────────────────────────────────────────────────────────────
@@ -32,10 +33,13 @@ async function init() {
 
     if (!index.length) throw new Error('Не вдалося завантажити жодного знімку.');
     
-    state.index       = index;                        // список дат
-    state.enrichedMap = buildEnrichedMap(enriched);
+    state.index        = index;
+    state.enrichedMap  = buildEnrichedMap(enriched);
     state.currentIndex = index.length - 1;
-    state.analytics   = analytics;                    // вже обраховано
+    state.analytics    = analytics;
+    state.maxScoreMap = new Map(
+      (analytics?.allAboveThreshold ?? []).map(a => [a.animeId, a.maxScore])
+    );
 
     // Завантажуємо перший снепшот (останній за датою) одразу
     const dates = index.map(s => s.date);
@@ -63,7 +67,7 @@ async function init() {
 
 function renderAll() {
   const sections = [
-    () => renderChartSection(state.currentSnap, state.prevSnap, state.enrichedMap, state.index, state.currentIndex),
+    () => renderChartSection(state.currentSnap, state.prevSnap, state.enrichedMap, state.index, state.currentIndex, state.maxScoreMap),
     () => renderCategorySection(state.analytics.categoryTopHistory),
     () => renderEventsSection(state.analytics),
   ];
@@ -74,7 +78,7 @@ function renderAll() {
 
 function renderChart() {
   try {
-    renderChartSection(state.currentSnap, state.prevSnap, state.enrichedMap, state.index, state.currentIndex);
+    renderChartSection(state.currentSnap, state.prevSnap, state.enrichedMap, state.index, state.currentIndex, state.maxScoreMap);
   } catch (e) { console.error('[MAL Charts] Chart:', e); }
 }
 
@@ -119,6 +123,14 @@ function setupEventListeners() {
     if (e.key === 'ArrowLeft')  jumpTo(state.currentIndex - 1);
     if (e.key === 'ArrowRight') jumpTo(state.currentIndex + 1);
     if (e.key === 'Escape')     hideTooltip();
+  });
+
+  document.addEventListener('mouseover', e => {
+    const el = e.target.closest('[data-score-tooltip]');
+    if (el) showTooltip(el, el.dataset.scoreTooltip);
+  });
+  document.addEventListener('mouseout', e => {
+    if (e.target.closest('[data-score-tooltip]')) hideTooltip();
   });
 }
 

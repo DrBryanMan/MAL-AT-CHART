@@ -123,7 +123,7 @@ export function computeCategoryTopHistory(allSnapshots, enrichedMap, threshold) 
 
 // ─── Section 2: Chart Data ────────────────────────────────────────────────────
 
-export function computeChartData(snapshot, prevSnap, enrichedMap) {
+export function computeChartData(snapshot, prevSnap, enrichedMap, scoreStreaks = {}) {
 
   const sorted     = sortedAnime(snapshot);
   const prevSorted = prevSnap ? sortedAnime(prevSnap) : [];
@@ -148,6 +148,9 @@ export function computeChartData(snapshot, prevSnap, enrichedMap) {
       scoreDelta:   prevEntry ? +(a.score - prevEntry.score).toFixed(2) : null,
       membersDelta: prevEntry ? a.members - prevEntry.members           : null,
       isNew:        prevSnap !== null && prevIdx === -1,
+      scoreStreak: (scoreStreaks[a.id] ?? []).find(
+        s => s.startDate <= snapshot.date && s.endDate >= snapshot.date
+      ) ?? null,
     };
   });
 
@@ -451,10 +454,49 @@ export function computeMostHighRatedAtOnce(allSnapshots, threshold, enrichedMap)
   return best;
 }
 
+/** Стріки оцінок по аніме: { animeId: [{score, startDate, endDate, count}] } */
+export function computeScoreStreaksByAnime(allSnapshots) {
+  const active  = new Map();
+  const byAnime = new Map();
+
+  for (const snap of allSnapshots) {
+    const seen = new Set();
+    for (const a of snap.anime) {
+      if (a.score == null) continue;
+      seen.add(a.id);
+      const cur = active.get(a.id);
+      if (!cur) {
+        active.set(a.id, { score: a.score, startDate: snap.date, endDate: snap.date, count: 1 });
+      } else if (cur.score === a.score) {
+        cur.endDate = snap.date;
+        cur.count++;
+      } else {
+        if (!byAnime.has(a.id)) byAnime.set(a.id, []);
+        byAnime.get(a.id).push({ ...cur });
+        active.set(a.id, { score: a.score, startDate: snap.date, endDate: snap.date, count: 1 });
+      }
+    }
+    for (const [id, streak] of active) {
+      if (!seen.has(id)) {
+        if (!byAnime.has(id)) byAnime.set(id, []);
+        byAnime.get(id).push({ ...streak });
+        active.delete(id);
+      }
+    }
+  }
+  for (const [id, streak] of active) {
+    if (!byAnime.has(id)) byAnime.set(id, []);
+    byAnime.get(id).push({ ...streak });
+  }
+
+  return Object.fromEntries(byAnime);
+}
+
 // ─── Master computation ───────────────────────────────────────────────────────
 
 export function computeAll(snapshots, enrichedMap, threshold = 9.0) {
   return {
+    scoreStreaks:       computeScoreStreaksByAnime(snapshots),
     categoryTopHistory: computeCategoryTopHistory(snapshots, enrichedMap, threshold),
     highestEver:        computeHighestEver(snapshots, enrichedMap),
     mostStableScore:    computeMostStableScore(snapshots, enrichedMap),
