@@ -1,0 +1,44 @@
+name: Update MAL Data
+
+on:
+  schedule:
+    # Щодня о 09:00 за Києвом (UTC+3 → 06:00 UTC)
+    - cron: '0 6 * * *'
+  workflow_dispatch: # ручний запуск через вкладку Actions у GitHub
+
+jobs:
+  update:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write   # дозвіл на push у репозиторій
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Setup Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+
+      - name: Install Python dependencies
+        run: pip install requests beautifulsoup4 lxml
+
+      - name: Run update pipeline
+        run: python runScripts.py
+
+      - name: Commit and push updated data
+        run: |
+          git config user.name  "github-actions[bot]"
+          git config user.email "github-actions[bot]@users.noreply.github.com"
+          git add snapshots/ data/
+          # пушимо лише якщо є реальні зміни
+          git diff --cached --quiet || {
+            git commit -m "chore: auto-update MAL data $(date -u +'%Y-%m-%d')"
+            git push
+          }
