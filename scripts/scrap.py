@@ -33,16 +33,17 @@ MAL_URL   = "http://myanimelist.net/topanime.php"
 CDX_API   = "https://web.archive.org/cdx/search/cdx"
 WB_PREFIX = "https://web.archive.org/web"
 
-OUT_DIR        = Path(__file__).parent / "../snapshots"
-DELAY_SEC      = 1.5
-MAX_SNAPSHOTS  = None   # None = всі; число = ліміт (наприклад 5 для тесту)
-USE_CDX_CACHE  = None   # True = брати список днів з файлу; False = новий запит до CDX API
-CDX_CACHE_FILE  = Path(__file__).parent / "../data/cdx_snapshots.json"
-EMPTY_LIST_FILE = Path(__file__).parent / "../data/empty_snapshots.json"
+BASE_DIR = Path(__file__).parent
+DATA_DIR = BASE_DIR / "../data"
 
-# Знімки які завідомо повертають помилку — пропускаємо одразу.
-# Файл містить JSON-масив рядків: ["20070509192624", "20070312083156"]
-SKIP_FILE = Path(__file__).parent / "../data/skip_timestamps.json"
+OUT_DIR         = BASE_DIR / "../snapshots/anime-mal"
+DELAY_SEC       = 1.5
+# USE_CDX_CACHE   = True
+USE_CDX_CACHE   = False
+
+CDX_CACHE_FILE  = DATA_DIR / "cdx_snapshots.json"
+EMPTY_LIST_FILE = DATA_DIR / "empty_snapshots.json"
+SKIP_FILE       = DATA_DIR / "skip_timestamps.json"
 
 # Таблиця версій розмітки MAL по датах (включно з датою початку).
 # Якщо дата знімка >= ключ — використовується відповідна версія.
@@ -838,9 +839,9 @@ def main() -> None:
     if not snapshots:
         return
 
-    if MAX_SNAPSHOTS is not None:
-        snapshots = snapshots[:MAX_SNAPSHOTS]
-        print(f"\n⚙️   Ліміт MAX_SNAPSHOTS={MAX_SNAPSHOTS}, обрано перших {len(snapshots)} знімків")
+    # if MAX_SNAPSHOTS is not None:
+    #     snapshots = snapshots[:MAX_SNAPSHOTS]
+    #     print(f"\n⚙️   Ліміт MAX_SNAPSHOTS={MAX_SNAPSHOTS}, обрано перших {len(snapshots)} знімків")
 
     # Завантажуємо список виключень
     skip_timestamps = load_skip_timestamps()

@@ -12,7 +12,7 @@
 
 export const CONFIG = {
   dataDir:            './data/',
-  snapshotsDir:       './snapshots/',
+  snapshotsDir:       './snapshots/anime-mal/',
   enrichedFile:        'anime_enriched.json',
   analyticsFile:       'analytics.json',
   snapshotsIndexFile:  'snapshots-index.json',

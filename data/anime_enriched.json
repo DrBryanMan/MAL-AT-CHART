@@ -1209,6 +1209,17 @@
     "banner_image": "https://s4.anilist.co/file/anilistcdn/media/anime/banner/1519-3gSdIkwibEND.jpg"
   },
   {
+    "mal_id": 1522,
+    "title": "Hana Yori Dango Live-Action",
+    "media_type": null,
+    "title_ua": null,
+    "image": null,
+    "banner_image": null,
+    "hikka_slug": null,
+    "native_scored_by": null,
+    "native_score": null
+  },
+  {
     "mal_id": 1530,
     "hikka_slug": "kanon-2006-b52dd2",
     "title": "Kanon (2006)",
@@ -3794,22 +3805,22 @@
   },
   {
     "mal_id": 61469,
-    "hikka_slug": "jojo-no-kimyou-na-bouken-part-7-steel-ball-run-aae44e",
     "title": "Steel Ball Run: JoJo no Kimyou na Bouken",
     "media_type": "ona",
     "title_ua": "Химерні пригоди ДжоДжо: Перегони «Сталева куля»",
     "image": "https://cdn.hikka.io/content/anime/jojo-no-kimyou-na-bouken-part-7-steel-ball-run-aae44e/BbHLwGHGfWhCC-AJL-oU6Q.jpg",
-    "native_scored_by": 14,
-    "native_score": 9.86,
+    "hikka_slug": "jojo-no-kimyou-na-bouken-part-7-steel-ball-run-aae44e",
+    "native_scored_by": 19,
+    "native_score": 9.84,
     "banner_image": "https://s4.anilist.co/file/anilistcdn/media/anime/banner/190327-bXr8tFZUdxOw.jpg"
   },
   {
     "mal_id": 61517,
-    "hikka_slug": "kingdom-6th-season-238bc3",
     "title": "Kingdom 6th Season",
     "media_type": "tv",
     "title_ua": "Королівство - 6 сезон",
     "image": "https://cdn.hikka.io/content/anime/kingdom-6th-season-238bc3/CZT6zyJURQ0NFJJUZkKa6g.jpg",
+    "hikka_slug": "kingdom-6th-season-238bc3",
     "native_scored_by": 16,
     "native_score": 8.75,
     "banner_image": null
