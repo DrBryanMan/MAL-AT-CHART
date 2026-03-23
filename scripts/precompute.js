@@ -21,7 +21,7 @@ import { CONFIG } from '../js/config.js';
 const __dir     = dirname(fileURLToPath(import.meta.url));
 const ROOT      = join(__dir, '..');
 const DATA_DIR  = join(ROOT, CONFIG.dataDir);
-const SNAPS_DIR = join(ROOT, 'snapshots');
+const SNAPS_DIR = join(ROOT, CONFIG.snapshotsDir);
 
 // ── Завантаження ──────────────────────────────────────────────────────────────
 

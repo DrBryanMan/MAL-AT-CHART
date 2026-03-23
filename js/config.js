@@ -11,8 +11,8 @@
  */
 
 export const CONFIG = {
-  dataDir:            './data/',
-  snapshotsDir:       './snapshots/anime-mal/',
+  dataDir:             'data/',
+  snapshotsDir:        'snapshots/anime-mal/',
   enrichedFile:        'anime_enriched.json',
   analyticsFile:       'analytics.json',
   snapshotsIndexFile:  'snapshots-index.json',
