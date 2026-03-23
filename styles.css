@@ -1255,11 +1255,11 @@ div.anime-thumb.event-poster.placeholder {
 /* == Груповані рядки == */
 
 .session-group {
-  outline-offset: 2px;
-  outline: 1px dashed var(--accent-h);
+  outline-offset: 3px;
+  outline: 1px dashed var(--accent-light);
   border-radius: var(--r-lg);
   overflow: hidden;
-  margin-bottom: 5px;
+  margin: 2px 0;
 }
 
 .session-group-header {
