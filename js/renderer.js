@@ -191,6 +191,11 @@ export function renderChartSection(snap, prevSnap, enrichedMap, index, currentIn
   const total = index.length;
 
   navEl.innerHTML = `
+    <span class="snap-counter">
+      <input class="snap-page-input" id="snap-page-input" type="number" min="1" max="${total}"
+        value="${currentIndex + 1}" aria-label="Номер знімку">
+      <span>/ ${total}</span>
+    </span>
     <button class="nav-btn" id="snap-prev" ${currentIndex === 0 ? 'style="cursor: default;" disabled' : ''} aria-label="Попередній">${icon('chevron-left', 18)}</button>
     <span class="snap-label">
       <input class="snap-date-input" id="snap-date-input" type="date"
@@ -198,14 +203,10 @@ export function renderChartSection(snap, prevSnap, enrichedMap, index, currentIn
         min="${index[0].date}"
         max="${index[total - 1].date}"
         aria-label="Дата знімку">
-      <a class="nav-btn nav-btn-archive" href="${archiveUrl(snap.date)}" target="_blank" rel="noopener" title="Відкрити архів MAL">${icon('globe', 16)}</a>
     </span>
     <button class="nav-btn" id="snap-next" ${currentIndex === total - 1 ? 'style="cursor: default;" disabled' : ''} aria-label="Наступний">${icon('chevron-right', 18)}</button>
-    <span class="snap-counter">
-      <input class="snap-page-input" id="snap-page-input" type="number" min="1" max="${total}"
-        value="${currentIndex + 1}" aria-label="Номер знімку">
-      <span>/ ${total}</span>
-    </span>
+    <a class="nav-btn nav-btn-archive" href="${archiveUrl(snap.date)}" target="_blank" rel="noopener" title="Відкрити архів MAL">${icon('globe', 16)}</a>
+    <button class="nav-btn nav-btn-latest" id="snap-latest" ${currentIndex === total - 1 ? 'hidden' : ''} aria-label="Актуальна дата" title="До актуальної дати">${icon('chevron-right', 14)}${icon('chevron-right', 14)}</button>
   `;
 
   const dateInput = $('snap-date-input');
@@ -248,7 +249,7 @@ export function renderChartSection(snap, prevSnap, enrichedMap, index, currentIn
     const maxScore  = maxScoreMap.get(row.id) ?? null;
     const hasRecord = maxScore !== null && maxScore > row.score;
     const scoreTooltipAttr = hasRecord
-      ? `data-score-tooltip="Рекорд за всю історію: ${fmtScore(maxScore)}"`
+      ? `data-score-tooltip="Найвища за весь час була: ${fmtScore(maxScore)}"`
       : '';
 
     return `<div class="chart-row${borderClass}${row.banner_image ? ' has-banner' : ''}" data-id="${row.id}" ${bannerStyle(row.banner_image)}>
@@ -268,7 +269,7 @@ export function renderChartSection(snap, prevSnap, enrichedMap, index, currentIn
         <div class="stat-score">
           ${streakHTML}
           <span class="score-val large${hasRecord ? ' score-has-record' : ''}" ${scoreTooltipAttr}>
-            ${icon('star', 18)} ${fmtScore(row.score)}
+            ${icon('star', 18)}${fmtScore(row.score)}
           </span>
           ${scoreDelta}
         </div>

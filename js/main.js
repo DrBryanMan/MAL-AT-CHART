@@ -67,7 +67,7 @@ async function init() {
 
 function renderAll() {
   const sections = [
-    () => renderChartSection(state.currentSnap, state.prevSnap, state.enrichedMap, state.index, state.currentIndex, state.maxScoreMap),
+    () => renderChartSection(state.currentSnap, state.prevSnap, state.enrichedMap, state.index, state.currentIndex, state.analytics?.scoreStreaks ?? {}, state.maxScoreMap),
     () => renderCategorySection(state.analytics.categoryTopHistory),
     () => renderEventsSection(state.analytics),
   ];
@@ -78,7 +78,7 @@ function renderAll() {
 
 function renderChart() {
   try {
-    renderChartSection(state.currentSnap, state.prevSnap, state.enrichedMap, state.index, state.currentIndex, state.maxScoreMap);
+    renderChartSection(state.currentSnap, state.prevSnap, state.enrichedMap, state.index, state.currentIndex, state.analytics?.scoreStreaks ?? {}, state.maxScoreMap);
   } catch (e) { console.error('[MAL Charts] Chart:', e); }
 }
 
@@ -110,6 +110,7 @@ function setupEventListeners() {
     // Snap prev/next
     if (e.target.closest('#snap-prev')) { jumpTo(state.currentIndex - 1); return; }
     if (e.target.closest('#snap-next')) { jumpTo(state.currentIndex + 1); return; }
+    if (e.target.closest('#snap-latest')) { jumpTo(state.index.length - 1); return; }
 
     hideTooltip();
   });

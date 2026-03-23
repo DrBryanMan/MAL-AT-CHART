@@ -148,9 +148,14 @@ export function computeChartData(snapshot, prevSnap, enrichedMap, scoreStreaks =
       scoreDelta:   prevEntry ? +(a.score - prevEntry.score).toFixed(2) : null,
       membersDelta: prevEntry ? a.members - prevEntry.members           : null,
       isNew:        prevSnap !== null && prevIdx === -1,
-      scoreStreak: (scoreStreaks[a.id] ?? []).find(
-        s => s.startDate <= snapshot.date && s.endDate >= snapshot.date
-      ) ?? null,
+      scoreStreak: (() => {
+        const s = (scoreStreaks[a.id] ?? []).find(
+          s => s.startDate <= snapshot.date && s.endDate >= snapshot.date
+        );
+        if (!s) return null;
+        const count = s.dates.filter(d => d <= snapshot.date).length;
+        return { ...s, count };
+      })(),
     };
   });
 
@@ -466,14 +471,14 @@ export function computeScoreStreaksByAnime(allSnapshots) {
       seen.add(a.id);
       const cur = active.get(a.id);
       if (!cur) {
-        active.set(a.id, { score: a.score, startDate: snap.date, endDate: snap.date, count: 1 });
+        active.set(a.id, { score: a.score, startDate: snap.date, endDate: snap.date, dates: [snap.date] });
       } else if (cur.score === a.score) {
         cur.endDate = snap.date;
-        cur.count++;
+        cur.dates.push(snap.date);
       } else {
         if (!byAnime.has(a.id)) byAnime.set(a.id, []);
         byAnime.get(a.id).push({ ...cur });
-        active.set(a.id, { score: a.score, startDate: snap.date, endDate: snap.date, count: 1 });
+        active.set(a.id, { score: a.score, startDate: snap.date, endDate: snap.date, dates: [snap.date] });
       }
     }
     for (const [id, streak] of active) {
