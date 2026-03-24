@@ -1431,3 +1431,80 @@ div.anime-thumb.event-poster.placeholder {
   opacity: 1;
   transform: translateY(0);
 }
+
+/* ─── Chart filters (nav row) ────────────────────────────────────────── */
+
+.nav-divider {
+  width: 1px;
+  height: 20px;
+  background: var(--border);
+  flex-shrink: 0;
+  margin: 0 2px;
+}
+
+.filter-label {
+  color: var(--text-muted);
+  display: inline-flex;
+  align-items: center;
+  flex-shrink: 0;
+}
+
+.filter-input {
+  width: 54px;
+  padding: 4px 6px;
+  background: var(--bg-input);
+  border: 1px solid var(--border);
+  border-radius: var(--r);
+  color: var(--text);
+  font-family: var(--font-mono);
+  font-size: 13px;
+  text-align: center;
+  transition: border-color var(--t);
+}
+
+.filter-input--wide { width: 90px; text-align: left; }
+
+.filter-input::-webkit-inner-spin-button,
+.filter-input::-webkit-outer-spin-button { -webkit-appearance: none; }
+
+.filter-input:focus {
+  outline: none;
+  border-color: var(--accent);
+  box-shadow: 0 0 0 2px rgba(88,166,255,.15);
+}
+
+/* ─── Filter info bar ────────────────────────────────────────────────── */
+.chart-filter-info {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  padding: 6px 14px;
+  margin-bottom: 8px;
+  background: rgba(88,166,255,.06);
+  border: 1px solid rgba(88,166,255,.2);
+  border-radius: var(--r-lg);
+  font-size: 13px;
+  color: var(--text-2);
+}
+
+/* ─── Hikka warning banner ───────────────────────────────────────────── */
+.hikka-warning {
+  display: none;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  padding: 10px 16px;
+  margin: 1em 0;
+  background: rgba(188,140,255,.08);
+  border: 1px solid rgba(188,140,255,.3);
+  border-radius: var(--r-lg);
+  font-size: 1rem;
+  color: var(--text-2);
+  line-height: 1.5;
+}
+
+.hikka-warning svg { color: var(--purple); flex-shrink: 0; }
+.hikka-warning a   { color: var(--purple); }
+.hikka-warning a:hover { color: var(--accent-h); }
+
+[data-mode="hikka"] .hikka-warning { display: flex; }

@@ -21,7 +21,9 @@ const state = {
   analytics:    null,
   currentIndex: 0,
   maxScoreMap:  new Map(),
-  currentMode:  'mal',
+  currentMode:      'mal',
+  membersThreshold: 0,
+  displayLimit:     50,
 };
 
 // ─── Mode helpers ─────────────────────────────────────────────────────────────
@@ -114,7 +116,7 @@ async function loadData() {
     state.currentIndex = index.length - 1;
     state.analytics    = analytics;
     state.maxScoreMap  = new Map(
-      (analytics?.allAboveThreshold ?? []).map(a => [a.animeId, a.maxScore])
+      (analytics?.allAboveThreshold ?? []).map(a => [a.animeId, { maxScore: a.maxScore, maxScoreDate: a.maxScoreDate }])
     );
 
     const dates = index.map(s => s.date);
@@ -143,7 +145,12 @@ async function loadData() {
 
 function renderAll() {
   const sections = [
-    () => renderChartSection(state.currentSnap, state.prevSnap, state.enrichedMap, state.index, state.currentIndex, state.analytics?.scoreStreaks ?? {}, state.maxScoreMap),
+    () => renderChartSection(
+      state.currentSnap, state.prevSnap, state.enrichedMap,
+      state.index, state.currentIndex,
+      state.analytics?.scoreStreaks ?? {}, state.maxScoreMap,
+      state.membersThreshold, state.displayLimit,
+    ),
     () => renderCategorySection(state.analytics.categoryTopHistory, state.enrichedMap),
     () => renderEventsSection(state.analytics, state.currentMode, state.enrichedMap),
   ];
@@ -154,7 +161,12 @@ function renderAll() {
 
 function renderChart() {
   try {
-    renderChartSection(state.currentSnap, state.prevSnap, state.enrichedMap, state.index, state.currentIndex, state.analytics?.scoreStreaks ?? {}, state.maxScoreMap);
+    renderChartSection(
+      state.currentSnap, state.prevSnap, state.enrichedMap,
+      state.index, state.currentIndex,
+      state.analytics?.scoreStreaks ?? {}, state.maxScoreMap,
+      state.membersThreshold, state.displayLimit,
+    );
   } catch (e) { console.error('[Charts] Chart:', e); }
 }
 
@@ -212,6 +224,11 @@ function setupEventListeners() {
   });
   document.addEventListener('mouseout', e => {
     if (e.target.closest('[data-score-tooltip]')) hideTooltip();
+  });
+  document.addEventListener('chart-filter', e => {
+    if (e.detail.type === 'members') state.membersThreshold = e.detail.value;
+    if (e.detail.type === 'limit')   state.displayLimit     = e.detail.value;
+    renderChart();
   });
 }
 

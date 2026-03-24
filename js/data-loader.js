@@ -31,7 +31,7 @@ function normalizeHikkaSnapshot(snap) {
     anime: (snap.anime ?? []).map(a => ({
       id:       a.id,
       slug:     a.slug,
-      title:    a.title_en ?? a.title_ja,
+      title:    a.title_en ?? a.title ?? a.title_ja ?? '',
       title_ua: a.title_ua ?? null,
       score:    a.score,
       members:  a.members,

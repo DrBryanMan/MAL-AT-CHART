@@ -43023,43 +43023,44 @@
         "animeId": 36838,
         "score": 9.5,
         "date": "2018-01-07",
-        "members": null
+        "members": 13814
       },
       {
         "animeId": 34096,
         "score": 9.49,
         "date": "2017-01-08",
-        "members": null
+        "members": 20488
       },
       {
         "animeId": 9969,
         "score": 9.48,
         "date": "2011-04-22",
-        "members": null
+        "members": 5392
       }
     ],
     "tvWinner": {
       "animeId": 36838,
       "score": 9.5,
       "date": "2018-01-07",
-      "members": null
+      "members": 13814
     },
     "movieWinner": {
       "animeId": 32281,
       "score": 9.4,
       "date": "2016-09-11",
-      "members": null
+      "members": 83362
     },
     "otherWinner": {
       "animeId": 61469,
       "score": 9.35,
       "date": "2026-03-19",
-      "members": null
+      "members": 89365
     },
     "winner": {
       "id": 36838,
       "score": 9.5,
-      "date": "2018-01-07"
+      "date": "2018-01-07",
+      "members": 13814
     }
   },
   "lowestEver": {
@@ -43068,7 +43069,7 @@
         "animeId": 20,
         "score": 7.53,
         "date": "2007-05-05",
-        "members": null
+        "members": 1561
       },
       {
         "animeId": 1238,
@@ -43087,7 +43088,7 @@
       "animeId": 20,
       "score": 7.53,
       "date": "2007-05-05",
-      "members": null
+      "members": 1561
     },
     "movieWinner": {
       "animeId": 433,
@@ -43104,7 +43105,8 @@
     "winner": {
       "id": 20,
       "score": 7.53,
-      "date": "2007-05-05"
+      "date": "2007-05-05",
+      "members": 1561
     }
   },
   "mostMembers": {
@@ -43263,311 +43265,373 @@
     {
       "animeId": 36838,
       "maxScore": 9.5,
+      "maxScoreDate": "2018-01-07",
       "firstDate": "2018-01-07"
     },
     {
       "animeId": 34096,
       "maxScore": 9.49,
+      "maxScoreDate": "2017-01-08",
       "firstDate": "2017-01-08"
     },
     {
       "animeId": 9969,
       "maxScore": 9.48,
+      "maxScoreDate": "2011-04-22",
       "firstDate": "2011-04-22"
     },
     {
       "animeId": 32281,
       "maxScore": 9.4,
+      "maxScoreDate": "2016-09-11",
       "firstDate": "2016-09-09"
     },
     {
       "animeId": 52991,
       "maxScore": 9.39,
+      "maxScoreDate": "2024-03-24",
       "firstDate": "2023-09-30"
     },
     {
       "animeId": 61469,
       "maxScore": 9.35,
+      "maxScoreDate": "2026-03-19",
       "firstDate": "2026-03-19"
     },
     {
       "animeId": 52034,
       "maxScore": 9.34,
+      "maxScoreDate": "2023-04-13",
       "firstDate": "2023-04-12"
     },
     {
       "animeId": 59978,
       "maxScore": 9.34,
+      "maxScoreDate": "2026-01-17",
       "firstDate": "2026-01-16"
     },
     {
       "animeId": 28977,
       "maxScore": 9.33,
+      "maxScoreDate": "2016-04-01",
       "firstDate": "2015-04-10"
     },
     {
       "animeId": 35247,
       "maxScore": 9.32,
+      "maxScoreDate": "2017-08-23",
       "firstDate": "2017-08-11"
     },
     {
       "animeId": 33354,
       "maxScore": 9.3,
+      "maxScoreDate": "2018-01-06",
       "firstDate": "2018-01-06"
     },
     {
       "animeId": 36259,
       "maxScore": 9.29,
+      "maxScoreDate": "2017-10-07",
       "firstDate": "2017-10-07"
     },
     {
       "animeId": 5114,
       "maxScore": 9.26,
+      "maxScoreDate": "2015-10-15",
       "firstDate": "2010-07-29"
     },
     {
       "animeId": 41467,
       "maxScore": 9.25,
+      "maxScoreDate": "2022-10-10",
       "firstDate": "2022-10-10"
     },
     {
       "animeId": 51535,
       "maxScore": 9.24,
+      "maxScoreDate": "2023-03-04",
       "firstDate": "2023-03-04"
     },
     {
       "animeId": 38524,
       "maxScore": 9.23,
+      "maxScoreDate": "2019-07-01",
       "firstDate": "2019-04-28"
     },
     {
       "animeId": 15417,
       "maxScore": 9.22,
+      "maxScoreDate": "2012-10-25",
       "firstDate": "2012-10-25"
     },
     {
       "animeId": 35843,
       "maxScore": 9.22,
+      "maxScoreDate": "2017-10-01",
       "firstDate": "2017-10-01"
     },
     {
       "animeId": 15335,
       "maxScore": 9.21,
+      "maxScoreDate": "2014-01-22",
       "firstDate": "2014-01-22"
     },
     {
       "animeId": 35073,
       "maxScore": 9.21,
+      "maxScoreDate": "2017-12-31",
       "firstDate": "2017-12-31"
     },
     {
       "animeId": 40028,
       "maxScore": 9.21,
+      "maxScoreDate": "2021-02-01",
       "firstDate": "2020-12-06"
     },
     {
       "animeId": 57555,
       "maxScore": 9.21,
+      "maxScoreDate": "2025-10-30",
       "firstDate": "2025-10-01"
     },
     {
       "animeId": 9253,
       "maxScore": 9.19,
+      "maxScoreDate": "2015-04-06",
       "firstDate": "2011-11-22"
     },
     {
       "animeId": 30484,
       "maxScore": 9.19,
+      "maxScoreDate": "2018-04-11",
       "firstDate": "2018-04-11"
     },
     {
       "animeId": 60022,
       "maxScore": 9.19,
+      "maxScoreDate": "2024-10-31",
       "firstDate": "2024-10-31"
     },
     {
       "animeId": 42938,
       "maxScore": 9.18,
+      "maxScoreDate": "2021-06-28",
       "firstDate": "2021-06-13"
     },
     {
       "animeId": 28851,
       "maxScore": 9.17,
+      "maxScoreDate": "2017-05-27",
       "firstDate": "2016-09-23"
     },
     {
       "animeId": 32935,
       "maxScore": 9.17,
+      "maxScoreDate": "2016-12-12",
       "firstDate": "2016-10-14"
     },
     {
       "animeId": 39486,
       "maxScore": 9.17,
+      "maxScoreDate": "2021-08-19",
       "firstDate": "2021-01-15"
     },
     {
       "animeId": 43608,
       "maxScore": 9.17,
+      "maxScoreDate": "2022-06-27",
       "firstDate": "2022-04-09"
     },
     {
       "animeId": 4181,
       "maxScore": 9.16,
+      "maxScoreDate": "2013-04-13",
       "firstDate": "2010-06-11"
     },
     {
       "animeId": 40010,
       "maxScore": 9.16,
+      "maxScoreDate": "2020-02-06",
       "firstDate": "2020-02-06"
     },
     {
       "animeId": 48583,
       "maxScore": 9.16,
+      "maxScoreDate": "2022-02-13",
       "firstDate": "2022-01-31"
     },
     {
       "animeId": 7311,
       "maxScore": 9.15,
+      "maxScoreDate": "2011-02-06",
       "firstDate": "2010-06-11"
     },
     {
       "animeId": 11061,
       "maxScore": 9.15,
+      "maxScoreDate": "2015-01-10",
       "firstDate": "2014-10-30"
     },
     {
       "animeId": 37991,
       "maxScore": 9.15,
+      "maxScoreDate": "2018-08-15",
       "firstDate": "2018-08-13"
     },
     {
       "animeId": 31043,
       "maxScore": 9.14,
+      "maxScoreDate": "2016-03-01",
       "firstDate": "2016-02-01"
     },
     {
       "animeId": 31933,
       "maxScore": 9.14,
+      "maxScoreDate": "2016-04-01",
       "firstDate": "2016-04-01"
     },
     {
       "animeId": 34612,
       "maxScore": 9.14,
+      "maxScoreDate": "2018-01-16",
       "firstDate": "2018-01-16"
     },
     {
       "animeId": 820,
       "maxScore": 9.13,
+      "maxScoreDate": "2012-04-21",
       "firstDate": "2010-06-11"
     },
     {
       "animeId": 918,
       "maxScore": 9.12,
+      "maxScoreDate": "2011-04-25",
       "firstDate": "2010-06-11"
     },
     {
       "animeId": 56784,
       "maxScore": 9.12,
+      "maxScoreDate": "2024-10-06",
       "firstDate": "2024-10-05"
     },
     {
       "animeId": 35180,
       "maxScore": 9.11,
+      "maxScoreDate": "2018-04-11",
       "firstDate": "2018-04-06"
     },
     {
       "animeId": 50265,
       "maxScore": 9.09,
+      "maxScoreDate": "2022-04-19",
       "firstDate": "2022-04-09"
     },
     {
       "animeId": 30276,
       "maxScore": 9.07,
+      "maxScoreDate": "2015-12-25",
       "firstDate": "2015-12-25"
     },
     {
       "animeId": 4282,
       "maxScore": 9.06,
+      "maxScoreDate": "2009-02-10",
       "firstDate": "2009-02-09"
     },
     {
       "animeId": 37491,
       "maxScore": 9.06,
+      "maxScoreDate": "2018-07-14",
       "firstDate": "2018-07-11"
     },
     {
       "animeId": 44511,
       "maxScore": 9.06,
+      "maxScoreDate": "2022-10-11",
       "firstDate": "2022-10-11"
     },
     {
       "animeId": 61517,
       "maxScore": 9.06,
+      "maxScoreDate": "2025-11-25",
       "firstDate": "2025-11-09"
     },
     {
       "animeId": 38883,
       "maxScore": 9.04,
+      "maxScoreDate": "2020-01-11",
       "firstDate": "2020-01-11"
     },
     {
       "animeId": 57864,
       "maxScore": 9.04,
+      "maxScoreDate": "2024-09-21",
       "firstDate": "2024-09-01"
     },
     {
       "animeId": 2001,
       "maxScore": 9.03,
+      "maxScoreDate": "2007-10-27",
       "firstDate": "2007-10-20"
     },
     {
       "animeId": 11741,
       "maxScore": 9.02,
+      "maxScoreDate": "2012-04-26",
       "firstDate": "2012-04-26"
     },
     {
       "animeId": 37510,
       "maxScore": 9.02,
+      "maxScoreDate": "2019-04-03",
       "firstDate": "2019-04-01"
     },
     {
       "animeId": 47917,
       "maxScore": 9.02,
+      "maxScoreDate": "2022-12-26",
       "firstDate": "2022-12-25"
     },
     {
       "animeId": 54857,
       "maxScore": 9.02,
+      "maxScoreDate": "2024-10-03",
       "firstDate": "2024-10-03"
     },
     {
       "animeId": 2236,
       "maxScore": 9.01,
+      "maxScoreDate": "2007-08-16",
       "firstDate": "2007-08-16"
     },
     {
       "animeId": 44,
       "maxScore": 9.01,
+      "maxScoreDate": "2007-08-16",
       "firstDate": "2007-08-16"
     },
     {
       "animeId": 3784,
       "maxScore": 9.01,
+      "maxScoreDate": "2010-07-29",
       "firstDate": "2010-06-11"
     },
     {
       "animeId": 53273,
       "maxScore": 9.01,
+      "maxScoreDate": "2022-12-02",
       "firstDate": "2022-12-02"
     },
     {
       "animeId": 60489,
       "maxScore": 9.01,
+      "maxScoreDate": "2025-08-01",
       "firstDate": "2025-08-01"
     },
     {
       "animeId": 2904,
       "maxScore": 9,
+      "maxScoreDate": "2014-02-28",
       "firstDate": "2014-02-28"
     }
   ],

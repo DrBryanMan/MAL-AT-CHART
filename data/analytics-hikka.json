@@ -54726,43 +54726,44 @@
         "animeId": 61469,
         "score": 9.84,
         "date": "2026-03-23",
-        "members": null
+        "members": 19
       },
       {
         "animeId": 59978,
         "score": 9.61,
         "date": "2026-02-15",
-        "members": null
+        "members": 51
       },
       {
         "animeId": 60371,
         "score": 9.54,
         "date": "2026-03-23",
-        "members": null
+        "members": 13
       }
     ],
     "tvWinner": {
       "animeId": 59978,
       "score": 9.61,
       "date": "2026-02-15",
-      "members": null
+      "members": 51
     },
     "movieWinner": {
       "animeId": 59571,
       "score": 9.12,
       "date": "2026-03-22",
-      "members": null
+      "members": 134
     },
     "otherWinner": {
       "animeId": 61469,
       "score": 9.84,
       "date": "2026-03-23",
-      "members": null
+      "members": 19
     },
     "winner": {
       "id": 61469,
       "score": 9.84,
-      "date": "2026-03-23"
+      "date": "2026-03-23",
+      "members": 19
     }
   },
   "lowestEver": {
@@ -54771,43 +54772,44 @@
         "animeId": 38853,
         "score": 1.18,
         "date": "2026-02-01",
-        "members": null
+        "members": 11
       },
       {
         "animeId": 55995,
         "score": 3.38,
         "date": "2026-02-01",
-        "members": null
+        "members": 13
       },
       {
         "animeId": 40074,
         "score": 3.53,
         "date": "2026-02-01",
-        "members": null
+        "members": 17
       }
     ],
     "tvWinner": {
       "animeId": 38853,
       "score": 1.18,
       "date": "2026-02-01",
-      "members": null
+      "members": 11
     },
     "movieWinner": {
       "animeId": 5178,
       "score": 4.67,
       "date": "2026-02-01",
-      "members": null
+      "members": 39
     },
     "otherWinner": {
       "animeId": 16023,
       "score": 4.3,
       "date": "2026-03-22",
-      "members": null
+      "members": 10
     },
     "winner": {
       "id": 38853,
       "score": 1.18,
-      "date": "2026-02-01"
+      "date": "2026-02-01",
+      "members": 11
     }
   },
   "mostMembers": {
@@ -54951,151 +54953,181 @@
     {
       "animeId": 61469,
       "maxScore": 9.84,
+      "maxScoreDate": "2026-03-23",
       "firstDate": "2026-03-22"
     },
     {
       "animeId": 59978,
       "maxScore": 9.61,
+      "maxScoreDate": "2026-02-15",
       "firstDate": "2026-02-01"
     },
     {
       "animeId": 60371,
       "maxScore": 9.54,
+      "maxScoreDate": "2026-03-23",
       "firstDate": "2026-03-08"
     },
     {
       "animeId": 820,
       "maxScore": 9.45,
+      "maxScoreDate": "2026-02-01",
       "firstDate": "2026-02-01"
     },
     {
       "animeId": 52991,
       "maxScore": 9.43,
+      "maxScoreDate": "2026-02-01",
       "firstDate": "2026-02-01"
     },
     {
       "animeId": 58788,
       "maxScore": 9.4,
+      "maxScoreDate": "2026-03-22",
       "firstDate": "2026-03-22"
     },
     {
       "animeId": 55255,
       "maxScore": 9.32,
+      "maxScoreDate": "2026-03-08",
       "firstDate": "2026-02-01"
     },
     {
       "animeId": 62896,
       "maxScore": 9.3,
+      "maxScoreDate": "2026-02-01",
       "firstDate": "2026-02-01"
     },
     {
       "animeId": 9969,
       "maxScore": 9.21,
+      "maxScoreDate": "2026-03-08",
       "firstDate": "2026-02-01"
     },
     {
       "animeId": 50399,
       "maxScore": 9.19,
+      "maxScoreDate": "2026-02-01",
       "firstDate": "2026-02-01"
     },
     {
       "animeId": 5114,
       "maxScore": 9.19,
+      "maxScoreDate": "2026-02-22",
       "firstDate": "2026-02-01"
     },
     {
       "animeId": 5941,
       "maxScore": 9.18,
+      "maxScoreDate": "2026-02-01",
       "firstDate": "2026-02-01"
     },
     {
       "animeId": 11061,
       "maxScore": 9.12,
+      "maxScoreDate": "2026-03-08",
       "firstDate": "2026-02-01"
     },
     {
       "animeId": 59571,
       "maxScore": 9.12,
+      "maxScoreDate": "2026-03-22",
       "firstDate": "2026-02-01"
     },
     {
       "animeId": 54492,
       "maxScore": 9.11,
+      "maxScoreDate": "2026-02-08",
       "firstDate": "2026-02-01"
     },
     {
       "animeId": 15417,
       "maxScore": 9.09,
+      "maxScoreDate": "2026-02-01",
       "firstDate": "2026-02-01"
     },
     {
       "animeId": 245,
       "maxScore": 9.09,
+      "maxScoreDate": "2026-03-22",
       "firstDate": "2026-02-01"
     },
     {
       "animeId": 55016,
       "maxScore": 9.08,
+      "maxScoreDate": "2026-02-01",
       "firstDate": "2026-02-01"
     },
     {
       "animeId": 39486,
       "maxScore": 9.08,
+      "maxScoreDate": "2026-02-22",
       "firstDate": "2026-02-01"
     },
     {
       "animeId": 21,
       "maxScore": 9.08,
+      "maxScoreDate": "2026-03-15",
       "firstDate": "2026-02-01"
     },
     {
       "animeId": 37521,
       "maxScore": 9.07,
+      "maxScoreDate": "2026-03-01",
       "firstDate": "2026-02-01"
     },
     {
       "animeId": 28977,
       "maxScore": 9.06,
+      "maxScoreDate": "2026-02-22",
       "firstDate": "2026-02-01"
     },
     {
       "animeId": 38524,
       "maxScore": 9.06,
+      "maxScoreDate": "2026-03-15",
       "firstDate": "2026-02-01"
     },
     {
       "animeId": 60058,
       "maxScore": 9.05,
+      "maxScoreDate": "2026-03-15",
       "firstDate": "2026-03-08"
     },
     {
       "animeId": 60022,
       "maxScore": 9.04,
+      "maxScoreDate": "2026-02-01",
       "firstDate": "2026-02-01"
     },
     {
       "animeId": 4181,
       "maxScore": 9.02,
+      "maxScoreDate": "2026-03-08",
       "firstDate": "2026-02-01"
     },
     {
       "animeId": 34096,
       "maxScore": 9,
+      "maxScoreDate": "2026-02-22",
       "firstDate": "2026-02-22"
     },
     {
       "animeId": 49387,
       "maxScore": 9,
+      "maxScoreDate": "2026-03-08",
       "firstDate": "2026-03-08"
     },
     {
       "animeId": 61274,
       "maxScore": 9,
+      "maxScoreDate": "2026-03-15",
       "firstDate": "2026-03-15"
     },
     {
       "animeId": 51535,
       "maxScore": 9,
+      "maxScoreDate": "2026-03-22",
       "firstDate": "2026-03-22"
     }
   ],

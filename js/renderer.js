@@ -214,7 +214,7 @@ function playChartFlip(contentEl, prevPositions) {
   });
 }
 
-export function renderChartSection(snap, prevSnap, enrichedMap, index, currentIndex, scoreStreaks = {}, maxScoreMap = new Map()) {
+export function renderChartSection(snap, prevSnap, enrichedMap, index, currentIndex, scoreStreaks = {}, maxScoreMap = new Map(), membersThreshold = 0, displayLimit = 50) {
   const navEl     = $('snapshot-nav');
   const contentEl = $('top-rated-content');
   if (!navEl || !contentEl) return;
@@ -222,6 +222,15 @@ export function renderChartSection(snap, prevSnap, enrichedMap, index, currentIn
   const total = index.length;
 
   navEl.innerHTML = `
+    <span class="filter-label" title="Мінімум учасників">${icon('users', 13)}</span>
+    <input class="filter-input filter-input--wide" id="chart-members-min" type="number"
+      min="0" step="100" value="${membersThreshold || 10}" placeholder="10"
+      aria-label="Мінімум учасників">
+    <span class="filter-label" title="Кількість рядків">${icon('list', 13)}</span>
+    <input class="filter-input" id="chart-display-limit" type="number"
+      min="5" max="500" step="5" value="${displayLimit}"
+      aria-label="Кількість результатів">
+    <span class="nav-divider"></span>
     <span class="snap-counter">
       <input class="snap-page-input" id="snap-page-input" type="number" min="1" max="${total}"
         value="${currentIndex + 1}" aria-label="Номер знімку">
@@ -241,6 +250,26 @@ export function renderChartSection(snap, prevSnap, enrichedMap, index, currentIn
       : ''}
     <button class="nav-btn nav-btn-latest" id="snap-latest" ${currentIndex === total - 1 ? 'hidden' : ''} aria-label="Актуальна дата" title="До актуальної дати">${icon('chevron-right', 14)}${icon('chevron-right', 14)}</button>
   `;
+
+  const membersInput = $('chart-members-min');
+  if (membersInput) {
+    const fire = () => {
+      const v = Math.max(0, Number(membersInput.value) || 0);
+      membersInput.dispatchEvent(new CustomEvent('chart-filter', { bubbles: true, detail: { type: 'members', value: v } }));
+    };
+    membersInput.addEventListener('change', fire);
+    membersInput.addEventListener('keydown', e => { if (e.key === 'Enter') fire(); });
+  }
+
+  const limitInput = $('chart-display-limit');
+  if (limitInput) {
+    const fire = () => {
+      const v = Math.max(5, Math.min(500, Number(limitInput.value) || 50));
+      limitInput.dispatchEvent(new CustomEvent('chart-filter', { bubbles: true, detail: { type: 'limit', value: v } }));
+    };
+    limitInput.addEventListener('change', fire);
+    limitInput.addEventListener('keydown', e => { if (e.key === 'Enter') fire(); });
+  }
 
   const dateInput = $('snap-date-input');
   if (dateInput) {
@@ -268,7 +297,11 @@ export function renderChartSection(snap, prevSnap, enrichedMap, index, currentIn
 
   const snapshotDates = index.map(s => s.date);
   const { rows: allRows } = computeChartData(snap, prevSnap, enrichedMap, scoreStreaks, snapshotDates);
-  const rows = allRows.slice(0, CONFIG.chartLimit ?? 50);
+
+  const filtered = membersThreshold > 0
+    ? allRows.filter(r => (r.members ?? 0) >= membersThreshold)
+    : allRows;
+  const rows = filtered.slice(0, displayLimit);
 
   const rowsHTML = rows.map(row => {
     const origTitle    = row.title_ua ? `<div class="chart-title-orig">${escHtml(row.title)}</div>` : '';
@@ -281,10 +314,12 @@ export function renderChartSection(snap, prevSnap, enrichedMap, index, currentIn
     const membersDelta = row.membersDelta !== null
       ? `<span class="delta ${deltaClass(row.membersDelta)}">${fmtDelta(row.membersDelta)}</span>` : '';
     const borderClass  = row.rank <= 3 ? ` rank-top-${row.rank}` : '';
-    const maxScore  = maxScoreMap.get(row.id) ?? null;
-    const hasRecord = maxScore !== null && maxScore > row.score;
+    const maxEntry   = maxScoreMap.get(row.id) ?? null;
+    const hasRecord  = maxEntry !== null
+      && maxEntry.maxScore > row.score
+      && maxEntry.maxScoreDate <= snap.date;
     const scoreTooltipAttr = hasRecord
-      ? `data-score-tooltip="Найвища за весь час була: ${fmtScore(maxScore)}"`
+      ? `data-score-tooltip="Найвища до цієї дати: ${fmtScore(maxEntry.maxScore)}"`
       : '';
 
     return `<div class="chart-row${borderClass}${row.banner_image ? ' has-banner' : ''}" data-id="${row.id}" ${bannerStyle(row.banner_image)}>
@@ -328,10 +363,15 @@ export function renderChartSection(snap, prevSnap, enrichedMap, index, currentIn
       <button class="show-more-btn" data-chart-more>Показати ще ${rowsHTML.length - 10} →</button>`;
   }
 
+  const filterInfo = membersThreshold > 0 && filtered.length < allRows.length
+  ? `<div class="chart-filter-info">${icon('users', 13)} ≥ ${fmtNum(membersThreshold)} · знайдено <strong>${filtered.length}</strong> з ${allRows.length}</div>`
+  : '';
+
   const prevPositions = animateChartFlip(contentEl);
   contentEl.innerHTML = rows.length
-    ? `<div class="chart-list" id="chart-list">${chartInner}</div>`
-    : `<div class="empty-state"><p>Знімок не містить даних.</p></div>`;
+    ? `${filterInfo}<div class="chart-list" id="chart-list">${chartInner}</div>`
+    : `${filterInfo}<div class="empty-state"><p>Немає аніме з ≥ ${fmtNum(membersThreshold)} учасників у цьому знімку.</p></div>`;
+    // : `<div class="empty-state"><p>Знімок не містить даних.</p></div>`;
   playChartFlip(contentEl, prevPositions);
 
   contentEl.querySelector('[data-chart-more]')?.addEventListener('click', function() {
@@ -488,9 +528,9 @@ export function renderEventsSection(analytics, source = 'mal', enrichedMap) {
     <div class="events-grid">
       ${buildHighestEverCard(analytics.highestEver, enrichedMap)}
       ${isHikka ? buildLowestEverCard(analytics.lowestEver, enrichedMap) : ''}
-      ${buildMostMembersCard(analytics.mostMembers, enrichedMap)}
-      ${buildStableScoreCard(analytics.mostStableScore, enrichedMap)}
       ${buildLongestTop1Card(analytics.longestTop1, enrichedMap)}
+      ${buildStableScoreCard(analytics.mostStableScore, enrichedMap)}
+      ${buildMostMembersCard(analytics.mostMembers, enrichedMap)}
     </div>
 
     ${buildEventsTabs(analytics, enrichedMap)}
@@ -533,6 +573,7 @@ function runnerUpRows(top3, enrichedMap, scoreField = 'score', dateField = 'date
       <span class="runner-medal runner-medal-${i + 2}">${medals[i]}</span>
       ${animeTitleHTML(a, 'runner-title')}
       <span class="runner-score">${icon('star', 12)} ${fmtScore(score)}</span>
+      ${a.members ? `<div class="highlight-meta">${icon('users', 13)} ${fmtNum(a.members)} голосів</div>` : ''}
       <span class="runner-date">${dateHTML || ''} <span class="runner-days">${days !== null ? ` ( ${days} ${pluralUk(days, 'днів', 'дні', 'день')} )` : ''}</span></span>
     </div>`;
   }).join('');
@@ -588,6 +629,7 @@ function buildLowestEverCard(data, enrichedMap) {
         <span class="highlight-score highlight-score--low">${icon('star', 22)} ${fmtScore(w.score)}</span>
         <div class="highlight-title">${animeTitleHTML(w)}</div>
         ${w.title_ua ? `<div class="highlight-orig">${escHtml(w.title)}</div>` : ''}
+        ${w.members ? `<div class="highlight-meta">${icon('users', 13)} ${fmtNum(w.members)} голосів</div>` : ''}
         <div class="highlight-date">${dateLink(w.date, formatDate(w.date))}</div>
       </div>
     </div>
@@ -606,16 +648,40 @@ function buildMostMembersCard(data, enrichedMap) {
   );
 
   const w = getFullAnime(data.winner, enrichedMap);
-  const medals = ['2', '3'];
 
   const runners = data.top3.slice(1, 3).map((minimal, i) => {
     const a = getFullAnime(minimal, enrichedMap);
     return `<div class="runner-up-row">
-      <span class="runner-medal runner-medal-${i + 2}">${medals[i]}</span>
+      <span class="runner-medal runner-medal-${i + 2}">${i + 2}</span>
       ${animeTitleHTML(a, 'runner-title')}
       <span class="runner-score">${icon('users', 12)} ${fmtNum(a.members)}</span>
     </div>`;
   }).join('');
+
+  const getId = a => a?.animeId ?? a?.id ?? null;
+  const winnerId = getId(data.winner);
+
+  const catRows = [
+    data.tvWinner    && getId(data.tvWinner)    !== winnerId && { label: `${icon('tv',   14)} Серіал`, a: data.tvWinner },
+    data.movieWinner && getId(data.movieWinner) !== winnerId && { label: `${icon('film', 14)} Фільм`,  a: data.movieWinner },
+    data.otherWinner && getId(data.otherWinner) !== winnerId && {
+      label: `${icon(CONFIG.categoryIcons[data.otherWinner.media_type] ?? 'help-circle', 14)} Інше`,
+      a: data.otherWinner,
+    },
+  ].filter(Boolean);
+
+  const catWinnersHTML = catRows.length
+    ? `<div class="cat-winners">
+        ${catRows.map(({ label, a: minimal }) => {
+          const a = getFullAnime(minimal, enrichedMap);
+          return `<div class="cat-winner-row">
+            <span class="cat-winner-label">${label}</span>
+            ${animeTitleHTML(a, 'cat-winner-title')}
+            <span class="cat-winner-score">${icon('users', 12)} ${fmtNum(a.members)}</span>
+          </div>`;
+        }).join('')}
+      </div>`
+    : '';
 
   return eventCard(icon('users', 20), 'Найбільша авдиторія', 'mostMembers', `
     <div class="event-winner">
@@ -626,7 +692,8 @@ function buildMostMembersCard(data, enrichedMap) {
         ${w.title_ua ? `<div class="highlight-orig">${escHtml(w.title)}</div>` : ''}
       </div>
     </div>
-    ${runners}`, w.image);
+    ${runners}
+    ${catWinnersHTML}`, w.image);
 }
 
 // ─── Card: Highest Ever ───────────────────────────────────────────────────────
@@ -643,6 +710,7 @@ function buildHighestEverCard(data, enrichedMap) {
         <span class="highlight-score">${icon('star', 22)} ${fmtScore(w.score)}</span>
         <div class="highlight-title">${animeTitleHTML(w)}</div>
         ${w.title_ua ? `<div class="highlight-orig">${escHtml(w.title)}</div>` : ''}
+        ${w.members ? `<div class="highlight-meta">${icon('users', 13)} ${fmtNum(w.members)} голосів</div>` : ''}
         <div class="highlight-date">${dateLink(w.date, formatDate(w.date))}</div>
       </div>
     </div>

@@ -96,10 +96,11 @@ export function computeChartData(snapshot, prevSnap, enrichedMap, scoreStreaks =
 
     return {
       ...a,
-      title_ua:     enr.title_ua ?? a.title_ua ?? null,
-      media_type:   enr.media_type ?? 'unknown',
-      image:        enr.image ?? null,
-      hikka_slug:   enr.hikka_slug ?? a.slug ?? null,
+      title:        enr.title        ?? a.title   ?? '',
+      title_ua:     enr.title_ua     ?? null,
+      media_type:   enr.media_type   ?? 'unknown',
+      image:        enr.image        ?? null,
+      hikka_slug:   enr.hikka_slug   ?? a.slug    ?? null,
       banner_image: enr.banner_image ?? null,
       rank,
       prevRank,
@@ -219,7 +220,8 @@ export function computeHighestEver(allSnapshots, enrichedMap) {
     for (const a of snap.anime) {
       if (a.score == null) continue;
       const ex = best.get(a.id);
-      if (!ex || a.score > ex.score) best.set(a.id, { id: a.id, score: a.score, date: snap.date });
+      if (!ex || a.score > ex.score)
+        best.set(a.id, { id: a.id, score: a.score, date: snap.date, members: a.members ?? null });
     }
   }
   const sorted = [...best.values()].toSorted((a, b) => b.score - a.score);
@@ -233,7 +235,8 @@ export function computeLowestEver(allSnapshots, enrichedMap) {
     for (const a of snap.anime) {
       if (a.score == null) continue;
       const ex = worst.get(a.id);
-      if (!ex || a.score < ex.score) worst.set(a.id, { id: a.id, score: a.score, date: snap.date });
+      if (!ex || a.score < ex.score)
+        worst.set(a.id, { id: a.id, score: a.score, date: snap.date, members: a.members ?? null });
     }
   }
   const sorted = [...worst.values()].toSorted((a, b) => a.score - b.score);
@@ -367,9 +370,10 @@ export function computeAllAboveThreshold(allSnapshots, threshold, enrichedMap) {
       if (a.score == null || a.score < threshold) continue;
       const ex = seen.get(a.id);
       if (!ex) {
-        seen.set(a.id, { animeId: a.id, maxScore: a.score, firstDate: snap.date });
-      } else {
-        ex.maxScore = Math.max(ex.maxScore, a.score);
+        seen.set(a.id, { animeId: a.id, maxScore: a.score, maxScoreDate: snap.date, firstDate: snap.date });
+      } else if (a.score > ex.maxScore) {
+        ex.maxScore = a.score;
+        ex.maxScoreDate = snap.date;
       }
     }
   }
