@@ -148,10 +148,10 @@ export function computeChartData(snapshot, prevSnap, enrichedMap, scoreStreaks =
 
     return {
       ...a,
-      title_ua:     enr.title_ua   ?? null,
+      title_ua:     enr.title_ua   ?? a.title_ua ?? null,
       media_type:   enr.media_type ?? 'unknown',
       image:        enr.image      ?? null,
-      hikka_slug:   enr.hikka_slug ?? null,
+      hikka_slug:   enr.hikka_slug ?? a.slug     ?? null,
       banner_image: enr.banner_image ?? null,
       rank,
       prevRank,
@@ -528,6 +528,26 @@ export function computeLowestEver(allSnapshots, enrichedMap) {
   };
 }
 
+/** Найбільша кількість members за всю доступну історію */
+export function computeMostMembers(allSnapshots, enrichedMap) {
+  const best = new Map();
+  for (const snap of allSnapshots) {
+    for (const a of snap.anime) {
+      if (a.members == null) continue;
+      const ex = best.get(a.id);
+      if (!ex || a.members > ex.members) best.set(a.id, { ...a, date: snap.date });
+    }
+  }
+  if (!best.size) return null;
+
+  const sorted = [...best.values()].toSorted((a, b) => b.members - a.members);
+  const enrichedFirst = enrich(sorted[0], enrichedMap);
+  return {
+    ...topWithCategories(sorted, enrichedMap),
+    winner: { ...enrichedFirst, animeId: sorted[0].id, date: sorted[0].date },
+  };
+}
+
 // ─── Master computation ───────────────────────────────────────────────────────
 
 export function computeAll(snapshots, enrichedMap, threshold = 9.0) {
@@ -536,6 +556,7 @@ export function computeAll(snapshots, enrichedMap, threshold = 9.0) {
     categoryTopHistory: computeCategoryTopHistory(snapshots, enrichedMap, threshold),
     highestEver:        computeHighestEver(snapshots, enrichedMap),
     lowestEver:         computeLowestEver(snapshots, enrichedMap),
+    mostMembers:        computeMostMembers(snapshots, enrichedMap),
     mostStableScore:    computeMostStableScore(snapshots, enrichedMap),
     longestTop1:        computeLongestAtTop1(snapshots, enrichedMap),
     allAboveThreshold:  computeAllAboveThreshold(snapshots, threshold, enrichedMap),

@@ -687,10 +687,19 @@ section[id] { scroll-margin-top: 70px; }
 
 /* ─── Event Cards (Section 3 top row) ───────────────── */
 .events-grid {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-  gap: 16px;
+  /* display: grid; */
+  /* grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); */
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 20px;           /* або скільки тобі потрібно */
   margin-bottom: 32px;
+	
+	& > * {
+	  flex: 1 1 280px;           /* базова ширина */
+	  min-width: 280px;          /* не менше 280px */
+	  max-width: 340px;          /* ← ось головне, що ти просив */
+	}
 }
 
 .event-card {

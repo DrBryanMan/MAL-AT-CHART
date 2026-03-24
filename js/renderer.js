@@ -46,10 +46,13 @@ function escHtml(str) {
 
 /** Посилання на Hikka якщо є slug, інакше просто текст */
 function animeTitleHTML(a, cls = '') {
-  const name = escHtml(a.title_ua ?? a.title);
-  const slug = a.hikka_slug ?? null;
-  if (!slug) return `<span class="${cls}">${name}</span>`;
-  return `<a class="${cls} anime-link" href="https://hikka.io/anime/${escAttr(slug)}" target="_blank" rel="noopener">${name}</a>`;
+  const name  = escHtml(a.title_ua ?? a.title);
+  const slug  = a.hikka_slug ?? a.slug ?? null;
+  const malId = a.id ?? a.mal_id ?? null;
+
+  if (slug)  return `<a class="${cls} anime-link" href="https://hikka.io/anime/${escAttr(slug)}" target="_blank" rel="noopener">${name}</a>`;
+  if (malId) return `<a class="${cls} anime-link" href="https://myanimelist.net/anime/${encodeURIComponent(malId)}" target="_blank" rel="noopener">${name}</a>`;
+  return `<span class="${cls}">${name}</span>`;
 }
 
 function rankBadgeHTML(delta, isNew) {
@@ -461,11 +464,13 @@ export function renderEventsSection(analytics, source = 'mal') {
   const container = $('events-content');
   if (!container) return;
 
+  const isHikka = source === 'hikka';
+
   container.innerHTML = `
     <div class="events-grid">
-      ${source === 'hikka'
-        ? buildLowestEverCard(analytics.lowestEver)
-        : buildHighestEverCard(analytics.highestEver)}
+      ${buildHighestEverCard(analytics.highestEver)}
+      ${isHikka ? buildLowestEverCard(analytics.lowestEver) : ''}
+      ${buildMostMembersCard(analytics.mostMembers)}
       ${buildStableScoreCard(analytics.mostStableScore)}
       ${buildLongestTop1Card(analytics.longestTop1)}
     </div>`;
@@ -567,6 +572,39 @@ function buildLowestEverCard(data) {
     ${categoryWinnersHTML(w.animeId ?? w.id, data.tvWinner, data.movieWinner, data.otherWinner, 'score', 'date')}`,
     w.image
   );
+}
+
+// ─── Card: Most Members ───────────────────────────────────────────────────────
+
+function buildMostMembersCard(data) {
+  if (!data) return eventCard(
+    icon('users', 20), 'Найбільша авдиторія', 'mostMembers',
+    '<div class="empty-state"><p>Недостатньо даних</p></div>'
+  );
+
+  const w = data.winner;
+  const medals = ['2', '3'];
+
+  const runners = data.top3.slice(1, 3).map((a, i) =>
+    `<div class="runner-up-row">
+      <span class="runner-medal runner-medal-${i + 2}">${medals[i]}</span>
+      ${animeTitleHTML(a, 'runner-title')}
+      <span class="runner-score">${icon('users', 12)} ${fmtNum(a.members)}</span>
+      <span class="runner-date">${a.date ? dateLink(a.date, formatDateShort(a.date)) : ''}</span>
+    </div>`
+  ).join('');
+
+  return eventCard(icon('users', 20), 'Найбільша авдиторія', 'mostMembers', `
+    <div class="event-winner">
+      ${thumbHTML(w.image, w.title_ua ?? w.title, 'event-poster')}
+      <div class="event-highlight">
+        <span class="highlight-score" style="color:var(--accent)">${icon('users', 22)} ${fmtNum(w.members)}</span>
+        <div class="highlight-title">${animeTitleHTML(w)}</div>
+        ${w.title_ua ? `<div class="highlight-orig">${escHtml(w.title)}</div>` : ''}
+        <div class="highlight-date">${dateLink(w.date, formatDate(w.date))}</div>
+      </div>
+    </div>
+    ${runners}`, w.image);
 }
 
 // ─── Card: Highest Ever ───────────────────────────────────────────────────────

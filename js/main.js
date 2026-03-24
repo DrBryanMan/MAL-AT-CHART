@@ -4,6 +4,7 @@ import {
   renderCategorySection,
   renderChartSection,
   renderEventsSection,
+  setRendererSource,
   showTooltip,
   hideTooltip,
 } from './renderer.js';
@@ -30,6 +31,7 @@ function getStoredMode() {
 }
 
 function applyModeUI(mode) {
+  setRendererSource(mode);
   document.documentElement.dataset.mode = mode;
 
   const titleEl = document.querySelector('.site-title');
@@ -123,7 +125,7 @@ function renderAll() {
   const sections = [
     () => renderChartSection(state.currentSnap, state.prevSnap, state.enrichedMap, state.index, state.currentIndex, state.analytics?.scoreStreaks ?? {}, state.maxScoreMap),
     () => renderCategorySection(state.analytics.categoryTopHistory),
-    () => renderEventsSection(state.analytics),
+    () => renderEventsSection(state.analytics, state.currentMode),
   ];
   for (const fn of sections) {
     try { fn(); } catch (e) { console.error('[Charts] Секція:', e); }

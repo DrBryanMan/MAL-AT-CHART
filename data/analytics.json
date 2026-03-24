@@ -196353,6 +196353,101 @@
       "animeId": 20
     }
   },
+  "mostMembers": {
+    "top3": [
+      {
+        "id": 5114,
+        "title": "Fullmetal Alchemist: Brotherhood",
+        "score": 9.11,
+        "members": 3654666,
+        "date": "2026-03-22",
+        "title_ua": "Сталевий алхімік: Братерство",
+        "media_type": "tv",
+        "image": "https://cdn.hikka.io/content/anime/fullmetal-alchemist-brotherhood-fc524a/1dRVedKKpa2i_iiHmEcDhA.jpg",
+        "hikka_slug": "fullmetal-alchemist-brotherhood-fc524a",
+        "banner_image": "https://s4.anilist.co/file/anilistcdn/media/anime/banner/5114-q0V5URebphSG.jpg",
+        "animeId": 5114
+      },
+      {
+        "id": 11061,
+        "title": "Hunter x Hunter (2011)",
+        "score": 9.03,
+        "members": 3160224,
+        "date": "2026-03-22",
+        "title_ua": "Мисливець х Мисливець",
+        "media_type": "tv",
+        "image": "https://cdn.hikka.io/content/anime/hunter-x-hunter-2011-f2b03a/PLUGrdkPd4UmVr51-VcGrw.jpg",
+        "hikka_slug": "hunter-x-hunter-2011-f2b03a",
+        "banner_image": "https://s4.anilist.co/file/anilistcdn/media/anime/banner/11061-8WkkTZ6duKpq.jpg",
+        "animeId": 11061
+      },
+      {
+        "id": 32281,
+        "title": "Kimi no Na wa.",
+        "score": 8.82,
+        "members": 3005672,
+        "date": "2026-03-22",
+        "title_ua": "Твоє ім’я",
+        "media_type": "movie",
+        "image": "https://cdn.hikka.io/content/anime/kimi-no-na-wa-945779/F74__Da7B5le9RWGQg0YQg.jpg",
+        "hikka_slug": "kimi-no-na-wa-945779",
+        "banner_image": "https://s4.anilist.co/file/anilistcdn/media/anime/banner/21519-1ayMXgNlmByb.jpg",
+        "animeId": 32281
+      }
+    ],
+    "tvWinner": {
+      "id": 5114,
+      "title": "Fullmetal Alchemist: Brotherhood",
+      "score": 9.11,
+      "members": 3654666,
+      "date": "2026-03-22",
+      "title_ua": "Сталевий алхімік: Братерство",
+      "media_type": "tv",
+      "image": "https://cdn.hikka.io/content/anime/fullmetal-alchemist-brotherhood-fc524a/1dRVedKKpa2i_iiHmEcDhA.jpg",
+      "hikka_slug": "fullmetal-alchemist-brotherhood-fc524a",
+      "banner_image": "https://s4.anilist.co/file/anilistcdn/media/anime/banner/5114-q0V5URebphSG.jpg",
+      "animeId": 5114
+    },
+    "movieWinner": {
+      "id": 32281,
+      "title": "Kimi no Na wa.",
+      "score": 8.82,
+      "members": 3005672,
+      "date": "2026-03-22",
+      "title_ua": "Твоє ім’я",
+      "media_type": "movie",
+      "image": "https://cdn.hikka.io/content/anime/kimi-no-na-wa-945779/F74__Da7B5le9RWGQg0YQg.jpg",
+      "hikka_slug": "kimi-no-na-wa-945779",
+      "banner_image": "https://s4.anilist.co/file/anilistcdn/media/anime/banner/21519-1ayMXgNlmByb.jpg",
+      "animeId": 32281
+    },
+    "otherWinner": {
+      "id": 51535,
+      "title": "Shingeki no Kyojin: The Final Season - Kanketsu-hen",
+      "score": 8.86,
+      "members": 850692,
+      "date": "2026-03-22",
+      "title_ua": "Атака титанів: Фінальний сезон - 3-4 частина",
+      "media_type": "special",
+      "image": "https://cdn.hikka.io/content/anime/shingeki-no-kyojin-the-final-season-kanketsu-hen-833be1/u9bsJvepmMq3737kut3FAA.jpg",
+      "hikka_slug": "shingeki-no-kyojin-the-final-season-kanketsu-hen-833be1",
+      "banner_image": "https://s4.anilist.co/file/anilistcdn/media/anime/banner/146984-yAkTtW2AExVj.jpg",
+      "animeId": 51535
+    },
+    "winner": {
+      "id": 5114,
+      "title": "Fullmetal Alchemist: Brotherhood",
+      "score": 9.11,
+      "members": 3654666,
+      "date": "2026-03-22",
+      "title_ua": "Сталевий алхімік: Братерство",
+      "media_type": "tv",
+      "image": "https://cdn.hikka.io/content/anime/fullmetal-alchemist-brotherhood-fc524a/1dRVedKKpa2i_iiHmEcDhA.jpg",
+      "hikka_slug": "fullmetal-alchemist-brotherhood-fc524a",
+      "banner_image": "https://s4.anilist.co/file/anilistcdn/media/anime/banner/5114-q0V5URebphSG.jpg",
+      "animeId": 5114
+    }
+  },
   "mostStableScore": {
     "winner": {
       "animeId": 2904,
