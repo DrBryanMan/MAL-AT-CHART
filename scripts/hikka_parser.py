@@ -11,6 +11,7 @@
 
 import json
 import time
+from datetime import datetime, timedelta
 from datetime import date as dt_date
 from pathlib import Path
 
@@ -72,8 +73,7 @@ def extract_entry(item: dict) -> dict:
     return {
         "id":       item.get("mal_id"),
         "slug":     item.get("slug"),
-        "title_en": item.get("title_en") or item.get("title_ja"),
-        "title_ua": item.get("title_ua"),
+        "title":    item.get("title_en") or item.get("title_ja"),
         "score":    item.get("native_score"),
         "members":  item.get("native_scored_by"),
     }
@@ -135,11 +135,11 @@ def _collect_entries(items: list[dict]) -> tuple[list[dict], bool]:
 
 # ── Збереження ────────────────────────────────────────────────────────────────
 
-def save_snapshot(entries: list[dict], today: str) -> None:
-    out_file = OUT_DIR / f"{today}.json"
+def save_snapshot(entries: list[dict], yesterday: str) -> None:
+    out_file = OUT_DIR / f"{yesterday}.json"
     snapshot = {
-        "date":      today,
-        "timestamp": "20260323235959",
+        "date":      yesterday,
+        "timestamp": datetime.now().strftime("%Y%m%d%H%M%S"),
         "source":    "hikka-aggregator-revisions",
         "total":     len(entries),
         "anime":     entries,
@@ -156,14 +156,14 @@ def save_snapshot(entries: list[dict], today: str) -> None:
 def main() -> None:
     OUT_DIR.mkdir(parents=True, exist_ok=True)
 
-    today    = dt_date.today().isoformat()
-    out_file = OUT_DIR / f"{today}.json"
+    yesterday = (dt_date.today() - timedelta(days=1)).isoformat()
+    out_file = OUT_DIR / f"{yesterday}.json"
 
     if out_file.exists():
         try:
             cached = json.loads(out_file.read_text(encoding="utf-8"))
             if cached.get("total", 0) > 0:
-                print(f"⏭️  Знімок за {today} вже є ({cached['total']} тайтлів), пропускаємо.")
+                print(f"⏭️  Знімок за {yesterday} вже є ({cached['total']} тайтлів), пропускаємо.")
                 return
         except (json.JSONDecodeError, OSError):
             pass
@@ -182,7 +182,7 @@ def main() -> None:
         print("⚠️  Отримано 0 записів — знімок не збережено.")
         return
 
-    save_snapshot(entries, today)
+    save_snapshot(entries, yesterday)
     print("✅  Готово!")
 
 

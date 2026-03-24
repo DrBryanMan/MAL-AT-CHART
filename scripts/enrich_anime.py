@@ -20,9 +20,10 @@ import requests
 
 # ── Конфіг ────────────────────────────────────────────────────────────────────
 
-ROOT          = Path(__file__).resolve().parent.parent
-SNAPSHOTS_DIR = ROOT / "snapshots" / "anime-mal"
-OUTPUT_FILE   = ROOT / "data" / "anime_enriched.json"
+ROOT                = Path(__file__).resolve().parent.parent
+SNAPSHOTS_MAL_DIR   = ROOT / "snapshots" / "anime-mal"
+SNAPSHOTS_HIK_DIR   = ROOT / "snapshots" / "anime-hikka"
+OUTPUT_FILE         = ROOT / "data" / "anime_enriched.json"
 
 HIKKA_BASE    = "https://api.hikka.io/integrations/mal/anime"
 HIKKA_DELAY   = 0.5
@@ -58,7 +59,7 @@ def load_enriched() -> dict[int, dict]:
         return {}
     try:
         data = json.loads(OUTPUT_FILE.read_text(encoding="utf-8"))
-        return {r["mal_id"]: r for r in data}
+        return {int(r["mal_id"]): r for r in data}
     except (json.JSONDecodeError, OSError, KeyError):
         return {}
 
@@ -78,35 +79,50 @@ def save_enriched(records: dict[int, dict]) -> None:
 def empty_record(mal_id: int, title: str | None) -> dict:
     return {
         "mal_id":           mal_id,
-        "title":            title,
         "media_type":       None,
+        "title":            title,
         "title_ua":         None,
         "image":            None,
         "hikka_slug":       None,
-        "native_scored_by": None,
-        "native_score":     None,
     }
 
 # ── Крок 1: збір унікальних ID зі знімків ─────────────────────────────────────
 
-def collect_unique() -> dict[int, str | None]:
-    files = sorted(SNAPSHOTS_DIR.glob("*.json"))
-    print(f"📂  Сканування {len(files)} знімків…")
+def _entry_title(entry: dict) -> str | None:
+    """Витягує назву з запису будь-якого формату (MAL або Hikka)."""
+    return (
+        entry.get("title")
+        or entry.get("title_en")
+        or entry.get("title_ua")
+        or None
+    )
 
+
+def collect_unique() -> dict[int, str | None]:
+    dirs = [
+        (SNAPSHOTS_MAL_DIR, "MAL"),
+        (SNAPSHOTS_HIK_DIR, "Hikka"),
+    ]
     anime: dict[int, str | None] = {}
-    for f in files:
-        try:
-            data = json.loads(f.read_text(encoding="utf-8"))
-        except (json.JSONDecodeError, OSError):
-            continue
-        for entry in data.get("anime", []):
-            mal_id = entry.get("id")
-            if mal_id is None:
+
+    for snap_dir, label in dirs:
+        files = sorted(snap_dir.glob("*.json")) if snap_dir.exists() else []
+        print(f"📂  Сканування {len(files)} знімків {label}…")
+        for f in files:
+            try:
+                data = json.loads(f.read_text(encoding="utf-8"))
+            except (json.JSONDecodeError, OSError):
                 continue
-            if mal_id not in anime:
-                anime[mal_id] = entry.get("title") or None
-            elif anime[mal_id] is None and entry.get("title"):
-                anime[mal_id] = entry["title"]
+            for entry in data.get("anime", []):
+                mal_id = entry.get("id")
+                if mal_id is None:
+                    continue
+                mal_id = int(mal_id)
+                title = _entry_title(entry)
+                if mal_id not in anime:
+                    anime[mal_id] = title
+                elif anime[mal_id] is None and title:
+                    anime[mal_id] = title
 
     print(f"   ✔  Унікальних ID: {len(anime)}")
     return anime
@@ -124,8 +140,6 @@ def fetch_hikka(session: requests.Session, mal_id: int) -> dict | None:
         "title_ua":         d.get("title_ua"),
         "image":            d.get("image"),
         "hikka_slug":       d.get("slug"),
-        "native_scored_by": d.get("native_scored_by"),
-        "native_score":     d.get("native_score"),
     }
 
 
@@ -232,11 +246,30 @@ def enrich_banners(enriched: dict[int, dict]) -> None:
 
     print(f"\n   Банерів знайдено: {found}/{total}")
 
+def prune_stale(enriched: dict[int, dict], unique: dict[int, str | None]) -> None:
+    stale = [mid for mid in enriched if mid not in unique]
+    if not stale:
+        print("\n── Очищення ──────────────────────────────────")
+        print("   ✅  Застарілих записів немає.")
+        return
+
+    print(f"\n── Очищення ──────────────────────────────────")
+    print(f"   Застарілих ID: {len(stale)} — видаляємо…")
+    for mid in stale:
+        label = enriched[mid].get("title_ua") or enriched[mid].get("title") or f"#{mid}"
+        print(f"   — MAL #{mid}  {label}")
+        del enriched[mid]
+
+    save_enriched(enriched)
+    print(f"   ✅  Після очищення: {len(enriched)} записів.")
+
 # ── Точка входу ───────────────────────────────────────────────────────────────
 
 def main() -> None:
     unique   = collect_unique()
     enriched = load_enriched()
+
+    prune_stale(enriched, unique)
 
     enrich_from_hikka(enriched, unique)
     enrich_banners(enriched)

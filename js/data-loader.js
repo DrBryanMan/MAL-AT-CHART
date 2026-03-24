@@ -1,20 +1,5 @@
-/**
- * data-loader.js — Завантаження даних для MAL Charts
- *
- * Схема:
- *   analytics.json      — всі обраховані дані (секції 2 і 3), генерується precompute.js
- *   snapshots-index.json — список дат снепшотів для навігації
- *   snapshots/YYYY-MM-DD.json — окремі снепшоти, завантажуються ліниво
- *
- * Переваги:
- *   - При завантаженні сторінки тягнемо лише 2 файли (~100-300 KB)
- *   - Снепшоти завантажуються по одному при перемиканні дати (~5-20 KB кожен)
- *   - In-memory кеш: повторне відвідування тієї ж дати без мережевого запиту
- */
-
 import { CONFIG } from './config.js';
 
-/** In-memory кеш: url → parsed JSON */
 const _cache = new Map();
 
 async function fetchJSON(path) {
@@ -26,72 +11,69 @@ async function fetchJSON(path) {
   return data;
 }
 
+function getSourcePaths(source) {
+  if (source === 'hikka') return {
+    indexUrl:     `${CONFIG.dataDir}${CONFIG.hikkaSnapshotsIndexFile}`,
+    analyticsUrl: `${CONFIG.dataDir}${CONFIG.hikkaAnalyticsFile}`,
+    snapshotsDir: CONFIG.hikkaSnapshotsDir,
+  };
+  return {
+    indexUrl:     `${CONFIG.dataDir}${CONFIG.snapshotsIndexFile}`,
+    analyticsUrl: `${CONFIG.dataDir}${CONFIG.analyticsFile}`,
+    snapshotsDir: CONFIG.snapshotsDir,
+  };
+}
+
+/** Нормалізує сирий знімок Хікки до єдиного формату */
+function normalizeHikkaSnapshot(snap) {
+  return {
+    ...snap,
+    anime: (snap.anime ?? []).map(a => ({
+      id:       a.id,
+      slug:     a.slug,
+      title:    a.title_en ?? a.title_ja,
+      title_ua: a.title_ua ?? null,
+      score:    a.score,
+      members:  a.members,
+    })),
+  };
+}
+
 // ── Публічне API ──────────────────────────────────────────────────────────────
 
-/**
- * Завантажує індекс снепшотів (список дат).
- * @returns {Promise<{ date, timestamp, label, total }[]>}
- */
-export async function loadSnapshotsIndex() {
-  const { snapshots } = await fetchJSON(`${CONFIG.dataDir}${CONFIG.snapshotsIndexFile}`);
+export async function loadSnapshotsIndex(source = 'mal') {
+  const { indexUrl } = getSourcePaths(source);
+  const { snapshots } = await fetchJSON(indexUrl);
   return snapshots;
 }
 
-/**
- * Завантажує один снепшот за датою.
- * Результат кешується — повторний виклик з тією ж датою не робить мережевого запиту.
- * @param {string} date  YYYY-MM-DD
- * @returns {Promise<object>}
- */
-export async function loadSnapshot(date) {
-  return fetchJSON(`${CONFIG.snapshotsDir}${date}.json`);
+export async function loadSnapshot(date, source = 'mal') {
+  const { snapshotsDir } = getSourcePaths(source);
+  const snap = await fetchJSON(`${snapshotsDir}${date}.json`);
+  return source === 'hikka' ? normalizeHikkaSnapshot(snap) : snap;
 }
 
-/**
- * Завантажує пару снепшотів (поточний + попередній) для секції 1.
- * @param {string[]} dates  масив всіх дат відсортованих хронологічно
- * @param {number}   index  індекс поточного снепшота
- * @returns {Promise<{ current: object, prev: object|null }>}
- */
-export async function loadSnapshotPair(dates, index) {
+export async function loadSnapshotPair(dates, index, source = 'mal') {
   const [current, prev] = await Promise.all([
-    loadSnapshot(dates[index]),
-    index > 0 ? loadSnapshot(dates[index - 1]) : Promise.resolve(null),
+    loadSnapshot(dates[index], source),
+    index > 0 ? loadSnapshot(dates[index - 1], source) : Promise.resolve(null),
   ]);
   return { current, prev };
 }
 
-/**
- * Завантажує збагачені дані аніме (UA назви, постери, тип).
- * @returns {Promise<object[]>}
- */
 export async function loadEnrichedData() {
   return fetchJSON(`${CONFIG.dataDir}${CONFIG.enrichedFile}`);
 }
 
-/**
- * Завантажує попередньо обраховані аналітичні дані (секції 2 і 3).
- * @returns {Promise<object>}
- */
-export async function loadAnalytics() {
-  return fetchJSON(`${CONFIG.dataDir}${CONFIG.analyticsFile}`);
+export async function loadAnalytics(source = 'mal') {
+  const { analyticsUrl } = getSourcePaths(source);
+  return fetchJSON(analyticsUrl);
 }
 
-/**
- * Головна функція ініціалізації.
- * Завантажує лише легкі файли — індекс і аналітику.
- * Окремі снепшоти завантажуються ліниво через loadSnapshot() / loadSnapshotPair().
- *
- * @returns {Promise<{
- *   index:     { date, timestamp, label, total }[],
- *   analytics: object,
- *   enriched:  object[],
- * }>}
- */
-export async function loadAll() {
+export async function loadAll(source = 'mal') {
   const [indexResult, analyticsResult, enrichedResult] = await Promise.allSettled([
-    loadSnapshotsIndex(),
-    loadAnalytics(),
+    loadSnapshotsIndex(source),
+    loadAnalytics(source),
     loadEnrichedData(),
   ]);
 

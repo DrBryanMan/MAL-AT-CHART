@@ -30,7 +30,7 @@ jobs:
         run: pip install requests beautifulsoup4 lxml
 
       - name: Run update pipeline
-        run: python runScripts.py
+        run: python scripts/runScripts.py
 
       - name: Commit and push updated data
         run: |

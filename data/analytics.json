@@ -43935,43 +43935,6 @@
         ]
       }
     ],
-    "1522": [
-      {
-        "score": 8.36,
-        "startDate": "2007-02-06",
-        "endDate": "2007-02-06",
-        "dates": [
-          "2007-02-06"
-        ]
-      },
-      {
-        "score": 8.39,
-        "startDate": "2007-02-13",
-        "endDate": "2007-02-21",
-        "dates": [
-          "2007-02-13",
-          "2007-02-20",
-          "2007-02-21"
-        ]
-      },
-      {
-        "score": 8.35,
-        "startDate": "2007-03-01",
-        "endDate": "2007-03-01",
-        "dates": [
-          "2007-03-01"
-        ]
-      },
-      {
-        "score": 8.38,
-        "startDate": "2007-03-09",
-        "endDate": "2007-03-10",
-        "dates": [
-          "2007-03-09",
-          "2007-03-10"
-        ]
-      }
-    ],
     "1530": [
       {
         "score": 7.99,
@@ -196295,6 +196258,101 @@
       "animeId": 36838
     }
   },
+  "lowestEver": {
+    "top3": [
+      {
+        "id": 20,
+        "title": "Naruto",
+        "score": 7.53,
+        "members": 1561,
+        "date": "2007-05-05",
+        "title_ua": "Наруто",
+        "media_type": "tv",
+        "image": "https://cdn.hikka.io/content/anime/naruto-d8ec41/hKcZ4Aif6OqrfHGvC9bi3g.jpg",
+        "hikka_slug": "naruto-d8ec41",
+        "banner_image": "https://s4.anilist.co/file/anilistcdn/media/anime/banner/20-HHxhPj5JD13a.jpg",
+        "animeId": 20
+      },
+      {
+        "id": 1238,
+        "title": "One Piece Special: Protect! The Last Great Performance",
+        "score": 7.59,
+        "members": null,
+        "date": "2007-01-21",
+        "title_ua": "Ван Піс: Захищайте! Остання велика вистава! Спешл 3",
+        "media_type": "special",
+        "image": "https://cdn.hikka.io/content/anime/one-piece-mamore-saigo-no-dai-butai-542b5f/gKfEQ5v-brvcbSrnLZ6cNQ.jpg",
+        "hikka_slug": "one-piece-mamore-saigo-no-dai-butai-542b5f",
+        "banner_image": "https://s4.anilist.co/file/anilistcdn/media/anime/banner/n1238-HdBlNr5vwNau.jpg",
+        "animeId": 1238
+      },
+      {
+        "id": 985,
+        "title": "Dragon Ball Z Special 2: The History of Trunks",
+        "score": 7.61,
+        "members": null,
+        "date": "2006-11-14",
+        "title_ua": "Перлина дракона Z: Протистояти відчаю!!! Бійці, що вижили - Ґохан і Транкс",
+        "media_type": "special",
+        "image": "https://cdn.hikka.io/content/anime/dragon-ball-z-special-2-zetsubou-e-no-hankou-nokosareta-chousenshi-gohan-to-trunks-6b402c/zq8GBd2xm5B5smIwtTwzVw.jpg",
+        "hikka_slug": "dragon-ball-z-special-2-zetsubou-e-no-hankou-nokosareta-chousenshi-gohan-to-trunks-6b402c",
+        "banner_image": "https://s4.anilist.co/file/anilistcdn/media/anime/banner/985-P3D0yoiAg7cR.jpg",
+        "animeId": 985
+      }
+    ],
+    "tvWinner": {
+      "id": 20,
+      "title": "Naruto",
+      "score": 7.53,
+      "members": 1561,
+      "date": "2007-05-05",
+      "title_ua": "Наруто",
+      "media_type": "tv",
+      "image": "https://cdn.hikka.io/content/anime/naruto-d8ec41/hKcZ4Aif6OqrfHGvC9bi3g.jpg",
+      "hikka_slug": "naruto-d8ec41",
+      "banner_image": "https://s4.anilist.co/file/anilistcdn/media/anime/banner/20-HHxhPj5JD13a.jpg",
+      "animeId": 20
+    },
+    "movieWinner": {
+      "id": 433,
+      "title": "The Place Promised in Our Early Days",
+      "score": 8.08,
+      "members": null,
+      "date": "2007-03-01",
+      "title_ua": "За хмарами, місце, обіцяне в дитинстві",
+      "media_type": "movie",
+      "image": "https://cdn.hikka.io/content/anime/kumo-no-mukou-yakusoku-no-basho-0faa6a/MY_dI1ZQ6JB5NXI-TOnyiw.jpg",
+      "hikka_slug": "kumo-no-mukou-yakusoku-no-basho-0faa6a",
+      "banner_image": "https://s4.anilist.co/file/anilistcdn/media/anime/banner/433-QI4umvr9j0Bv.jpg",
+      "animeId": 433
+    },
+    "otherWinner": {
+      "id": 1238,
+      "title": "One Piece Special: Protect! The Last Great Performance",
+      "score": 7.59,
+      "members": null,
+      "date": "2007-01-21",
+      "title_ua": "Ван Піс: Захищайте! Остання велика вистава! Спешл 3",
+      "media_type": "special",
+      "image": "https://cdn.hikka.io/content/anime/one-piece-mamore-saigo-no-dai-butai-542b5f/gKfEQ5v-brvcbSrnLZ6cNQ.jpg",
+      "hikka_slug": "one-piece-mamore-saigo-no-dai-butai-542b5f",
+      "banner_image": "https://s4.anilist.co/file/anilistcdn/media/anime/banner/n1238-HdBlNr5vwNau.jpg",
+      "animeId": 1238
+    },
+    "winner": {
+      "id": 20,
+      "title": "Naruto",
+      "score": 7.53,
+      "members": 1561,
+      "date": "2007-05-05",
+      "title_ua": "Наруто",
+      "media_type": "tv",
+      "image": "https://cdn.hikka.io/content/anime/naruto-d8ec41/hKcZ4Aif6OqrfHGvC9bi3g.jpg",
+      "hikka_slug": "naruto-d8ec41",
+      "banner_image": "https://s4.anilist.co/file/anilistcdn/media/anime/banner/20-HHxhPj5JD13a.jpg",
+      "animeId": 20
+    }
+  },
   "mostStableScore": {
     "winner": {
       "animeId": 2904,
@@ -196460,13 +196518,13 @@
       {
         "animeId": 5114,
         "title": "Fullmetal Alchemist: Brotherhood",
-        "startDate": "2019-08-09",
-        "endDate": "2021-03-26",
-        "days": 595,
-        "firstScore": 9.24,
-        "maxScore": 9.24,
+        "startDate": "2018-01-11",
+        "endDate": "2019-08-01",
+        "days": 567,
+        "firstScore": 9.25,
+        "maxScore": 9.25,
         "id": 5114,
-        "score": 9.24,
+        "score": 9.25,
         "members": 0,
         "title_ua": "Сталевий алхімік: Братерство",
         "media_type": "tv",
@@ -196512,10 +196570,10 @@
     "otherWinner": {
       "animeId": 44,
       "title": "Rurouni Kenshin: Tsuiokuhen",
-      "startDate": "2007-07-01",
-      "endDate": "2007-10-21",
-      "days": 112,
-      "firstScore": 8.95,
+      "startDate": "2007-08-26",
+      "endDate": "2007-10-20",
+      "days": 55,
+      "firstScore": 8.96,
       "maxScore": 9.01,
       "id": 44,
       "score": 9.01,
@@ -197408,8 +197466,8 @@
       "firstScore": 8.82,
       "maxScore": 8.82,
       "startDate": "2006-11-07",
-      "endDate": "2006-11-30",
-      "sessionCount": 2,
+      "endDate": "2006-12-17",
+      "sessionCount": 1,
       "sessions": [
         {
           "animeId": 121,
@@ -197421,94 +197479,7 @@
           "firstScore": 8.82,
           "maxScore": 8.82,
           "startDate": "2006-11-07",
-          "endDate": "2006-11-30"
-        },
-        {
-          "animeId": 121,
-          "title": "Fullmetal Alchemist",
-          "title_ua": "Сталевий алхімік",
-          "media_type": "tv",
-          "image": "https://cdn.hikka.io/content/anime/fullmetal-alchemist-3302ad/2nuX89jTPzV5fzYfXumlQw.jpg",
-          "hikka_slug": "fullmetal-alchemist-3302ad",
-          "firstScore": 8.81,
-          "maxScore": 8.81,
-          "startDate": "2006-12-13",
-          "endDate": "2006-12-13"
-        }
-      ]
-    },
-    {
-      "animeId": 44,
-      "title": "Rurouni Kenshin - Reminiscence",
-      "title_ua": "Блукач Кеншін: Романтичне сказання про мечника епохи Мейджі - Спогади",
-      "media_type": "ova",
-      "image": "https://cdn.hikka.io/content/anime/rurouni-kenshin-meiji-kenkaku-romantan-tsuioku-hen-35d3a7/_HxBcMqE4WoAf8enjq0JvQ.jpg",
-      "hikka_slug": "rurouni-kenshin-meiji-kenkaku-romantan-tsuioku-hen-35d3a7",
-      "firstScore": 8.8,
-      "maxScore": 9.01,
-      "startDate": "2006-12-08",
-      "endDate": "2006-12-08",
-      "sessionCount": 5,
-      "sessions": [
-        {
-          "animeId": 44,
-          "title": "Rurouni Kenshin - Reminiscence",
-          "title_ua": "Блукач Кеншін: Романтичне сказання про мечника епохи Мейджі - Спогади",
-          "media_type": "ova",
-          "image": "https://cdn.hikka.io/content/anime/rurouni-kenshin-meiji-kenkaku-romantan-tsuioku-hen-35d3a7/_HxBcMqE4WoAf8enjq0JvQ.jpg",
-          "hikka_slug": "rurouni-kenshin-meiji-kenkaku-romantan-tsuioku-hen-35d3a7",
-          "firstScore": 8.8,
-          "maxScore": 8.8,
-          "startDate": "2006-12-08",
-          "endDate": "2006-12-08"
-        },
-        {
-          "animeId": 44,
-          "title": "Rurouni Kenshin - Reminiscence",
-          "title_ua": "Блукач Кеншін: Романтичне сказання про мечника епохи Мейджі - Спогади",
-          "media_type": "ova",
-          "image": "https://cdn.hikka.io/content/anime/rurouni-kenshin-meiji-kenkaku-romantan-tsuioku-hen-35d3a7/_HxBcMqE4WoAf8enjq0JvQ.jpg",
-          "hikka_slug": "rurouni-kenshin-meiji-kenkaku-romantan-tsuioku-hen-35d3a7",
-          "firstScore": 8.8,
-          "maxScore": 8.8,
-          "startDate": "2006-12-17",
           "endDate": "2006-12-17"
-        },
-        {
-          "animeId": 44,
-          "title": "Rurouni Kenshin: Tsuiokuhen",
-          "title_ua": "Блукач Кеншін: Романтичне сказання про мечника епохи Мейджі - Спогади",
-          "media_type": "ova",
-          "image": "https://cdn.hikka.io/content/anime/rurouni-kenshin-meiji-kenkaku-romantan-tsuioku-hen-35d3a7/_HxBcMqE4WoAf8enjq0JvQ.jpg",
-          "hikka_slug": "rurouni-kenshin-meiji-kenkaku-romantan-tsuioku-hen-35d3a7",
-          "firstScore": 8.89,
-          "maxScore": 8.92,
-          "startDate": "2007-05-05",
-          "endDate": "2007-05-28"
-        },
-        {
-          "animeId": 44,
-          "title": "Rurouni Kenshin: Tsuiokuhen",
-          "title_ua": "Блукач Кеншін: Романтичне сказання про мечника епохи Мейджі - Спогади",
-          "media_type": "ova",
-          "image": "https://cdn.hikka.io/content/anime/rurouni-kenshin-meiji-kenkaku-romantan-tsuioku-hen-35d3a7/_HxBcMqE4WoAf8enjq0JvQ.jpg",
-          "hikka_slug": "rurouni-kenshin-meiji-kenkaku-romantan-tsuioku-hen-35d3a7",
-          "firstScore": 8.95,
-          "maxScore": 9.01,
-          "startDate": "2007-07-01",
-          "endDate": "2007-10-21"
-        },
-        {
-          "animeId": 44,
-          "title": "Rurouni Kenshin: Tsuiokuhen",
-          "title_ua": "Блукач Кеншін: Романтичне сказання про мечника епохи Мейджі - Спогади",
-          "media_type": "ova",
-          "image": "https://cdn.hikka.io/content/anime/rurouni-kenshin-meiji-kenkaku-romantan-tsuioku-hen-35d3a7/_HxBcMqE4WoAf8enjq0JvQ.jpg",
-          "hikka_slug": "rurouni-kenshin-meiji-kenkaku-romantan-tsuioku-hen-35d3a7",
-          "firstScore": 8.97,
-          "maxScore": 8.97,
-          "startDate": "2009-08-06",
-          "endDate": "2009-08-06"
         }
       ]
     },
@@ -197547,7 +197518,85 @@
           "firstScore": 8.97,
           "maxScore": 8.97,
           "startDate": "2007-06-27",
-          "endDate": "2007-06-27"
+          "endDate": "2007-07-01"
+        }
+      ]
+    },
+    {
+      "animeId": 44,
+      "title": "Rurouni Kenshin: Tsuiokuhen",
+      "title_ua": "Блукач Кеншін: Романтичне сказання про мечника епохи Мейджі - Спогади",
+      "media_type": "ova",
+      "image": "https://cdn.hikka.io/content/anime/rurouni-kenshin-meiji-kenkaku-romantan-tsuioku-hen-35d3a7/_HxBcMqE4WoAf8enjq0JvQ.jpg",
+      "hikka_slug": "rurouni-kenshin-meiji-kenkaku-romantan-tsuioku-hen-35d3a7",
+      "firstScore": 8.89,
+      "maxScore": 9.01,
+      "startDate": "2007-05-05",
+      "endDate": "2007-05-28",
+      "sessionCount": 3,
+      "sessions": [
+        {
+          "animeId": 44,
+          "title": "Rurouni Kenshin: Tsuiokuhen",
+          "title_ua": "Блукач Кеншін: Романтичне сказання про мечника епохи Мейджі - Спогади",
+          "media_type": "ova",
+          "image": "https://cdn.hikka.io/content/anime/rurouni-kenshin-meiji-kenkaku-romantan-tsuioku-hen-35d3a7/_HxBcMqE4WoAf8enjq0JvQ.jpg",
+          "hikka_slug": "rurouni-kenshin-meiji-kenkaku-romantan-tsuioku-hen-35d3a7",
+          "firstScore": 8.89,
+          "maxScore": 8.92,
+          "startDate": "2007-05-05",
+          "endDate": "2007-05-28"
+        },
+        {
+          "animeId": 44,
+          "title": "Rurouni Kenshin: Tsuiokuhen",
+          "title_ua": "Блукач Кеншін: Романтичне сказання про мечника епохи Мейджі - Спогади",
+          "media_type": "ova",
+          "image": "https://cdn.hikka.io/content/anime/rurouni-kenshin-meiji-kenkaku-romantan-tsuioku-hen-35d3a7/_HxBcMqE4WoAf8enjq0JvQ.jpg",
+          "hikka_slug": "rurouni-kenshin-meiji-kenkaku-romantan-tsuioku-hen-35d3a7",
+          "firstScore": 8.99,
+          "maxScore": 8.99,
+          "startDate": "2007-07-15",
+          "endDate": "2007-07-16"
+        },
+        {
+          "animeId": 44,
+          "title": "Rurouni Kenshin: Tsuiokuhen",
+          "title_ua": "Блукач Кеншін: Романтичне сказання про мечника епохи Мейджі - Спогади",
+          "media_type": "ova",
+          "image": "https://cdn.hikka.io/content/anime/rurouni-kenshin-meiji-kenkaku-romantan-tsuioku-hen-35d3a7/_HxBcMqE4WoAf8enjq0JvQ.jpg",
+          "hikka_slug": "rurouni-kenshin-meiji-kenkaku-romantan-tsuioku-hen-35d3a7",
+          "firstScore": 8.96,
+          "maxScore": 9.01,
+          "startDate": "2007-08-26",
+          "endDate": "2007-10-20"
+        }
+      ]
+    },
+    {
+      "animeId": 2236,
+      "title": "Toki wo Kakeru Shoujo",
+      "title_ua": "Дівчинка, що стрибала крізь час",
+      "media_type": "movie",
+      "image": "https://cdn.hikka.io/content/anime/toki-wo-kakeru-shoujo-26d930/HDYvSDLHfoFeZPszYkL6ag.jpg",
+      "hikka_slug": "toki-wo-kakeru-shoujo-26d930",
+      "firstScore": 9.01,
+      "maxScore": 9.01,
+      "startDate": "2007-08-16",
+      "endDate": "2007-08-16",
+      "sessionCount": 1,
+      "sessions": [
+        {
+          "animeId": 2236,
+          "title": "Toki wo Kakeru Shoujo",
+          "title_ua": "Дівчинка, що стрибала крізь час",
+          "media_type": "movie",
+          "image": "https://cdn.hikka.io/content/anime/toki-wo-kakeru-shoujo-26d930/HDYvSDLHfoFeZPszYkL6ag.jpg",
+          "hikka_slug": "toki-wo-kakeru-shoujo-26d930",
+          "firstScore": 9.01,
+          "maxScore": 9.01,
+          "startDate": "2007-08-16",
+          "endDate": "2007-08-16"
         }
       ]
     },
@@ -197558,9 +197607,9 @@
       "media_type": "tv",
       "image": "https://cdn.hikka.io/content/anime/tengen-toppa-gurren-lagann-be425f/mC-y0y3MQ2gzKmQdUhD1sA.jpg",
       "hikka_slug": "tengen-toppa-gurren-lagann-be425f",
-      "firstScore": 9.02,
+      "firstScore": 9.01,
       "maxScore": 9.03,
-      "startDate": "2007-10-24",
+      "startDate": "2007-10-21",
       "endDate": "2008-12-17",
       "sessionCount": 2,
       "sessions": [
@@ -197571,9 +197620,9 @@
           "media_type": "tv",
           "image": "https://cdn.hikka.io/content/anime/tengen-toppa-gurren-lagann-be425f/mC-y0y3MQ2gzKmQdUhD1sA.jpg",
           "hikka_slug": "tengen-toppa-gurren-lagann-be425f",
-          "firstScore": 9.02,
+          "firstScore": 9.01,
           "maxScore": 9.03,
-          "startDate": "2007-10-24",
+          "startDate": "2007-10-21",
           "endDate": "2008-12-17"
         },
         {
@@ -197618,6 +197667,33 @@
       ]
     },
     {
+      "animeId": 4181,
+      "title": "Clannad ~After Story~",
+      "title_ua": "Кланнад: Післяслово",
+      "media_type": "tv",
+      "image": "https://cdn.hikka.io/content/anime/clannad-after-story-ed6fbb/JWGqHOprOJ_yNIRL3-pexQ.jpg",
+      "hikka_slug": "clannad-after-story-ed6fbb",
+      "firstScore": 8.97,
+      "maxScore": 8.97,
+      "startDate": "2009-08-06",
+      "endDate": "2009-08-06",
+      "sessionCount": 1,
+      "sessions": [
+        {
+          "animeId": 4181,
+          "title": "Clannad ~After Story~",
+          "title_ua": "Кланнад: Післяслово",
+          "media_type": "tv",
+          "image": "https://cdn.hikka.io/content/anime/clannad-after-story-ed6fbb/JWGqHOprOJ_yNIRL3-pexQ.jpg",
+          "hikka_slug": "clannad-after-story-ed6fbb",
+          "firstScore": 8.97,
+          "maxScore": 8.97,
+          "startDate": "2009-08-06",
+          "endDate": "2009-08-06"
+        }
+      ]
+    },
+    {
       "animeId": 7311,
       "title": "Suzumiya Haruhi no Shoushitsu",
       "title_ua": "Зникнення Судзумії Харухі",
@@ -197655,7 +197731,7 @@
       "maxScore": 9.26,
       "startDate": "2010-07-29",
       "endDate": "2011-03-16",
-      "sessionCount": 25,
+      "sessionCount": 26,
       "sessions": [
         {
           "animeId": 5114,
@@ -197760,21 +197836,9 @@
           "media_type": "tv",
           "image": "https://cdn.hikka.io/content/anime/fullmetal-alchemist-brotherhood-fc524a/1dRVedKKpa2i_iiHmEcDhA.jpg",
           "hikka_slug": "fullmetal-alchemist-brotherhood-fc524a",
-          "firstScore": 9.26,
-          "maxScore": 9.26,
-          "startDate": "2016-08-19",
-          "endDate": "2016-09-09"
-        },
-        {
-          "animeId": 5114,
-          "title": "Fullmetal Alchemist: Brotherhood",
-          "title_ua": "Сталевий алхімік: Братерство",
-          "media_type": "tv",
-          "image": "https://cdn.hikka.io/content/anime/fullmetal-alchemist-brotherhood-fc524a/1dRVedKKpa2i_iiHmEcDhA.jpg",
-          "hikka_slug": "fullmetal-alchemist-brotherhood-fc524a",
           "firstScore": 9.25,
           "maxScore": 9.25,
-          "startDate": "2017-08-28",
+          "startDate": "2017-09-22",
           "endDate": "2017-10-06"
         },
         {
@@ -197811,6 +197875,30 @@
           "firstScore": 9.24,
           "maxScore": 9.24,
           "startDate": "2019-08-09",
+          "endDate": "2021-01-31"
+        },
+        {
+          "animeId": 5114,
+          "title": "Fullmetal Alchemist: Brotherhood",
+          "title_ua": "Сталевий алхімік: Братерство",
+          "media_type": "tv",
+          "image": "https://cdn.hikka.io/content/anime/fullmetal-alchemist-brotherhood-fc524a/1dRVedKKpa2i_iiHmEcDhA.jpg",
+          "hikka_slug": "fullmetal-alchemist-brotherhood-fc524a",
+          "firstScore": 9.21,
+          "maxScore": 9.21,
+          "startDate": "2021-02-02",
+          "endDate": "2021-02-04"
+        },
+        {
+          "animeId": 5114,
+          "title": "Fullmetal Alchemist: Brotherhood",
+          "title_ua": "Сталевий алхімік: Братерство",
+          "media_type": "tv",
+          "image": "https://cdn.hikka.io/content/anime/fullmetal-alchemist-brotherhood-fc524a/1dRVedKKpa2i_iiHmEcDhA.jpg",
+          "hikka_slug": "fullmetal-alchemist-brotherhood-fc524a",
+          "firstScore": 9.2,
+          "maxScore": 9.2,
+          "startDate": "2021-02-06",
           "endDate": "2021-03-26"
         },
         {
@@ -197847,7 +197935,7 @@
           "firstScore": 9.16,
           "maxScore": 9.16,
           "startDate": "2021-09-02",
-          "endDate": "2022-02-12"
+          "endDate": "2022-02-06"
         },
         {
           "animeId": 5114,
@@ -197858,19 +197946,7 @@
           "hikka_slug": "fullmetal-alchemist-brotherhood-fc524a",
           "firstScore": 9.15,
           "maxScore": 9.15,
-          "startDate": "2022-02-15",
-          "endDate": "2022-02-15"
-        },
-        {
-          "animeId": 5114,
-          "title": "Fullmetal Alchemist: Brotherhood",
-          "title_ua": "Сталевий алхімік: Братерство",
-          "media_type": "tv",
-          "image": "https://cdn.hikka.io/content/anime/fullmetal-alchemist-brotherhood-fc524a/1dRVedKKpa2i_iiHmEcDhA.jpg",
-          "hikka_slug": "fullmetal-alchemist-brotherhood-fc524a",
-          "firstScore": 9.15,
-          "maxScore": 9.15,
-          "startDate": "2022-02-18",
+          "startDate": "2022-02-28",
           "endDate": "2022-06-23"
         },
         {
@@ -197882,7 +197958,7 @@
           "hikka_slug": "fullmetal-alchemist-brotherhood-fc524a",
           "firstScore": 9.13,
           "maxScore": 9.13,
-          "startDate": "2022-07-30",
+          "startDate": "2022-09-01",
           "endDate": "2022-10-09"
         },
         {
@@ -197906,7 +197982,19 @@
           "hikka_slug": "fullmetal-alchemist-brotherhood-fc524a",
           "firstScore": 9.11,
           "maxScore": 9.11,
-          "startDate": "2022-11-30",
+          "startDate": "2022-12-05",
+          "endDate": "2022-12-05"
+        },
+        {
+          "animeId": 5114,
+          "title": "Fullmetal Alchemist: Brotherhood",
+          "title_ua": "Сталевий алхімік: Братерство",
+          "media_type": "tv",
+          "image": "https://cdn.hikka.io/content/anime/fullmetal-alchemist-brotherhood-fc524a/1dRVedKKpa2i_iiHmEcDhA.jpg",
+          "hikka_slug": "fullmetal-alchemist-brotherhood-fc524a",
+          "firstScore": 9.11,
+          "maxScore": 9.11,
+          "startDate": "2022-12-07",
           "endDate": "2022-12-25"
         },
         {
@@ -197918,7 +198006,7 @@
           "hikka_slug": "fullmetal-alchemist-brotherhood-fc524a",
           "firstScore": 9.11,
           "maxScore": 9.11,
-          "startDate": "2023-01-19",
+          "startDate": "2023-02-03",
           "endDate": "2023-03-03"
         },
         {
@@ -197996,7 +198084,7 @@
       "firstScore": 9.32,
       "maxScore": 9.33,
       "startDate": "2016-03-30",
-      "endDate": "2016-08-11",
+      "endDate": "2016-09-09",
       "sessionCount": 1,
       "sessions": [
         {
@@ -198009,7 +198097,7 @@
           "firstScore": 9.32,
           "maxScore": 9.33,
           "startDate": "2016-03-30",
-          "endDate": "2016-08-11"
+          "endDate": "2016-09-09"
         }
       ]
     },
@@ -198024,7 +198112,7 @@
       "maxScore": 9.4,
       "startDate": "2016-09-11",
       "endDate": "2017-01-07",
-      "sessionCount": 3,
+      "sessionCount": 4,
       "sessions": [
         {
           "animeId": 32281,
@@ -198061,6 +198149,18 @@
           "maxScore": 9.26,
           "startDate": "2017-08-20",
           "endDate": "2017-08-21"
+        },
+        {
+          "animeId": 32281,
+          "title": "Kimi no Na wa.",
+          "title_ua": "Твоє ім’я",
+          "media_type": "movie",
+          "image": "https://cdn.hikka.io/content/anime/kimi-no-na-wa-945779/F74__Da7B5le9RWGQg0YQg.jpg",
+          "hikka_slug": "kimi-no-na-wa-945779",
+          "firstScore": 9.25,
+          "maxScore": 9.25,
+          "startDate": "2017-08-28",
+          "endDate": "2017-09-11"
         }
       ]
     },
@@ -198221,7 +198321,7 @@
       "firstScore": 9.16,
       "maxScore": 9.16,
       "startDate": "2019-08-02",
-      "endDate": "2019-08-05",
+      "endDate": "2019-08-08",
       "sessionCount": 1,
       "sessions": [
         {
@@ -198234,33 +198334,6 @@
           "firstScore": 9.16,
           "maxScore": 9.16,
           "startDate": "2019-08-02",
-          "endDate": "2019-08-05"
-        }
-      ]
-    },
-    {
-      "animeId": 9253,
-      "title": "Steins;Gate",
-      "title_ua": "Штайнова;Брама",
-      "media_type": "tv",
-      "image": "https://cdn.hikka.io/content/anime/steinsgate-f29797/M-8Gxbqmsq0ScxFZWQAt-Q.jpg",
-      "hikka_slug": "steinsgate-f29797",
-      "firstScore": 9.13,
-      "maxScore": 9.13,
-      "startDate": "2019-08-06",
-      "endDate": "2019-08-08",
-      "sessionCount": 1,
-      "sessions": [
-        {
-          "animeId": 9253,
-          "title": "Steins;Gate",
-          "title_ua": "Штайнова;Брама",
-          "media_type": "tv",
-          "image": "https://cdn.hikka.io/content/anime/steinsgate-f29797/M-8Gxbqmsq0ScxFZWQAt-Q.jpg",
-          "hikka_slug": "steinsgate-f29797",
-          "firstScore": 9.13,
-          "maxScore": 9.13,
-          "startDate": "2019-08-06",
           "endDate": "2019-08-08"
         }
       ]
@@ -198272,12 +198345,36 @@
       "media_type": "tv",
       "image": "https://cdn.hikka.io/content/anime/shingeki-no-kyojin-the-final-season-4877ca/bmtvsENHqhC_s8nv1Zc7Nw.jpg",
       "hikka_slug": "shingeki-no-kyojin-the-final-season-4877ca",
-      "firstScore": 9.19,
-      "maxScore": 9.19,
-      "startDate": "2021-03-28",
-      "endDate": "2021-03-28",
-      "sessionCount": 1,
+      "firstScore": 9.21,
+      "maxScore": 9.21,
+      "startDate": "2021-02-01",
+      "endDate": "2021-02-01",
+      "sessionCount": 3,
       "sessions": [
+        {
+          "animeId": 40028,
+          "title": "Shingeki no Kyojin: The Final Season",
+          "title_ua": "Атака титанів: Фінальний сезон",
+          "media_type": "tv",
+          "image": "https://cdn.hikka.io/content/anime/shingeki-no-kyojin-the-final-season-4877ca/bmtvsENHqhC_s8nv1Zc7Nw.jpg",
+          "hikka_slug": "shingeki-no-kyojin-the-final-season-4877ca",
+          "firstScore": 9.21,
+          "maxScore": 9.21,
+          "startDate": "2021-02-01",
+          "endDate": "2021-02-01"
+        },
+        {
+          "animeId": 40028,
+          "title": "Shingeki no Kyojin: The Final Season",
+          "title_ua": "Атака титанів: Фінальний сезон",
+          "media_type": "tv",
+          "image": "https://cdn.hikka.io/content/anime/shingeki-no-kyojin-the-final-season-4877ca/bmtvsENHqhC_s8nv1Zc7Nw.jpg",
+          "hikka_slug": "shingeki-no-kyojin-the-final-season-4877ca",
+          "firstScore": 9.2,
+          "maxScore": 9.2,
+          "startDate": "2021-02-05",
+          "endDate": "2021-02-05"
+        },
         {
           "animeId": 40028,
           "title": "Shingeki no Kyojin: The Final Season",
@@ -198353,11 +198450,11 @@
       "media_type": "tv",
       "image": "https://cdn.hikka.io/content/anime/shingeki-no-kyojin-the-final-season-part-2-8d3fc3/MGrVqSldN4yaklmzC6xkug.jpg",
       "hikka_slug": "shingeki-no-kyojin-the-final-season-part-2-8d3fc3",
-      "firstScore": 9.16,
+      "firstScore": 9.15,
       "maxScore": 9.16,
-      "startDate": "2022-02-13",
-      "endDate": "2022-02-14",
-      "sessionCount": 2,
+      "startDate": "2022-02-07",
+      "endDate": "2022-02-27",
+      "sessionCount": 1,
       "sessions": [
         {
           "animeId": 48583,
@@ -198366,22 +198463,10 @@
           "media_type": "tv",
           "image": "https://cdn.hikka.io/content/anime/shingeki-no-kyojin-the-final-season-part-2-8d3fc3/MGrVqSldN4yaklmzC6xkug.jpg",
           "hikka_slug": "shingeki-no-kyojin-the-final-season-part-2-8d3fc3",
-          "firstScore": 9.16,
+          "firstScore": 9.15,
           "maxScore": 9.16,
-          "startDate": "2022-02-13",
-          "endDate": "2022-02-14"
-        },
-        {
-          "animeId": 48583,
-          "title": "Shingeki no Kyojin: The Final Season Part 2",
-          "title_ua": "Атака титанів: Фінальний сезон - 2 частина",
-          "media_type": "tv",
-          "image": "https://cdn.hikka.io/content/anime/shingeki-no-kyojin-the-final-season-part-2-8d3fc3/MGrVqSldN4yaklmzC6xkug.jpg",
-          "hikka_slug": "shingeki-no-kyojin-the-final-season-part-2-8d3fc3",
-          "firstScore": 9.16,
-          "maxScore": 9.16,
-          "startDate": "2022-02-16",
-          "endDate": "2022-02-16"
+          "startDate": "2022-02-07",
+          "endDate": "2022-02-27"
         }
       ]
     },
@@ -198395,7 +198480,7 @@
       "firstScore": 9.15,
       "maxScore": 9.17,
       "startDate": "2022-06-25",
-      "endDate": "2022-07-29",
+      "endDate": "2022-08-31",
       "sessionCount": 1,
       "sessions": [
         {
@@ -198408,7 +198493,7 @@
           "firstScore": 9.15,
           "maxScore": 9.17,
           "startDate": "2022-06-25",
-          "endDate": "2022-07-29"
+          "endDate": "2022-08-31"
         }
       ]
     },
@@ -198423,7 +198508,7 @@
       "maxScore": 9.25,
       "startDate": "2022-10-10",
       "endDate": "2022-10-11",
-      "sessionCount": 3,
+      "sessionCount": 4,
       "sessions": [
         {
           "animeId": 41467,
@@ -198447,7 +198532,19 @@
           "firstScore": 9.12,
           "maxScore": 9.12,
           "startDate": "2022-11-22",
-          "endDate": "2022-11-29"
+          "endDate": "2022-12-04"
+        },
+        {
+          "animeId": 41467,
+          "title": "Bleach: Sennen Kessen-hen",
+          "title_ua": "Бліч: Тисячолітня кривава війна",
+          "media_type": "tv",
+          "image": "https://cdn.hikka.io/content/anime/bleach-sennen-kessen-hen-72c9ca/tD9NwdXUlVwhCh5JTAuH1A.jpg",
+          "hikka_slug": "bleach-sennen-kessen-hen-72c9ca",
+          "firstScore": 9.11,
+          "maxScore": 9.11,
+          "startDate": "2022-12-06",
+          "endDate": "2022-12-06"
         },
         {
           "animeId": 41467,
@@ -198459,7 +198556,7 @@
           "firstScore": 9.22,
           "maxScore": 9.22,
           "startDate": "2022-12-26",
-          "endDate": "2023-01-18"
+          "endDate": "2023-02-02"
         }
       ]
     },

@@ -1,8 +1,8 @@
 {
-  "date": "2026-02-08",
-  "timestamp": "20260208235959",
+  "date": "2026-02-15",
+  "timestamp": "20260215235959",
   "source": "hikka-aggregator-revisions",
-  "total": 488,
+  "total": 491,
   "manga": [
     {
       "id": 121947,
@@ -22,27 +22,13 @@
       "id": 147272,
       "slug": "the-greatest-estate-developer-a8945b",
       "title": "The Greatest Estate Developer",
-      "members": 33,
-      "score": 9.73
-    },
-    {
-      "id": 131008,
-      "slug": "a-stepmothers-marchen-4e77ad",
-      "title": "A Stepmother's Märchen",
-      "members": 11,
-      "score": 9.73
+      "members": 34,
+      "score": 9.71
     },
     {
       "id": 418,
       "slug": "mushishi-9d2f80",
       "title": "Mushishi",
-      "members": 6,
-      "score": 9.67
-    },
-    {
-      "id": 163877,
-      "slug": "the-guild-member-next-door-a1c697",
-      "title": "Virtual Strangers",
       "members": 6,
       "score": 9.67
     },
@@ -68,11 +54,18 @@
       "score": 9.6
     },
     {
-      "id": 61579,
-      "slug": "tobaku-datenroku-kaiji-one-poker-hen-e8e202",
-      "title": "Кайджі: Вигнанець азартних ігор – Арка \"Ван покера\"",
+      "id": 147313,
+      "slug": "the-lady-and-the-beast-f2a09b",
+      "title": "The Lady and the Beast",
       "members": 5,
       "score": 9.6
+    },
+    {
+      "id": 163877,
+      "slug": "the-guild-member-next-door-a1c697",
+      "title": "Virtual Strangers",
+      "members": 7,
+      "score": 9.57
     },
     {
       "id": 147730,
@@ -82,11 +75,11 @@
       "score": 9.57
     },
     {
-      "id": 70345,
-      "slug": "grand-blue-2c0192",
-      "title": "Grand Blue Dreaming",
-      "members": 19,
-      "score": 9.53
+      "id": 131008,
+      "slug": "a-stepmothers-marchen-4e77ad",
+      "title": "A Stepmother's Märchen",
+      "members": 12,
+      "score": 9.5
     },
     {
       "id": 119931,
@@ -103,6 +96,13 @@
       "score": 9.46
     },
     {
+      "id": 70345,
+      "slug": "grand-blue-2c0192",
+      "title": "Grand Blue Dreaming",
+      "members": 20,
+      "score": 9.45
+    },
+    {
       "id": 656,
       "slug": "vagabond-875acb",
       "title": "Vagabond",
@@ -114,13 +114,6 @@
       "slug": "beck-66586a",
       "title": "BECK: Mongolian Chop Squad",
       "members": 14,
-      "score": 9.43
-    },
-    {
-      "id": 118737,
-      "slug": "her-tale-of-shim-chong-722a38",
-      "title": "Her Tale of Shim Chong",
-      "members": 7,
       "score": 9.43
     },
     {
@@ -187,10 +180,17 @@
       "score": 9.33
     },
     {
-      "id": 126287,
-      "slug": "sousou-no-frieren-97e05f",
-      "title": "Frieren: Beyond Journey's End",
-      "members": 36,
+      "id": 118737,
+      "slug": "her-tale-of-shim-chong-722a38",
+      "title": "Her Tale of Shim Chong",
+      "members": 9,
+      "score": 9.33
+    },
+    {
+      "id": 61579,
+      "slug": "tobaku-datenroku-kaiji-one-poker-hen-e8e202",
+      "title": "Кайджі: Вигнанець азартних ігор – Арка \"Ван покера\"",
+      "members": 6,
       "score": 9.33
     },
     {
@@ -213,6 +213,13 @@
       "title": "Fullmetal Alchemist",
       "members": 33,
       "score": 9.3
+    },
+    {
+      "id": 93972,
+      "slug": "totsukuni-no-shoujo-3e82c0",
+      "title": "The Girl From the Other Side: Siúil, a Rún",
+      "members": 7,
+      "score": 9.29
     },
     {
       "id": 44489,
@@ -264,6 +271,13 @@
       "score": 9.2
     },
     {
+      "id": 147827,
+      "slug": "miss-not-so-sidekick-3a1067",
+      "title": "Miss Not-So Sidekick",
+      "members": 5,
+      "score": 9.2
+    },
+    {
       "id": 143255,
       "slug": "fushigi-na-antique-shop-makura-kurama-sakuhinshuu-e0e74a",
       "title": "Welcome to the Peculiar Antique Shop",
@@ -285,20 +299,6 @@
       "score": 9.17
     },
     {
-      "id": 93972,
-      "slug": "totsukuni-no-shoujo-3e82c0",
-      "title": "The Girl From the Other Side: Siúil, a Rún",
-      "members": 6,
-      "score": 9.17
-    },
-    {
-      "id": 148245,
-      "slug": "killer-crush-a60efe",
-      "title": "Killer Crush",
-      "members": 6,
-      "score": 9.17
-    },
-    {
       "id": 123956,
       "slug": "undead-unluck-971118",
       "title": "Undead Unluck",
@@ -313,6 +313,13 @@
       "score": 9.17
     },
     {
+      "id": 126287,
+      "slug": "sousou-no-frieren-97e05f",
+      "title": "Frieren: Beyond Journey's End",
+      "members": 37,
+      "score": 9.16
+    },
+    {
       "id": 133641,
       "slug": "villains-are-destined-to-die-8c0f44",
       "title": "Villains Are Destined to Die",
@@ -325,6 +332,20 @@
       "title": "Blue Period",
       "members": 13,
       "score": 9.15
+    },
+    {
+      "id": 132214,
+      "slug": "omniscient-readers-viewpoint-e16412",
+      "title": "Omniscient Reader's Viewpoint",
+      "members": 37,
+      "score": 9.14
+    },
+    {
+      "id": 90125,
+      "slug": "kaguya-sama-wa-kokurasetai-tensai-tachi-no-renai-zunousen-c69533",
+      "title": "Kaguya-sama: Love Is War",
+      "members": 35,
+      "score": 9.14
     },
     {
       "id": 141833,
@@ -344,6 +365,13 @@
       "id": 7519,
       "slug": "kami-nomi-zo-shiru-sekai-9f78d0",
       "title": "Світ відомий лиш Богу",
+      "members": 7,
+      "score": 9.14
+    },
+    {
+      "id": 148245,
+      "slug": "killer-crush-a60efe",
+      "title": "Killer Crush",
       "members": 7,
       "score": 9.14
     },
@@ -369,24 +397,10 @@
       "score": 9.13
     },
     {
-      "id": 90125,
-      "slug": "kaguya-sama-wa-kokurasetai-tensai-tachi-no-renai-zunousen-c69533",
-      "title": "Kaguya-sama: Love Is War",
-      "members": 34,
-      "score": 9.12
-    },
-    {
       "id": 107562,
       "slug": "kusuriya-no-hitorigoto-08d606",
       "title": "The Apothecary Diaries",
-      "members": 26,
-      "score": 9.12
-    },
-    {
-      "id": 132214,
-      "slug": "omniscient-readers-viewpoint-e16412",
-      "title": "Omniscient Reader's Viewpoint",
-      "members": 36,
+      "members": 27,
       "score": 9.11
     },
     {
@@ -414,7 +428,14 @@
       "id": 1133,
       "slug": "dorohedoro-5184dc",
       "title": "Dorohedoro",
-      "members": 42,
+      "members": 43,
+      "score": 9.02
+    },
+    {
+      "id": 111213,
+      "slug": "bastard-ad610d",
+      "title": "Bastard",
+      "members": 46,
       "score": 9.0
     },
     {
@@ -572,13 +593,6 @@
       "score": 8.98
     },
     {
-      "id": 111213,
-      "slug": "bastard-ad610d",
-      "title": "Bastard",
-      "members": 45,
-      "score": 8.98
-    },
-    {
       "id": 121269,
       "slug": "who-made-me-a-princess-c7b1c6",
       "title": "Who Made Me a Princess",
@@ -621,17 +635,17 @@
       "score": 8.93
     },
     {
+      "id": 60783,
+      "slug": "mob-psycho-100-0e2d54",
+      "title": "Mob Psycho 100",
+      "members": 12,
+      "score": 8.92
+    },
+    {
       "id": 100448,
       "slug": "jumyou-wo-kaitotte-moratta-ichinen-ni-tsuki-ichimanen-de-db67a5",
       "title": "I sold my life for ten thousand yen per year.",
       "members": 65,
-      "score": 8.91
-    },
-    {
-      "id": 60783,
-      "slug": "mob-psycho-100-0e2d54",
-      "title": "Mob Psycho 100",
-      "members": 11,
       "score": 8.91
     },
     {
@@ -677,6 +691,13 @@
       "score": 8.89
     },
     {
+      "id": 144180,
+      "slug": "gachiakuta-266b0a",
+      "title": "Gachiakuta",
+      "members": 16,
+      "score": 8.88
+    },
+    {
       "id": 148542,
       "slug": "akuyaku-reijou-no-naka-no-hito-danzai-sareta-tenseisha-no-tame-usotsuki-heroine-ni-fukushuu-itashimasu-e69827",
       "title": "The One Within the Villainess",
@@ -705,18 +726,18 @@
       "score": 8.88
     },
     {
-      "id": 144180,
-      "slug": "gachiakuta-266b0a",
-      "title": "Gachiakuta",
-      "members": 15,
-      "score": 8.87
-    },
-    {
       "id": 147317,
       "slug": "lout-of-counts-family-3f9672",
       "title": "Lout of Count's Family",
       "members": 15,
       "score": 8.87
+    },
+    {
+      "id": 119072,
+      "slug": "here-u-are-aa16c1",
+      "title": "Here U Are",
+      "members": 21,
+      "score": 8.86
     },
     {
       "id": 48621,
@@ -738,13 +759,6 @@
       "title": "One Room of Happiness",
       "members": 7,
       "score": 8.86
-    },
-    {
-      "id": 119072,
-      "slug": "here-u-are-aa16c1",
-      "title": "Here U Are",
-      "members": 20,
-      "score": 8.85
     },
     {
       "id": 33327,
@@ -773,6 +787,20 @@
       "title": "Umineko When They Cry Episode 1: Legend of the Golden Witch",
       "members": 6,
       "score": 8.83
+    },
+    {
+      "id": 100035,
+      "slug": "tongari-boushi-no-atelier-53ed2b",
+      "title": "Witch Hat Atelier",
+      "members": 39,
+      "score": 8.82
+    },
+    {
+      "id": 88660,
+      "slug": "yagate-kimi-ni-naru-1ac2a3",
+      "title": "Bloom into You",
+      "members": 20,
+      "score": 8.8
     },
     {
       "id": 103237,
@@ -817,24 +845,10 @@
       "score": 8.8
     },
     {
-      "id": 88660,
-      "slug": "yagate-kimi-ni-naru-1ac2a3",
-      "title": "Bloom into You",
-      "members": 19,
-      "score": 8.79
-    },
-    {
       "id": 124845,
       "slug": "sweet-home-2a11fb",
       "title": "Sweet Home",
       "members": 40,
-      "score": 8.78
-    },
-    {
-      "id": 100035,
-      "slug": "tongari-boushi-no-atelier-53ed2b",
-      "title": "Witch Hat Atelier",
-      "members": 37,
       "score": 8.78
     },
     {
@@ -843,6 +857,20 @@
       "title": "Why Raeliana Ended Up at the Duke's Mansion",
       "members": 22,
       "score": 8.77
+    },
+    {
+      "id": 116778,
+      "slug": "chainsaw-man-8c501e",
+      "title": "Chainsaw Man",
+      "members": 154,
+      "score": 8.75
+    },
+    {
+      "id": 463,
+      "slug": "nhk-ni-youkoso-258668",
+      "title": "Welcome to the N.H.K.",
+      "members": 12,
+      "score": 8.75
     },
     {
       "id": 89087,
@@ -859,10 +887,10 @@
       "score": 8.75
     },
     {
-      "id": 116778,
-      "slug": "chainsaw-man-8c501e",
-      "title": "Chainsaw Man",
-      "members": 153,
+      "id": 3,
+      "slug": "20th-century-boys-6d9c09",
+      "title": "20th Century Boys",
+      "members": 23,
       "score": 8.74
     },
     {
@@ -901,13 +929,6 @@
       "score": 8.69
     },
     {
-      "id": 24705,
-      "slug": "aku-no-hana-f4971c",
-      "title": "The Flowers of Evil",
-      "members": 35,
-      "score": 8.69
-    },
-    {
       "id": 25515,
       "slug": "jojo-no-kimyou-na-bouken-part-8-jojolion-73a5d5",
       "title": "Химерні пригоди Джоджо Частина 8: ДжоДжоліон",
@@ -915,16 +936,16 @@
       "score": 8.68
     },
     {
-      "id": 3,
-      "slug": "20th-century-boys-6d9c09",
-      "title": "20th Century Boys",
-      "members": 22,
-      "score": 8.68
-    },
-    {
       "id": 72467,
       "slug": "shoujo-shuumatsu-ryokou-4dccd6",
       "title": "Girls' Last Tour",
+      "members": 36,
+      "score": 8.67
+    },
+    {
+      "id": 24705,
+      "slug": "aku-no-hana-f4971c",
+      "title": "The Flowers of Evil",
       "members": 36,
       "score": 8.67
     },
@@ -999,13 +1020,6 @@
       "score": 8.64
     },
     {
-      "id": 91037,
-      "slug": "enen-no-shouboutai-a2287b",
-      "title": "Fire Force",
-      "members": 14,
-      "score": 8.64
-    },
-    {
       "id": 58563,
       "slug": "innocent-d72e92",
       "title": "Innocent",
@@ -1020,11 +1034,11 @@
       "score": 8.64
     },
     {
-      "id": 463,
-      "slug": "nhk-ni-youkoso-258668",
-      "title": "Welcome to the N.H.K.",
-      "members": 11,
-      "score": 8.64
+      "id": 145863,
+      "slug": "sayonara-eri-15a3ae",
+      "title": "Goodbye, Eri",
+      "members": 81,
+      "score": 8.63
     },
     {
       "id": 745,
@@ -1041,18 +1055,25 @@
       "score": 8.63
     },
     {
-      "id": 145863,
-      "slug": "sayonara-eri-15a3ae",
-      "title": "Goodbye, Eri",
-      "members": 80,
-      "score": 8.61
-    },
-    {
       "id": 1630,
       "slug": "jojo-no-kimyou-na-bouken-part-2-sentou-chouryuu-11864f",
       "title": "JoJo's Bizarre Adventure Part 2: Battle Tendency",
       "members": 18,
       "score": 8.61
+    },
+    {
+      "id": 91037,
+      "slug": "enen-no-shouboutai-a2287b",
+      "title": "Fire Force",
+      "members": 15,
+      "score": 8.6
+    },
+    {
+      "id": 87844,
+      "slug": "the-fable-9c771b",
+      "title": "The Fable",
+      "members": 10,
+      "score": 8.6
     },
     {
       "id": 10,
@@ -1118,18 +1139,18 @@
       "score": 8.6
     },
     {
+      "id": 23390,
+      "slug": "shingeki-no-kyojin-0e940a",
+      "title": "Attack on Titan",
+      "members": 69,
+      "score": 8.59
+    },
+    {
       "id": 81117,
       "slug": "tokyo-ghoulre-1c20f0",
       "title": "Tokyo Ghoul:re",
       "members": 46,
       "score": 8.59
-    },
-    {
-      "id": 23390,
-      "slug": "shingeki-no-kyojin-0e940a",
-      "title": "Attack on Titan",
-      "members": 67,
-      "score": 8.58
     },
     {
       "id": 138673,
@@ -1164,13 +1185,6 @@
       "slug": "kiseijuu-afcd3a",
       "title": "Parasyte",
       "members": 18,
-      "score": 8.56
-    },
-    {
-      "id": 87844,
-      "slug": "the-fable-9c771b",
-      "title": "The Fable",
-      "members": 9,
       "score": 8.56
     },
     {
@@ -1293,13 +1307,6 @@
       "score": 8.46
     },
     {
-      "id": 267,
-      "slug": "hellsing-e021fa",
-      "title": "Hellsing",
-      "members": 11,
-      "score": 8.45
-    },
-    {
       "id": 147207,
       "slug": "the-villainess-turns-the-hourglass-fdf938",
       "title": "The Villainess Turns the Hourglass",
@@ -1398,20 +1405,6 @@
       "score": 8.4
     },
     {
-      "id": 3574,
-      "slug": "tobaku-datenroku-kaiji-8d92f4",
-      "title": "Gambling Outcast Kaiji",
-      "members": 5,
-      "score": 8.4
-    },
-    {
-      "id": 16659,
-      "slug": "tobaku-datenroku-kaiji-kazuya-hen-c333ab",
-      "title": "Кайджі: Вигнанець азартних ігор – Арка Кадзуї",
-      "members": 5,
-      "score": 8.4
-    },
-    {
       "id": 139152,
       "slug": "bleach-gokui-meimei-hen-2c4df1",
       "title": "Bleach: Special One-shot",
@@ -1445,6 +1438,13 @@
       "title": "FFF-Class Trashero",
       "members": 5,
       "score": 8.4
+    },
+    {
+      "id": 436,
+      "slug": "uzumaki-19556c",
+      "title": "Uzumaki: Spiral into Horror",
+      "members": 45,
+      "score": 8.38
     },
     {
       "id": 146912,
@@ -1482,13 +1482,6 @@
       "score": 8.36
     },
     {
-      "id": 436,
-      "slug": "uzumaki-19556c",
-      "title": "Uzumaki: Spiral into Horror",
-      "members": 44,
-      "score": 8.34
-    },
-    {
       "id": 11,
       "slug": "naruto-f2a8b5",
       "title": "Naruto",
@@ -1500,6 +1493,20 @@
       "slug": "gokushufudou-88469d",
       "title": "The Way of the Househusband",
       "members": 18,
+      "score": 8.33
+    },
+    {
+      "id": 102165,
+      "slug": "tokidoki-34a033",
+      "title": "Tokidoki",
+      "members": 15,
+      "score": 8.33
+    },
+    {
+      "id": 267,
+      "slug": "hellsing-e021fa",
+      "title": "Hellsing",
+      "members": 12,
       "score": 8.33
     },
     {
@@ -1538,9 +1545,23 @@
       "score": 8.33
     },
     {
+      "id": 84255,
+      "slug": "hidamari-ga-kikoeru-ea6296",
+      "title": "I Hear the Sunspot",
+      "members": 6,
+      "score": 8.33
+    },
+    {
       "id": 96573,
       "slug": "something-about-us-268fb1",
       "title": "Something About Us",
+      "members": 6,
+      "score": 8.33
+    },
+    {
+      "id": 3574,
+      "slug": "tobaku-datenroku-kaiji-8d92f4",
+      "title": "Gambling Outcast Kaiji",
       "members": 6,
       "score": 8.33
     },
@@ -1555,6 +1576,13 @@
       "id": 123681,
       "slug": "kimi-no-koto-ga-daidaidaidaidaisuki-na-100-nin-no-kanojo-f8fded",
       "title": "The 100 Girlfriends Who Really, Really, Really, Really, Really Love You",
+      "members": 6,
+      "score": 8.33
+    },
+    {
+      "id": 16659,
+      "slug": "tobaku-datenroku-kaiji-kazuya-hen-c333ab",
+      "title": "Кайджі: Вигнанець азартних ігор – Арка Кадзуї",
       "members": 6,
       "score": 8.33
     },
@@ -1601,20 +1629,6 @@
       "score": 8.31
     },
     {
-      "id": 22651,
-      "slug": "the-breaker-new-waves-11ac26",
-      "title": "The Breaker: New Waves",
-      "members": 13,
-      "score": 8.31
-    },
-    {
-      "id": 102165,
-      "slug": "tokidoki-34a033",
-      "title": "Tokidoki",
-      "members": 14,
-      "score": 8.29
-    },
-    {
       "id": 134036,
       "slug": "leviathan-dfe3c7",
       "title": "Leviathan",
@@ -1657,6 +1671,13 @@
       "score": 8.28
     },
     {
+      "id": 112268,
+      "slug": "sono-bisque-doll-wa-koi-wo-suru-653426",
+      "title": "My Dress-Up Darling",
+      "members": 37,
+      "score": 8.27
+    },
+    {
       "id": 123812,
       "slug": "my-broken-mariko-422389",
       "title": "My Broken Mariko",
@@ -1692,11 +1713,11 @@
       "score": 8.25
     },
     {
-      "id": 112268,
-      "slug": "sono-bisque-doll-wa-koi-wo-suru-653426",
-      "title": "My Dress-Up Darling",
-      "members": 36,
-      "score": 8.22
+      "id": 149,
+      "slug": "blame-1b8654",
+      "title": "Blame!",
+      "members": 25,
+      "score": 8.24
     },
     {
       "id": 92299,
@@ -1710,13 +1731,6 @@
       "slug": "bleach-fdf1cf",
       "title": "Bleach",
       "members": 42,
-      "score": 8.21
-    },
-    {
-      "id": 149,
-      "slug": "blame-1b8654",
-      "title": "Blame!",
-      "members": 24,
       "score": 8.21
     },
     {
@@ -1867,6 +1881,13 @@
       "score": 8.14
     },
     {
+      "id": 124272,
+      "slug": "suicide-boy-7ba680",
+      "title": "Хлопчик-самогубця",
+      "members": 7,
+      "score": 8.14
+    },
+    {
       "id": 114745,
       "slug": "blue-lock-050226",
       "title": "Blue Lock",
@@ -2007,6 +2028,13 @@
       "score": 8.0
     },
     {
+      "id": 22651,
+      "slug": "the-breaker-new-waves-11ac26",
+      "title": "The Breaker: New Waves",
+      "members": 14,
+      "score": 8.0
+    },
+    {
       "id": 124085,
       "slug": "mashle-a3cd96",
       "title": "Mashle: Magic and Muscles",
@@ -2017,7 +2045,7 @@
       "id": 130676,
       "slug": "boku-wa-mata-kimi-ni-sayonara-no-kazu-wo-miru-ff53d3",
       "title": "300 днів із тобою",
-      "members": 12,
+      "members": 13,
       "score": 8.0
     },
     {
@@ -2077,13 +2105,6 @@
       "score": 8.0
     },
     {
-      "id": 124272,
-      "slug": "suicide-boy-7ba680",
-      "title": "Хлопчик-самогубця",
-      "members": 7,
-      "score": 8.0
-    },
-    {
       "id": 85901,
       "slug": "suijin-no-hanayome-34d916",
       "title": "The Water Dragon's Bride",
@@ -2101,13 +2122,6 @@
       "id": 93516,
       "slug": "sq-begin-wyour-name-dedfd0",
       "title": "Їхня історія",
-      "members": 5,
-      "score": 8.0
-    },
-    {
-      "id": 84255,
-      "slug": "hidamari-ga-kikoeru-ea6296",
-      "title": "I Hear the Sunspot",
       "members": 5,
       "score": 8.0
     },
@@ -2196,6 +2210,13 @@
       "score": 7.97
     },
     {
+      "id": 126146,
+      "slug": "oshi-no-ko-23e5e0",
+      "title": "[Oshi no Ko]",
+      "members": 51,
+      "score": 7.96
+    },
+    {
       "id": 125430,
       "slug": "adabana-8c2fa4",
       "title": "Adabana",
@@ -2229,13 +2250,6 @@
       "title": "Nijigahara Holograph",
       "members": 15,
       "score": 7.93
-    },
-    {
-      "id": 126146,
-      "slug": "oshi-no-ko-23e5e0",
-      "title": "[Oshi no Ko]",
-      "members": 50,
-      "score": 7.92
     },
     {
       "id": 25132,
@@ -2311,8 +2325,8 @@
       "id": 118728,
       "slug": "at-the-end-of-the-road-345e94",
       "title": "В кінці дороги",
-      "members": 7,
-      "score": 7.86
+      "members": 8,
+      "score": 7.88
     },
     {
       "id": 3578,
@@ -2455,13 +2469,6 @@
       "score": 7.77
     },
     {
-      "id": 8586,
-      "slug": "the-breaker-7be87f",
-      "title": "The Breaker",
-      "members": 16,
-      "score": 7.75
-    },
-    {
       "id": 132247,
       "slug": "a-returners-magic-should-be-special-d5480a",
       "title": "A Returner's Magic Should Be Special",
@@ -2529,6 +2536,13 @@
       "slug": "mahou-shoujo-site-626177",
       "title": "Magical Girl Site",
       "members": 9,
+      "score": 7.67
+    },
+    {
+      "id": 147115,
+      "slug": "mad-dog-7a22d3",
+      "title": "Mad Dog",
+      "members": 6,
       "score": 7.67
     },
     {
@@ -2672,6 +2686,13 @@
       "score": 7.53
     },
     {
+      "id": 8586,
+      "slug": "the-breaker-7be87f",
+      "title": "The Breaker",
+      "members": 18,
+      "score": 7.5
+    },
+    {
       "id": 125717,
       "slug": "okaeri-alice-cf0707",
       "title": "Welcome Back, Alice",
@@ -2798,13 +2819,6 @@
       "score": 7.4
     },
     {
-      "id": 147115,
-      "slug": "mad-dog-7a22d3",
-      "title": "Mad Dog",
-      "members": 5,
-      "score": 7.4
-    },
-    {
       "id": 465,
       "slug": "noise-59dc09",
       "title": "NOiSE",
@@ -2854,6 +2868,13 @@
       "score": 7.33
     },
     {
+      "id": 128783,
+      "slug": "gyakusatsu-happy-end-61021a",
+      "title": "Massacre Happy End",
+      "members": 9,
+      "score": 7.33
+    },
+    {
       "id": 105541,
       "slug": "shokuryou-jinrui-d042a5",
       "title": "Starving Anonymous",
@@ -2894,13 +2915,6 @@
       "title": "Sadistic Beauty",
       "members": 7,
       "score": 7.29
-    },
-    {
-      "id": 128783,
-      "slug": "gyakusatsu-happy-end-61021a",
-      "title": "Massacre Happy End",
-      "members": 8,
-      "score": 7.25
     },
     {
       "id": 102997,
@@ -3120,13 +3134,6 @@
       "score": 7.0
     },
     {
-      "id": 47533,
-      "slug": "jolyne-gucci-de-tobu-454be0",
-      "title": "Джолін, лети високо з GUCCI",
-      "members": 6,
-      "score": 7.0
-    },
-    {
       "id": 164926,
       "slug": "webtoon-character-na-kang-lim-89e3ae",
       "title": "Вебтун Персонаж На Кан Лім",
@@ -3162,13 +3169,6 @@
       "score": 6.9
     },
     {
-      "id": 121891,
-      "slug": "machigatteita-no-wa-ore-datta-n-da-b9c6dc",
-      "title": "The One In The Wrong Was Me.",
-      "members": 9,
-      "score": 6.89
-    },
-    {
       "id": 85173,
       "slug": "happiness-d47e8c",
       "title": "Happiness",
@@ -3197,9 +3197,23 @@
       "score": 6.83
     },
     {
+      "id": 47533,
+      "slug": "jolyne-gucci-de-tobu-454be0",
+      "title": "Джолін, лети високо з GUCCI",
+      "members": 6,
+      "score": 6.83
+    },
+    {
       "id": 101119,
       "slug": "origin-001e23",
       "title": "Origin",
+      "members": 10,
+      "score": 6.8
+    },
+    {
+      "id": 121891,
+      "slug": "machigatteita-no-wa-ore-datta-n-da-b9c6dc",
+      "title": "The One In The Wrong Was Me.",
       "members": 10,
       "score": 6.8
     },
@@ -3214,6 +3228,13 @@
       "id": 92286,
       "slug": "boruto-naruto-the-movie-tokubetsu-bangai-hen-naruto-ga-hokage-ni-natta-hi-f46cd8",
       "title": "Боруто: Наруто фільм Ґайден - День, коли Наруто став хокаґе",
+      "members": 5,
+      "score": 6.8
+    },
+    {
+      "id": 164516,
+      "slug": "songzang-xiezouqu-9c3f13",
+      "title": "The Funeral Concerto",
       "members": 5,
       "score": 6.8
     },

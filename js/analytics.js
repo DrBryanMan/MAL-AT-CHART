@@ -8,6 +8,15 @@ export function buildEnrichedMap(enrichedData) {
   return new Map(enrichedData.map(a => [a.mal_id, a]));
 }
 
+/** Для хікки: enrichedMap за slug (hikka_slug як ключ) */
+export function buildHikkaEnrichedMap(enrichedData) {
+  return new Map(
+    enrichedData
+      .filter(r => r.hikka_slug)
+      .map(r => [r.hikka_slug, r])
+  );
+}
+
 export function formatDate(dateStr) {
   return new Date(dateStr + 'T00:00:00').toLocaleDateString('uk-UA', {
     year: 'numeric', month: 'long', day: 'numeric',
@@ -36,16 +45,18 @@ function enrich(a, enrichedMap) {
   const enr = enrichedMap.get(a.id) ?? {};
   return {
     ...a,
-    title_ua:   enr.title_ua   ?? null,
-    media_type: enr.media_type ?? 'unknown',
-    image:      enr.image      ?? null,
-    hikka_slug: enr.hikka_slug ?? null,
+    title_ua:     enr.title_ua     ?? a.title_ua  ?? null,
+    media_type:   enr.media_type   ?? 'unknown',
+    image:        enr.image        ?? null,
+    hikka_slug:   enr.hikka_slug   ?? a.slug       ?? null,
     banner_image: enr.banner_image ?? null,
   };
 }
 
 function sortedAnime(snap) {
-  return snap.anime.filter(a => a.score != null).toSorted((a, b) => b.score - a.score || a.id - b.id);
+  return snap.anime
+    .filter(a => a.score != null)
+    .toSorted((a, b) => b.score - a.score || String(a.id).localeCompare(String(b.id)));
 }
 
 // ─── Section 1: Category Top History ─────────────────────────────────────────
@@ -497,6 +508,26 @@ export function computeScoreStreaksByAnime(allSnapshots) {
   return Object.fromEntries(byAnime);
 }
 
+/** Найнижча оцінка за всю доступну історію (актуально для Хікки) */
+export function computeLowestEver(allSnapshots, enrichedMap) {
+  const worst = new Map();
+  for (const snap of allSnapshots) {
+    for (const a of snap.anime) {
+      if (a.score == null) continue;
+      const ex = worst.get(a.id);
+      if (!ex || a.score < ex.score) worst.set(a.id, { ...a, date: snap.date });
+    }
+  }
+  // сортуємо за зростанням — перші 3 найнижчі
+  const sorted = [...worst.values()].toSorted((a, b) => a.score - b.score);
+  if (!sorted.length) return null;
+  const enrichedFirst = enrich(sorted[0], enrichedMap);
+  return {
+    ...topWithCategories(sorted, enrichedMap),
+    winner: { ...enrichedFirst, animeId: sorted[0].id },
+  };
+}
+
 // ─── Master computation ───────────────────────────────────────────────────────
 
 export function computeAll(snapshots, enrichedMap, threshold = 9.0) {
@@ -504,6 +535,7 @@ export function computeAll(snapshots, enrichedMap, threshold = 9.0) {
     scoreStreaks:       computeScoreStreaksByAnime(snapshots),
     categoryTopHistory: computeCategoryTopHistory(snapshots, enrichedMap, threshold),
     highestEver:        computeHighestEver(snapshots, enrichedMap),
+    lowestEver:         computeLowestEver(snapshots, enrichedMap),
     mostStableScore:    computeMostStableScore(snapshots, enrichedMap),
     longestTop1:        computeLongestAtTop1(snapshots, enrichedMap),
     allAboveThreshold:  computeAllAboveThreshold(snapshots, threshold, enrichedMap),

@@ -6,6 +6,18 @@ import { icon } from './icons.js';
 import { CONFIG } from './config.js';
 import { computeChartData, formatDate, formatDateShort, daysBetween, archiveUrl } from './analytics.js';
 
+// ─── Source state ──────────────────────────────────────────────────────────────
+
+let _currentSource = 'mal';
+
+export function setRendererSource(source) { _currentSource = source; }
+
+/** Для MAL — посилання на Wayback, для Хікки — просто текст */
+function dateLink(dateStr, label) {
+  if (_currentSource !== 'mal') return `<span class="date-text">${label}</span>`;
+  return `<a class="archive-link" href="${archiveUrl(dateStr)}" target="_blank" rel="noopener" title="Архів MAL">${label}</a>`;
+}
+
 // ─── Helpers ──────────────────────────────────────────────────────────────────
 
 const $ = id => document.getElementById(id);
@@ -57,10 +69,6 @@ function mediaBadgeHTML(type) {
   const label    = CONFIG.categoryLabels[type] ?? (type?.toUpperCase() ?? '?');
   const iconName = CONFIG.categoryIcons[type]  ?? 'help-circle';
   return `<span class="badge badge-${type ?? 'unknown'}">${icon(iconName, 10)} ${label}</span>`;
-}
-
-function archiveLink(dateStr, label) {
-  return `<a class="archive-link" href="${archiveUrl(dateStr)}" target="_blank" rel="noopener" title="Архів MAL">${label}</a>`;
 }
 
 /** Список з кнопкою "Показати ще" якщо > limit */
@@ -205,7 +213,9 @@ export function renderChartSection(snap, prevSnap, enrichedMap, index, currentIn
         aria-label="Дата знімку">
     </span>
     <button class="nav-btn" id="snap-next" ${currentIndex === total - 1 ? 'style="cursor: default;" disabled' : ''} aria-label="Наступний">${icon('chevron-right', 18)}</button>
-    <a class="nav-btn nav-btn-archive" href="${archiveUrl(snap.date)}" target="_blank" rel="noopener" title="Відкрити архів MAL">${icon('globe', 16)}</a>
+    ${_currentSource === 'mal'
+      ? `<a class="nav-btn nav-btn-archive" href="${archiveUrl(snap.date)}" target="_blank" rel="noopener" title="Відкрити архів MAL">${icon('globe', 16)}</a>`
+      : ''}
     <button class="nav-btn nav-btn-latest" id="snap-latest" ${currentIndex === total - 1 ? 'hidden' : ''} aria-label="Актуальна дата" title="До актуальної дати">${icon('chevron-right', 14)}${icon('chevron-right', 14)}</button>
   `;
 
@@ -233,7 +243,8 @@ export function renderChartSection(snap, prevSnap, enrichedMap, index, currentIn
     input.addEventListener('keydown', e => { if (e.key === 'Enter') input.dispatchEvent(new Event('change')); });
   }
 
-  const { rows } = computeChartData(snap, prevSnap, enrichedMap, scoreStreaks);
+  const { rows: allRows } = computeChartData(snap, prevSnap, enrichedMap, scoreStreaks);
+  const rows = allRows.slice(0, CONFIG.chartLimit ?? 50);
 
   const rowsHTML = rows.map(row => {
     const origTitle    = row.title_ua ? `<div class="chart-title-orig">${escHtml(row.title)}</div>` : '';
@@ -388,8 +399,8 @@ export function renderCategorySection(categoryTopHistory) {
             <div class="session-meta">
               <span class="score-val">${icon('star', 14)} ${scoreStr}</span>
               <span class="session-date">
-                ${archiveLink(first.startDate, formatDateShort(first.startDate))} →
-                ${archiveLink(last.endDate, formatDateShort(last.endDate))}
+                ${dateLink(first.startDate, formatDateShort(first.startDate))} →
+                ${dateLink(last.endDate, formatDateShort(last.endDate))}
               </span>
             </div>
           </div>
@@ -425,8 +436,8 @@ function buildSessionRow(s) {
     ? `<span class="session-num-badge" title="Потрапило у ТОП-1 вже ${s.sessionNum}-й раз">${s.sessionNum}</span>`
     : '';
   const dateRange = s.startDate === s.endDate
-    ? archiveLink(s.startDate, formatDateShort(s.startDate))
-    : `${archiveLink(s.startDate, formatDateShort(s.startDate))} → ${archiveLink(s.endDate, formatDateShort(s.endDate))}`;
+    ? dateLink(s.startDate, formatDateShort(s.startDate))
+    : `${dateLink(s.startDate, formatDateShort(s.startDate))} → ${dateLink(s.endDate, formatDateShort(s.endDate))}`;
 
   return `<div class="session-row${s.banner_image ? ' has-banner' : ''}" ${bannerStyle(s.banner_image)}>
     ${thumbHTML(s.image, s.title_ua ?? s.title, 'small')}
@@ -446,18 +457,17 @@ function buildSessionRow(s) {
 // SECTION 3: Notable Events
 // ═══════════════════════════════════════════════════════
 
-export function renderEventsSection(analytics) {
+export function renderEventsSection(analytics, source = 'mal') {
   const container = $('events-content');
   if (!container) return;
 
   container.innerHTML = `
     <div class="events-grid">
-      ${buildHighestEverCard(analytics.highestEver)}
+      ${source === 'hikka'
+        ? buildLowestEverCard(analytics.lowestEver)
+        : buildHighestEverCard(analytics.highestEver)}
       ${buildStableScoreCard(analytics.mostStableScore)}
       ${buildLongestTop1Card(analytics.longestTop1)}
-    </div>
-    <div class="events-tabs-section">
-      ${buildEventsTabs(analytics)}
     </div>`;
 
   setupTabs(container);
@@ -489,8 +499,8 @@ function runnerUpRows(top3, scoreField = 'score', dateField = 'date', endDateFie
     const days     = hasRange ? daysBetween(date, endDate) : null;
     const dateHTML = date
       ? (hasRange
-          ? `${archiveLink(date, formatDateShort(date))} → ${archiveLink(endDate, formatDateShort(endDate))}`
-          : archiveLink(date, formatDateShort(date)))
+          ? `${dateLink(date, formatDateShort(date))} → ${dateLink(endDate, formatDateShort(endDate))}`
+          : dateLink(date, formatDateShort(date)))
       : '';
     return `<div class="runner-up-row">
       <span class="runner-medal runner-medal-${i + 2}">${medals[i]}</span>
@@ -521,8 +531,8 @@ function categoryWinnersHTML(winnerId, tvW, movieW, otherW, scoreField = 'score'
       const days     = hasRange ? daysBetween(date, endDate) : null;
       const dateHTML = date
         ? (hasRange
-            ? `${archiveLink(date, formatDateShort(date))} → ${archiveLink(endDate, formatDateShort(endDate))}`
-            : archiveLink(date, formatDateShort(date)))
+            ? `${dateLink(date, formatDateShort(date))} → ${dateLink(endDate, formatDateShort(endDate))}`
+            : dateLink(date, formatDateShort(date)))
         : '';
       return `<div class="cat-winner-row">
         <span class="cat-winner-label">${label}</span>
@@ -532,6 +542,31 @@ function categoryWinnersHTML(winnerId, tvW, movieW, otherW, scoreField = 'score'
       </div>`;
     }).join('')}
   </div>`;
+}
+
+// ─── Card: Lowest Ever ───────────────────────────────────────────────────────
+
+function buildLowestEverCard(data) {
+  if (!data) return eventCard(
+    icon('trending-down', 20), 'Найнижча оцінка за всю історію', 'lowestEver',
+    '<div class="empty-state"><p>Недостатньо даних</p></div>'
+  );
+
+  const w = data.winner;
+  return eventCard(icon('trending-down', 20), 'Найнижча оцінка за всю історію', 'lowestEver', `
+    <div class="event-winner">
+      ${thumbHTML(w.image, w.title_ua ?? w.title, 'event-poster')}
+      <div class="event-highlight">
+        <span class="highlight-score highlight-score--low">${icon('star', 22)} ${fmtScore(w.score)}</span>
+        <div class="highlight-title">${animeTitleHTML(w)}</div>
+        ${w.title_ua ? `<div class="highlight-orig">${escHtml(w.title)}</div>` : ''}
+        <div class="highlight-date">${dateLink(w.date, formatDate(w.date))}</div>
+      </div>
+    </div>
+    ${runnerUpRows(data.top3, 'score', 'date')}
+    ${categoryWinnersHTML(w.animeId ?? w.id, data.tvWinner, data.movieWinner, data.otherWinner, 'score', 'date')}`,
+    w.image
+  );
 }
 
 // ─── Card: Highest Ever ───────────────────────────────────────────────────────
@@ -548,7 +583,7 @@ function buildHighestEverCard(data) {
         <span class="highlight-score">${icon('star', 22)} ${fmtScore(w.score)}</span>
         <div class="highlight-title">${animeTitleHTML(w)}</div>
         ${w.title_ua ? `<div class="highlight-orig">${escHtml(w.title)}</div>` : ''}
-        <div class="highlight-date">${archiveLink(w.date, formatDate(w.date))}</div>
+        <div class="highlight-date">${dateLink(w.date, formatDate(w.date))}</div>
       </div>
     </div>
     ${runnerUpRows(data.top3, 'score', 'date')}
@@ -571,8 +606,8 @@ function buildStableScoreCard(data) {
         <div class="highlight-title">${animeTitleHTML(w)}</div>
         ${w.title_ua ? `<div class="highlight-orig">${escHtml(w.title)}</div>` : ''}
         <div class="highlight-date">
-          ${archiveLink(w.startDate, formatDateShort(w.startDate))} →
-          ${archiveLink(w.endDate, formatDateShort(w.endDate))}
+          ${dateLink(w.startDate, formatDateShort(w.startDate))} →
+          ${dateLink(w.endDate, formatDateShort(w.endDate))}
         </div>
         <div class="highlight-meta">${days} ${pluralUk(days, 'днів', 'дні', 'день')} незмінно</div>
       </div>
@@ -596,8 +631,8 @@ function buildLongestTop1Card(data) {
         <div class="highlight-title">${animeTitleHTML(w)}</div>
         ${w.title_ua ? `<div class="highlight-orig">${escHtml(w.title)}</div>` : ''}
         <div class="highlight-date">
-          ${archiveLink(w.startDate, formatDateShort(w.startDate))} →
-          ${archiveLink(w.endDate, formatDateShort(w.endDate))}
+          ${dateLink(w.startDate, formatDateShort(w.startDate))} →
+          ${dateLink(w.endDate, formatDateShort(w.endDate))}
         </div>
         <div class="highlight-meta">${w.days} ${pluralUk(w.days, 'днів', 'дні', 'день')} на вершині</div>
       </div>
@@ -652,7 +687,7 @@ function buildAbove9Panel(list) {
         ${animeTitleHTML(a, 'list-title')}
         <span class="list-meta">
           ${mediaBadgeHTML(a.media_type)}
-          <span class="list-date">${archiveLink(a.firstDate, formatDateShort(a.firstDate))}</span>
+          <span class="list-date">${dateLink(a.firstDate, formatDateShort(a.firstDate))}</span>
         </span>
       </div>
       <span class="score-badge">${icon('star', 12)} ${fmtScore(a.maxScore)}</span>
@@ -681,8 +716,8 @@ function buildTop1HistoryPanel(list) {
 
     const sessionDetails = a.sessions.map((s, si) => {
       const dateStr = s.startDate === s.endDate
-        ? archiveLink(s.startDate, formatDateShort(s.startDate))
-        : `${archiveLink(s.startDate, formatDateShort(s.startDate))} → ${archiveLink(s.endDate, formatDateShort(s.endDate))}`;
+        ? dateLink(s.startDate, formatDateShort(s.startDate))
+        : `${dateLink(s.startDate, formatDateShort(s.startDate))} → ${dateLink(s.endDate, formatDateShort(s.endDate))}`;
       return `<span class="session-detail">#${si + 1}: ${dateStr}</span>`;
     }).join('');
 
@@ -722,8 +757,8 @@ function buildStableTopPanel(data) {
     <div class="stable-header">
       <span>ТОП-<strong>${data.n}</strong> без змін позицій:</span>
       <span>
-        ${archiveLink(data.startDate, formatDateShort(data.startDate))}
-        → ${archiveLink(data.endDate, formatDateShort(data.endDate))}
+        ${dateLink(data.startDate, formatDateShort(data.startDate))}
+        → ${dateLink(data.endDate, formatDateShort(data.endDate))}
         · <strong>${data.days}</strong> ${pluralUk(data.days, 'днів', 'дні', 'день')}
       </span>
     </div>
@@ -749,7 +784,7 @@ function buildMostAtOncePanel(data) {
   return `
     <div class="most-header">
       <span><strong>${data.count}</strong> аніме з оцінкою ≥ ${CONFIG.thresholds.notable}</span>
-      <span class="most-date">${archiveLink(data.date, formatDate(data.date))}</span>
+      <span class="most-date">${dateLink(data.date, formatDate(data.date))}</span>
     </div>
     <div class="ranked-list">${collapsibleList(rows, 10)}</div>`;
 }

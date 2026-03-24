@@ -1351,3 +1351,108 @@ div.anime-thumb.event-poster.placeholder {
   border-radius: 4px;
   white-space: nowrap;
 }
+
+/* ─── Source Switcher ────────────────────────────────────────────────────── */
+.source-switcher {
+  display: flex;
+  align-items: center;
+  background: var(--bg);
+  border: 1px solid var(--border);
+  border-radius: var(--r);
+  padding: 2px;
+  gap: 2px;
+  margin-left: 4px;
+}
+
+.source-btn {
+  padding: 4px 12px;
+  font-size: 12px;
+  font-weight: 700;
+  color: var(--text-2);
+  border-radius: calc(var(--r) - 2px);
+  letter-spacing: .4px;
+  transition: all var(--t);
+}
+
+.source-btn:hover { color: var(--text); }
+
+.source-btn.active {
+  background: var(--accent);
+  color: #fff;
+}
+
+/* ─── Lowest score highlight ─────────────────────────────────────────────── */
+.highlight-score--low { color: var(--red); }
+
+/* ─── Date text (без archive-link для Хікки) ─────────────────────────────── */
+.date-text {
+  color: inherit;
+  border-bottom: 1px dashed var(--border);
+}
+
+
+/* ─── Hikka theme ────────────────────────────────────────── */
+[data-mode="hikka"] {
+  --accent:       #bc8cff;
+  --accent-h:     #d2a8ff;
+  --accent-light: #bc8cff55;
+}
+
+[data-mode="hikka"][data-theme="light"] {
+  --accent:   #8250df;
+  --accent-h: #6639ba;
+}
+
+/* ─── Mode Switch toggle ─────────────────────────────────── */
+.mode-switch {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.mode-logo {
+  width: 18px;
+  height: 18px;
+  border-radius: 3px;
+  opacity: 0.35;
+  transition: opacity var(--t);
+  flex-shrink: 0;
+  image-rendering: crisp-edges;
+}
+
+.mode-logo.active { opacity: 1; }
+
+.mode-toggle-btn {
+  position: relative;
+  width: 42px;
+  height: 22px;
+  background: var(--bg-card);
+  border: 1px solid var(--border);
+  border-radius: 11px;
+  cursor: pointer;
+  padding: 0;
+  transition: background var(--t), border-color var(--t);
+  flex-shrink: 0;
+}
+
+.mode-toggle-btn[data-mode="hikka"] {
+  background: rgba(188, 140, 255, .15);
+  border-color: #bc8cff;
+}
+
+.mode-toggle-thumb {
+  position: absolute;
+  top: 2px;
+  left: 2px;
+  width: 16px;
+  height: 16px;
+  border-radius: 50%;
+  background: var(--text-2);
+  transition: transform var(--t), background var(--t);
+  pointer-events: none;
+}
+
+.mode-toggle-btn[data-mode="hikka"] .mode-toggle-thumb {
+  transform: translateX(20px);
+  background: #bc8cff;
+}

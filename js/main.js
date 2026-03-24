@@ -7,7 +7,7 @@ import {
   showTooltip,
   hideTooltip,
 } from './renderer.js';
-import { CONFIG } from './config.js';
+import { CONFIG, applyMode } from './config.js';
 import { icon } from './icons.js';
 
 // ─── State ────────────────────────────────────────────────────────────────────
@@ -20,46 +20,100 @@ const state = {
   analytics:    null,
   currentIndex: 0,
   maxScoreMap:  new Map(),
+  currentMode:  'mal',
 };
+
+// ─── Mode helpers ─────────────────────────────────────────────────────────────
+
+function getStoredMode() {
+  return localStorage.getItem('data-mode') ?? 'mal';
+}
+
+function applyModeUI(mode) {
+  document.documentElement.dataset.mode = mode;
+
+  const titleEl = document.querySelector('.site-title');
+  if (titleEl) {
+    titleEl.innerHTML = mode === 'hikka'
+      ? 'Hikka <span class="accent">Ratings Chart</span>'
+      : 'MAL <span class="accent">Ratings Chart</span>';
+  }
+
+  const subtitleEl = document.querySelector('.site-subtitle');
+  if (subtitleEl) {
+    subtitleEl.textContent = mode === 'hikka'
+      ? 'Архів рейтинґів Hikka'
+      : 'Архів рейтинґів MyAnimeList';
+  }
+
+  const toggleBtn = document.getElementById('mode-toggle-btn');
+  if (toggleBtn) toggleBtn.dataset.mode = mode;
+
+  document.querySelectorAll('.mode-logo').forEach(el => {
+    el.classList.toggle('active', el.dataset.source === mode);
+  });
+}
+
+async function switchMode(mode) {
+  if (mode === state.currentMode) return;
+  localStorage.setItem('data-mode', mode);
+  state.currentMode = mode;
+  applyMode(mode);
+  applyModeUI(mode);
+  await loadData();
+}
 
 // ─── Init ─────────────────────────────────────────────────────────────────────
 
 async function init() {
+  const mode = getStoredMode();
+  state.currentMode = mode;
+  applyMode(mode);
+  applyModeUI(mode);
+  setupEventListeners();
+  setupTheme();
+  await loadData();
+}
+
+// ─── Data loading ─────────────────────────────────────────────────────────────
+
+async function loadData() {
   const loadingEl = document.getElementById('loading');
   const contentEl = document.getElementById('content');
+
+  if (loadingEl) {
+    loadingEl.innerHTML = `<div class="spinner"></div><p>Завантаження даних…</p>`;
+    loadingEl.classList.remove('hidden');
+  }
+  if (contentEl) contentEl.classList.add('hidden');
 
   try {
     const { index, analytics, enriched } = await loadAll();
 
     if (!index.length) throw new Error('Не вдалося завантажити жодного знімку.');
-    
+
     state.index        = index;
     state.enrichedMap  = buildEnrichedMap(enriched);
     state.currentIndex = index.length - 1;
     state.analytics    = analytics;
-    state.maxScoreMap = new Map(
+    state.maxScoreMap  = new Map(
       (analytics?.allAboveThreshold ?? []).map(a => [a.animeId, a.maxScore])
     );
 
-    // Завантажуємо перший снепшот (останній за датою) одразу
     const dates = index.map(s => s.date);
     const { current, prev } = await loadSnapshotPair(dates, state.currentIndex);
     state.currentSnap = current;
     state.prevSnap    = prev;
 
-    loadingEl.classList.add('hidden');
-    contentEl.classList.remove('hidden');
+    if (loadingEl) loadingEl.classList.add('hidden');
+    if (contentEl) contentEl.classList.remove('hidden');
 
     renderAll();
-    setupEventListeners();
-    setupTheme();
-
   } catch (err) {
-    loadingEl.innerHTML = `
-      <div class="error-state">
-        <p>❌ ${err.message}</p>
-      </div>`;
-    console.error('[MAL Charts] Помилка:', err);
+    if (loadingEl) {
+      loadingEl.innerHTML = `<div class="error-state"><p>❌ ${err.message}</p></div>`;
+    }
+    console.error('[Charts] Помилка:', err);
   }
 }
 
@@ -72,14 +126,14 @@ function renderAll() {
     () => renderEventsSection(state.analytics),
   ];
   for (const fn of sections) {
-    try { fn(); } catch (e) { console.error('[MAL Charts] Секція:', e); }
+    try { fn(); } catch (e) { console.error('[Charts] Секція:', e); }
   }
 }
 
 function renderChart() {
   try {
     renderChartSection(state.currentSnap, state.prevSnap, state.enrichedMap, state.index, state.currentIndex, state.analytics?.scoreStreaks ?? {}, state.maxScoreMap);
-  } catch (e) { console.error('[MAL Charts] Chart:', e); }
+  } catch (e) { console.error('[Charts] Chart:', e); }
 }
 
 async function jumpTo(idx) {
@@ -99,7 +153,6 @@ async function jumpTo(idx) {
 
 function setupEventListeners() {
   document.addEventListener('click', e => {
-    // Info buttons
     const infoBtn = e.target.closest('[data-info-key]');
     if (infoBtn) {
       e.stopPropagation();
@@ -107,18 +160,22 @@ function setupEventListeners() {
       return;
     }
 
-    // Snap prev/next
-    if (e.target.closest('#snap-prev')) { jumpTo(state.currentIndex - 1); return; }
-    if (e.target.closest('#snap-next')) { jumpTo(state.currentIndex + 1); return; }
+    if (e.target.closest('#snap-prev'))   { jumpTo(state.currentIndex - 1); return; }
+    if (e.target.closest('#snap-next'))   { jumpTo(state.currentIndex + 1); return; }
     if (e.target.closest('#snap-latest')) { jumpTo(state.index.length - 1); return; }
+
+    // Mode toggle
+    const modeBtn = e.target.closest('#mode-toggle-btn');
+    if (modeBtn) {
+      switchMode(state.currentMode === 'mal' ? 'hikka' : 'mal');
+      return;
+    }
 
     hideTooltip();
   });
 
-  // Snap page input
   document.addEventListener('snap-jump', e => jumpTo(e.detail));
 
-  // Keyboard
   document.addEventListener('keydown', e => {
     if (e.target.matches('input, textarea, select')) return;
     if (e.key === 'ArrowLeft')  jumpTo(state.currentIndex - 1);
@@ -136,10 +193,9 @@ function setupEventListeners() {
 }
 
 function setupTheme() {
-  const btn   = document.getElementById('theme-toggle');
+  const btn = document.getElementById('theme-toggle');
 
-  const updateIcon = theme =>
-    btn.innerHTML = icon(theme === 'dark' ? 'sun' : 'moon', 18);
+  const updateIcon = theme => btn.innerHTML = icon(theme === 'dark' ? 'sun' : 'moon', 18);
 
   const saved = localStorage.getItem('theme') ?? 'dark';
   document.documentElement.dataset.theme = saved;

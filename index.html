@@ -47,11 +47,29 @@
             <h1 class="site-title">MAL <span class="accent">Ratings Chart</span></h1>
             <p class="site-subtitle">Архів рейтинґів MyAnimeList</p>
           </div>
+          <div class="source-switcher" id="source-switcher">
+            <button class="source-btn" data-source="mal">MAL</button>
+            <button class="source-btn" data-source="hikka">Hikka</button>
+          </div>
         </div>
         <nav class="header-nav">
           <a href="#section-chart">Знімки</a>
           <a href="#section-categories">ТОП категорій</a>
           <a href="#section-events">Рекорди</a>
+
+          <div class="mode-switch" id="mode-switch" title="Перемикач джерела даних">
+            <img class="mode-logo" data-source="mal"
+                 src="https://myanimelist.net/favicon.ico"
+                 alt="MAL" width="18" height="18">
+            <button class="mode-toggle-btn" id="mode-toggle-btn"
+                    data-mode="mal" aria-label="Перемикач джерела">
+              <span class="mode-toggle-thumb"></span>
+            </button>
+            <img class="mode-logo" data-source="hikka"
+                 src="https://hikka.io/favicon.ico"
+                 alt="Hikka" width="18" height="18">
+          </div>
+
           <button class="theme-toggle" id="theme-toggle" aria-label="Змінити тему"></button>
         </nav>
       </div>
