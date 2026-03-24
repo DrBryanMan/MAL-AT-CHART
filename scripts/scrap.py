@@ -38,8 +38,8 @@ DATA_DIR = BASE_DIR / "../data"
 
 OUT_DIR         = BASE_DIR / "../snapshots/anime-mal"
 DELAY_SEC       = 1.5
-USE_CDX_CACHE   = True
-# USE_CDX_CACHE   = False
+# USE_CDX_CACHE   = True
+USE_CDX_CACHE   = False
 
 CDX_CACHE_FILE  = DATA_DIR / "cdx_snapshots.json"
 EMPTY_LIST_FILE = DATA_DIR / "empty_snapshots.json"
