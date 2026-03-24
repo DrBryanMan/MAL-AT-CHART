@@ -1,7 +1,3 @@
-/**
- * renderer.js — DOM rendering functions for MAL Charts
- */
-
 import { icon } from './icons.js';
 import { CONFIG } from './config.js';
 import { computeChartData, formatDate, formatDateShort, daysBetween, archiveUrl } from './analytics.js';
@@ -127,7 +123,6 @@ export function hideTooltip() {
 function setupTabs(container) {
   container.querySelectorAll('.tab-list .tab-btn').forEach(btn => {
     btn.addEventListener('click', e => {
-      // Не реагуємо на кліки по info-btn всередині таба
       if (e.target.closest('.tab-info-btn')) return;
       const key   = btn.dataset.tab;
       const scope = btn.closest('.tabs');
@@ -159,6 +154,31 @@ export function setupShowMore(container) {
       chevron.style.transform = open ? '' : 'rotate(90deg)';
     });
   });
+}
+
+// ═══════════════════════════════════════════════════════
+// NEW HELPER: enrich minimal data from analytics with enrichedMap
+// ═══════════════════════════════════════════════════════
+
+function getFullAnime(minimal, enrichedMap) {
+  if (!minimal?.animeId && !minimal?.id) return { ...minimal };
+  const id = minimal.animeId ?? minimal.id;
+  const enr = enrichedMap.get(id) ?? {};
+  return {
+    id,
+    title:     enr.title     ?? minimal.title     ?? '',
+    title_ua:  enr.title_ua  ?? minimal.title_ua  ?? null,
+    media_type:enr.media_type?? minimal.media_type?? 'unknown',
+    image:     enr.image     ?? minimal.image     ?? null,
+    hikka_slug:enr.hikka_slug?? minimal.hikka_slug?? null,
+    banner_image: enr.banner_image ?? minimal.banner_image ?? null,
+    score:     minimal.score     ?? null,
+    members:   minimal.members   ?? null,
+    date:      minimal.date      ?? null,
+    startDate: minimal.startDate ?? null,
+    endDate:   minimal.endDate   ?? null,
+    ...minimal
+  };
 }
 
 // ═══════════════════════════════════════════════════════
@@ -246,7 +266,8 @@ export function renderChartSection(snap, prevSnap, enrichedMap, index, currentIn
     input.addEventListener('keydown', e => { if (e.key === 'Enter') input.dispatchEvent(new Event('change')); });
   }
 
-  const { rows: allRows } = computeChartData(snap, prevSnap, enrichedMap, scoreStreaks);
+  const snapshotDates = index.map(s => s.date);
+  const { rows: allRows } = computeChartData(snap, prevSnap, enrichedMap, scoreStreaks, snapshotDates);
   const rows = allRows.slice(0, CONFIG.chartLimit ?? 50);
 
   const rowsHTML = rows.map(row => {
@@ -296,7 +317,6 @@ export function renderChartSection(snap, prevSnap, enrichedMap, index, currentIn
     </div>`;
   });
 
-  // Flatten: рядки — прямі діти .chart-list щоб rank-class коректно фарбував
   let chartInner = '';
   if (rows.length <= 10) {
     chartInner = rowsHTML.join('');
@@ -314,7 +334,6 @@ export function renderChartSection(snap, prevSnap, enrichedMap, index, currentIn
     : `<div class="empty-state"><p>Знімок не містить даних.</p></div>`;
   playChartFlip(contentEl, prevPositions);
 
-  // Спеціальний show-more для чарту — вставляємо рядки напряму в chart-list
   contentEl.querySelector('[data-chart-more]')?.addEventListener('click', function() {
     const tmpl = document.getElementById('chart-hidden');
     if (tmpl) {
@@ -346,7 +365,7 @@ function groupSessions(list) {
   return result;
 }
 
-export function renderCategorySection(categoryTopHistory) {
+export function renderCategorySection(categoryTopHistory, enrichedMap) {
   const container = $('categories-content');
   if (!container) return;
 
@@ -375,12 +394,10 @@ export function renderCategorySection(categoryTopHistory) {
   }).join('');
 
   const tabPanels = sorted.map((cat, i) => {
-    // Сортуємо від новішого до старішого
     const list = [...(sessions[cat] ?? [])].reverse();
-
     const grouped = groupSessions(list);
     const rows = grouped.map(g => {
-      if (!g.grouped) return buildSessionRow(g.item);
+      if (!g.grouped) return buildSessionRow(g.item, enrichedMap);
 
       const s     = g.items[0];
       const first = g.items.at(-1);
@@ -389,7 +406,7 @@ export function renderCategorySection(categoryTopHistory) {
         ? `${fmtScore(first.firstScore)} (${fmtScore(s.maxScore)})`
         : fmtScore(s.maxScore);
 
-      const inner = g.items.map(buildSessionRow).join('');
+      const inner = g.items.map(item => buildSessionRow(item, enrichedMap)).join('');
       return `<div class="session-group">
         <div class="session-group-header" data-toggle>
           ${thumbHTML(s.image, s.title_ua ?? s.title, 'small')}
@@ -430,8 +447,9 @@ export function renderCategorySection(categoryTopHistory) {
   setupShowMore(container);
 }
 
-function buildSessionRow(s) {
-  const origTitle = s.title_ua ? `<span class="session-orig">${escHtml(s.title)}</span>` : '';
+function buildSessionRow(s, enrichedMap) {
+  const full = getFullAnime(s, enrichedMap);
+  const origTitle = full.title_ua ? `<span class="session-orig">${escHtml(full.title)}</span>` : '';
   const scoreStr  = s.maxScore !== s.firstScore
     ? `${fmtScore(s.firstScore)} (${fmtScore(s.maxScore)})`
     : fmtScore(s.firstScore);
@@ -442,11 +460,11 @@ function buildSessionRow(s) {
     ? dateLink(s.startDate, formatDateShort(s.startDate))
     : `${dateLink(s.startDate, formatDateShort(s.startDate))} → ${dateLink(s.endDate, formatDateShort(s.endDate))}`;
 
-  return `<div class="session-row${s.banner_image ? ' has-banner' : ''}" ${bannerStyle(s.banner_image)}>
-    ${thumbHTML(s.image, s.title_ua ?? s.title, 'small')}
+  return `<div class="session-row${full.banner_image ? ' has-banner' : ''}" ${bannerStyle(full.banner_image)}>
+    ${thumbHTML(full.image, full.title_ua ?? full.title, 'small')}
     <div class="session-info">
       <div class="session-title">
-        ${animeTitleHTML(s, 'session-title-text')} ${sessionBadge}${origTitle}
+        ${animeTitleHTML(full, 'session-title-text')} ${sessionBadge}${origTitle}
       </div>
       <div class="session-meta">
         <span class="session-date">${dateRange}</span>
@@ -460,7 +478,7 @@ function buildSessionRow(s) {
 // SECTION 3: Notable Events
 // ═══════════════════════════════════════════════════════
 
-export function renderEventsSection(analytics, source = 'mal') {
+export function renderEventsSection(analytics, source = 'mal', enrichedMap) {
   const container = $('events-content');
   if (!container) return;
 
@@ -468,12 +486,15 @@ export function renderEventsSection(analytics, source = 'mal') {
 
   container.innerHTML = `
     <div class="events-grid">
-      ${buildHighestEverCard(analytics.highestEver)}
-      ${isHikka ? buildLowestEverCard(analytics.lowestEver) : ''}
-      ${buildMostMembersCard(analytics.mostMembers)}
-      ${buildStableScoreCard(analytics.mostStableScore)}
-      ${buildLongestTop1Card(analytics.longestTop1)}
-    </div>`;
+      ${buildHighestEverCard(analytics.highestEver, enrichedMap)}
+      ${isHikka ? buildLowestEverCard(analytics.lowestEver, enrichedMap) : ''}
+      ${buildMostMembersCard(analytics.mostMembers, enrichedMap)}
+      ${buildStableScoreCard(analytics.mostStableScore, enrichedMap)}
+      ${buildLongestTop1Card(analytics.longestTop1, enrichedMap)}
+    </div>
+
+    ${buildEventsTabs(analytics, enrichedMap)}
+  `;
 
   setupTabs(container);
   setupShowMore(container);
@@ -494,9 +515,10 @@ function eventCard(ico, title, infoKey, body, bgImage = null) {
 }
 
 /** Рядки призерів */
-function runnerUpRows(top3, scoreField = 'score', dateField = 'date', endDateField = null) {
+function runnerUpRows(top3, enrichedMap, scoreField = 'score', dateField = 'date', endDateField = null) {
   const medals = ['2', '3'];
-  return top3.slice(1, 3).map((a, i) => {
+  return top3.slice(1, 3).map((minimal, i) => {
+    const a = getFullAnime(minimal, enrichedMap);
     const score    = a[scoreField] ?? a.score ?? 0;
     const date     = a[dateField]  ?? a.startDate ?? null;
     const endDate  = endDateField  ? (a[endDateField] ?? null) : null;
@@ -516,7 +538,7 @@ function runnerUpRows(top3, scoreField = 'score', dateField = 'date', endDateFie
   }).join('');
 }
 
-function categoryWinnersHTML(winnerId, tvW, movieW, otherW, scoreField = 'score', dateField = 'date', endDateField = null) {
+function categoryWinnersHTML(winnerId, tvW, movieW, otherW, enrichedMap, scoreField = 'score', dateField = 'date', endDateField = null) {
   const getId = a => a?.animeId ?? a?.id ?? null;
   const rows = [
     tvW    && getId(tvW)    !== winnerId && { label: `${icon('tv',   14)} Серіал`, a: tvW },
@@ -528,7 +550,8 @@ function categoryWinnersHTML(winnerId, tvW, movieW, otherW, scoreField = 'score'
 
   if (!rows.length) return '';
   return `<div class="cat-winners">
-    ${rows.map(({ label, a }) => {
+    ${rows.map(({ label, a: minimal }) => {
+      const a = getFullAnime(minimal, enrichedMap);
       const score    = a[scoreField] ?? a.score ?? 0;
       const date     = a[dateField]  ?? a.startDate ?? null;
       const endDate  = endDateField  ? (a[endDateField] ?? null) : null;
@@ -551,13 +574,13 @@ function categoryWinnersHTML(winnerId, tvW, movieW, otherW, scoreField = 'score'
 
 // ─── Card: Lowest Ever ───────────────────────────────────────────────────────
 
-function buildLowestEverCard(data) {
+function buildLowestEverCard(data, enrichedMap) {
   if (!data) return eventCard(
     icon('trending-down', 20), 'Найнижча оцінка за всю історію', 'lowestEver',
     '<div class="empty-state"><p>Недостатньо даних</p></div>'
   );
 
-  const w = data.winner;
+  const w = getFullAnime(data.winner, enrichedMap);
   return eventCard(icon('trending-down', 20), 'Найнижча оцінка за всю історію', 'lowestEver', `
     <div class="event-winner">
       ${thumbHTML(w.image, w.title_ua ?? w.title, 'event-poster')}
@@ -568,31 +591,31 @@ function buildLowestEverCard(data) {
         <div class="highlight-date">${dateLink(w.date, formatDate(w.date))}</div>
       </div>
     </div>
-    ${runnerUpRows(data.top3, 'score', 'date')}
-    ${categoryWinnersHTML(w.animeId ?? w.id, data.tvWinner, data.movieWinner, data.otherWinner, 'score', 'date')}`,
+    ${runnerUpRows(data.top3, enrichedMap, 'score', 'date')}
+    ${categoryWinnersHTML(w.id, data.tvWinner, data.movieWinner, data.otherWinner, enrichedMap, 'score', 'date')}`,
     w.image
   );
 }
 
 // ─── Card: Most Members ───────────────────────────────────────────────────────
 
-function buildMostMembersCard(data) {
+function buildMostMembersCard(data, enrichedMap) {
   if (!data) return eventCard(
     icon('users', 20), 'Найбільша авдиторія', 'mostMembers',
     '<div class="empty-state"><p>Недостатньо даних</p></div>'
   );
 
-  const w = data.winner;
+  const w = getFullAnime(data.winner, enrichedMap);
   const medals = ['2', '3'];
 
-  const runners = data.top3.slice(1, 3).map((a, i) =>
-    `<div class="runner-up-row">
+  const runners = data.top3.slice(1, 3).map((minimal, i) => {
+    const a = getFullAnime(minimal, enrichedMap);
+    return `<div class="runner-up-row">
       <span class="runner-medal runner-medal-${i + 2}">${medals[i]}</span>
       ${animeTitleHTML(a, 'runner-title')}
       <span class="runner-score">${icon('users', 12)} ${fmtNum(a.members)}</span>
-      <span class="runner-date">${a.date ? dateLink(a.date, formatDateShort(a.date)) : ''}</span>
-    </div>`
-  ).join('');
+    </div>`;
+  }).join('');
 
   return eventCard(icon('users', 20), 'Найбільша авдиторія', 'mostMembers', `
     <div class="event-winner">
@@ -601,7 +624,6 @@ function buildMostMembersCard(data) {
         <span class="highlight-score" style="color:var(--accent)">${icon('users', 22)} ${fmtNum(w.members)}</span>
         <div class="highlight-title">${animeTitleHTML(w)}</div>
         ${w.title_ua ? `<div class="highlight-orig">${escHtml(w.title)}</div>` : ''}
-        <div class="highlight-date">${dateLink(w.date, formatDate(w.date))}</div>
       </div>
     </div>
     ${runners}`, w.image);
@@ -609,11 +631,11 @@ function buildMostMembersCard(data) {
 
 // ─── Card: Highest Ever ───────────────────────────────────────────────────────
 
-function buildHighestEverCard(data) {
+function buildHighestEverCard(data, enrichedMap) {
   if (!data) return eventCard(icon('trophy', 20), 'Найвища оцінка за всю історію', 'highestEver',
     '<div class="empty-state"><p>Недостатньо даних</p></div>');
 
-  const w = data.winner;
+  const w = getFullAnime(data.winner, enrichedMap);
   return eventCard(icon('trophy', 20), 'Найвища оцінка за всю історію', 'highestEver', `
     <div class="event-winner">
       ${thumbHTML(w.image, w.title_ua ?? w.title, 'event-poster')}
@@ -624,17 +646,17 @@ function buildHighestEverCard(data) {
         <div class="highlight-date">${dateLink(w.date, formatDate(w.date))}</div>
       </div>
     </div>
-    ${runnerUpRows(data.top3, 'score', 'date')}
-    ${categoryWinnersHTML(w.animeId ?? w.id, data.tvWinner, data.movieWinner, data.otherWinner, 'score', 'date')}`, w.image);
+    ${runnerUpRows(data.top3, enrichedMap, 'score', 'date')}
+    ${categoryWinnersHTML(w.id, data.tvWinner, data.movieWinner, data.otherWinner, enrichedMap, 'score', 'date')}`, w.image);
 }
 
 // ─── Card: Stable Score ───────────────────────────────────────────────────────
 
-function buildStableScoreCard(data) {
+function buildStableScoreCard(data, enrichedMap) {
   if (!data) return eventCard(icon('bar-chart-2', 20), 'Найстабільніша оцінка', 'stableScore',
     '<div class="empty-state"><p>Потрібно ≥ 2 знімки</p></div>');
 
-  const w    = data.winner;
+  const w = getFullAnime(data.winner, enrichedMap);
   const days = daysBetween(w.startDate, w.endDate);
   return eventCard(icon('bar-chart-2', 20), 'Найстабільніша оцінка', 'stableScore', `
     <div class="event-winner">
@@ -650,17 +672,17 @@ function buildStableScoreCard(data) {
         <div class="highlight-meta">${days} ${pluralUk(days, 'днів', 'дні', 'день')} незмінно</div>
       </div>
     </div>
-    ${runnerUpRows(data.top3.map(s => ({ ...s, score: s.score ?? 0 })), 'score', 'startDate', 'endDate')}
-    ${categoryWinnersHTML(w.animeId, data.tvWinner, data.movieWinner, data.otherWinner, 'score', 'startDate', 'endDate')}`, w.image);
+    ${runnerUpRows(data.top3.map(s => ({ ...s, score: s.score ?? 0 })), enrichedMap, 'score', 'startDate', 'endDate')}
+    ${categoryWinnersHTML(w.id, data.tvWinner, data.movieWinner, data.otherWinner, enrichedMap, 'score', 'startDate', 'endDate')}`, w.image);
 }
 
 // ─── Card: Longest Top-1 ─────────────────────────────────────────────────────
 
-function buildLongestTop1Card(data) {
+function buildLongestTop1Card(data, enrichedMap) {
   if (!data) return eventCard(icon('crown', 20), 'Найдовше утримання ТОП-1', 'longestTop1',
     '<div class="empty-state"><p>Недостатньо даних</p></div>');
 
-  const w = data.winner;
+  const w = getFullAnime(data.winner, enrichedMap);
   return eventCard(icon('crown', 20), 'Найдовше утримання ТОП-1', 'longestTop1', `
     <div class="event-winner">
       ${thumbHTML(w.image, w.title_ua ?? w.title, 'event-poster')}
@@ -675,13 +697,13 @@ function buildLongestTop1Card(data) {
         <div class="highlight-meta">${w.days} ${pluralUk(w.days, 'днів', 'дні', 'день')} на вершині</div>
       </div>
     </div>
-    ${runnerUpRows(data.top3, 'maxScore', 'startDate', 'endDate')}
-    ${categoryWinnersHTML(w.animeId, data.tvWinner, data.movieWinner, data.otherWinner, 'maxScore', 'startDate', 'endDate')}`, w.image);
+    ${runnerUpRows(data.top3, enrichedMap, 'maxScore', 'startDate', 'endDate')}
+    ${categoryWinnersHTML(w.id, data.tvWinner, data.movieWinner, data.otherWinner, enrichedMap, 'maxScore', 'startDate', 'endDate')}`, w.image);
 }
 
 // ─── Events Tabs ──────────────────────────────────────────────────────────────
 
-function buildEventsTabs({ allAboveThreshold, top1History, mostStableTopN, mostAtOnce }) {
+function buildEventsTabs({ allAboveThreshold, top1History, mostStableTopN, mostAtOnce }, enrichedMap) {
   const tabs = [
     { key: 'above9',    ico: icon('target', 14),      label: `Усі з оцінкою ≥ ${CONFIG.thresholds.notable}`, info: 'allAbove9' },
     { key: 'top1hist',  ico: icon('crown', 14),        label: 'Хто тримав топ-1',                             info: 'top1History' },
@@ -697,10 +719,10 @@ function buildEventsTabs({ allAboveThreshold, top1History, mostStableTopN, mostA
   ).join('');
 
   const panels = [
-    buildAbove9Panel(allAboveThreshold),
-    buildTop1HistoryPanel(top1History),
-    buildStableTopPanel(mostStableTopN),
-    buildMostAtOncePanel(mostAtOnce),
+    buildAbove9Panel(allAboveThreshold, enrichedMap),
+    buildTop1HistoryPanel(top1History, enrichedMap),
+    buildStableTopPanel(mostStableTopN, enrichedMap),
+    buildMostAtOncePanel(mostAtOnce, enrichedMap),
   ].map((content, i) =>
     `<div class="tab-panel${i === 0 ? ' active' : ''}" data-panel="${tabs[i].key}">${content}</div>`
   ).join('');
@@ -713,12 +735,13 @@ function buildEventsTabs({ allAboveThreshold, top1History, mostStableTopN, mostA
 
 // ─── Panel: All Above 9 ───────────────────────────────────────────────────────
 
-function buildAbove9Panel(list) {
+function buildAbove9Panel(list, enrichedMap) {
   if (!list?.length) return `<div class="empty-state">
     <p>Жодне аніме ще не досягало оцінки ≥ ${CONFIG.thresholds.notable}.</p></div>`;
 
-  const rows = list.map((a, i) =>
-    `<div class="list-row">
+  const rows = list.map((minimal, i) => {
+    const a = getFullAnime(minimal, enrichedMap);
+    return `<div class="list-row">
       <span class="rank-num">${i + 1}</span>
       ${thumbHTML(a.image, a.title_ua ?? a.title, 'small')}
       <div class="list-info">
@@ -729,25 +752,25 @@ function buildAbove9Panel(list) {
         </span>
       </div>
       <span class="score-badge">${icon('star', 12)} ${fmtScore(a.maxScore)}</span>
-    </div>`
-  );
+    </div>`;
+  });
 
   return `<div class="ranked-list">${collapsibleList(rows, 10)}</div>`;
 }
 
 // ─── Panel: Top-1 History ─────────────────────────────────────────────────────
 
-function buildTop1HistoryPanel(list) {
+function buildTop1HistoryPanel(list, enrichedMap) {
   if (!list?.length) return `<div class="empty-state"><p>Немає даних.</p></div>`;
 
-  // Сортуємо від новішого до старішого (за датою останньої сесії)
   const sorted = [...list].toSorted((a, b) => {
     const lastA = a.sessions.at(-1)?.startDate ?? a.startDate;
     const lastB = b.sessions.at(-1)?.startDate ?? b.startDate;
     return new Date(lastB) - new Date(lastA);
   });
 
-  const rows = sorted.map(a => {
+  const rows = sorted.map(minimal => {
+    const a = getFullAnime(minimal, enrichedMap);
     const fs = a.firstScore ?? 0;
     const ms = a.maxScore   ?? 0;
     const scoreStr = ms !== fs ? `${fmtScore(fs)} (${fmtScore(ms)})` : fmtScore(fs);
@@ -780,16 +803,17 @@ function buildTop1HistoryPanel(list) {
 
 // ─── Panel: Stable Top-N ─────────────────────────────────────────────────────
 
-function buildStableTopPanel(data) {
+function buildStableTopPanel(data, enrichedMap) {
   if (!data) return `<div class="empty-state"><p>Потрібно ≥ 2 знімки для аналізу.</p></div>`;
 
-  const rows = data.topN.map((a, i) =>
-    `<div class="stable-row">
+  const rows = data.topN.map((minimal, i) => {
+    const a = getFullAnime(minimal, enrichedMap);
+    return `<div class="stable-row">
       <span class="rank-num">${i + 1}</span>
       ${animeTitleHTML(a, 'stable-title')}
       <span class="stable-score">${icon('star', 12)} ${fmtScore(a.score)}</span>
-    </div>`
-  );
+    </div>`;
+  });
 
   return `
     <div class="stable-header">
@@ -805,19 +829,20 @@ function buildStableTopPanel(data) {
 
 // ─── Panel: Most High-Rated at Once ──────────────────────────────────────────
 
-function buildMostAtOncePanel(data) {
+function buildMostAtOncePanel(data, enrichedMap) {
   if (!data || data.count === 0) return `<div class="empty-state">
     <p>У жодному знімку не знайдено аніме з оцінкою ≥ ${CONFIG.thresholds.notable}.</p></div>`;
 
-  const rows = data.anime.map((a, i) =>
-    `<div class="list-row">
+  const rows = data.anime.map((minimal, i) => {
+    const a = getFullAnime(minimal, enrichedMap);
+    return `<div class="list-row">
       <span class="rank-num">${i + 1}</span>
       <div class="list-info">
         ${animeTitleHTML(a, 'list-title')}
       </div>
       <span class="score-badge">${icon('star', 12)} ${fmtScore(a.score)}</span>
-    </div>`
-  );
+    </div>`;
+  });
 
   return `
     <div class="most-header">

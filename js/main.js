@@ -44,8 +44,8 @@ function applyModeUI(mode) {
   const subtitleEl = document.querySelector('.site-subtitle');
   if (subtitleEl) {
     subtitleEl.textContent = mode === 'hikka'
-      ? 'Архів рейтинґів Hikka'
-      : 'Архів рейтинґів MyAnimeList';
+      ? 'Архів рейтинґів Hikka з 02.2026'
+      : 'Архів рейтинґів MyAnimeList з 2006';
   }
 
   const toggleBtn = document.getElementById('mode-toggle-btn');
@@ -54,15 +54,29 @@ function applyModeUI(mode) {
   document.querySelectorAll('.mode-logo').forEach(el => {
     el.classList.toggle('active', el.dataset.source === mode);
   });
+  document.querySelectorAll('.source-btn').forEach(btn => {
+    btn.classList.toggle('active', btn.dataset.source === mode);
+  });
 }
 
 async function switchMode(mode) {
   if (mode === state.currentMode) return;
+
+  const contentEl = document.getElementById('content');
+  
+  contentEl.classList.remove('visible');
+  contentEl.classList.add('fade-out');
+
+  await new Promise(r => setTimeout(r, 200));
+
   localStorage.setItem('data-mode', mode);
   state.currentMode = mode;
   applyMode(mode);
   applyModeUI(mode);
+
   await loadData();
+
+  contentEl.classList.remove('fade-out');
 }
 
 // ─── Init ─────────────────────────────────────────────────────────────────────
@@ -82,12 +96,13 @@ async function init() {
 async function loadData() {
   const loadingEl = document.getElementById('loading');
   const contentEl = document.getElementById('content');
+  contentEl.classList.remove('visible');
 
   if (loadingEl) {
     loadingEl.innerHTML = `<div class="spinner"></div><p>Завантаження даних…</p>`;
     loadingEl.classList.remove('hidden');
   }
-  if (contentEl) contentEl.classList.add('hidden');
+  // if (contentEl) contentEl.classList.add('hidden');
 
   try {
     const { index, analytics, enriched } = await loadAll();
@@ -111,6 +126,11 @@ async function loadData() {
     if (contentEl) contentEl.classList.remove('hidden');
 
     renderAll();
+    requestAnimationFrame(() => {
+      requestAnimationFrame(() => {
+        contentEl.classList.add('visible');
+      });
+    });
   } catch (err) {
     if (loadingEl) {
       loadingEl.innerHTML = `<div class="error-state"><p>❌ ${err.message}</p></div>`;
@@ -124,8 +144,8 @@ async function loadData() {
 function renderAll() {
   const sections = [
     () => renderChartSection(state.currentSnap, state.prevSnap, state.enrichedMap, state.index, state.currentIndex, state.analytics?.scoreStreaks ?? {}, state.maxScoreMap),
-    () => renderCategorySection(state.analytics.categoryTopHistory),
-    () => renderEventsSection(state.analytics, state.currentMode),
+    () => renderCategorySection(state.analytics.categoryTopHistory, state.enrichedMap),
+    () => renderEventsSection(state.analytics, state.currentMode, state.enrichedMap),
   ];
   for (const fn of sections) {
     try { fn(); } catch (e) { console.error('[Charts] Секція:', e); }
@@ -167,9 +187,10 @@ function setupEventListeners() {
     if (e.target.closest('#snap-latest')) { jumpTo(state.index.length - 1); return; }
 
     // Mode toggle
-    const modeBtn = e.target.closest('#mode-toggle-btn');
-    if (modeBtn) {
-      switchMode(state.currentMode === 'mal' ? 'hikka' : 'mal');
+    const sourceBtn = e.target.closest('.source-btn');
+    if (sourceBtn) {
+      const mode = sourceBtn.dataset.source;
+      switchMode(mode);
       return;
     }
 

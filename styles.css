@@ -271,7 +271,7 @@ section[id] { scroll-margin-top: 70px; }
 
 /* ─── Sections ───────────────────────────────────────── */
 .section {
-  margin: 48px 0;
+  margin: 2em 0;
 }
 
 .section-header {
@@ -1374,8 +1374,10 @@ div.anime-thumb.event-poster.placeholder {
 }
 
 .source-btn {
-  padding: 4px 12px;
-  font-size: 12px;
+	display: flex;
+	gap: .5em;
+  padding: 4px;
+  font-size: 14px;
   font-weight: 700;
   color: var(--text-2);
   border-radius: calc(var(--r) - 2px);
@@ -1386,8 +1388,8 @@ div.anime-thumb.event-poster.placeholder {
 .source-btn:hover { color: var(--text); }
 
 .source-btn.active {
-  background: var(--accent);
-  color: #fff;
+  background: var(--accent-light);
+  color: var(--accent);
 }
 
 /* ─── Lowest score highlight ─────────────────────────────────────────────── */
@@ -1412,56 +1414,20 @@ div.anime-thumb.event-poster.placeholder {
   --accent-h: #6639ba;
 }
 
-/* ─── Mode Switch toggle ─────────────────────────────────── */
-.mode-switch {
-  display: flex;
-  align-items: center;
-  gap: 6px;
+/* *** */
+
+#content {
+  opacity: 0;
+  transform: translateY(10px);
+  transition: opacity .3s ease, transform .3s ease;
 }
 
-.mode-logo {
-  width: 18px;
-  height: 18px;
-  border-radius: 3px;
-  opacity: 0.35;
-  transition: opacity var(--t);
-  flex-shrink: 0;
-  image-rendering: crisp-edges;
+#content.fade-out {
+  opacity: 0;
+  transform: translateY(10px);
 }
 
-.mode-logo.active { opacity: 1; }
-
-.mode-toggle-btn {
-  position: relative;
-  width: 42px;
-  height: 22px;
-  background: var(--bg-card);
-  border: 1px solid var(--border);
-  border-radius: 11px;
-  cursor: pointer;
-  padding: 0;
-  transition: background var(--t), border-color var(--t);
-  flex-shrink: 0;
-}
-
-.mode-toggle-btn[data-mode="hikka"] {
-  background: rgba(188, 140, 255, .15);
-  border-color: #bc8cff;
-}
-
-.mode-toggle-thumb {
-  position: absolute;
-  top: 2px;
-  left: 2px;
-  width: 16px;
-  height: 16px;
-  border-radius: 50%;
-  background: var(--text-2);
-  transition: transform var(--t), background var(--t);
-  pointer-events: none;
-}
-
-.mode-toggle-btn[data-mode="hikka"] .mode-toggle-thumb {
-  transform: translateX(20px);
-  background: #bc8cff;
+#content.visible {
+  opacity: 1;
+  transform: translateY(0);
 }

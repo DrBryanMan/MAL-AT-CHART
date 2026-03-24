@@ -41,7 +41,7 @@ for root, dirs, files in os.walk(base_path):
         # Якщо members = null — не чіпаємо (старі знімки без цього поля)
         data[key] = [
             item for item in data[key]
-            if item.get('members') is None or item.get('members') > 4
+            if item.get('members') is None or item.get('members') > 9
         ]
         data['total'] = len(data[key])
 
