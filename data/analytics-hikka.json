@@ -59433,38 +59433,44 @@
         "animeId": 52991,
         "score": 9.41,
         "date": "2026-02-01",
-        "members": 0
+        "members": 0,
+        "scored_by": null
       },
       {
         "animeId": 59978,
         "score": 9.31,
         "date": "2026-03-22",
-        "members": 0
+        "members": 0,
+        "scored_by": null
       },
       {
         "animeId": 5114,
         "score": 9.16,
         "date": "2026-02-22",
-        "members": 0
+        "members": 0,
+        "scored_by": null
       }
     ],
     "tvWinner": {
       "animeId": 52991,
       "score": 9.41,
       "date": "2026-02-01",
-      "members": 0
+      "members": 0,
+      "scored_by": null
     },
     "movieWinner": {
       "animeId": 59571,
       "score": 8.99,
       "date": "2026-03-22",
-      "members": 0
+      "members": 0,
+      "scored_by": null
     },
     "otherWinner": {
       "animeId": 820,
       "score": 9.02,
       "date": "2026-02-01",
-      "members": 0
+      "members": 0,
+      "scored_by": null
     },
     "winner": {
       "id": 52991,
@@ -59479,38 +59485,44 @@
         "animeId": 38853,
         "score": 4.1,
         "date": "2026-02-08",
-        "members": 0
+        "members": 0,
+        "scored_by": null
       },
       {
         "animeId": 17513,
         "score": 4.63,
         "date": "2026-03-01",
-        "members": 0
+        "members": 0,
+        "scored_by": null
       },
       {
         "animeId": 34566,
         "score": 4.82,
         "date": "2026-03-01",
-        "members": 0
+        "members": 0,
+        "scored_by": null
       }
     ],
     "tvWinner": {
       "animeId": 38853,
       "score": 4.1,
       "date": "2026-02-08",
-      "members": 0
+      "members": 0,
+      "scored_by": null
     },
     "movieWinner": {
       "animeId": 5178,
       "score": 5.21,
       "date": "2026-02-01",
-      "members": 0
+      "members": 0,
+      "scored_by": null
     },
     "otherWinner": {
       "animeId": 4130,
       "score": 5.14,
       "date": "2026-02-08",
-      "members": 0
+      "members": 0,
+      "scored_by": null
     },
     "winner": {
       "id": 38853,
@@ -59524,38 +59536,90 @@
       {
         "animeId": 59978,
         "date": "2026-02-01",
-        "members": 0
+        "members": 0,
+        "scored_by": null
       },
       {
         "animeId": 820,
         "date": "2026-02-01",
-        "members": 0
+        "members": 0,
+        "scored_by": null
       },
       {
         "animeId": 52991,
         "date": "2026-02-01",
-        "members": 0
+        "members": 0,
+        "scored_by": null
       }
     ],
     "tvWinner": {
       "animeId": 59978,
       "date": "2026-02-01",
-      "members": 0
+      "members": 0,
+      "scored_by": null
     },
     "movieWinner": {
       "animeId": 59571,
       "date": "2026-02-01",
-      "members": 0
+      "members": 0,
+      "scored_by": null
     },
     "otherWinner": {
       "animeId": 820,
       "date": "2026-02-01",
-      "members": 0
+      "members": 0,
+      "scored_by": null
     },
     "winner": {
       "id": 59978,
       "members": 0,
       "date": "2026-02-01"
+    }
+  },
+  "mostScoredBy": {
+    "top3": [
+      {
+        "animeId": 52991,
+        "date": "2026-03-23",
+        "members": 0,
+        "scored_by": 1299
+      },
+      {
+        "animeId": 1535,
+        "date": "2026-03-25",
+        "members": 0,
+        "scored_by": 1170
+      },
+      {
+        "animeId": 40748,
+        "date": "2026-03-23",
+        "members": 0,
+        "scored_by": 1159
+      }
+    ],
+    "tvWinner": {
+      "animeId": 52991,
+      "date": "2026-03-23",
+      "members": 0,
+      "scored_by": 1299
+    },
+    "movieWinner": {
+      "animeId": 28851,
+      "date": "2026-03-24",
+      "members": 0,
+      "scored_by": 996
+    },
+    "otherWinner": {
+      "animeId": 42310,
+      "date": "2026-03-23",
+      "members": 0,
+      "scored_by": 874
+    },
+    "winner": {
+      "id": 52991,
+      "scored_by": 1299,
+      "date": "2026-03-23",
+      "members": 0
     }
   },
   "mostStableScore": {

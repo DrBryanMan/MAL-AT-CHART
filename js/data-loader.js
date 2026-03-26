@@ -35,7 +35,8 @@ function normalizeMALSnapshot(snap) {
       title:    a.title ?? '',
       title_ua: a.title_ua ?? null,
       score:    a.score,
-      members:  a.members ?? a.scored_by ?? 0,   // ← Fallback для MAL
+      scored_by:a.scored_by ?? 0,
+      members:  a.members ?? 0,
     })),
   };
 }
@@ -50,8 +51,9 @@ function normalizeHikkaSnapshot(snap) {
       slug:     a.slug,
       title:    a.title_en ?? a.title ?? a.title_ja ?? '',
       title_ua: a.title_ua ?? null,
-      score:    a.weighted_score ?? a.score,   // ← weighted_score для всіх розрахунків (сортування, delta, mostStable тощо)
-      members:  a.members ?? 0,                // display-members (fallback не потрібен, але залишено для сумісності)
+      score:    a.weighted_score ?? a.score,
+      scored_by:a.scored_by ?? 0,
+      members:  a.members ?? 0,
     })),
   };
 }

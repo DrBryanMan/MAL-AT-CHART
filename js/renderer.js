@@ -178,11 +178,16 @@ function getFullAnime(minimal, enrichedMap) {
     banner_image: enr.banner_image ?? minimal.banner_image ?? null,
     score:     minimal.score     ?? null,
     members:   minimal.members   ?? null,
+    scored_by: minimal.scored_by ?? null,
     date:      minimal.date      ?? null,
     startDate: minimal.startDate ?? null,
     endDate:   minimal.endDate   ?? null,
     ...minimal
   };
+}
+
+function hasPositiveWinnerValue(data, field) {
+  return (data?.winner?.[field] ?? 0) > 0;
 }
 
 // ═══════════════════════════════════════════════════════
@@ -320,13 +325,15 @@ export function renderChartSection(snap, prevSnap, enrichedMap, index, currentIn
 
   const rowsHTML = rows.map(row => {
     const origTitle    = row.title_ua ? `<div class="chart-title-orig">${escHtml(row.title)}</div>` : '';
-    const scoreDelta   = row.scoreDelta !== null
-      ? `<span class="delta ${deltaClass(row.scoreDelta)}">${fmtDelta(row.scoreDelta, 2)}</span>` : '';
     const streakHTML = row.scoreStreak && row.scoreStreak.count > 1
       ? `<span class="score-streak" title="Оцінка незмінна з ${formatDateShort(row.scoreStreak.startDate)}">
           ${icon('lock', 11)} ${row.scoreStreak.count}
         </span>` : '';
-    const membersDelta = row.membersDelta !== null
+    const scoreDelta    = row.scoreDelta !== null
+      ? `<span class="delta ${deltaClass(row.scoreDelta)}">${fmtDelta(row.scoreDelta, 2)}</span>` : '';
+    const scoredByDelta = row.scoredByDelta !== null
+      ? `<span class="delta ${deltaClass(row.scoredByDelta)}">${fmtDelta(row.scoredByDelta)}</span>` : '';
+    const membersDelta  = row.membersDelta !== null
       ? `<span class="delta ${deltaClass(row.membersDelta)}">${fmtDelta(row.membersDelta)}</span>` : '';
     const borderClass  = row.rank <= 3 ? ` rank-top-${row.rank}` : '';
     const maxEntry   = maxScoreMap.get(row.id) ?? null;
@@ -350,15 +357,23 @@ export function renderChartSection(snap, prevSnap, enrichedMap, index, currentIn
         ${origTitle}
         <div class="chart-meta">${mediaBadgeHTML(row.media_type)}</div>
       </div>
+      
       <div class="chart-stats">
         <div class="stat-score">
           ${streakHTML}
-          <span class="score-val large${hasRecord ? ' score-has-record' : ''}" ${scoreTooltipAttr}>
+          <span class="score-badge large${hasRecord ? ' score-has-record' : ''}" ${scoreTooltipAttr}>
             ${icon('star', 18)}${fmtScore(row.score)}
           </span>
           ${scoreDelta}
         </div>
-        <div class="stat-members">
+
+        <div class="stat-scored-by" style='color: var(--text-muted);' title="Кількість оцінок">
+          <span class="scored-label">${icon('scored-by', 13)}</span>
+          <span>${fmtNum(row.scored_by)}</span>
+          ${scoredByDelta}
+        </div>
+
+        <div class="stat-members" title="В списках у глядачів">
           <span class="members-label">${icon('users', 14)}</span>
           <span>${fmtNum(row.members)}</span>
           ${membersDelta}
@@ -472,7 +487,7 @@ export function renderCategorySection(categoryTopHistory, enrichedMap) {
               ${s.title_ua ? `<span class="session-orig">${escHtml(s.title)}</span>` : ''}
             </div>
             <div class="session-meta">
-              <span class="score-val">${icon('star', 14)} ${scoreStr}</span>
+              <span class="score-badge">${icon('star', 14)} ${scoreStr}</span>
               <span class="session-date">
                 ${dateLink(first.startDate, formatDateShort(first.startDate))} →
                 ${dateLink(last.endDate, formatDateShort(last.endDate))}
@@ -525,7 +540,7 @@ function buildSessionRow(s, enrichedMap) {
         <span class="session-date">${dateRange}</span>
       </div>
     </div>
-    <span class="score-val">${icon('star', 14)} ${scoreStr}</span>
+    <span class="score-badge">${icon('star', 14)} ${scoreStr}</span>
   </div>`;
 }
 
@@ -538,14 +553,22 @@ export function renderEventsSection(analytics, source = 'mal', enrichedMap) {
   if (!container) return;
 
   const isHikka = source === 'hikka';
+  const cards = [
+    buildHighestEverCard(analytics.highestEver, enrichedMap),
+    isHikka ? buildLowestEverCard(analytics.lowestEver, enrichedMap) : '',
+    buildLongestTop1Card(analytics.longestTop1, enrichedMap),
+    buildStableScoreCard(analytics.mostStableScore, enrichedMap),
+    hasPositiveWinnerValue(analytics.mostMembers, 'members')
+      ? buildMostMembersCard(analytics.mostMembers, enrichedMap)
+      : '',
+    hasPositiveWinnerValue(analytics.mostScoredBy, 'scored_by')
+      ? buildMostScoredByCard(analytics.mostScoredBy, enrichedMap)
+      : '',
+  ].filter(Boolean).join('');
 
   container.innerHTML = `
     <div class="events-grid">
-      ${buildHighestEverCard(analytics.highestEver, enrichedMap)}
-      ${isHikka ? buildLowestEverCard(analytics.lowestEver, enrichedMap) : ''}
-      ${buildLongestTop1Card(analytics.longestTop1, enrichedMap)}
-      ${buildStableScoreCard(analytics.mostStableScore, enrichedMap)}
-      ${buildMostMembersCard(analytics.mostMembers, enrichedMap)}
+      ${cards}
     </div>
 
     ${buildEventsTabs(analytics, enrichedMap)}
@@ -587,7 +610,7 @@ function runnerUpRows(top3, enrichedMap, scoreField = 'score', dateField = 'date
     return `<div class="runner-up-row">
       <span class="runner-medal runner-medal-${i + 2}">${medals[i]}</span>
       ${animeTitleHTML(a, 'runner-title')}
-      <span class="runner-score">${icon('star', 12)} ${fmtScore(score)}</span>
+      <span class="runner-score">${icon('star', 14)} ${fmtScore(score)}</span>
       ${a.members ? `<div class="highlight-meta">${icon('users', 13)} ${fmtNum(a.members)} голосів</div>` : ''}
       <span class="runner-date">${dateHTML || ''} <span class="runner-days">${days !== null ? ` ( ${days} ${pluralUk(days, 'днів', 'дні', 'день')} )` : ''}</span></span>
     </div>`;
@@ -621,7 +644,7 @@ function categoryWinnersHTML(winnerId, tvW, movieW, otherW, enrichedMap, scoreFi
       return `<div class="cat-winner-row">
         <span class="cat-winner-label">${label}</span>
         ${animeTitleHTML(a, 'cat-winner-title')}
-        <span class="cat-winner-score">${icon('star', 12)} ${fmtScore(score)}</span>
+        <span class="cat-winner-score">${icon('star', 14)} ${fmtScore(score)}</span>
         <span class="cat-winner-date">${dateHTML || ''}${days !== null ? `<span class="cat-winner-days"> ( ${days} ${pluralUk(days, 'днів', 'дні', 'день')} )</span>` : ''}</span>
       </div>`;
     }).join('')}
@@ -662,6 +685,7 @@ function buildMostMembersCard(data, enrichedMap) {
     '<div class="empty-state"><p>Недостатньо даних</p></div>'
   );
 
+  // Допоміжна функція для визначення: показуємо members чи scored_by
   const w = getFullAnime(data.winner, enrichedMap);
 
   const runners = data.top3.slice(1, 3).map((minimal, i) => {
@@ -702,7 +726,9 @@ function buildMostMembersCard(data, enrichedMap) {
     <div class="event-winner">
       ${thumbHTML(w.image, w.title_ua ?? w.title, 'event-poster')}
       <div class="event-highlight">
-        <span class="highlight-score" style="color:var(--accent)">${icon('users', 22)} ${fmtNum(w.members)}</span>
+        <span class="highlight-score" style="color:var(--accent)">
+          ${icon('users', 22)} ${fmtNum(w.members)}
+        </span>
         <div class="highlight-title">${animeTitleHTML(w)}</div>
         ${w.title_ua ? `<div class="highlight-orig">${escHtml(w.title)}</div>` : ''}
       </div>
@@ -712,6 +738,63 @@ function buildMostMembersCard(data, enrichedMap) {
 }
 
 // ─── Card: Highest Ever ───────────────────────────────────────────────────────
+
+function buildMostScoredByCard(data, enrichedMap) {
+  if (!data) return eventCard(
+    icon('star', 20), '\u041d\u0430\u0439\u0431\u0456\u043b\u044c\u0448\u0435 \u043e\u0446\u0456\u043d\u043e\u043a', 'mostScoredBy',
+    '<div class="empty-state"><p>\u041d\u0435\u0434\u043e\u0441\u0442\u0430\u0442\u043d\u044c\u043e \u0434\u0430\u043d\u0438\u0445</p></div>'
+  );
+
+  const w = getFullAnime(data.winner, enrichedMap);
+
+  const runners = data.top3.slice(1, 3).map((minimal, i) => {
+    const a = getFullAnime(minimal, enrichedMap);
+    return `<div class="runner-up-row">
+      <span class="runner-medal runner-medal-${i + 2}">${i + 2}</span>
+      ${animeTitleHTML(a, 'runner-title')}
+      <span class="runner-score">${icon('star', 14)} ${fmtNum(a.scored_by)}</span>
+    </div>`;
+  }).join('');
+
+  const getId = a => a?.animeId ?? a?.id ?? null;
+  const winnerId = getId(data.winner);
+
+  const catRows = [
+    data.tvWinner    && getId(data.tvWinner)    !== winnerId && { label: `${icon('tv',   14)} \u0421\u0435\u0440\u0456\u0430\u043b`, a: data.tvWinner },
+    data.movieWinner && getId(data.movieWinner) !== winnerId && { label: `${icon('film', 14)} \u0424\u0456\u043b\u044c\u043c`,  a: data.movieWinner },
+    data.otherWinner && getId(data.otherWinner) !== winnerId && {
+      label: `${icon(CONFIG.categoryIcons[data.otherWinner.media_type] ?? 'help-circle', 14)} \u0406\u043d\u0448\u0435`,
+      a: data.otherWinner,
+    },
+  ].filter(Boolean);
+
+  const catWinnersHTML = catRows.length
+    ? `<div class="cat-winners">
+        ${catRows.map(({ label, a: minimal }) => {
+          const a = getFullAnime(minimal, enrichedMap);
+          return `<div class="cat-winner-row">
+            <span class="cat-winner-label">${label}</span>
+            ${animeTitleHTML(a, 'cat-winner-title')}
+            <span class="cat-winner-score">${icon('star', 14)} ${fmtNum(a.scored_by)}</span>
+          </div>`;
+        }).join('')}
+      </div>`
+    : '';
+
+  return eventCard(icon('star', 20), '\u041d\u0430\u0439\u0431\u0456\u043b\u044c\u0448\u0435 \u043e\u0446\u0456\u043d\u043e\u043a', 'mostScoredBy', `
+    <div class="event-winner">
+      ${thumbHTML(w.image, w.title_ua ?? w.title, 'event-poster')}
+      <div class="event-highlight">
+        <span class="highlight-score" style="color:var(--accent)">
+          ${icon('star', 22)} ${fmtNum(w.scored_by)}
+        </span>
+        <div class="highlight-title">${animeTitleHTML(w)}</div>
+        ${w.title_ua ? `<div class="highlight-orig">${escHtml(w.title)}</div>` : ''}
+      </div>
+    </div>
+    ${runners}
+    ${catWinnersHTML}`, w.image);
+}
 
 function buildHighestEverCard(data, enrichedMap) {
   if (!data) return eventCard(icon('trophy', 20), 'Найвища оцінка за всю історію', 'highestEver',
@@ -824,17 +907,19 @@ function buildAbove9Panel(list, enrichedMap) {
 
   const rows = list.map((minimal, i) => {
     const a = getFullAnime(minimal, enrichedMap);
-    return `<div class="list-row">
+    return `<div class="list-row above9-row${a.banner_image ? ' has-banner' : ''}" ${bannerStyle(a.banner_image)}>
       <span class="rank-num">${i + 1}</span>
       ${thumbHTML(a.image, a.title_ua ?? a.title, 'small')}
       <div class="list-info">
         ${animeTitleHTML(a, 'list-title')}
         <span class="list-meta">
           ${mediaBadgeHTML(a.media_type)}
-          <span class="list-date">${dateLink(a.firstDate, formatDateShort(a.firstDate))}</span>
         </span>
+        <div class="session-meta">
+          <span class="session-date">${dateLink(a.firstDate, formatDateShort(a.firstDate))}</span>
+        </div>
       </div>
-      <span class="score-badge">${icon('star', 12)} ${fmtScore(a.maxScore)}</span>
+      <span class="score-badge">${icon('star', 14)} ${fmtScore(a.maxScore)}</span>
     </div>`;
   });
 
@@ -877,7 +962,7 @@ function buildTop1HistoryPanel(list, enrichedMap) {
         </span>
         <div class="session-details">${sessionDetails}</div>
       </div>
-      <span class="score-val">${icon('star', 14)} ${scoreStr}</span>
+      <span class="score-badge">${icon('star', 14)} ${scoreStr}</span>
     </div>`;
   });
 
@@ -894,7 +979,7 @@ function buildStableTopPanel(data, enrichedMap) {
     return `<div class="stable-row">
       <span class="rank-num">${i + 1}</span>
       ${animeTitleHTML(a, 'stable-title')}
-      <span class="stable-score">${icon('star', 12)} ${fmtScore(a.score)}</span>
+      <span class="score-badge">${icon('star', 14)} ${fmtScore(a.score)}</span>
     </div>`;
   });
 
@@ -923,7 +1008,7 @@ function buildMostAtOncePanel(data, enrichedMap) {
       <div class="list-info">
         ${animeTitleHTML(a, 'list-title')}
       </div>
-      <span class="score-badge">${icon('star', 12)} ${fmtScore(a.score)}</span>
+      <span class="score-badge">${icon('star', 14)} ${fmtScore(a.score)}</span>
     </div>`;
   });
 

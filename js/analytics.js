@@ -112,9 +112,6 @@ export function computeChartData(snapshot, prevSnap, enrichedMap, scoreStreaks =
 
     return {
       ...a,
-      scoreDelta: prevEntry && prevEntry.score != null 
-        ? (Math.round((a.score - prevEntry.score) * 100) / 100) 
-        : null,
       title:        enr.title        ?? a.title   ?? '',
       title_ua:     enr.title_ua     ?? null,
       media_type:   enr.media_type   ?? 'unknown',
@@ -126,6 +123,10 @@ export function computeChartData(snapshot, prevSnap, enrichedMap, scoreStreaks =
       rankDelta: prevRank !== null ? prevRank - rank : null,
       membersDelta: prevEntry ? a.members - prevEntry.members : null,
       isNew: prevSnap !== null && prevRank === null,
+      scoreDelta: prevEntry && prevEntry.score != null 
+        ? (Math.round((a.score - prevEntry.score) * 100) / 100) 
+        : null,
+      scoredByDelta: prevEntry ? a.scored_by - prevEntry.scored_by : null,
       scoreStreak,
     };
   });
@@ -207,6 +208,7 @@ function topWithCategoriesIds(sorted, enrichedMap) {
     score: a.score,
     date: a.date ?? a.startDate ?? null,
     members: a.members ?? null,
+    scored_by: a.scored_by ?? null,
   }));
 
   const getMedia = id => enrichedMap.get(id)?.media_type ?? 'unknown';
@@ -218,6 +220,7 @@ function topWithCategoriesIds(sorted, enrichedMap) {
       score: found.score,
       date: found.date ?? found.startDate ?? null,
       members: found.members ?? null,
+      scored_by: found.scored_by ?? null,
     } : null;
   };
 
@@ -273,6 +276,22 @@ export function computeMostMembers(allSnapshots, enrichedMap) {
   }
   if (!best.size) return null;
   const sorted = [...best.values()].toSorted((a, b) => b.members - a.members);
+  return { ...topWithCategoriesIds(sorted, enrichedMap), winner: sorted[0] };
+}
+
+export function computeMostScoredBy(allSnapshots, enrichedMap) {
+  const best = new Map();
+  for (const snap of allSnapshots) {
+    for (const a of snap.anime) {
+      if (a.scored_by == null) continue;
+      const ex = best.get(a.id);
+      if (!ex || a.scored_by > ex.scored_by) {
+        best.set(a.id, { id: a.id, scored_by: a.scored_by, date: snap.date, members: a.members ?? null });
+      }
+    }
+  }
+  if (!best.size) return null;
+  const sorted = [...best.values()].toSorted((a, b) => b.scored_by - a.scored_by);
   return { ...topWithCategoriesIds(sorted, enrichedMap), winner: sorted[0] };
 }
 
@@ -520,6 +539,7 @@ export function computeAll(snapshots, enrichedMap, threshold = 9.0) {
     highestEver:        computeHighestEver(snapshots, enrichedMap),
     lowestEver:         computeLowestEver(snapshots, enrichedMap),
     mostMembers:        computeMostMembers(snapshots, enrichedMap),
+    mostScoredBy:       computeMostScoredBy(snapshots, enrichedMap),
     mostStableScore:    computeMostStableScore(snapshots, enrichedMap),
     longestTop1:        computeLongestAtTop1(snapshots, enrichedMap),
     allAboveThreshold:  computeAllAboveThreshold(snapshots, threshold, enrichedMap),

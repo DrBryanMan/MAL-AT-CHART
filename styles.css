@@ -594,23 +594,12 @@ section[id] { scroll-margin-top: 70px; }
   white-space: nowrap;
 }
 
-.stat-score, .stat-members {
+.stat-score,
+.stat-scored-by,
+.stat-members {
   display: flex;
   align-items: center;
-  gap: 6px;
-}
-
-.score-val {
-  font-family: var(--font-mono);
-  font-weight: 700;
-  color: var(--gold);
-}
-
-.score-val.large {
-  display: flex;
-  align-items: center;
-  gap: 4px;
-  font-size: 16px;
+  gap: .5em;
 }
 
 .members-val, .members-label {
@@ -648,7 +637,8 @@ section[id] { scroll-margin-top: 70px; }
 .delta.positive { color: var(--green);      background: rgba(63,185,80,.12); }
 .delta.negative { color: var(--red);        background: rgba(248,81,73,.12); }
 .delta.neutral  { color: var(--text-muted); background: var(--border-subtle); }
-.stat-members .delta { color: var(--text-2); background: var(--border-subtle); }
+.stat-scored-by .delta,
+.stat-members .delta { color: var(--text-2); }
 
 /* ─── Badges ─────────────────────────────────────────── */
 .badge {
@@ -774,9 +764,8 @@ section[id] { scroll-margin-top: 70px; }
 .list-info {
   display: flex;
   flex-direction: column;
-  gap: 2px;
+  gap: 5px;
   flex: 1;
-  min-width: 0;
 }
 
 .list-title {
@@ -802,10 +791,17 @@ section[id] { scroll-margin-top: 70px; }
 
 .score-badge {
   font-family: var(--font-mono);
-  font-size: 1.2rem;
+  font-size: 16px;
   font-weight: 700;
   color: var(--gold);
   white-space: nowrap;
+
+  &.large {
+    display: flex;
+    align-items: center;
+    gap: 4px;
+    font-size: 16px;
+  }
 }
 
 .count-badge {
@@ -847,13 +843,6 @@ section[id] { scroll-margin-top: 70px; }
   white-space: nowrap;
   overflow: hidden;
   text-overflow: ellipsis;
-}
-
-.stable-score {
-  font-family: var(--font-mono);
-  font-size: 1.2rem;
-  font-weight: 600;
-  color: var(--gold);
 }
 
 /* ─── Most at Once ───────────────────────────────────── */
@@ -1147,9 +1136,6 @@ div.anime-thumb.event-poster.placeholder {
   color: var(--accent);
 }
 
-/* ─── List meta date ─────────────────────────────────────────────────── */
-.list-date { color: var(--text-muted); }
-
 /* ─── Stable header ──────────────────────────────────────────────────── */
 .stable-header {
   display: flex;
@@ -1221,7 +1207,6 @@ div.anime-thumb.event-poster.placeholder {
   color: var(--text-muted);
   white-space: nowrap;
 }
-.top1-row { align-items: flex-start; padding-top: 10px; padding-bottom: 10px; }
 
 /* ─── Stable-row title link ──────────────────────────────────────── */
 .stable-title { flex: 1; min-width: 0; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
