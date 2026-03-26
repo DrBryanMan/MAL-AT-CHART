@@ -5,10 +5,10 @@ import re
 
 # Шлях до папки зі снепшотами
 BASE_PATH = os.path.join('..', 'snapshots')
+WR_MIN_VOTES = 10   # m — мінімальний поріг голосів
 
 # ── Зважена оцінка (Weighted Rank) ───────────────────────────────────────────
 
-WR_MIN_VOTES = 10   # m — мінімальний поріг голосів
 
 def mean_score(anime_list):
     scores = [a["score"] for a in anime_list if a.get("score") is not None]
@@ -22,14 +22,22 @@ def weighted_score(score, scored_by, C, m=WR_MIN_VOTES):
     return round((v / (v + m)) * score + (m / (v + m)) * C, 4)
 
 def apply_weighted_scores(anime_list):
-    """Обчислює та записує weighted_score для кожного запису хікки."""
+    """Обчислює та записує weighted_score лише для записів, де його ще немає."""
     C = mean_score(anime_list)
+    added = 0
     for item in anime_list:
+        if item.get("weighted_score") is not None:
+            continue
+
         item["weighted_score"] = weighted_score(
             item.get("score"),
             item.get("scored_by"),
             C,
         )
+        if item.get("weighted_score") is not None:
+            added += 1
+
+    return added
 
 # ── Основна обробка ───────────────────────────────────────────────────────────
 
@@ -69,18 +77,18 @@ for root, dirs, files in os.walk(BASE_PATH):
         # 3. Фільтрація: прибираємо тільки тих, у кого members відомий і <= 9
         data[key] = [
             item for item in data[key]
-            if item.get('members') is None or item.get('members') > 9
+            if item.get('scored_by') is None or item.get('scored_by') >= WR_MIN_VOTES
         ]
         data['total'] = len(data[key])
         filtered = len(data[key]) < original_count
 
         # 4. Зважена оцінка — тільки для хікки
+        wr_added = 0
         if is_hikka:
-            apply_weighted_scores(data[key])
+            wr_added = apply_weighted_scores(data[key])
 
-        # Не перезаписуємо якщо нічого не змінилось і це не хікка
-        # (для хікки завжди перезаписуємо — weighted_score могло оновитись)
-        if not filtered and not is_hikka:
+        # Не перезаписуємо файл, якщо фактичних змін немає
+        if not filtered and wr_added == 0:
             continue
 
         # 5. Бекап для хікки — лише перший раз
@@ -103,7 +111,7 @@ for root, dirs, files in os.walk(BASE_PATH):
         parts = []
         if removed:
             parts.append(f"-{removed}")
-        if is_hikka:
+        if wr_added:
             parts.append("WR додано")
         print(f"Оновлено: {rel_path} ({', '.join(parts) or 'без змін'}) | {status_msg}")
 

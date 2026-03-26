@@ -1,3 +1,4 @@
+// data-loader.js
 import { CONFIG } from './config.js';
 
 const _cache = new Map();
@@ -24,17 +25,33 @@ function getSourcePaths(source) {
   };
 }
 
-/** Нормалізує сирий знімок Хікки до єдиного формату */
+/** Нормалізує MAL-знімок + fallback members → scored_by (для рендеру та всіх розрахунків) */
+function normalizeMALSnapshot(snap) {
+  return {
+    ...snap,
+    date: snap.date ?? snap.date_scraped ?? null,
+    anime: (snap.anime ?? []).map(a => ({
+      id:       a.id,
+      title:    a.title ?? '',
+      title_ua: a.title_ua ?? null,
+      score:    a.score,
+      members:  a.members ?? a.scored_by ?? 0,   // ← Fallback для MAL
+    })),
+  };
+}
+
+/** Нормалізує сирий знімок Хікки + weighted_score для розрахунків */
 function normalizeHikkaSnapshot(snap) {
   return {
     ...snap,
+    date: snap.date ?? snap.date_scraped ?? null,
     anime: (snap.anime ?? []).map(a => ({
       id:       a.id,
       slug:     a.slug,
       title:    a.title_en ?? a.title ?? a.title_ja ?? '',
       title_ua: a.title_ua ?? null,
-      score:    a.score,
-      members:  a.members,
+      score:    a.weighted_score ?? a.score,   // ← weighted_score для всіх розрахунків (сортування, delta, mostStable тощо)
+      members:  a.members ?? 0,                // display-members (fallback не потрібен, але залишено для сумісності)
     })),
   };
 }
@@ -50,7 +67,11 @@ export async function loadSnapshotsIndex(source = 'mal') {
 export async function loadSnapshot(date, source = 'mal') {
   const { snapshotsDir } = getSourcePaths(source);
   const snap = await fetchJSON(`${snapshotsDir}${date}.json`);
-  return source === 'hikka' ? normalizeHikkaSnapshot(snap) : snap;
+  
+  if (source === 'hikka') {
+    return normalizeHikkaSnapshot(snap);
+  }
+  return normalizeMALSnapshot(snap);   // MAL тепер завжди нормалізується з fallback
 }
 
 export async function loadSnapshotPair(dates, index, source = 'mal') {

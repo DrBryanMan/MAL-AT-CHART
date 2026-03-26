@@ -107,7 +107,7 @@ async function loadData() {
   // if (contentEl) contentEl.classList.add('hidden');
 
   try {
-    const { index, analytics, enriched } = await loadAll();
+    const { index, analytics, enriched } = await loadAll(state.currentMode);
 
     if (!index.length) throw new Error('Не вдалося завантажити жодного знімку.');
 
@@ -120,7 +120,7 @@ async function loadData() {
     );
 
     const dates = index.map(s => s.date);
-    const { current, prev } = await loadSnapshotPair(dates, state.currentIndex);
+    const { current, prev } = await loadSnapshotPair(dates, state.currentIndex, state.currentMode);
     state.currentSnap = current;
     state.prevSnap    = prev;
 
@@ -176,7 +176,7 @@ async function jumpTo(idx) {
   state.currentIndex = clamped;
 
   const dates = state.index.map(s => s.date);
-  const { current, prev } = await loadSnapshotPair(dates, clamped);
+  const { current, prev } = await loadSnapshotPair(dates, clamped, state.currentMode);
   state.currentSnap = current;
   state.prevSnap    = prev;
 

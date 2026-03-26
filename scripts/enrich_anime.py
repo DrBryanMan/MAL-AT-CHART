@@ -15,6 +15,7 @@ enrich_anime.py — збирає унікальні аніме зі знімкі
 import json
 import time
 from pathlib import Path
+from concurrent.futures import ThreadPoolExecutor, as_completed
 
 import requests
 
@@ -26,10 +27,12 @@ SNAPSHOTS_HIK_DIR   = ROOT / "snapshots" / "anime-hikka"
 OUTPUT_FILE         = ROOT / "data" / "anime_enriched.json"
 
 HIKKA_BASE    = "https://api.hikka.io/integrations/mal/anime"
-HIKKA_DELAY   = 0.5
+HIKKA_DELAY   = 0.15
+HIKKA_WORKERS = 8            # ← можна міняти (5-10)
 
 ANILIST_URL   = "https://graphql.anilist.co"
-ANILIST_DELAY = 0.7   # 90 req/min
+ANILIST_DELAY = 0.7          # ≈ 66 запитів на хвилину — безпечно
+FORCE_FULL_BANNER_SCAN = False
 
 TIMEOUT_SEC   = 15
 
@@ -60,9 +63,8 @@ def load_enriched() -> dict[int, dict]:
     try:
         data = json.loads(OUTPUT_FILE.read_text(encoding="utf-8"))
         return {int(r["mal_id"]): r for r in data}
-    except (json.JSONDecodeError, OSError, KeyError):
+    except Exception:
         return {}
-
 
 def save_enriched(records: dict[int, dict]) -> None:
     OUTPUT_FILE.parent.mkdir(exist_ok=True)
@@ -75,7 +77,6 @@ def save_enriched(records: dict[int, dict]) -> None:
         encoding="utf-8",
     )
 
-
 def empty_record(mal_id: int, title: str | None) -> dict:
     return {
         "mal_id":           mal_id,
@@ -86,12 +87,12 @@ def empty_record(mal_id: int, title: str | None) -> dict:
         "hikka_slug":       None,
         "year":             None,
         "season":           None,
+        "banner_image":     None,
     }
 
 # ── Крок 1: збір унікальних ID зі знімків ─────────────────────────────────────
 
 def _entry_title(entry: dict) -> str | None:
-    """Витягує назву з запису будь-якого формату (MAL або Hikka)."""
     return (
         entry.get("title")
         or entry.get("title_en")
@@ -99,12 +100,8 @@ def _entry_title(entry: dict) -> str | None:
         or None
     )
 
-
 def collect_unique() -> dict[int, str | None]:
-    dirs = [
-        (SNAPSHOTS_MAL_DIR, "MAL"),
-        (SNAPSHOTS_HIK_DIR, "Hikka"),
-    ]
+    dirs = [(SNAPSHOTS_MAL_DIR, "MAL"), (SNAPSHOTS_HIK_DIR, "Hikka")]
     anime: dict[int, str | None] = {}
 
     for snap_dir, label in dirs:
@@ -113,173 +110,182 @@ def collect_unique() -> dict[int, str | None]:
         for f in files:
             try:
                 data = json.loads(f.read_text(encoding="utf-8"))
-            except (json.JSONDecodeError, OSError):
+                for entry in data.get("anime", []):
+                    mal_id = entry.get("id")
+                    if mal_id is None:
+                        continue
+                    mal_id = int(mal_id)
+                    title = _entry_title(entry)
+                    if mal_id not in anime or (anime[mal_id] is None and title):
+                        anime[mal_id] = title
+            except Exception:
                 continue
-            for entry in data.get("anime", []):
-                mal_id = entry.get("id")
-                if mal_id is None:
-                    continue
-                mal_id = int(mal_id)
-                title = _entry_title(entry)
-                if mal_id not in anime:
-                    anime[mal_id] = title
-                elif anime[mal_id] is None and title:
-                    anime[mal_id] = title
 
     print(f"   ✔  Унікальних ID: {len(anime)}")
     return anime
 
 # ── Крок 2: hikka.io ──────────────────────────────────────────────────────────
 
-def fetch_hikka(session: requests.Session, mal_id: int) -> dict | None:
-    resp = session.get(f"{HIKKA_BASE}/{mal_id}", timeout=TIMEOUT_SEC)
-    if resp.status_code == 404:
+def fetch_hikka(mal_id: int) -> dict | None:
+    session = requests.Session()
+    session.headers.update(HIKKA_HEADERS)
+    try:
+        resp = session.get(f"{HIKKA_BASE}/{mal_id}", timeout=TIMEOUT_SEC)
+        if resp.status_code == 404:
+            return None
+        resp.raise_for_status()
+        d = resp.json()
+        return {
+            "media_type":       d.get("media_type"),
+            "title_ua":         d.get("title_ua"),
+            "image":            d.get("image"),
+            "hikka_slug":       d.get("slug"),
+            "year":             d.get("year"),
+            "season":           d.get("season"),
+        }
+    except Exception:
         return None
-    resp.raise_for_status()
-    d = resp.json()
-    return {
-        "media_type":       d.get("media_type"),
-        "title_ua":         d.get("title_ua"),
-        "image":            d.get("image"),
-        "hikka_slug":       d.get("slug"),
-        "yesr":             d.get("year"),
-        "season":           d.get("season"),
-    }
-
 
 def enrich_from_hikka(enriched: dict[int, dict], unique: dict[int, str | None]) -> None:
     todo = {mid: title for mid, title in unique.items() if mid not in enriched}
-    total = len(todo)
-
-    print(f"\n── Hikka ────────────────────────────────────")
-    print(f"   Вже збагачено: {len(enriched)}   Залишилось: {total}")
-
     if not todo:
-        print("   ✅  Нічого нового.")
+        print("   ✅  Hikka: нічого нового.")
         return
 
-    session = requests.Session()
-    session.headers.update(HIKKA_HEADERS)
+    print(f"\n── Hikka (паралельно {HIKKA_WORKERS} воркерів) ─────────────────────")
+    print(f"   Залишилось: {len(todo)}")
 
-    for i, (mal_id, title) in enumerate(sorted(todo.items()), 1):
-        print(f"[{i:>5}/{total}] MAL #{mal_id}  {title or '—'}", end="", flush=True)
+    records_to_process = list(todo.items())
+    completed = 0
 
-        try:
-            hikka = fetch_hikka(session, mal_id)
-        except requests.ConnectionError:
-            print("\n❌  Втрачено з'єднання — зупиняємо.")
-            break
-        except requests.RequestException as exc:
-            print(f"  ⚠️  {exc}")
-            continue
+    with ThreadPoolExecutor(max_workers=HIKKA_WORKERS) as pool:
+        future_to_id = {pool.submit(fetch_hikka, mal_id): mal_id for mal_id, _ in records_to_process}
 
-        record = empty_record(mal_id, title)
-        if hikka:
-            record.update(hikka)
-            print(f"  [{hikka['media_type']}] {hikka['title_ua'] or title}")
-        else:
-            print("  [не знайдено у hikka]")
+        for future in as_completed(future_to_id):
+            mal_id = future_to_id[future]
+            title = todo[mal_id]
+            completed += 1
 
-        enriched[mal_id] = record
-        save_enriched(enriched)
-        time.sleep(HIKKA_DELAY)
+            try:
+                hikka_data = future.result()
+                record = empty_record(mal_id, title)
+                if hikka_data:
+                    record.update(hikka_data)
+                enriched[mal_id] = record
+            except Exception:
+                enriched[mal_id] = empty_record(mal_id, title)
 
-# ── Крок 3: AniList банери ────────────────────────────────────────────────────
+            print(f"[{completed:>5}/{len(todo)}] MAL #{mal_id}", end="\r", flush=True)
+
+            if completed % 20 == 0:
+                save_enriched(enriched)
+
+    save_enriched(enriched)
+    print(f"\n   ✔  Hikka збагачено. Всього: {len(enriched)}")
+
+# ── AniList (послідовно, без воркерів) ───────────────────────────────────────
 
 def fetch_banner(session: requests.Session, mal_id: int) -> str | None:
-    resp = session.post(
-        ANILIST_URL,
-        json={"query": ANILIST_QUERY, "variables": {"malId": mal_id}},
-        timeout=TIMEOUT_SEC,
-    )
+    try:
+        resp = session.post(
+            ANILIST_URL,
+            json={"query": ANILIST_QUERY, "variables": {"malId": mal_id}},
+            timeout=TIMEOUT_SEC,
+        )
 
-    if resp.status_code == 429:
-        retry = int(resp.headers.get("Retry-After", 60))
-        print(f"\n⏳  Rate limit — чекаємо {retry}с…", flush=True)
-        time.sleep(retry)
-        return fetch_banner(session, mal_id)
+        if resp.status_code == 429:
+            retry = int(resp.headers.get("Retry-After", 60))
+            print(f"\n⏳  Rate limit AniList — чекаємо {retry}с...")
+            time.sleep(retry)
+            return fetch_banner(session, mal_id)
 
-    resp.raise_for_status()
-    media = resp.json().get("data", {}).get("Media")
-    return media.get("bannerImage") if media else None
+        resp.raise_for_status()
+        media = resp.json().get("data", {}).get("Media")
+        return media.get("bannerImage") if media else None
+
+    except Exception as e:
+        print(f"  ⚠️  AniList error для {mal_id}: {e}")
+        return None
 
 
 def enrich_banners(enriched: dict[int, dict]) -> None:
-    # Записи де поле banner_image взагалі відсутнє (не None, а саме відсутнє)
-    todo = [r for r in enriched.values() if "banner_image" not in r]
-    total = len(todo)
-
-    print(f"\n── AniList банери ───────────────────────────")
-    print(f"   Без поля banner_image: {total}")
+    if not FORCE_FULL_BANNER_SCAN:
+        # Нормальний режим: перевіряємо ТІЛЬКИ ті, у кого ще немає поля banner_image
+        todo = [r for r in enriched.values() if "banner_image" not in r]
+        mode = " (тільки нові)"
+    else:
+        # Повний скан: перевіряємо все, навіть якщо banner_image = None
+        todo = list(enriched.values())
+        mode = " (ПОВНИЙ СКАН — примусово)"
 
     if not todo:
-        print("   ✅  Всі записи вже мають поле banner_image.")
+        print("   ✅  AniList: нічого не потрібно перевіряти.")
         return
+
+    print(f"\n── AniList банери{mode} ─────────────────────────────")
+    print(f"   Потрібно обробити: {len(todo)} записів")
 
     session = requests.Session()
     session.headers.update(ANILIST_HEADERS)
 
-    found = 0
+    checked = 0
+    found_new = 0
+
     for i, record in enumerate(todo, 1):
         mal_id = record["mal_id"]
-        label  = record.get("title_ua") or record.get("title") or f"#{mal_id}"
-        print(f"[{i:>5}/{total}] MAL #{mal_id}  {label}", end="  ", flush=True)
+        label = record.get("title_ua") or record.get("title") or f"#{mal_id}"
 
-        try:
-            banner = fetch_banner(session, mal_id)
-        except requests.ConnectionError:
-            print("\n❌  Втрачено з'єднання — зупиняємо.")
-            break
-        except requests.RequestException as exc:
-            print(f"⚠️  {exc}")
-            enriched[mal_id]["banner_image"] = None
-            save_enriched(enriched)
+        # Якщо це не повний скан і банер вже є (навіть None) — пропускаємо
+        if not FORCE_FULL_BANNER_SCAN and "banner_image" in record:
+            print(f"[{i:>5}/{len(todo)}] MAL #{mal_id}  — пропущено (вже перевірено)", end="\r", flush=True)
             continue
 
-        enriched[mal_id]["banner_image"] = banner
-        save_enriched(enriched)
+        print(f"[{i:>5}/{len(todo)}] MAL #{mal_id}  {label}", end="  ", flush=True)
+
+        banner = fetch_banner(session, mal_id)
+        record["banner_image"] = banner
+        checked += 1
 
         if banner:
-            found += 1
-            short = banner[:60] + "…" if len(banner) > 60 else banner
-            print(f"✔  {short}")
+            found_new += 1
+            short = banner[:65] + "…" if len(banner) > 65 else banner
+            print(f"✔ знайдено банер")
         else:
-            print("—  немає банера")
+            print("— немає банера")
+
+        # Зберігаємо прогрес після кожного запиту
+        save_enriched(enriched)
 
         time.sleep(ANILIST_DELAY)
 
-    print(f"\n   Банерів знайдено: {found}/{total}")
+    print(f"\n   ✔  AniList завершено. Перевірено: {checked} | Нових банерів: {found_new}")
+
+
+# ── Очищення ────────────────────────────────────────────────────────────────
 
 def prune_stale(enriched: dict[int, dict], unique: dict[int, str | None]) -> None:
-    stale = [mid for mid in enriched if mid not in unique]
+    stale = [mid for mid in list(enriched.keys()) if mid not in unique]
     if not stale:
-        print("\n── Очищення ──────────────────────────────────")
-        print("   ✅  Застарілих записів немає.")
         return
 
-    print(f"\n── Очищення ──────────────────────────────────")
-    print(f"   Застарілих ID: {len(stale)} — видаляємо…")
+    print(f"\n── Очищення застарілих записів ───────────────────────")
     for mid in stale:
-        label = enriched[mid].get("title_ua") or enriched[mid].get("title") or f"#{mid}"
-        print(f"   — MAL #{mid}  {label}")
         del enriched[mid]
-
     save_enriched(enriched)
-    print(f"   ✅  Після очищення: {len(enriched)} записів.")
+    print(f"   Видалено {len(stale)} застарілих. Залишилось: {len(enriched)}")
 
-# ── Точка входу ───────────────────────────────────────────────────────────────
+
+# ── Main ──────────────────────────────────────────────────────────────────────
 
 def main() -> None:
     unique   = collect_unique()
     enriched = load_enriched()
 
     prune_stale(enriched, unique)
-
     enrich_from_hikka(enriched, unique)
     enrich_banners(enriched)
 
-    print(f"\n✅  Готово! Всього записів у {OUTPUT_FILE.name}: {len(enriched)}")
-
+    print(f"\n✅  Готово! Всього записів у enriched: {len(enriched)}")
 
 if __name__ == "__main__":
     main()

@@ -24,6 +24,7 @@ export function daysBetween(d1, d2) {
 }
 
 export function archiveUrl(dateStr) {
+  if (!dateStr) return 'https://web.archive.org/web/*/https://myanimelist.net/topanime.php';
   const compact = dateStr.replace(/-/g, '');
   return `https://web.archive.org/web/${compact}120000/https://myanimelist.net/topanime.php`;
 }
@@ -88,8 +89,7 @@ export function computeChartData(snapshot, prevSnap, enrichedMap, scoreStreaks =
     ? snapshotDates
     : (snapshotDates?.length ? new Map(snapshotDates.map((d, i) => [d, i])) : null);
 
-  const rows = sorted.map((a, i) => {
-    const rank = i + 1;
+  const rows = sorted.map((a, i) => {const rank = i + 1;
     const enr = enrichedMap.get(a.id) ?? {};
     const prevRank = prevRankById.get(a.id) ?? null;
     const prevEntry = prevEntryById?.get(a.id) ?? null;
@@ -112,6 +112,9 @@ export function computeChartData(snapshot, prevSnap, enrichedMap, scoreStreaks =
 
     return {
       ...a,
+      scoreDelta: prevEntry && prevEntry.score != null 
+        ? (Math.round((a.score - prevEntry.score) * 100) / 100) 
+        : null,
       title:        enr.title        ?? a.title   ?? '',
       title_ua:     enr.title_ua     ?? null,
       media_type:   enr.media_type   ?? 'unknown',
@@ -120,10 +123,9 @@ export function computeChartData(snapshot, prevSnap, enrichedMap, scoreStreaks =
       banner_image: enr.banner_image ?? null,
       rank,
       prevRank,
-      rankDelta:    prevRank !== null ? prevRank - rank : null,
-      scoreDelta:   prevEntry ? (Math.round((a.score - prevEntry.score) * 100) / 100) : null,
+      rankDelta: prevRank !== null ? prevRank - rank : null,
       membersDelta: prevEntry ? a.members - prevEntry.members : null,
-      isNew:        prevSnap !== null && prevRank === null,
+      isNew: prevSnap !== null && prevRank === null,
       scoreStreak,
     };
   });
