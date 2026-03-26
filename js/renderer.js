@@ -21,6 +21,10 @@ const $ = id => document.getElementById(id);
 const fmtNum   = n => (n ?? 0).toLocaleString('uk-UA');
 const fmtScore = s => (s ?? 0).toFixed(2);
 
+// Cache snapshot date indices per index array to avoid rebuilding on every render
+const _snapshotDatesCache = new WeakMap();
+const _snapshotDateIndexCache = new WeakMap();
+
 function fmtDelta(val, decimals = 0) {
   if (val === null || val === undefined || val === 0) return val === 0 ? '±0' : '';
   return (val > 0 ? '+' : '−') + Math.abs(val).toFixed(decimals);
@@ -295,8 +299,19 @@ export function renderChartSection(snap, prevSnap, enrichedMap, index, currentIn
     input.addEventListener('keydown', e => { if (e.key === 'Enter') input.dispatchEvent(new Event('change')); });
   }
 
-  const snapshotDates = index.map(s => s.date);
-  const { rows: allRows } = computeChartData(snap, prevSnap, enrichedMap, scoreStreaks, snapshotDates);
+  let snapshotDates = _snapshotDatesCache.get(index);
+  if (!snapshotDates) {
+    snapshotDates = index.map(s => s.date);
+    _snapshotDatesCache.set(index, snapshotDates);
+  }
+
+  let snapshotDateIndex = _snapshotDateIndexCache.get(index);
+  if (!snapshotDateIndex) {
+    snapshotDateIndex = new Map(snapshotDates.map((d, i) => [d, i]));
+    _snapshotDateIndexCache.set(index, snapshotDateIndex);
+  }
+
+  const { rows: allRows } = computeChartData(snap, prevSnap, enrichedMap, scoreStreaks, snapshotDateIndex);
 
   const filtered = membersThreshold > 0
     ? allRows.filter(r => (r.members ?? 0) >= membersThreshold)

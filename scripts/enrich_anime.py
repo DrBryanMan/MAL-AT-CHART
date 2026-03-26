@@ -84,6 +84,8 @@ def empty_record(mal_id: int, title: str | None) -> dict:
         "title_ua":         None,
         "image":            None,
         "hikka_slug":       None,
+        "year":             None,
+        "season":           None,
     }
 
 # ── Крок 1: збір унікальних ID зі знімків ─────────────────────────────────────
@@ -140,6 +142,8 @@ def fetch_hikka(session: requests.Session, mal_id: int) -> dict | None:
         "title_ua":         d.get("title_ua"),
         "image":            d.get("image"),
         "hikka_slug":       d.get("slug"),
+        "yesr":             d.get("year"),
+        "season":           d.get("season"),
     }
 
 

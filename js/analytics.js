@@ -4,10 +4,12 @@ export function buildEnrichedMap(enrichedData) {
   return new Map(enrichedData.map(a => [a.mal_id, a]));
 }
 
+const UK_UA_DATE_FMT = new Intl.DateTimeFormat('uk-UA', {
+  year: 'numeric', month: 'long', day: 'numeric',
+});
+
 export function formatDate(dateStr) {
-  return new Date(dateStr + 'T00:00:00').toLocaleDateString('uk-UA', {
-    year: 'numeric', month: 'long', day: 'numeric',
-  });
+  return UK_UA_DATE_FMT.format(new Date(dateStr + 'T00:00:00'));
 }
 
 export function formatDateShort(dateStr) {
@@ -29,7 +31,12 @@ export function archiveUrl(dateStr) {
 function sortedAnime(snap) {
   return snap.anime
     .filter(a => a.score != null)
-    .toSorted((a, b) => b.score - a.score || String(a.id).localeCompare(String(b.id)));
+    .toSorted((a, b) => {
+      const d = b.score - a.score;
+      if (d) return d;
+      const ai = a.id, bi = b.id;
+      return ai < bi ? -1 : ai > bi ? 1 : 0;
+    });
 }
 
 // ─── Score Streaks (без dates!) ─────────────────────────────────────────────
@@ -73,23 +80,32 @@ export function computeChartData(snapshot, prevSnap, enrichedMap, scoreStreaks =
   const sorted = sortedAnime(snapshot);
   const prevSorted = prevSnap ? sortedAnime(prevSnap) : [];
 
+  const prevRankById = new Map();
+  for (let i = 0; i < prevSorted.length; i++) prevRankById.set(prevSorted[i].id, i + 1);
+
+  const prevEntryById = prevSnap ? new Map(prevSnap.anime.map(a => [a.id, a])) : null;
+  const snapshotDateIndex = snapshotDates instanceof Map
+    ? snapshotDates
+    : (snapshotDates?.length ? new Map(snapshotDates.map((d, i) => [d, i])) : null);
+
   const rows = sorted.map((a, i) => {
     const rank = i + 1;
     const enr = enrichedMap.get(a.id) ?? {};
-    const prevIdx = prevSorted.findIndex(p => p.id === a.id);
-    const prevRank = prevIdx >= 0 ? prevIdx + 1 : null;
-    const prevEntry = prevSnap?.anime.find(p => p.id === a.id) ?? null;
+    const prevRank = prevRankById.get(a.id) ?? null;
+    const prevEntry = prevEntryById?.get(a.id) ?? null;
 
     const scoreStreak = (() => {
       const streaksForAnime = scoreStreaks[a.id] ?? [];
-      const s = streaksForAnime.find(
-        s => s.startDate <= snapshot.date && s.endDate >= snapshot.date
-      );
+      let s = null;
+      for (let i = 0; i < streaksForAnime.length; i++) {
+        const cand = streaksForAnime[i];
+        if (cand.startDate <= snapshot.date && cand.endDate >= snapshot.date) { s = cand; break; }
+      }
       if (!s) return null;
 
-      const startIdx = snapshotDates.findIndex(d => d === s.startDate);
-      const currIdx = snapshotDates.findIndex(d => d === snapshot.date);
-      const count = (startIdx >= 0 && currIdx >= 0) ? currIdx - startIdx + 1 : 1;
+      const startIdx = snapshotDateIndex?.get(s.startDate) ?? -1;
+      const currIdx  = snapshotDateIndex?.get(snapshot.date) ?? -1;
+      const count = (startIdx >= 0 && currIdx >= 0) ? (currIdx - startIdx + 1) : 1;
 
       return { ...s, count };
     })();
@@ -105,9 +121,9 @@ export function computeChartData(snapshot, prevSnap, enrichedMap, scoreStreaks =
       rank,
       prevRank,
       rankDelta:    prevRank !== null ? prevRank - rank : null,
-      scoreDelta:   prevEntry ? +(a.score - prevEntry.score).toFixed(2) : null,
+      scoreDelta:   prevEntry ? (Math.round((a.score - prevEntry.score) * 100) / 100) : null,
       membersDelta: prevEntry ? a.members - prevEntry.members : null,
-      isNew:        prevSnap !== null && prevIdx === -1,
+      isNew:        prevSnap !== null && prevRank === null,
       scoreStreak,
     };
   });

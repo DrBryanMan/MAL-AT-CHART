@@ -4,9 +4,36 @@ import shutil
 import re
 
 # Шлях до папки зі снепшотами
-base_path = os.path.join('..', 'snapshots')
+BASE_PATH = os.path.join('..', 'snapshots')
 
-for root, dirs, files in os.walk(base_path):
+# ── Зважена оцінка (Weighted Rank) ───────────────────────────────────────────
+
+WR_MIN_VOTES = 10   # m — мінімальний поріг голосів
+
+def mean_score(anime_list):
+    scores = [a["score"] for a in anime_list if a.get("score") is not None]
+    return sum(scores) / len(scores) if scores else 0.0
+
+def weighted_score(score, scored_by, C, m=WR_MIN_VOTES):
+    """WR = (v / (v + m)) * S + (m / (v + m)) * C"""
+    if score is None or not scored_by:
+        return None
+    v = scored_by
+    return round((v / (v + m)) * score + (m / (v + m)) * C, 4)
+
+def apply_weighted_scores(anime_list):
+    """Обчислює та записує weighted_score для кожного запису хікки."""
+    C = mean_score(anime_list)
+    for item in anime_list:
+        item["weighted_score"] = weighted_score(
+            item.get("score"),
+            item.get("scored_by"),
+            C,
+        )
+
+# ── Основна обробка ───────────────────────────────────────────────────────────
+
+for root, dirs, files in os.walk(BASE_PATH):
     # 1. Пропускаємо папки-бекапи
     if '-full' in root:
         continue
@@ -15,7 +42,7 @@ for root, dirs, files in os.walk(base_path):
         if not filename.endswith('.json'):
             continue
 
-        # 2. Перевірка року у імені файлу: не чіпаємо файли до 2008 року
+        # 2. Не чіпаємо файли до 2008 року
         year_match = re.search(r'\b(19\d{2}|20\d{2})\b', filename)
         if year_match and int(year_match.group(1)) < 2008:
             continue
@@ -29,40 +56,43 @@ for root, dirs, files in os.walk(base_path):
             print(f"Пропущено {filename}: помилка читання ({e})")
             continue
 
-        # Визначаємо ключ (anime або manga)
         key = 'anime' if 'anime' in data else ('manga' if 'manga' in data else None)
-
         if not key or not isinstance(data[key], list):
             continue
 
+        rel_path   = os.path.relpath(file_path, BASE_PATH)
+        path_parts = rel_path.split(os.sep)
+        is_hikka   = '-hikka' in path_parts[0]
+
         original_count = len(data[key])
 
-        # Фільтрація: прибираємо тільки тих, у кого members відомий і <= 4
-        # Якщо members = null — не чіпаємо (старі знімки без цього поля)
+        # 3. Фільтрація: прибираємо тільки тих, у кого members відомий і <= 9
         data[key] = [
             item for item in data[key]
             if item.get('members') is None or item.get('members') > 9
         ]
         data['total'] = len(data[key])
+        filtered = len(data[key]) < original_count
 
-        # Оновлюємо файл тільки якщо щось було видалено
-        if len(data[key]) == original_count:
+        # 4. Зважена оцінка — тільки для хікки
+        if is_hikka:
+            apply_weighted_scores(data[key])
+
+        # Не перезаписуємо якщо нічого не змінилось і це не хікка
+        # (для хікки завжди перезаписуємо — weighted_score могло оновитись)
+        if not filtered and not is_hikka:
             continue
 
-        rel_path   = os.path.relpath(file_path, base_path)
-        path_parts = rel_path.split(os.sep)
-
-        # 3. Бекап тільки для папок *-hikka, і тільки якщо бекапу ще немає
-        if '-hikka' in path_parts[0]:
-            backup_folder_name = f"{path_parts[0]}-full"
-            backup_path = os.path.join(base_path, backup_folder_name, *path_parts[1:])
-
+        # 5. Бекап для хікки — лише перший раз
+        if is_hikka:
+            backup_folder = f"{path_parts[0]}-full"
+            backup_path   = os.path.join(BASE_PATH, backup_folder, *path_parts[1:])
             if not os.path.exists(backup_path):
                 os.makedirs(os.path.dirname(backup_path), exist_ok=True)
                 shutil.copy2(file_path, backup_path)
                 status_msg = "Бекап створено (перша копія)"
             else:
-                status_msg = "Бекап вже існує, не перезаписуємо"
+                status_msg = "Бекап вже існує"
         else:
             status_msg = "Без бекапу (MAL)"
 
@@ -70,6 +100,11 @@ for root, dirs, files in os.walk(base_path):
             json.dump(data, f, ensure_ascii=False, indent=2)
 
         removed = original_count - data['total']
-        print(f"Очищено: {rel_path} (-{removed}) | {status_msg}")
+        parts = []
+        if removed:
+            parts.append(f"-{removed}")
+        if is_hikka:
+            parts.append("WR додано")
+        print(f"Оновлено: {rel_path} ({', '.join(parts) or 'без змін'}) | {status_msg}")
 
 print("Обробку завершено.")

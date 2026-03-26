@@ -70,13 +70,9 @@ def fetch_page(session: requests.Session, page: int) -> dict:
 
 
 def extract_entry(item: dict) -> dict:
-    return {
-        "id":       item.get("mal_id"),
-        "slug":     item.get("slug"),
-        "title":    item.get("title_en") or item.get("title_ja"),
-        "score":    item.get("native_score"),
-        "members":  item.get("native_scored_by"),
-    }
+    return { "id": item.get("mal_id"), "score": item.get("native_score"), "scored_by":  item.get("native_scored_by") }
+        # "slug":     item.get("slug"),
+        # "title":    item.get("title_en") or item.get("title_ja"),
 
 
 def fetch_all(session: requests.Session) -> list[dict]:
@@ -128,9 +124,16 @@ def _collect_entries(items: list[dict]) -> tuple[list[dict], bool]:
     """
     entries = []
     for item in items:
+        # 🔴 Стоп: якщо немає оцінки
         if not item.get("native_score"):
             return entries, True
+
+        # 🟡 Пропуск: якщо статус announced
+        if item.get("status") == "announced":
+            continue
+
         entries.append(extract_entry(item))
+
     return entries, False
 
 # ── Збереження ────────────────────────────────────────────────────────────────
