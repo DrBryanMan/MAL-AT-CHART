@@ -1,5 +1,5 @@
-import { buildEnrichedMap } from './analytics.js';
-import { loadAll, loadSnapshotPair } from './data-loader.js';
+﻿import { buildEnrichedMap } from './analytics.js';
+import { loadAll, loadSnapshot, loadSnapshotPair } from './data-loader.js';
 import {
   renderCategorySection,
   renderChartSection,
@@ -11,12 +11,14 @@ import {
 import { CONFIG, applyMode } from './config.js';
 import { icon } from './icons.js';
 
-// ─── State ────────────────────────────────────────────────────────────────────
+// â”€â”€â”€ State â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
 
 const state = {
   index:        [],
   currentSnap:  null,
   prevSnap:     null,
+  latestSnap:   null,
+  latestMonthSnap: null,
   enrichedMap:  new Map(),
   analytics:    null,
   currentIndex: 0,
@@ -26,7 +28,7 @@ const state = {
   displayLimit:     50,
 };
 
-// ─── Mode helpers ─────────────────────────────────────────────────────────────
+// â”€â”€â”€ Mode helpers â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
 
 function getStoredMode() {
   return localStorage.getItem('data-mode') ?? 'mal';
@@ -46,8 +48,8 @@ function applyModeUI(mode) {
   const subtitleEl = document.querySelector('.site-subtitle');
   if (subtitleEl) {
     subtitleEl.textContent = mode === 'hikka'
-      ? 'Архів рейтинґів Hikka з 02.2026'
-      : 'Архів рейтинґів MyAnimeList з 2006';
+      ? 'ÐÑ€Ñ…Ñ–Ð² Ñ€ÐµÐ¹Ñ‚Ð¸Ð½Ò‘Ñ–Ð² Hikka Ð· 02.2026'
+      : 'ÐÑ€Ñ…Ñ–Ð² Ñ€ÐµÐ¹Ñ‚Ð¸Ð½Ò‘Ñ–Ð² MyAnimeList Ð· 2006';
   }
 
   const toggleBtn = document.getElementById('mode-toggle-btn');
@@ -59,6 +61,8 @@ function applyModeUI(mode) {
   document.querySelectorAll('.source-btn').forEach(btn => {
     btn.classList.toggle('active', btn.dataset.source === mode);
   });
+
+  renderHikkaSummary();
 }
 
 async function switchMode(mode) {
@@ -81,7 +85,7 @@ async function switchMode(mode) {
   contentEl.classList.remove('fade-out');
 }
 
-// ─── Init ─────────────────────────────────────────────────────────────────────
+// â”€â”€â”€ Init â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
 
 async function init() {
   const mode = getStoredMode();
@@ -93,7 +97,7 @@ async function init() {
   await loadData();
 }
 
-// ─── Data loading ─────────────────────────────────────────────────────────────
+// â”€â”€â”€ Data loading â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
 
 async function loadData() {
   const loadingEl = document.getElementById('loading');
@@ -101,7 +105,7 @@ async function loadData() {
   contentEl.classList.remove('visible');
 
   if (loadingEl) {
-    loadingEl.innerHTML = `<div class="spinner"></div><p>Завантаження даних…</p>`;
+    loadingEl.innerHTML = `<div class="spinner"></div><p>Ð—Ð°Ð²Ð°Ð½Ñ‚Ð°Ð¶ÐµÐ½Ð½Ñ Ð´Ð°Ð½Ð¸Ñ…â€¦</p>`;
     loadingEl.classList.remove('hidden');
   }
   // if (contentEl) contentEl.classList.add('hidden');
@@ -109,7 +113,7 @@ async function loadData() {
   try {
     const { index, analytics, enriched } = await loadAll(state.currentMode);
 
-    if (!index.length) throw new Error('Не вдалося завантажити жодного знімку.');
+    if (!index.length) throw new Error('ÐÐµ Ð²Ð´Ð°Ð»Ð¾ÑÑ Ð·Ð°Ð²Ð°Ð½Ñ‚Ð°Ð¶Ð¸Ñ‚Ð¸ Ð¶Ð¾Ð´Ð½Ð¾Ð³Ð¾ Ð·Ð½Ñ–Ð¼ÐºÑƒ.');
 
     state.index        = index;
     state.enrichedMap  = buildEnrichedMap(enriched);
@@ -123,6 +127,8 @@ async function loadData() {
     const { current, prev } = await loadSnapshotPair(dates, state.currentIndex, state.currentMode);
     state.currentSnap = current;
     state.prevSnap    = prev;
+    state.latestSnap  = current;
+    state.latestMonthSnap = await loadMonthStartComparisonSnapshot(dates, state.currentMode, current.date);
 
     if (loadingEl) loadingEl.classList.add('hidden');
     if (contentEl) contentEl.classList.remove('hidden');
@@ -135,15 +141,17 @@ async function loadData() {
     });
   } catch (err) {
     if (loadingEl) {
-      loadingEl.innerHTML = `<div class="error-state"><p>❌ ${err.message}</p></div>`;
+      loadingEl.innerHTML = `<div class="error-state"><p>âŒ ${err.message}</p></div>`;
     }
-    console.error('[Charts] Помилка:', err);
+    console.error('[Charts] ÐŸÐ¾Ð¼Ð¸Ð»ÐºÐ°:', err);
   }
 }
 
-// ─── Render ───────────────────────────────────────────────────────────────────
+// â”€â”€â”€ Render â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
 
 function renderAll() {
+  renderHikkaSummary();
+
   const sections = [
     () => renderChartSection(
       state.currentSnap, state.prevSnap, state.enrichedMap,
@@ -155,8 +163,49 @@ function renderAll() {
     () => renderEventsSection(state.analytics, state.currentMode, state.enrichedMap),
   ];
   for (const fn of sections) {
-    try { fn(); } catch (e) { console.error('[Charts] Секція:', e); }
+    try { fn(); } catch (e) { console.error('[Charts] Ð¡ÐµÐºÑ†Ñ–Ñ:', e); }
   }
+}
+
+function renderHikkaSummary() {
+  const summaryEl = document.getElementById('hikka-summary');
+  const scoreEl = document.getElementById('hikka-summary-score');
+  const deltaEl = document.getElementById('hikka-summary-delta');
+  const countEl = document.getElementById('hikka-summary-count');
+  const dateEl = document.getElementById('hikka-summary-date');
+
+  if (!summaryEl || !scoreEl || !deltaEl || !countEl || !dateEl) return;
+
+  if (state.currentMode !== 'hikka' || !state.latestSnap?.anime?.length) {
+    summaryEl.classList.add('hidden');
+    return;
+  }
+
+  const ratedAnime = state.latestSnap.anime.filter(a => Number.isFinite(a.score) && a.score > 0);
+  const totalScore = ratedAnime.reduce((sum, anime) => sum + anime.score, 0);
+  const averageScore = ratedAnime.length ? totalScore / ratedAnime.length : 0;
+  const monthRatedAnime = state.latestMonthSnap?.anime?.filter(a => Number.isFinite(a.score) && a.score > 0) ?? [];
+  const monthTotalScore = monthRatedAnime.reduce((sum, anime) => sum + anime.score, 0);
+  const monthAverageScore = monthRatedAnime.length ? monthTotalScore / monthRatedAnime.length : null;
+  const delta = monthAverageScore === null ? null : averageScore - monthAverageScore;
+  const deltaRounded = delta === null ? null : Number(delta.toFixed(3));
+  const formattedDate = new Intl.DateTimeFormat('uk-UA', {
+    day: 'numeric',
+    month: 'long',
+    year: 'numeric',
+  }).format(new Date(`${state.latestSnap.date}T00:00:00`));
+
+  scoreEl.textContent = averageScore.toFixed(3);
+  deltaEl.className = `hikka-summary__delta ${deltaRounded === null || deltaRounded === 0 ? 'neutral' : deltaRounded > 0 ? 'positive' : 'negative'}`;
+  deltaEl.textContent = deltaRounded === null
+    ? 'new'
+    : `${deltaRounded > 0 ? '+' : deltaRounded < 0 ? '-' : '±'}${Math.abs(deltaRounded).toFixed(3)}`;
+  countEl.textContent = `На основі ${ratedAnime.length.toLocaleString('uk-UA')} аніме`;
+  dateEl.textContent = `Актуально на ${formattedDate}`;
+  deltaEl.title = state.latestMonthSnap?.date
+    ? `Зміна відносно ${state.latestMonthSnap.date}`
+    : 'Немає снепшоту на перше число місяця для порівняння';
+  summaryEl.classList.remove('hidden');
 }
 
 function renderChart() {
@@ -168,6 +217,14 @@ function renderChart() {
       state.membersThreshold, state.displayLimit,
     );
   } catch (e) { console.error('[Charts] Chart:', e); }
+}
+
+async function loadMonthStartComparisonSnapshot(dates, source, latestDate) {
+  if (!dates?.length || !latestDate) return null;
+
+  const monthStartDate = `${latestDate.slice(0, 8)}01`;
+  if (!dates.includes(monthStartDate)) return null;
+  return loadSnapshot(monthStartDate, source);
 }
 
 async function jumpTo(idx) {
@@ -183,14 +240,14 @@ async function jumpTo(idx) {
   renderChart();
 }
 
-// ─── Events ───────────────────────────────────────────────────────────────────
+// â”€â”€â”€ Events â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
 
 function setupEventListeners() {
   document.addEventListener('click', e => {
     const infoBtn = e.target.closest('[data-info-key]');
     if (infoBtn) {
       e.stopPropagation();
-      showTooltip(infoBtn, CONFIG.infoTexts[infoBtn.dataset.infoKey] ?? 'Немає опису.');
+      showTooltip(infoBtn, CONFIG.infoTexts[infoBtn.dataset.infoKey] ?? 'ÐÐµÐ¼Ð°Ñ” Ð¾Ð¿Ð¸ÑÑƒ.');
       return;
     }
 
@@ -250,3 +307,4 @@ function setupTheme() {
 }
 
 init();
+
