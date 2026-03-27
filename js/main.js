@@ -1,4 +1,4 @@
-﻿import { buildEnrichedMap } from './analytics.js';
+import { buildEnrichedMap } from './analytics.js';
 import { loadAll, loadSnapshot, loadSnapshotPair } from './data-loader.js';
 import {
   renderCategorySection,
@@ -11,7 +11,7 @@ import {
 import { CONFIG, applyMode } from './config.js';
 import { icon } from './icons.js';
 
-// â”€â”€â”€ State â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
+// State
 
 const state = {
   index:        [],
@@ -28,7 +28,7 @@ const state = {
   displayLimit:     50,
 };
 
-// â”€â”€â”€ Mode helpers â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
+// Mode helpers
 
 function getStoredMode() {
   return localStorage.getItem('data-mode') ?? 'mal';
@@ -48,8 +48,8 @@ function applyModeUI(mode) {
   const subtitleEl = document.querySelector('.site-subtitle');
   if (subtitleEl) {
     subtitleEl.textContent = mode === 'hikka'
-      ? 'ÐÑ€Ñ…Ñ–Ð² Ñ€ÐµÐ¹Ñ‚Ð¸Ð½Ò‘Ñ–Ð² Hikka Ð· 02.2026'
-      : 'ÐÑ€Ñ…Ñ–Ð² Ñ€ÐµÐ¹Ñ‚Ð¸Ð½Ò‘Ñ–Ð² MyAnimeList Ð· 2006';
+      ? 'Архів рейтингів Hikka з 02.2026'
+      : 'Архів рейтингів MyAnimeList з 2006';
   }
 
   const toggleBtn = document.getElementById('mode-toggle-btn');
@@ -69,7 +69,7 @@ async function switchMode(mode) {
   if (mode === state.currentMode) return;
 
   const contentEl = document.getElementById('content');
-  
+
   contentEl.classList.remove('visible');
   contentEl.classList.add('fade-out');
 
@@ -85,7 +85,7 @@ async function switchMode(mode) {
   contentEl.classList.remove('fade-out');
 }
 
-// â”€â”€â”€ Init â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
+// Init
 
 async function init() {
   const mode = getStoredMode();
@@ -97,7 +97,7 @@ async function init() {
   await loadData();
 }
 
-// â”€â”€â”€ Data loading â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
+// Data loading
 
 async function loadData() {
   const loadingEl = document.getElementById('loading');
@@ -105,7 +105,7 @@ async function loadData() {
   contentEl.classList.remove('visible');
 
   if (loadingEl) {
-    loadingEl.innerHTML = `<div class="spinner"></div><p>Ð—Ð°Ð²Ð°Ð½Ñ‚Ð°Ð¶ÐµÐ½Ð½Ñ Ð´Ð°Ð½Ð¸Ñ…â€¦</p>`;
+    loadingEl.innerHTML = `<div class="spinner"></div><p>Завантаження даних...</p>`;
     loadingEl.classList.remove('hidden');
   }
   // if (contentEl) contentEl.classList.add('hidden');
@@ -113,7 +113,7 @@ async function loadData() {
   try {
     const { index, analytics, enriched } = await loadAll(state.currentMode);
 
-    if (!index.length) throw new Error('ÐÐµ Ð²Ð´Ð°Ð»Ð¾ÑÑ Ð·Ð°Ð²Ð°Ð½Ñ‚Ð°Ð¶Ð¸Ñ‚Ð¸ Ð¶Ð¾Ð´Ð½Ð¾Ð³Ð¾ Ð·Ð½Ñ–Ð¼ÐºÑƒ.');
+    if (!index.length) throw new Error('Не вдалося завантажити жодного знімку.');
 
     state.index        = index;
     state.enrichedMap  = buildEnrichedMap(enriched);
@@ -141,29 +141,38 @@ async function loadData() {
     });
   } catch (err) {
     if (loadingEl) {
-      loadingEl.innerHTML = `<div class="error-state"><p>âŒ ${err.message}</p></div>`;
+      loadingEl.innerHTML = `<div class="error-state"><p>Помилка: ${err.message}</p></div>`;
     }
-    console.error('[Charts] ÐŸÐ¾Ð¼Ð¸Ð»ÐºÐ°:', err);
+    console.error('[Charts] Помилка:', err);
   }
 }
 
-// â”€â”€â”€ Render â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
+// Render
 
 function renderAll() {
   renderHikkaSummary();
 
   const sections = [
     () => renderChartSection(
-      state.currentSnap, state.prevSnap, state.enrichedMap,
-      state.index, state.currentIndex,
-      state.analytics?.scoreStreaks ?? {}, state.maxScoreMap,
-      state.membersThreshold, state.displayLimit,
+      state.currentSnap,
+      state.prevSnap,
+      state.enrichedMap,
+      state.index,
+      state.currentIndex,
+      state.analytics?.scoreStreaks ?? {},
+      state.maxScoreMap,
+      state.membersThreshold,
+      state.displayLimit,
     ),
     () => renderCategorySection(state.analytics.categoryTopHistory, state.enrichedMap),
     () => renderEventsSection(state.analytics, state.currentMode, state.enrichedMap),
   ];
   for (const fn of sections) {
-    try { fn(); } catch (e) { console.error('[Charts] Ð¡ÐµÐºÑ†Ñ–Ñ:', e); }
+    try {
+      fn();
+    } catch (e) {
+      console.error('[Charts] Секція:', e);
+    }
   }
 }
 
@@ -211,12 +220,19 @@ function renderHikkaSummary() {
 function renderChart() {
   try {
     renderChartSection(
-      state.currentSnap, state.prevSnap, state.enrichedMap,
-      state.index, state.currentIndex,
-      state.analytics?.scoreStreaks ?? {}, state.maxScoreMap,
-      state.membersThreshold, state.displayLimit,
+      state.currentSnap,
+      state.prevSnap,
+      state.enrichedMap,
+      state.index,
+      state.currentIndex,
+      state.analytics?.scoreStreaks ?? {},
+      state.maxScoreMap,
+      state.membersThreshold,
+      state.displayLimit,
     );
-  } catch (e) { console.error('[Charts] Chart:', e); }
+  } catch (e) {
+    console.error('[Charts] Chart:', e);
+  }
 }
 
 async function loadMonthStartComparisonSnapshot(dates, source, latestDate) {
@@ -240,22 +256,30 @@ async function jumpTo(idx) {
   renderChart();
 }
 
-// â”€â”€â”€ Events â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
+// Events
 
 function setupEventListeners() {
   document.addEventListener('click', e => {
     const infoBtn = e.target.closest('[data-info-key]');
     if (infoBtn) {
       e.stopPropagation();
-      showTooltip(infoBtn, CONFIG.infoTexts[infoBtn.dataset.infoKey] ?? 'ÐÐµÐ¼Ð°Ñ” Ð¾Ð¿Ð¸ÑÑƒ.');
+      showTooltip(infoBtn, CONFIG.infoTexts[infoBtn.dataset.infoKey] ?? 'Немає опису.');
       return;
     }
 
-    if (e.target.closest('#snap-prev'))   { jumpTo(state.currentIndex - 1); return; }
-    if (e.target.closest('#snap-next'))   { jumpTo(state.currentIndex + 1); return; }
-    if (e.target.closest('#snap-latest')) { jumpTo(state.index.length - 1); return; }
+    if (e.target.closest('#snap-prev')) {
+      jumpTo(state.currentIndex - 1);
+      return;
+    }
+    if (e.target.closest('#snap-next')) {
+      jumpTo(state.currentIndex + 1);
+      return;
+    }
+    if (e.target.closest('#snap-latest')) {
+      jumpTo(state.index.length - 1);
+      return;
+    }
 
-    // Mode toggle
     const sourceBtn = e.target.closest('.source-btn');
     if (sourceBtn) {
       const mode = sourceBtn.dataset.source;
@@ -307,4 +331,3 @@ function setupTheme() {
 }
 
 init();
-
