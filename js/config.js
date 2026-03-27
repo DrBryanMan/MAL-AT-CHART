@@ -43,6 +43,7 @@ export const CONFIG = {
 
   // Hikka
   hikkaSnapshotsDir:        'snapshots/anime-hikka/',
+  hikkaFullSnapshotsDir:    'snapshots/anime-hikka-full/',
   hikkaAnalyticsFile:       'analytics-hikka.json',
   hikkaSnapshotsIndexFile:  'snapshots-index-hikka.json',
 

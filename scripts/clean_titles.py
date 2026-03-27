@@ -19,7 +19,10 @@ def weighted_score(score, scored_by, C, m=WR_MIN_VOTES):
     if score is None or not scored_by:
         return None
     v = scored_by
-    return round((v / (v + m)) * score + (m / (v + m)) * C, 4)
+    
+    raw_value = (v / (v + m)) * score + (m / (v + m)) * C
+    
+    return int(raw_value * 100) / 100
 
 def apply_weighted_scores(anime_list):
     """Обчислює та записує weighted_score лише для записів, де його ще немає."""

@@ -22,7 +22,7 @@ const state = {
   enrichedMap:  new Map(),
   analytics:    null,
   currentIndex: 0,
-  maxScoreMap:  new Map(),
+  scoreRecordMap: new Map(),
   currentMode:      'mal',
   membersThreshold: 0,
   displayLimit:     50,
@@ -119,8 +119,8 @@ async function loadData() {
     state.enrichedMap  = buildEnrichedMap(enriched);
     state.currentIndex = index.length - 1;
     state.analytics    = analytics;
-    state.maxScoreMap  = new Map(
-      (analytics?.allAboveThreshold ?? []).map(a => [a.animeId, { maxScore: a.maxScore, maxScoreDate: a.maxScoreDate }])
+    state.scoreRecordMap = new Map(
+      Object.entries(analytics?.scoreRecordsByAnime ?? {}).map(([id, records]) => [Number(id), records])
     );
 
     const dates = index.map(s => s.date);
@@ -160,7 +160,7 @@ function renderAll() {
       state.index,
       state.currentIndex,
       state.analytics?.scoreStreaks ?? {},
-      state.maxScoreMap,
+      state.scoreRecordMap,
       state.membersThreshold,
       state.displayLimit,
     ),
@@ -226,7 +226,7 @@ function renderChart() {
       state.index,
       state.currentIndex,
       state.analytics?.scoreStreaks ?? {},
-      state.maxScoreMap,
+      state.scoreRecordMap,
       state.membersThreshold,
       state.displayLimit,
     );

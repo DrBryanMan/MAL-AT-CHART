@@ -47,6 +47,15 @@ function playChartFlip(contentEl, prevPositions) {
   });
 }
 
+function getHistoricalRecord(scoreRecords, date) {
+  let historicalRecord = null;
+  for (const record of scoreRecords) {
+    if (record.date > date) break;
+    historicalRecord = record;
+  }
+  return historicalRecord;
+}
+
 export function renderChartSection(
   snap,
   prevSnap,
@@ -54,7 +63,7 @@ export function renderChartSection(
   index,
   currentIndex,
   scoreStreaks = {},
-  maxScoreMap = new Map(),
+  scoreRecordMap = new Map(),
   membersThreshold = 0,
   displayLimit = 50,
 ) {
@@ -155,6 +164,8 @@ export function renderChartSection(
   const rows = filtered.slice(0, displayLimit);
 
   const rowsHTML = rows.map(row => {
+    const scoreRecords = scoreRecordMap.get(row.id) ?? [];
+    const historicalRecord = getHistoricalRecord(scoreRecords, snap.date);
     const origTitle = row.title_ua ? `<div class="chart-title-orig">${escHtml(row.title)}</div>` : '';
     const streakHTML = row.scoreStreak && row.scoreStreak.count > 1
       ? `<span class="score-streak" title="Оцінка незмінна з ${formatDateShort(row.scoreStreak.startDate)}">
@@ -171,10 +182,13 @@ export function renderChartSection(
       ? `<span class="delta ${deltaClass(row.membersDelta)}">${fmtDelta(row.membersDelta)}</span>`
       : '';
     const borderClass = row.rank <= 3 ? ` rank-top-${row.rank}` : '';
-    const maxEntry = maxScoreMap.get(row.id) ?? null;
-    const hasRecord = maxEntry !== null && maxEntry.maxScore > row.score && maxEntry.maxScoreDate <= snap.date;
-    const scoreTooltipAttr = hasRecord
-      ? `data-score-tooltip="Найвища до цієї дати: ${fmtScore(maxEntry.maxScore)}"`
+    const mainScoreTooltipAttr = document.documentElement.dataset.mode === 'hikka' && row.rawScore != null
+      ? `data-score-tooltip="Сира оцінка: ${fmtScore(row.rawScore)}"`
+      : '';
+    const maxScoreHTML = historicalRecord
+      ? `<span class="score-badge score-badge--record" data-score-tooltip="Максимум уперше досягнуто ${formatDateShort(historicalRecord.date)}">
+          ${icon('star', 14)}${fmtScore(historicalRecord.score)}
+        </span>`
       : '';
 
     return `<div class="chart-row${borderClass}${row.banner_image ? ' has-banner' : ''}" data-id="${row.id}" ${bannerStyle(row.banner_image)}>
@@ -193,9 +207,10 @@ export function renderChartSection(
       <div class="chart-stats">
         <div class="stat-score">
           ${streakHTML}
-          <span class="score-badge large${hasRecord ? ' score-has-record' : ''}" ${scoreTooltipAttr}>
-            ${icon('star', 18)}${fmtScore(row.score)}
+          <span class="score-badge large score-badge--current${mainScoreTooltipAttr ? ' score-badge--hint' : ''}" ${mainScoreTooltipAttr}>
+            ${icon('scored-by', 12)}${fmtScore(row.score)}
           </span>
+          ${maxScoreHTML}
           ${scoreDelta}
         </div>
         <div class="stat-scored-by" style="color: var(--text-muted);" title="Кількість оцінок">

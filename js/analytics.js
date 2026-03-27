@@ -417,6 +417,29 @@ export function computeAllAboveThreshold(allSnapshots, threshold, enrichedMap) {
   return [...seen.values()].toSorted((a, b) => b.maxScore - a.maxScore);
 }
 
+export function computeScoreRecordsByAnime(allSnapshots) {
+  const byAnime = new Map();
+  const bestByAnime = new Map();
+
+  for (const snap of allSnapshots) {
+    for (const a of snap.anime) {
+      if (a.score == null) continue;
+
+      const prevBest = bestByAnime.get(a.id);
+      if (prevBest != null && a.score <= prevBest) continue;
+
+      bestByAnime.set(a.id, a.score);
+      if (!byAnime.has(a.id)) byAnime.set(a.id, []);
+      byAnime.get(a.id).push({
+        score: a.score,
+        date: snap.date,
+      });
+    }
+  }
+
+  return Object.fromEntries(byAnime);
+}
+
 export function computeTop1History(allSnapshots, enrichedMap) {
   const sessions = [];
   let cur = null;
@@ -535,6 +558,7 @@ export function computeMostHighRatedAtOnce(allSnapshots, threshold, enrichedMap)
 export function computeAll(snapshots, enrichedMap, threshold = 9.0) {
   return {
     scoreStreaks:       computeScoreStreaksByAnime(snapshots),
+    scoreRecordsByAnime:computeScoreRecordsByAnime(snapshots),
     categoryTopHistory: computeCategoryTopHistory(snapshots, enrichedMap, threshold),
     highestEver:        computeHighestEver(snapshots, enrichedMap),
     lowestEver:         computeLowestEver(snapshots, enrichedMap),

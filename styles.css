@@ -607,12 +607,6 @@ section[id] { scroll-margin-top: 70px; }
   color: var(--text-muted);
 }
 
-.score-has-record {
-  text-decoration: underline dotted #e3b34155;
-  text-underline-offset: 5px;
-  cursor: help;
-}
-
 /* ─── Anime Row Stats ────────────────────────────────── */
 .anime-score {
   margin-left: auto;
@@ -795,13 +789,36 @@ section[id] { scroll-margin-top: 70px; }
   font-weight: 700;
   color: var(--gold);
   white-space: nowrap;
+}
 
-  &.large {
-    display: flex;
-    align-items: center;
-    gap: 4px;
-    font-size: 16px;
-  }
+.score-badge.large {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  font-size: 16px;
+}
+
+.score-badge--current {
+  color: var(--accent);
+}
+
+.score-badge--record {
+  display: inline-flex;
+  align-items: center;
+  gap: 3px;
+  font-size: 12px;
+  color: var(--gold);
+  opacity: .9;
+  cursor: help;
+}
+
+.score-badge--hint {
+  cursor: help;
+  text-decoration: underline;
+  text-decoration-style: dotted;
+  text-underline-offset: 5px;
+  text-decoration-thickness: 1.5px;
+	text-decoration-color: var(--accent-light);
 }
 
 .count-badge {
