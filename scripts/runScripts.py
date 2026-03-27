@@ -10,9 +10,7 @@ from pathlib import Path
 ROOT = Path(__file__).resolve().parent
 
 SCRIPTS = [
-    # ("python", "scrap.py"),
     ("python", "actual_scrap.py"),
-    # ("python", "hikka_parser.py"),
     ("python", "parser.py"),
     ("python", "clean_titles.py"),
     ("python", "enrich_anime.py"),
