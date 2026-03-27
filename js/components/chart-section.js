@@ -183,11 +183,11 @@ export function renderChartSection(
       : '';
     const borderClass = row.rank <= 3 ? ` rank-top-${row.rank}` : '';
     const mainScoreTooltipAttr = document.documentElement.dataset.mode === 'hikka' && row.rawScore != null
-      ? `data-score-tooltip="Сира оцінка: ${fmtScore(row.rawScore)}"`
+      ? `data-score-tooltip="Це зважена оцінка | Сира оцінка: ${fmtScore(row.rawScore)}"`
       : '';
     const maxScoreHTML = historicalRecord
       ? `<span class="score-badge score-badge--record" data-score-tooltip="Максимум уперше досягнуто ${formatDateShort(historicalRecord.date)}">
-          ${icon('star', 14)}${fmtScore(historicalRecord.score)}
+          ${icon('star', 10)}${fmtScore(historicalRecord.score)}
         </span>`
       : '';
 
@@ -208,7 +208,7 @@ export function renderChartSection(
         <div class="stat-score">
           ${streakHTML}
           <span class="score-badge large score-badge--current${mainScoreTooltipAttr ? ' score-badge--hint' : ''}" ${mainScoreTooltipAttr}>
-            ${icon('scored-by', 12)}${fmtScore(row.score)}
+            ${icon('star', 14)}${fmtScore(row.score)}
           </span>
           ${maxScoreHTML}
           ${scoreDelta}
@@ -219,7 +219,7 @@ export function renderChartSection(
           ${scoredByDelta}
         </div>
         <div class="stat-members" title="В списках у глядачів">
-          <span class="members-label">${icon('users', 14)}</span>
+          <span class="members-label" style='display: inline-flex;'>${icon('users', 14)}</span>
           <span>${fmtNum(row.members)}</span>
           ${membersDelta}
         </div>

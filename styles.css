@@ -718,6 +718,9 @@ section[id] { scroll-margin-top: 70px; }
 }
 
 .highlight-score {
+  display: flex;
+  align-items: center;
+  gap: 8px;
   font-size: 28px;
   font-weight: 700;
   font-family: var(--font-mono);
@@ -804,9 +807,10 @@ section[id] { scroll-margin-top: 70px; }
 
 .score-badge--record {
   display: inline-flex;
+  align-self: flex-start;
   align-items: center;
   gap: 3px;
-  font-size: 12px;
+  font-size: 10px;
   color: var(--gold);
   opacity: .9;
   cursor: help;

@@ -50,7 +50,7 @@ function runnerUpRows(top3, enrichedMap, scoreField = 'score', dateField = 'date
       <span class="runner-medal runner-medal-${i + 2}">${medals[i]}</span>
       ${animeTitleHTML(a, 'runner-title')}
       <span class="runner-score">${icon('star', 14)} ${fmtScore(score)}</span>
-      ${a.members ? `<div class="highlight-meta">${icon('users', 13)} ${fmtNum(a.members)} голосів</div>` : ''}
+      ${a.scored_by ? `<div class="highlight-meta">${icon('scored_by', 13)} ${fmtNum(a.scored_by)} голосів</div>` : ''}
       <span class="runner-date">${dateHTML || ''} <span class="runner-days">${days !== null ? ` ( ${days} ${pluralUk(days, 'днів', 'дні', 'день')} )` : ''}</span></span>
     </div>`;
   }).join('');
@@ -168,7 +168,7 @@ function buildMostScoredByCard(data, enrichedMap) {
     return `<div class="runner-up-row">
       <span class="runner-medal runner-medal-${i + 2}">${i + 2}</span>
       ${animeTitleHTML(a, 'runner-title')}
-      <span class="runner-score">${icon('star', 14)} ${fmtNum(a.scored_by)}</span>
+      <span class="runner-score">${icon('scored-by', 14)} ${fmtNum(a.scored_by)}</span>
     </div>`;
   }).join('');
 
@@ -190,25 +190,26 @@ function buildMostScoredByCard(data, enrichedMap) {
           return `<div class="cat-winner-row">
             <span class="cat-winner-label">${label}</span>
             ${animeTitleHTML(a, 'cat-winner-title')}
-            <span class="cat-winner-score">${icon('star', 14)} ${fmtNum(a.scored_by)}</span>
+            <span class="cat-winner-score">${icon('scored-by', 14)} ${fmtNum(a.scored_by)}</span>
           </div>`;
         }).join('')}
       </div>`
     : '';
 
-  return eventCard(icon('star', 20), 'Найбільше оцінок', 'mostScoredBy', `
+  return eventCard(icon('scored-by', 20), 'Найбільше оцінок', 'mostScoredBy', `
     <div class="event-winner">
       ${thumbHTML(w.image, w.title_ua ?? w.title, 'event-poster')}
       <div class="event-highlight">
         <span class="highlight-score" style="color:var(--accent)">
-          ${icon('star', 22)} ${fmtNum(w.scored_by)}
+          ${icon('scored-by', 22)} ${fmtNum(w.scored_by)}
         </span>
         <div class="highlight-title">${animeTitleHTML(w)}</div>
         ${w.title_ua ? `<div class="highlight-orig">${escHtml(w.title)}</div>` : ''}
       </div>
     </div>
-    ${runners}
-    ${catWinnersHTML}`, w.image);
+
+  ${runners}
+  ${catWinnersHTML}`, w.image);
 }
 
 function buildHighestEverCard(data, enrichedMap) {
@@ -221,7 +222,7 @@ function buildHighestEverCard(data, enrichedMap) {
         <span class="highlight-score">${icon('star', 22)} ${fmtScore(w.score)}</span>
         <div class="highlight-title">${animeTitleHTML(w)}</div>
         ${w.title_ua ? `<div class="highlight-orig">${escHtml(w.title)}</div>` : ''}
-        ${w.members ? `<div class="highlight-meta">${icon('users', 13)} ${fmtNum(w.members)} голосів</div>` : ''}
+        ${w.scored_by ? `<div class="highlight-meta">${icon('scored_by', 13)} ${fmtNum(w.scored_by)} голосів</div>` : ''}
         <div class="highlight-date">${dateLink(w.date, formatDate(w.date))}</div>
       </div>
     </div>
