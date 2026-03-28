@@ -41,8 +41,8 @@ function applyModeUI(mode) {
   const titleEl = document.querySelector('.site-title');
   if (titleEl) {
     titleEl.innerHTML = mode === 'hikka'
-      ? 'Hikka <span class="accent">Ratings Chart</span>'
-      : 'MAL <span class="accent">Ratings Chart</span>';
+      ? '<span class="accent">Hikka</span> Ratings Chart'
+      : '<span class="accent">MAL</span> Ratings Chart';
   }
 
   const subtitleEl = document.querySelector('.site-subtitle');
