@@ -54,7 +54,7 @@ PAYLOAD_BASE = {
     "season":              [],
 }
 
-PAYLOAD_MAL   = {**PAYLOAD_BASE, "sort": ["scored_by:desc", "score:desc"]}
+PAYLOAD_MAL   = {**PAYLOAD_BASE, "sort": ["score:desc", "scored_by:desc"]}
 PAYLOAD_HIKKA = {**PAYLOAD_BASE, "sort": ["native_scored_by:desc", "native_score:desc"]}
 
 # ── Мережа ────────────────────────────────────────────────────────────────────
@@ -257,6 +257,7 @@ def _build_snapshot(entries: list[dict], date: str, source: str) -> dict:
         "date":      date,
         "timestamp": datetime.now().strftime("%Y%m%d%H%M%S"),
         "source":    source,
+        "min_score": MAL_SCORE_MIN,
         "total":     len(entries),
         "anime":     entries,
     }
