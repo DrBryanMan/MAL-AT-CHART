@@ -290,21 +290,21 @@ def main() -> None:
     MAL_OUT_DIR.mkdir(parents=True, exist_ok=True)
     HIKKA_OUT_DIR.mkdir(parents=True, exist_ok=True)
 
-    yesterday = (dt_date.today() - timedelta(days=1)).isoformat()
+    today = dt_date.today().isoformat()
 
-    mal_file   = MAL_OUT_DIR   / f"{yesterday}.json"
-    hikka_file = HIKKA_OUT_DIR / f"{yesterday}.json"
+    mal_file   = MAL_OUT_DIR   / f"{today}.json"
+    hikka_file = HIKKA_OUT_DIR / f"{today}.json"
 
     run_mal   = not _is_snapshot_fresh(mal_file)
     run_hikka = not _is_snapshot_fresh(hikka_file)
 
     if not run_mal:
         cached_total = json.loads(mal_file.read_text(encoding="utf-8")).get("total", 0)
-        print(f"⏭️  [MAL]   Знімок за {yesterday} вже є ({cached_total} тайтлів), пропускаємо.")
+        print(f"⏭️  [MAL]   Знімок за {today} вже є ({cached_total} тайтлів), пропускаємо.")
 
     if not run_hikka:
         cached_total = json.loads(hikka_file.read_text(encoding="utf-8")).get("total", 0)
-        print(f"⏭️  [Hikka] Знімок за {yesterday} вже є ({cached_total} тайтлів), пропускаємо.")
+        print(f"⏭️  [Hikka] Знімок за {today} вже є ({cached_total} тайтлів), пропускаємо.")
 
     if not run_mal and not run_hikka:
         return
@@ -323,7 +323,7 @@ def main() -> None:
             mal_entries = []
 
         if mal_entries:
-            save_snapshot(mal_entries, yesterday, MAL_OUT_DIR, "hikka-api-mal")
+            save_snapshot(mal_entries, today, MAL_OUT_DIR, "hikka-api-mal")
         else:
             print("⚠️  [MAL]   Отримано 0 записів — знімок не збережено.")
 
@@ -338,7 +338,7 @@ def main() -> None:
             hikka_entries = []
 
         if hikka_entries:
-            save_snapshot(hikka_entries, yesterday, HIKKA_OUT_DIR, "hikka-aggregator-revisions")
+            save_snapshot(hikka_entries, today, HIKKA_OUT_DIR, "hikka-aggregator-revisions")
         else:
             print("⚠️  [Hikka] Отримано 0 записів — знімок не збережено.")
 
