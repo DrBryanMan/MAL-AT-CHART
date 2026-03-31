@@ -1,6 +1,10 @@
 {
   "date": "2026-03-30",
+<<<<<<< HEAD
   "timestamp": "20260331002546",
+=======
+  "timestamp": "20260330204536",
+>>>>>>> 1cb400c506b91118dbbf2c14584dc74f8beff6f2
   "source": "hikka-aggregator-revisions",
   "min_score": 8.0,
   "total": 3778,
@@ -404,7 +408,11 @@
     {
       "id": 49387,
       "score": 8.99,
+<<<<<<< HEAD
       "scored_by": 578,
+=======
+      "scored_by": 577,
+>>>>>>> 1cb400c506b91118dbbf2c14584dc74f8beff6f2
       "weighted_score": 8.96
     },
     {
@@ -3102,12 +3110,15 @@
       "weighted_score": 6.42
     },
     {
+<<<<<<< HEAD
       "id": 57658,
       "score": 8.8,
       "scored_by": 156,
       "weighted_score": 8.71
     },
     {
+=======
+>>>>>>> 1cb400c506b91118dbbf2c14584dc74f8beff6f2
       "id": 54870,
       "score": 7.95,
       "scored_by": 156,
@@ -3132,6 +3143,15 @@
       "weighted_score": 7.52
     },
     {
+<<<<<<< HEAD
+=======
+      "id": 57658,
+      "score": 8.79,
+      "scored_by": 155,
+      "weighted_score": 8.7
+    },
+    {
+>>>>>>> 1cb400c506b91118dbbf2c14584dc74f8beff6f2
       "id": 11843,
       "score": 7.77,
       "scored_by": 155,
@@ -3240,12 +3260,15 @@
       "weighted_score": 6.94
     },
     {
+<<<<<<< HEAD
       "id": 59978,
       "score": 9.24,
       "scored_by": 150,
       "weighted_score": 9.12
     },
     {
+=======
+>>>>>>> 1cb400c506b91118dbbf2c14584dc74f8beff6f2
       "id": 31658,
       "score": 7.95,
       "scored_by": 150,
@@ -3282,6 +3305,15 @@
       "weighted_score": 6.96
     },
     {
+<<<<<<< HEAD
+=======
+      "id": 59978,
+      "score": 9.25,
+      "scored_by": 149,
+      "weighted_score": 9.12
+    },
+    {
+>>>>>>> 1cb400c506b91118dbbf2c14584dc74f8beff6f2
       "id": 35247,
       "score": 8.78,
       "scored_by": 149,
@@ -7632,12 +7664,15 @@
       "weighted_score": 6.17
     },
     {
+<<<<<<< HEAD
       "id": 55825,
       "score": 8.47,
       "scored_by": 64,
       "weighted_score": 8.31
     },
     {
+=======
+>>>>>>> 1cb400c506b91118dbbf2c14584dc74f8beff6f2
       "id": 40936,
       "score": 7.97,
       "scored_by": 64,
@@ -7710,6 +7745,15 @@
       "weighted_score": 8.35
     },
     {
+<<<<<<< HEAD
+=======
+      "id": 55825,
+      "score": 8.46,
+      "scored_by": 63,
+      "weighted_score": 8.3
+    },
+    {
+>>>>>>> 1cb400c506b91118dbbf2c14584dc74f8beff6f2
       "id": 4059,
       "score": 8.27,
       "scored_by": 63,
@@ -10512,12 +10556,15 @@
       "weighted_score": 7.08
     },
     {
+<<<<<<< HEAD
       "id": 61128,
       "score": 7.02,
       "scored_by": 41,
       "weighted_score": 7.08
     },
     {
+=======
+>>>>>>> 1cb400c506b91118dbbf2c14584dc74f8beff6f2
       "id": 6512,
       "score": 7.02,
       "scored_by": 41,
@@ -10704,6 +10751,15 @@
       "weighted_score": 7.21
     },
     {
+<<<<<<< HEAD
+=======
+      "id": 61128,
+      "score": 7.1,
+      "scored_by": 40,
+      "weighted_score": 7.14
+    },
+    {
+>>>>>>> 1cb400c506b91118dbbf2c14584dc74f8beff6f2
       "id": 55994,
       "score": 7.03,
       "scored_by": 40,
@@ -13770,12 +13826,15 @@
       "weighted_score": 7.72
     },
     {
+<<<<<<< HEAD
       "id": 58505,
       "score": 7.88,
       "scored_by": 26,
       "weighted_score": 7.72
     },
     {
+=======
+>>>>>>> 1cb400c506b91118dbbf2c14584dc74f8beff6f2
       "id": 38733,
       "score": 7.85,
       "scored_by": 26,
@@ -14058,6 +14117,15 @@
       "weighted_score": 7.78
     },
     {
+<<<<<<< HEAD
+=======
+      "id": 58505,
+      "score": 7.88,
+      "scored_by": 25,
+      "weighted_score": 7.72
+    },
+    {
+>>>>>>> 1cb400c506b91118dbbf2c14584dc74f8beff6f2
       "id": 25161,
       "score": 7.84,
       "scored_by": 25,
@@ -15012,12 +15080,15 @@
       "weighted_score": 5.07
     },
     {
+<<<<<<< HEAD
       "id": 55830,
       "score": 8.77,
       "scored_by": 22,
       "weighted_score": 8.32
     },
     {
+=======
+>>>>>>> 1cb400c506b91118dbbf2c14584dc74f8beff6f2
       "id": 15323,
       "score": 8.68,
       "scored_by": 22,
@@ -15396,6 +15467,15 @@
       "weighted_score": 6.13
     },
     {
+<<<<<<< HEAD
+=======
+      "id": 55830,
+      "score": 8.76,
+      "scored_by": 21,
+      "weighted_score": 8.29
+    },
+    {
+>>>>>>> 1cb400c506b91118dbbf2c14584dc74f8beff6f2
       "id": 19123,
       "score": 8.71,
       "scored_by": 21,
@@ -18228,12 +18308,15 @@
       "weighted_score": 7.73
     },
     {
+<<<<<<< HEAD
       "id": 40111,
       "score": 7.93,
       "scored_by": 15,
       "weighted_score": 7.69
     },
     {
+=======
+>>>>>>> 1cb400c506b91118dbbf2c14584dc74f8beff6f2
       "id": 34076,
       "score": 7.93,
       "scored_by": 15,
@@ -18828,6 +18911,15 @@
       "weighted_score": 7.72
     },
     {
+<<<<<<< HEAD
+=======
+      "id": 40111,
+      "score": 7.93,
+      "scored_by": 14,
+      "weighted_score": 7.68
+    },
+    {
+>>>>>>> 1cb400c506b91118dbbf2c14584dc74f8beff6f2
       "id": 10389,
       "score": 7.93,
       "scored_by": 14,

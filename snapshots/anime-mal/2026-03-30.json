@@ -1,5 +1,6 @@
 {
   "date": "2026-03-30",
+<<<<<<< HEAD
   "timestamp": "20260331000000",
   "source": "myanimelist.net/topanime.php",
   "min_score": 8.0,
@@ -5135,6 +5136,4476 @@
       "score": 8.0,
       "scored_by": 919010,
       "members": 1559402
+=======
+  "timestamp": "20260330204405",
+  "source": "hikka-api-mal",
+  "min_score": 8.0,
+  "total": 744,
+  "anime": [
+    {
+      "id": 52991,
+      "score": 9.3,
+      "scored_by": 657496,
+      "members": 1116373
+    },
+    {
+      "id": 61469,
+      "score": 9.2,
+      "scored_by": 55300,
+      "members": 151906
+    },
+    {
+      "id": 5114,
+      "score": 9.11,
+      "scored_by": 2295760,
+      "members": 3656105
+    },
+    {
+      "id": 57555,
+      "score": 9.09,
+      "scored_by": 269824,
+      "members": 433373
+    },
+    {
+      "id": 9253,
+      "score": 9.07,
+      "scored_by": 1511307,
+      "members": 2793723
+    },
+    {
+      "id": 38524,
+      "score": 9.05,
+      "scored_by": 1778308,
+      "members": 2569359
+    },
+    {
+      "id": 28977,
+      "score": 9.05,
+      "scored_by": 271238,
+      "members": 687949
+    },
+    {
+      "id": 59978,
+      "score": 9.05,
+      "scored_by": 105999,
+      "members": 450670
+    },
+    {
+      "id": 39486,
+      "score": 9.05,
+      "scored_by": 86031,
+      "members": 181780
+    },
+    {
+      "id": 11061,
+      "score": 9.03,
+      "scored_by": 1963761,
+      "members": 3161916
+    },
+    {
+      "id": 9969,
+      "score": 9.02,
+      "scored_by": 256098,
+      "members": 609869
+    },
+    {
+      "id": 15417,
+      "score": 9.02,
+      "scored_by": 178514,
+      "members": 356285
+    },
+    {
+      "id": 60022,
+      "score": 9.02,
+      "scored_by": 107595,
+      "members": 149142
+    },
+    {
+      "id": 820,
+      "score": 9.02,
+      "scored_by": 87304,
+      "members": 360199
+    },
+    {
+      "id": 41467,
+      "score": 8.98,
+      "scored_by": 375010,
+      "members": 694658
+    },
+    {
+      "id": 34096,
+      "score": 8.98,
+      "scored_by": 159268,
+      "members": 346725
+    },
+    {
+      "id": 43608,
+      "score": 8.96,
+      "scored_by": 628393,
+      "members": 1099454
+    },
+    {
+      "id": 42938,
+      "score": 8.94,
+      "scored_by": 278086,
+      "members": 558601
+    },
+    {
+      "id": 28851,
+      "score": 8.93,
+      "scored_by": 1785357,
+      "members": 2593877
+    },
+    {
+      "id": 4181,
+      "score": 8.93,
+      "scored_by": 697610,
+      "members": 1279759
+    },
+    {
+      "id": 918,
+      "score": 8.93,
+      "scored_by": 422499,
+      "members": 1148785
+    },
+    {
+      "id": 2904,
+      "score": 8.92,
+      "scored_by": 1290629,
+      "members": 1942091
+    },
+    {
+      "id": 58514,
+      "score": 8.91,
+      "scored_by": 248097,
+      "members": 482449
+    },
+    {
+      "id": 35180,
+      "score": 8.9,
+      "scored_by": 214564,
+      "members": 436628
+    },
+    {
+      "id": 19,
+      "score": 8.89,
+      "scored_by": 505329,
+      "members": 1314046
+    },
+    {
+      "id": 15335,
+      "score": 8.89,
+      "scored_by": 144432,
+      "members": 261610
+    },
+    {
+      "id": 37491,
+      "score": 8.88,
+      "scored_by": 106586,
+      "members": 224723
+    },
+    {
+      "id": 51535,
+      "score": 8.86,
+      "scored_by": 518879,
+      "members": 851758
+    },
+    {
+      "id": 35247,
+      "score": 8.86,
+      "scored_by": 209398,
+      "members": 435061
+    },
+    {
+      "id": 54492,
+      "score": 8.85,
+      "scored_by": 459339,
+      "members": 815287
+    },
+    {
+      "id": 40682,
+      "score": 8.85,
+      "scored_by": 54789,
+      "members": 132341
+    },
+    {
+      "id": 37987,
+      "score": 8.83,
+      "scored_by": 337243,
+      "members": 721386
+    },
+    {
+      "id": 59571,
+      "score": 8.83,
+      "scored_by": 38015,
+      "members": 83215
+    },
+    {
+      "id": 32281,
+      "score": 8.82,
+      "scored_by": 2070800,
+      "members": 3006894
+    },
+    {
+      "id": 49387,
+      "score": 8.82,
+      "scored_by": 474382,
+      "members": 840054
+    },
+    {
+      "id": 36838,
+      "score": 8.81,
+      "scored_by": 115453,
+      "members": 236587
+    },
+    {
+      "id": 40028,
+      "score": 8.79,
+      "scored_by": 1509010,
+      "members": 2268578
+    },
+    {
+      "id": 2921,
+      "score": 8.79,
+      "scored_by": 26060,
+      "members": 67039
+    },
+    {
+      "id": 37510,
+      "score": 8.78,
+      "scored_by": 1081706,
+      "members": 1713649
+    },
+    {
+      "id": 37521,
+      "score": 8.78,
+      "scored_by": 1049902,
+      "members": 1799651
+    },
+    {
+      "id": 263,
+      "score": 8.78,
+      "scored_by": 339791,
+      "members": 688096
+    },
+    {
+      "id": 31758,
+      "score": 8.78,
+      "scored_by": 296860,
+      "members": 509905
+    },
+    {
+      "id": 199,
+      "score": 8.77,
+      "scored_by": 1405833,
+      "members": 2017316
+    },
+    {
+      "id": 48583,
+      "score": 8.77,
+      "scored_by": 921464,
+      "members": 1541752
+    },
+    {
+      "id": 32935,
+      "score": 8.77,
+      "scored_by": 869923,
+      "members": 1320024
+    },
+    {
+      "id": 17074,
+      "score": 8.76,
+      "scored_by": 379082,
+      "members": 716206
+    },
+    {
+      "id": 60489,
+      "score": 8.76,
+      "scored_by": 165296,
+      "members": 299645
+    },
+    {
+      "id": 1,
+      "score": 8.75,
+      "scored_by": 1054944,
+      "members": 2042983
+    },
+    {
+      "id": 60058,
+      "score": 8.75,
+      "scored_by": 57945,
+      "members": 231385
+    },
+    {
+      "id": 21,
+      "score": 8.73,
+      "scored_by": 1514660,
+      "members": 2654650
+    },
+    {
+      "id": 47917,
+      "score": 8.73,
+      "scored_by": 471000,
+      "members": 778905
+    },
+    {
+      "id": 50160,
+      "score": 8.73,
+      "scored_by": 40282,
+      "members": 89311
+    },
+    {
+      "id": 39894,
+      "score": 8.73,
+      "scored_by": 38335,
+      "members": 96711
+    },
+    {
+      "id": 53223,
+      "score": 8.73,
+      "scored_by": 28079,
+      "members": 61474
+    },
+    {
+      "id": 50172,
+      "score": 8.72,
+      "scored_by": 439059,
+      "members": 849351
+    },
+    {
+      "id": 48569,
+      "score": 8.72,
+      "scored_by": 369598,
+      "members": 633449
+    },
+    {
+      "id": 52198,
+      "score": 8.72,
+      "scored_by": 212784,
+      "members": 374503
+    },
+    {
+      "id": 60098,
+      "score": 8.72,
+      "scored_by": 144411,
+      "members": 288526
+    },
+    {
+      "id": 24701,
+      "score": 8.72,
+      "scored_by": 116246,
+      "members": 291654
+    },
+    {
+      "id": 58788,
+      "score": 8.72,
+      "scored_by": 13296,
+      "members": 84258
+    },
+    {
+      "id": 1575,
+      "score": 8.71,
+      "scored_by": 1513810,
+      "members": 2455424
+    },
+    {
+      "id": 51009,
+      "score": 8.71,
+      "scored_by": 803878,
+      "members": 1365208
+    },
+    {
+      "id": 52215,
+      "score": 8.71,
+      "scored_by": 113930,
+      "members": 283677
+    },
+    {
+      "id": 45649,
+      "score": 8.71,
+      "scored_by": 35808,
+      "members": 75966
+    },
+    {
+      "id": 55016,
+      "score": 8.71,
+      "scored_by": 19161,
+      "members": 27952
+    },
+    {
+      "id": 47778,
+      "score": 8.7,
+      "scored_by": 1105758,
+      "members": 1722241
+    },
+    {
+      "id": 53998,
+      "score": 8.7,
+      "scored_by": 230201,
+      "members": 405903
+    },
+    {
+      "id": 44074,
+      "score": 8.7,
+      "scored_by": 187331,
+      "members": 475383
+    },
+    {
+      "id": 55690,
+      "score": 8.7,
+      "scored_by": 173310,
+      "members": 303559
+    },
+    {
+      "id": 33095,
+      "score": 8.7,
+      "scored_by": 69752,
+      "members": 201425
+    },
+    {
+      "id": 33352,
+      "score": 8.69,
+      "scored_by": 1083702,
+      "members": 1982700
+    },
+    {
+      "id": 44,
+      "score": 8.69,
+      "scored_by": 144165,
+      "members": 291839
+    },
+    {
+      "id": 21939,
+      "score": 8.69,
+      "scored_by": 127977,
+      "members": 325542
+    },
+    {
+      "id": 53447,
+      "score": 8.69,
+      "scored_by": 105735,
+      "members": 239538
+    },
+    {
+      "id": 245,
+      "score": 8.68,
+      "scored_by": 446946,
+      "members": 914573
+    },
+    {
+      "id": 61517,
+      "score": 8.68,
+      "scored_by": 16058,
+      "members": 36818
+    },
+    {
+      "id": 431,
+      "score": 8.67,
+      "scored_by": 1020267,
+      "members": 1480834
+    },
+    {
+      "id": 164,
+      "score": 8.67,
+      "scored_by": 884014,
+      "members": 1373491
+    },
+    {
+      "id": 5258,
+      "score": 8.67,
+      "scored_by": 188199,
+      "members": 324147
+    },
+    {
+      "id": 59192,
+      "score": 8.67,
+      "scored_by": 178571,
+      "members": 355381
+    },
+    {
+      "id": 56784,
+      "score": 8.67,
+      "scored_by": 152511,
+      "members": 288320
+    },
+    {
+      "id": 57658,
+      "score": 8.67,
+      "scored_by": 119273,
+      "members": 415397
+    },
+    {
+      "id": 61930,
+      "score": 8.67,
+      "scored_by": 29823,
+      "members": 59884
+    },
+    {
+      "id": 457,
+      "score": 8.65,
+      "scored_by": 297025,
+      "members": 901551
+    },
+    {
+      "id": 57864,
+      "score": 8.65,
+      "scored_by": 38661,
+      "members": 101582
+    },
+    {
+      "id": 35760,
+      "score": 8.64,
+      "scored_by": 1796311,
+      "members": 2643480
+    },
+    {
+      "id": 23273,
+      "score": 8.64,
+      "scored_by": 1459988,
+      "members": 2405430
+    },
+    {
+      "id": 2001,
+      "score": 8.64,
+      "scored_by": 971662,
+      "members": 1756251
+    },
+    {
+      "id": 40434,
+      "score": 8.64,
+      "scored_by": 34832,
+      "members": 96179
+    },
+    {
+      "id": 57647,
+      "score": 8.64,
+      "scored_by": 32942,
+      "members": 54112
+    },
+    {
+      "id": 50399,
+      "score": 8.64,
+      "scored_by": 24731,
+      "members": 63985
+    },
+    {
+      "id": 46102,
+      "score": 8.63,
+      "scored_by": 248883,
+      "members": 505684
+    },
+    {
+      "id": 33050,
+      "score": 8.63,
+      "scored_by": 220687,
+      "members": 404143
+    },
+    {
+      "id": 22135,
+      "score": 8.63,
+      "scored_by": 203072,
+      "members": 436896
+    },
+    {
+      "id": 11665,
+      "score": 8.63,
+      "scored_by": 117298,
+      "members": 265257
+    },
+    {
+      "id": 49413,
+      "score": 8.63,
+      "scored_by": 79113,
+      "members": 169469
+    },
+    {
+      "id": 1535,
+      "score": 8.62,
+      "scored_by": 2985480,
+      "members": 4267974
+    },
+    {
+      "id": 28891,
+      "score": 8.62,
+      "scored_by": 1022966,
+      "members": 1558446
+    },
+    {
+      "id": 34599,
+      "score": 8.62,
+      "scored_by": 832188,
+      "members": 1541267
+    },
+    {
+      "id": 42310,
+      "score": 8.62,
+      "scored_by": 701320,
+      "members": 1032909
+    },
+    {
+      "id": 58125,
+      "score": 8.62,
+      "scored_by": 133704,
+      "members": 234923
+    },
+    {
+      "id": 61952,
+      "score": 8.62,
+      "scored_by": 2153,
+      "members": 9018
+    },
+    {
+      "id": 40591,
+      "score": 8.61,
+      "scored_by": 953555,
+      "members": 1489670
+    },
+    {
+      "id": 45576,
+      "score": 8.61,
+      "scored_by": 697679,
+      "members": 1108172
+    },
+    {
+      "id": 33,
+      "score": 8.61,
+      "scored_by": 409504,
+      "members": 759753
+    },
+    {
+      "id": 19647,
+      "score": 8.61,
+      "scored_by": 162828,
+      "members": 296722
+    },
+    {
+      "id": 54898,
+      "score": 8.61,
+      "scored_by": 119335,
+      "members": 255338
+    },
+    {
+      "id": 4565,
+      "score": 8.61,
+      "scored_by": 112515,
+      "members": 237538
+    },
+    {
+      "id": 52742,
+      "score": 8.61,
+      "scored_by": 104714,
+      "members": 222388
+    },
+    {
+      "id": 34591,
+      "score": 8.61,
+      "scored_by": 76225,
+      "members": 205119
+    },
+    {
+      "id": 49818,
+      "score": 8.61,
+      "scored_by": 71037,
+      "members": 196260
+    },
+    {
+      "id": 36862,
+      "score": 8.6,
+      "scored_by": 302446,
+      "members": 533556
+    },
+    {
+      "id": 41084,
+      "score": 8.6,
+      "scored_by": 258152,
+      "members": 534355
+    },
+    {
+      "id": 55255,
+      "score": 8.6,
+      "scored_by": 7059,
+      "members": 15778
+    },
+    {
+      "id": 38329,
+      "score": 8.59,
+      "scored_by": 515804,
+      "members": 814486
+    },
+    {
+      "id": 7311,
+      "score": 8.59,
+      "scored_by": 328279,
+      "members": 646983
+    },
+    {
+      "id": 52701,
+      "score": 8.59,
+      "scored_by": 293424,
+      "members": 570511
+    },
+    {
+      "id": 37991,
+      "score": 8.58,
+      "scored_by": 776257,
+      "members": 1157483
+    },
+    {
+      "id": 3786,
+      "score": 8.58,
+      "scored_by": 191058,
+      "members": 421800
+    },
+    {
+      "id": 28957,
+      "score": 8.58,
+      "scored_by": 56068,
+      "members": 140586
+    },
+    {
+      "id": 59636,
+      "score": 8.58,
+      "scored_by": 47494,
+      "members": 95439
+    },
+    {
+      "id": 55823,
+      "score": 8.58,
+      "scored_by": 18039,
+      "members": 57688
+    },
+    {
+      "id": 50250,
+      "score": 8.58,
+      "scored_by": 5736,
+      "members": 19009
+    },
+    {
+      "id": 16498,
+      "score": 8.57,
+      "scored_by": 3046557,
+      "members": 4328746
+    },
+    {
+      "id": 32,
+      "score": 8.57,
+      "scored_by": 691205,
+      "members": 1034481
+    },
+    {
+      "id": 877,
+      "score": 8.57,
+      "scored_by": 300337,
+      "members": 775096
+    },
+    {
+      "id": 40776,
+      "score": 8.56,
+      "scored_by": 550132,
+      "members": 921198
+    },
+    {
+      "id": 12355,
+      "score": 8.56,
+      "scored_by": 484687,
+      "members": 864556
+    },
+    {
+      "id": 58567,
+      "score": 8.56,
+      "scored_by": 484375,
+      "members": 757567
+    },
+    {
+      "id": 31757,
+      "score": 8.56,
+      "scored_by": 294911,
+      "members": 486029
+    },
+    {
+      "id": 170,
+      "score": 8.56,
+      "scored_by": 150927,
+      "members": 336279
+    },
+    {
+      "id": 10379,
+      "score": 8.56,
+      "scored_by": 126676,
+      "members": 271527
+    },
+    {
+      "id": 32983,
+      "score": 8.56,
+      "scored_by": 83464,
+      "members": 205092
+    },
+    {
+      "id": 60557,
+      "score": 8.56,
+      "scored_by": 1137,
+      "members": 2823
+    },
+    {
+      "id": 36098,
+      "score": 8.55,
+      "scored_by": 662240,
+      "members": 1106816
+    },
+    {
+      "id": 30484,
+      "score": 8.55,
+      "scored_by": 471214,
+      "members": 949697
+    },
+    {
+      "id": 437,
+      "score": 8.55,
+      "scored_by": 438893,
+      "members": 814417
+    },
+    {
+      "id": 7785,
+      "score": 8.55,
+      "scored_by": 156261,
+      "members": 492297
+    },
+    {
+      "id": 28735,
+      "score": 8.55,
+      "scored_by": 99501,
+      "members": 313197
+    },
+    {
+      "id": 61903,
+      "score": 8.55,
+      "scored_by": 44229,
+      "members": 95642
+    },
+    {
+      "id": 25777,
+      "score": 8.54,
+      "scored_by": 2050590,
+      "members": 2997617
+    },
+    {
+      "id": 40456,
+      "score": 8.54,
+      "scored_by": 1171768,
+      "members": 1762598
+    },
+    {
+      "id": 11741,
+      "score": 8.54,
+      "scored_by": 754101,
+      "members": 1190700
+    },
+    {
+      "id": 52034,
+      "score": 8.54,
+      "scored_by": 611307,
+      "members": 1033826
+    },
+    {
+      "id": 578,
+      "score": 8.54,
+      "scored_by": 456393,
+      "members": 761580
+    },
+    {
+      "id": 59845,
+      "score": 8.54,
+      "scored_by": 207285,
+      "members": 429915
+    },
+    {
+      "id": 40417,
+      "score": 8.53,
+      "scored_by": 300908,
+      "members": 580552
+    },
+    {
+      "id": 5300,
+      "score": 8.53,
+      "scored_by": 134062,
+      "members": 265977
+    },
+    {
+      "id": 21329,
+      "score": 8.53,
+      "scored_by": 73113,
+      "members": 152777
+    },
+    {
+      "id": 205,
+      "score": 8.52,
+      "scored_by": 683477,
+      "members": 1343799
+    },
+    {
+      "id": 55791,
+      "score": 8.52,
+      "scored_by": 251012,
+      "members": 507007
+    },
+    {
+      "id": 12365,
+      "score": 8.52,
+      "scored_by": 203186,
+      "members": 347183
+    },
+    {
+      "id": 61322,
+      "score": 8.52,
+      "scored_by": 105098,
+      "members": 212477
+    },
+    {
+      "id": 7472,
+      "score": 8.52,
+      "scored_by": 101854,
+      "members": 176796
+    },
+    {
+      "id": 63019,
+      "score": 8.52,
+      "scored_by": 16010,
+      "members": 48159
+    },
+    {
+      "id": 40664,
+      "score": 8.52,
+      "scored_by": 11377,
+      "members": 26095
+    },
+    {
+      "id": 40748,
+      "score": 8.51,
+      "scored_by": 1975326,
+      "members": 2997674
+    },
+    {
+      "id": 53273,
+      "score": 8.51,
+      "scored_by": 195067,
+      "members": 297390
+    },
+    {
+      "id": 4282,
+      "score": 8.51,
+      "scored_by": 139364,
+      "members": 253132
+    },
+    {
+      "id": 35843,
+      "score": 8.51,
+      "scored_by": 112178,
+      "members": 221185
+    },
+    {
+      "id": 801,
+      "score": 8.51,
+      "scored_by": 109161,
+      "members": 241271
+    },
+    {
+      "id": 31933,
+      "score": 8.5,
+      "scored_by": 868306,
+      "members": 1256901
+    },
+    {
+      "id": 11981,
+      "score": 8.5,
+      "scored_by": 248391,
+      "members": 418572
+    },
+    {
+      "id": 35839,
+      "score": 8.5,
+      "scored_by": 235378,
+      "members": 551164
+    },
+    {
+      "id": 38474,
+      "score": 8.5,
+      "scored_by": 112813,
+      "members": 252497
+    },
+    {
+      "id": 59986,
+      "score": 8.5,
+      "scored_by": 84068,
+      "members": 192220
+    },
+    {
+      "id": 62896,
+      "score": 8.5,
+      "scored_by": 35339,
+      "members": 75245
+    },
+    {
+      "id": 55830,
+      "score": 8.5,
+      "scored_by": 22103,
+      "members": 147161
+    },
+    {
+      "id": 58222,
+      "score": 8.5,
+      "scored_by": 9550,
+      "members": 29947
+    },
+    {
+      "id": 32182,
+      "score": 8.49,
+      "scored_by": 1411484,
+      "members": 2302651
+    },
+    {
+      "id": 49701,
+      "score": 8.49,
+      "scored_by": 5101,
+      "members": 11540
+    },
+    {
+      "id": 30276,
+      "score": 8.48,
+      "scored_by": 2411658,
+      "members": 3501213
+    },
+    {
+      "id": 40834,
+      "score": 8.48,
+      "scored_by": 396076,
+      "members": 750093
+    },
+    {
+      "id": 12431,
+      "score": 8.48,
+      "scored_by": 55926,
+      "members": 209922
+    },
+    {
+      "id": 3297,
+      "score": 8.48,
+      "scored_by": 34821,
+      "members": 141483
+    },
+    {
+      "id": 61335,
+      "score": 8.48,
+      "scored_by": 11347,
+      "members": 35877
+    },
+    {
+      "id": 60544,
+      "score": 8.48,
+      "scored_by": 5022,
+      "members": 10666
+    },
+    {
+      "id": 55809,
+      "score": 8.48,
+      "scored_by": 2803,
+      "members": 10704
+    },
+    {
+      "id": 60988,
+      "score": 8.48,
+      "scored_by": 2216,
+      "members": 10944
+    },
+    {
+      "id": 37779,
+      "score": 8.47,
+      "scored_by": 1390672,
+      "members": 2141798
+    },
+    {
+      "id": 30654,
+      "score": 8.47,
+      "scored_by": 968255,
+      "members": 1559608
+    },
+    {
+      "id": 10165,
+      "score": 8.47,
+      "scored_by": 399678,
+      "members": 977705
+    },
+    {
+      "id": 44070,
+      "score": 8.47,
+      "scored_by": 30964,
+      "members": 60403
+    },
+    {
+      "id": 392,
+      "score": 8.46,
+      "scored_by": 356668,
+      "members": 749568
+    },
+    {
+      "id": 47194,
+      "score": 8.46,
+      "scored_by": 287498,
+      "members": 669511
+    },
+    {
+      "id": 33049,
+      "score": 8.46,
+      "scored_by": 258531,
+      "members": 435434
+    },
+    {
+      "id": 6114,
+      "score": 8.46,
+      "scored_by": 166702,
+      "members": 423347
+    },
+    {
+      "id": 37379,
+      "score": 8.46,
+      "scored_by": 70746,
+      "members": 156563
+    },
+    {
+      "id": 37105,
+      "score": 8.45,
+      "scored_by": 479564,
+      "members": 897973
+    },
+    {
+      "id": 36649,
+      "score": 8.45,
+      "scored_by": 411954,
+      "members": 957038
+    },
+    {
+      "id": 11577,
+      "score": 8.45,
+      "scored_by": 381012,
+      "members": 639607
+    },
+    {
+      "id": 31181,
+      "score": 8.45,
+      "scored_by": 250802,
+      "members": 508773
+    },
+    {
+      "id": 37208,
+      "score": 8.45,
+      "scored_by": 88582,
+      "members": 254737
+    },
+    {
+      "id": 38450,
+      "score": 8.45,
+      "scored_by": 55657,
+      "members": 118412
+    },
+    {
+      "id": 44087,
+      "score": 8.45,
+      "scored_by": 47006,
+      "members": 92290
+    },
+    {
+      "id": 26055,
+      "score": 8.44,
+      "scored_by": 875935,
+      "members": 1237590
+    },
+    {
+      "id": 36999,
+      "score": 8.44,
+      "scored_by": 120990,
+      "members": 251294
+    },
+    {
+      "id": 35737,
+      "score": 8.44,
+      "scored_by": 109045,
+      "members": 246758
+    },
+    {
+      "id": 20583,
+      "score": 8.43,
+      "scored_by": 1339802,
+      "members": 2159518
+    },
+    {
+      "id": 44511,
+      "score": 8.43,
+      "scored_by": 1122760,
+      "members": 1934103
+    },
+    {
+      "id": 136,
+      "score": 8.43,
+      "scored_by": 313305,
+      "members": 644807
+    },
+    {
+      "id": 54857,
+      "score": 8.43,
+      "scored_by": 220112,
+      "members": 486210
+    },
+    {
+      "id": 40059,
+      "score": 8.43,
+      "scored_by": 98141,
+      "members": 198676
+    },
+    {
+      "id": 56538,
+      "score": 8.43,
+      "scored_by": 41077,
+      "members": 111393
+    },
+    {
+      "id": 55772,
+      "score": 8.43,
+      "scored_by": 4919,
+      "members": 52820
+    },
+    {
+      "id": 50265,
+      "score": 8.42,
+      "scored_by": 1151167,
+      "members": 1869924
+    },
+    {
+      "id": 42203,
+      "score": 8.42,
+      "scored_by": 627623,
+      "members": 1056631
+    },
+    {
+      "id": 57334,
+      "score": 8.42,
+      "scored_by": 576683,
+      "members": 946021
+    },
+    {
+      "id": 25781,
+      "score": 8.42,
+      "scored_by": 334491,
+      "members": 561540
+    },
+    {
+      "id": 39741,
+      "score": 8.42,
+      "scored_by": 278296,
+      "members": 473182
+    },
+    {
+      "id": 467,
+      "score": 8.42,
+      "scored_by": 172130,
+      "members": 422820
+    },
+    {
+      "id": 50330,
+      "score": 8.42,
+      "scored_by": 147204,
+      "members": 356138
+    },
+    {
+      "id": 38889,
+      "score": 8.42,
+      "scored_by": 107154,
+      "members": 201853
+    },
+    {
+      "id": 36885,
+      "score": 8.42,
+      "scored_by": 94275,
+      "members": 203962
+    },
+    {
+      "id": 24687,
+      "score": 8.42,
+      "scored_by": 53965,
+      "members": 110704
+    },
+    {
+      "id": 36538,
+      "score": 8.42,
+      "scored_by": 30761,
+      "members": 83644
+    },
+    {
+      "id": 21899,
+      "score": 8.42,
+      "scored_by": 18317,
+      "members": 48637
+    },
+    {
+      "id": 38000,
+      "score": 8.41,
+      "scored_by": 2347951,
+      "members": 3421587
+    },
+    {
+      "id": 33255,
+      "score": 8.41,
+      "scored_by": 694327,
+      "members": 1242891
+    },
+    {
+      "id": 34612,
+      "score": 8.41,
+      "scored_by": 428454,
+      "members": 716598
+    },
+    {
+      "id": 60543,
+      "score": 8.41,
+      "scored_by": 276928,
+      "members": 528736
+    },
+    {
+      "id": 2246,
+      "score": 8.41,
+      "scored_by": 105505,
+      "members": 365377
+    },
+    {
+      "id": 30709,
+      "score": 8.41,
+      "scored_by": 91111,
+      "members": 184337
+    },
+    {
+      "id": 40730,
+      "score": 8.41,
+      "scored_by": 76580,
+      "members": 175584
+    },
+    {
+      "id": 49722,
+      "score": 8.41,
+      "scored_by": 43408,
+      "members": 94684
+    },
+    {
+      "id": 37999,
+      "score": 8.4,
+      "scored_by": 1205318,
+      "members": 1925320
+    },
+    {
+      "id": 38040,
+      "score": 8.4,
+      "scored_by": 556936,
+      "members": 879944
+    },
+    {
+      "id": 35851,
+      "score": 8.4,
+      "scored_by": 215961,
+      "members": 490853
+    },
+    {
+      "id": 45556,
+      "score": 8.4,
+      "scored_by": 46025,
+      "members": 84046
+    },
+    {
+      "id": 36275,
+      "score": 8.4,
+      "scored_by": 24282,
+      "members": 53802
+    },
+    {
+      "id": 50183,
+      "score": 8.4,
+      "scored_by": 17730,
+      "members": 48024
+    },
+    {
+      "id": 53672,
+      "score": 8.4,
+      "scored_by": 16069,
+      "members": 46344
+    },
+    {
+      "id": 51039,
+      "score": 8.4,
+      "scored_by": 4159,
+      "members": 12152
+    },
+    {
+      "id": 55888,
+      "score": 8.39,
+      "scored_by": 323038,
+      "members": 560974
+    },
+    {
+      "id": 35557,
+      "score": 8.39,
+      "scored_by": 218752,
+      "members": 515191
+    },
+    {
+      "id": 37515,
+      "score": 8.39,
+      "scored_by": 68937,
+      "members": 163588
+    },
+    {
+      "id": 5028,
+      "score": 8.39,
+      "scored_by": 43861,
+      "members": 75799
+    },
+    {
+      "id": 53236,
+      "score": 8.39,
+      "scored_by": 22689,
+      "members": 39015
+    },
+    {
+      "id": 9756,
+      "score": 8.38,
+      "scored_by": 813218,
+      "members": 1401841
+    },
+    {
+      "id": 40787,
+      "score": 8.38,
+      "scored_by": 273094,
+      "members": 523948
+    },
+    {
+      "id": 46095,
+      "score": 8.38,
+      "scored_by": 271198,
+      "members": 604192
+    },
+    {
+      "id": 5,
+      "score": 8.38,
+      "scored_by": 231092,
+      "members": 409624
+    },
+    {
+      "id": 37965,
+      "score": 8.38,
+      "scored_by": 150770,
+      "members": 333534
+    },
+    {
+      "id": 14397,
+      "score": 8.38,
+      "scored_by": 138105,
+      "members": 252156
+    },
+    {
+      "id": 11979,
+      "score": 8.38,
+      "scored_by": 107928,
+      "members": 219564
+    },
+    {
+      "id": 32366,
+      "score": 8.38,
+      "scored_by": 48945,
+      "members": 92686
+    },
+    {
+      "id": 55318,
+      "score": 8.38,
+      "scored_by": 37012,
+      "members": 88414
+    },
+    {
+      "id": 38475,
+      "score": 8.38,
+      "scored_by": 35096,
+      "members": 94123
+    },
+    {
+      "id": 39167,
+      "score": 8.38,
+      "scored_by": 9477,
+      "members": 26519
+    },
+    {
+      "id": 4921,
+      "score": 8.38,
+      "scored_by": 7186,
+      "members": 15211
+    },
+    {
+      "id": 30,
+      "score": 8.37,
+      "scored_by": 1205369,
+      "members": 2013363
+    },
+    {
+      "id": 48561,
+      "score": 8.37,
+      "scored_by": 776376,
+      "members": 1238727
+    },
+    {
+      "id": 38883,
+      "score": 8.37,
+      "scored_by": 643997,
+      "members": 1045136
+    },
+    {
+      "id": 31646,
+      "score": 8.37,
+      "scored_by": 300005,
+      "members": 731041
+    },
+    {
+      "id": 49721,
+      "score": 8.37,
+      "scored_by": 95934,
+      "members": 210943
+    },
+    {
+      "id": 5941,
+      "score": 8.37,
+      "scored_by": 53622,
+      "members": 132470
+    },
+    {
+      "id": 2402,
+      "score": 8.37,
+      "scored_by": 29355,
+      "members": 111967
+    },
+    {
+      "id": 56523,
+      "score": 8.37,
+      "scored_by": 2399,
+      "members": 5048
+    },
+    {
+      "id": 56524,
+      "score": 8.37,
+      "scored_by": 2065,
+      "members": 5841
+    },
+    {
+      "id": 22789,
+      "score": 8.36,
+      "scored_by": 360946,
+      "members": 710750
+    },
+    {
+      "id": 9260,
+      "score": 8.36,
+      "scored_by": 310943,
+      "members": 577651
+    },
+    {
+      "id": 572,
+      "score": 8.36,
+      "scored_by": 257102,
+      "members": 412377
+    },
+    {
+      "id": 185,
+      "score": 8.36,
+      "scored_by": 217190,
+      "members": 436823
+    },
+    {
+      "id": 9617,
+      "score": 8.36,
+      "scored_by": 208777,
+      "members": 354200
+    },
+    {
+      "id": 5205,
+      "score": 8.36,
+      "scored_by": 118485,
+      "members": 218777
+    },
+    {
+      "id": 55102,
+      "score": 8.36,
+      "scored_by": 53585,
+      "members": 134317
+    },
+    {
+      "id": 49310,
+      "score": 8.36,
+      "scored_by": 49996,
+      "members": 129913
+    },
+    {
+      "id": 6945,
+      "score": 8.36,
+      "scored_by": 36686,
+      "members": 75255
+    },
+    {
+      "id": 338,
+      "score": 8.36,
+      "scored_by": 34123,
+      "members": 114067
+    },
+    {
+      "id": 39547,
+      "score": 8.35,
+      "scored_by": 453993,
+      "members": 815214
+    },
+    {
+      "id": 41025,
+      "score": 8.35,
+      "scored_by": 421861,
+      "members": 990042
+    },
+    {
+      "id": 2251,
+      "score": 8.35,
+      "scored_by": 398201,
+      "members": 955666
+    },
+    {
+      "id": 37095,
+      "score": 8.35,
+      "scored_by": 221088,
+      "members": 369402
+    },
+    {
+      "id": 39808,
+      "score": 8.35,
+      "scored_by": 53858,
+      "members": 138541
+    },
+    {
+      "id": 58919,
+      "score": 8.35,
+      "scored_by": 35771,
+      "members": 63915
+    },
+    {
+      "id": 53540,
+      "score": 8.35,
+      "scored_by": 9559,
+      "members": 18998
+    },
+    {
+      "id": 46654,
+      "score": 8.35,
+      "scored_by": 6109,
+      "members": 17941
+    },
+    {
+      "id": 57067,
+      "score": 8.35,
+      "scored_by": 1681,
+      "members": 3890
+    },
+    {
+      "id": 39551,
+      "score": 8.34,
+      "scored_by": 641143,
+      "members": 1102379
+    },
+    {
+      "id": 49926,
+      "score": 8.34,
+      "scored_by": 585582,
+      "members": 965263
+    },
+    {
+      "id": 777,
+      "score": 8.34,
+      "scored_by": 523064,
+      "members": 1013345
+    },
+    {
+      "id": 41457,
+      "score": 8.34,
+      "scored_by": 502796,
+      "members": 959525
+    },
+    {
+      "id": 49458,
+      "score": 8.34,
+      "scored_by": 235094,
+      "members": 542605
+    },
+    {
+      "id": 31988,
+      "score": 8.34,
+      "scored_by": 135809,
+      "members": 256036
+    },
+    {
+      "id": 58390,
+      "score": 8.34,
+      "scored_by": 87213,
+      "members": 233930
+    },
+    {
+      "id": 10534,
+      "score": 8.34,
+      "scored_by": 14386,
+      "members": 22340
+    },
+    {
+      "id": 59897,
+      "score": 8.34,
+      "scored_by": 9114,
+      "members": 53497
+    },
+    {
+      "id": 39535,
+      "score": 8.33,
+      "scored_by": 962676,
+      "members": 1556626
+    },
+    {
+      "id": 13601,
+      "score": 8.33,
+      "scored_by": 828239,
+      "members": 1741995
+    },
+    {
+      "id": 10030,
+      "score": 8.33,
+      "scored_by": 221681,
+      "members": 371103
+    },
+    {
+      "id": 20651,
+      "score": 8.33,
+      "scored_by": 38833,
+      "members": 86813
+    },
+    {
+      "id": 10937,
+      "score": 8.33,
+      "scored_by": 36274,
+      "members": 84187
+    },
+    {
+      "id": 37822,
+      "score": 8.33,
+      "scored_by": 10508,
+      "members": 23923
+    },
+    {
+      "id": 22535,
+      "score": 8.32,
+      "scored_by": 1246285,
+      "members": 2029283
+    },
+    {
+      "id": 5081,
+      "score": 8.32,
+      "scored_by": 769334,
+      "members": 1484931
+    },
+    {
+      "id": 39587,
+      "score": 8.32,
+      "scored_by": 748777,
+      "members": 1267949
+    },
+    {
+      "id": 28701,
+      "score": 8.32,
+      "scored_by": 602927,
+      "members": 917298
+    },
+    {
+      "id": 1210,
+      "score": 8.32,
+      "scored_by": 370189,
+      "members": 829277
+    },
+    {
+      "id": 10162,
+      "score": 8.32,
+      "scored_by": 254860,
+      "members": 523796
+    },
+    {
+      "id": 34240,
+      "score": 8.32,
+      "scored_by": 220230,
+      "members": 328086
+    },
+    {
+      "id": 5040,
+      "score": 8.32,
+      "scored_by": 122786,
+      "members": 255941
+    },
+    {
+      "id": 137,
+      "score": 8.32,
+      "scored_by": 70447,
+      "members": 136766
+    },
+    {
+      "id": 12029,
+      "score": 8.32,
+      "scored_by": 41869,
+      "members": 125563
+    },
+    {
+      "id": 7655,
+      "score": 8.32,
+      "scored_by": 39041,
+      "members": 67274
+    },
+    {
+      "id": 42984,
+      "score": 8.32,
+      "scored_by": 20448,
+      "members": 30963
+    },
+    {
+      "id": 2559,
+      "score": 8.32,
+      "scored_by": 19156,
+      "members": 55832
+    },
+    {
+      "id": 48653,
+      "score": 8.32,
+      "scored_by": 12239,
+      "members": 19594
+    },
+    {
+      "id": 42886,
+      "score": 8.32,
+      "scored_by": 9924,
+      "members": 26138
+    },
+    {
+      "id": 55357,
+      "score": 8.32,
+      "scored_by": 8190,
+      "members": 71532
+    },
+    {
+      "id": 51805,
+      "score": 8.32,
+      "scored_by": 7462,
+      "members": 18715
+    },
+    {
+      "id": 30230,
+      "score": 8.31,
+      "scored_by": 82659,
+      "members": 150079
+    },
+    {
+      "id": 42941,
+      "score": 8.31,
+      "scored_by": 57263,
+      "members": 107488
+    },
+    {
+      "id": 34534,
+      "score": 8.31,
+      "scored_by": 24320,
+      "members": 52312
+    },
+    {
+      "id": 51440,
+      "score": 8.31,
+      "scored_by": 22066,
+      "members": 60120
+    },
+    {
+      "id": 39112,
+      "score": 8.31,
+      "scored_by": 18997,
+      "members": 30008
+    },
+    {
+      "id": 31043,
+      "score": 8.3,
+      "scored_by": 1471423,
+      "members": 2279885
+    },
+    {
+      "id": 3784,
+      "score": 8.3,
+      "scored_by": 363934,
+      "members": 590569
+    },
+    {
+      "id": 5341,
+      "score": 8.3,
+      "scored_by": 289125,
+      "members": 519768
+    },
+    {
+      "id": 55644,
+      "score": 8.3,
+      "scored_by": 226691,
+      "members": 420386
+    },
+    {
+      "id": 4081,
+      "score": 8.3,
+      "scored_by": 199336,
+      "members": 585997
+    },
+    {
+      "id": 22507,
+      "score": 8.3,
+      "scored_by": 85123,
+      "members": 165963
+    },
+    {
+      "id": 56752,
+      "score": 8.3,
+      "scored_by": 27028,
+      "members": 66432
+    },
+    {
+      "id": 5420,
+      "score": 8.3,
+      "scored_by": 22944,
+      "members": 94180
+    },
+    {
+      "id": 40211,
+      "score": 8.3,
+      "scored_by": 13674,
+      "members": 41109
+    },
+    {
+      "id": 59953,
+      "score": 8.3,
+      "scored_by": 12895,
+      "members": 15385
+    },
+    {
+      "id": 50407,
+      "score": 8.3,
+      "scored_by": 6248,
+      "members": 19118
+    },
+    {
+      "id": 1735,
+      "score": 8.29,
+      "scored_by": 1811907,
+      "members": 2728711
+    },
+    {
+      "id": 9989,
+      "score": 8.29,
+      "scored_by": 1031978,
+      "members": 1701586
+    },
+    {
+      "id": 41487,
+      "score": 8.29,
+      "scored_by": 522228,
+      "members": 900318
+    },
+    {
+      "id": 24415,
+      "score": 8.29,
+      "scored_by": 510675,
+      "members": 827558
+    },
+    {
+      "id": 39533,
+      "score": 8.29,
+      "scored_by": 345211,
+      "members": 633306
+    },
+    {
+      "id": 10863,
+      "score": 8.29,
+      "scored_by": 295363,
+      "members": 471970
+    },
+    {
+      "id": 6675,
+      "score": 8.29,
+      "scored_by": 224802,
+      "members": 423619
+    },
+    {
+      "id": 6594,
+      "score": 8.29,
+      "scored_by": 223369,
+      "members": 591802
+    },
+    {
+      "id": 12531,
+      "score": 8.29,
+      "scored_by": 182186,
+      "members": 414542
+    },
+    {
+      "id": 759,
+      "score": 8.29,
+      "scored_by": 164593,
+      "members": 329161
+    },
+    {
+      "id": 57,
+      "score": 8.29,
+      "scored_by": 150625,
+      "members": 373805
+    },
+    {
+      "id": 43325,
+      "score": 8.29,
+      "scored_by": 136669,
+      "members": 289895
+    },
+    {
+      "id": 17389,
+      "score": 8.29,
+      "scored_by": 74121,
+      "members": 149282
+    },
+    {
+      "id": 1365,
+      "score": 8.29,
+      "scored_by": 50757,
+      "members": 85378
+    },
+    {
+      "id": 11917,
+      "score": 8.29,
+      "scored_by": 22180,
+      "members": 40163
+    },
+    {
+      "id": 2150,
+      "score": 8.29,
+      "scored_by": 13871,
+      "members": 33137
+    },
+    {
+      "id": 45,
+      "score": 8.28,
+      "scored_by": 247679,
+      "members": 523485
+    },
+    {
+      "id": 486,
+      "score": 8.28,
+      "scored_by": 105723,
+      "members": 353813
+    },
+    {
+      "id": 54870,
+      "score": 8.28,
+      "scored_by": 79285,
+      "members": 180079
+    },
+    {
+      "id": 38731,
+      "score": 8.28,
+      "scored_by": 50819,
+      "members": 101179
+    },
+    {
+      "id": 36371,
+      "score": 8.28,
+      "scored_by": 14943,
+      "members": 30291
+    },
+    {
+      "id": 59408,
+      "score": 8.28,
+      "scored_by": 5637,
+      "members": 20735
+    },
+    {
+      "id": 38826,
+      "score": 8.27,
+      "scored_by": 674055,
+      "members": 1121686
+    },
+    {
+      "id": 43,
+      "score": 8.27,
+      "scored_by": 360067,
+      "members": 699786
+    },
+    {
+      "id": 34798,
+      "score": 8.27,
+      "scored_by": 238820,
+      "members": 539633
+    },
+    {
+      "id": 32188,
+      "score": 8.27,
+      "scored_by": 160905,
+      "members": 288022
+    },
+    {
+      "id": 30346,
+      "score": 8.27,
+      "scored_by": 157959,
+      "members": 294942
+    },
+    {
+      "id": 19363,
+      "score": 8.27,
+      "scored_by": 94527,
+      "members": 154825
+    },
+    {
+      "id": 35111,
+      "score": 8.27,
+      "scored_by": 42265,
+      "members": 104855
+    },
+    {
+      "id": 9735,
+      "score": 8.27,
+      "scored_by": 20960,
+      "members": 47538
+    },
+    {
+      "id": 59150,
+      "score": 8.27,
+      "scored_by": 7293,
+      "members": 18611
+    },
+    {
+      "id": 38691,
+      "score": 8.26,
+      "scored_by": 1171934,
+      "members": 1940854
+    },
+    {
+      "id": 10087,
+      "score": 8.26,
+      "scored_by": 910389,
+      "members": 1596759
+    },
+    {
+      "id": 37520,
+      "score": 8.26,
+      "scored_by": 696411,
+      "members": 1367150
+    },
+    {
+      "id": 10408,
+      "score": 8.26,
+      "scored_by": 486026,
+      "members": 875501
+    },
+    {
+      "id": 513,
+      "score": 8.26,
+      "scored_by": 333640,
+      "members": 534936
+    },
+    {
+      "id": 54595,
+      "score": 8.26,
+      "scored_by": 293967,
+      "members": 524772
+    },
+    {
+      "id": 3002,
+      "score": 8.26,
+      "scored_by": 177551,
+      "members": 389732
+    },
+    {
+      "id": 25835,
+      "score": 8.26,
+      "scored_by": 149378,
+      "members": 469600
+    },
+    {
+      "id": 58572,
+      "score": 8.26,
+      "scored_by": 128307,
+      "members": 257003
+    },
+    {
+      "id": 23327,
+      "score": 8.26,
+      "scored_by": 95802,
+      "members": 182066
+    },
+    {
+      "id": 264,
+      "score": 8.26,
+      "scored_by": 94470,
+      "members": 156360
+    },
+    {
+      "id": 2685,
+      "score": 8.26,
+      "scored_by": 46810,
+      "members": 101547
+    },
+    {
+      "id": 49571,
+      "score": 8.26,
+      "scored_by": 3379,
+      "members": 8973
+    },
+    {
+      "id": 523,
+      "score": 8.25,
+      "scored_by": 753361,
+      "members": 1158174
+    },
+    {
+      "id": 53111,
+      "score": 8.25,
+      "scored_by": 154638,
+      "members": 290941
+    },
+    {
+      "id": 57592,
+      "score": 8.25,
+      "scored_by": 142589,
+      "members": 295791
+    },
+    {
+      "id": 1698,
+      "score": 8.25,
+      "scored_by": 134353,
+      "members": 331463
+    },
+    {
+      "id": 10271,
+      "score": 8.25,
+      "scored_by": 117090,
+      "members": 212827
+    },
+    {
+      "id": 31812,
+      "score": 8.25,
+      "scored_by": 104587,
+      "members": 225081
+    },
+    {
+      "id": 139,
+      "score": 8.25,
+      "scored_by": 83630,
+      "members": 156595
+    },
+    {
+      "id": 329,
+      "score": 8.25,
+      "scored_by": 82963,
+      "members": 279044
+    },
+    {
+      "id": 265,
+      "score": 8.25,
+      "scored_by": 77746,
+      "members": 127091
+    },
+    {
+      "id": 55825,
+      "score": 8.25,
+      "scored_by": 39961,
+      "members": 326644
+    },
+    {
+      "id": 34036,
+      "score": 8.25,
+      "scored_by": 16570,
+      "members": 34489
+    },
+    {
+      "id": 31240,
+      "score": 8.24,
+      "scored_by": 1555217,
+      "members": 2437108
+    },
+    {
+      "id": 32937,
+      "score": 8.24,
+      "scored_by": 1087413,
+      "members": 1644473
+    },
+    {
+      "id": 512,
+      "score": 8.24,
+      "scored_by": 426924,
+      "members": 658801
+    },
+    {
+      "id": 13125,
+      "score": 8.24,
+      "scored_by": 289035,
+      "members": 819531
+    },
+    {
+      "id": 50594,
+      "score": 8.24,
+      "scored_by": 275563,
+      "members": 495977
+    },
+    {
+      "id": 25681,
+      "score": 8.24,
+      "scored_by": 248111,
+      "members": 466677
+    },
+    {
+      "id": 2418,
+      "score": 8.24,
+      "scored_by": 172110,
+      "members": 353412
+    },
+    {
+      "id": 35838,
+      "score": 8.24,
+      "scored_by": 150597,
+      "members": 399048
+    },
+    {
+      "id": 37989,
+      "score": 8.24,
+      "scored_by": 128858,
+      "members": 236542
+    },
+    {
+      "id": 1033,
+      "score": 8.24,
+      "scored_by": 94841,
+      "members": 209468
+    },
+    {
+      "id": 440,
+      "score": 8.24,
+      "scored_by": 71704,
+      "members": 246509
+    },
+    {
+      "id": 44940,
+      "score": 8.24,
+      "scored_by": 54936,
+      "members": 139905
+    },
+    {
+      "id": 36990,
+      "score": 8.24,
+      "scored_by": 41161,
+      "members": 86253
+    },
+    {
+      "id": 60371,
+      "score": 8.24,
+      "scored_by": 27586,
+      "members": 138785
+    },
+    {
+      "id": 54959,
+      "score": 8.24,
+      "scored_by": 20367,
+      "members": 41803
+    },
+    {
+      "id": 54029,
+      "score": 8.24,
+      "scored_by": 20247,
+      "members": 39555
+    },
+    {
+      "id": 45577,
+      "score": 8.24,
+      "scored_by": 9262,
+      "members": 26864
+    },
+    {
+      "id": 37450,
+      "score": 8.23,
+      "scored_by": 1230557,
+      "members": 1943928
+    },
+    {
+      "id": 11843,
+      "score": 8.23,
+      "scored_by": 440663,
+      "members": 882053
+    },
+    {
+      "id": 585,
+      "score": 8.23,
+      "scored_by": 228406,
+      "members": 405016
+    },
+    {
+      "id": 37055,
+      "score": 8.23,
+      "scored_by": 173873,
+      "members": 326239
+    },
+    {
+      "id": 33051,
+      "score": 8.23,
+      "scored_by": 89720,
+      "members": 160196
+    },
+    {
+      "id": 15227,
+      "score": 8.23,
+      "scored_by": 84343,
+      "members": 207930
+    },
+    {
+      "id": 35677,
+      "score": 8.23,
+      "scored_by": 66458,
+      "members": 162091
+    },
+    {
+      "id": 44412,
+      "score": 8.23,
+      "scored_by": 4969,
+      "members": 10277
+    },
+    {
+      "id": 56215,
+      "score": 8.23,
+      "scored_by": 1307,
+      "members": 4091
+    },
+    {
+      "id": 48316,
+      "score": 8.22,
+      "scored_by": 463046,
+      "members": 851982
+    },
+    {
+      "id": 49918,
+      "score": 8.22,
+      "scored_by": 417141,
+      "members": 810557
+    },
+    {
+      "id": 52588,
+      "score": 8.22,
+      "scored_by": 412888,
+      "members": 714879
+    },
+    {
+      "id": 6,
+      "score": 8.22,
+      "scored_by": 399613,
+      "members": 829540
+    },
+    {
+      "id": 28805,
+      "score": 8.22,
+      "scored_by": 239326,
+      "members": 453889
+    },
+    {
+      "id": 59062,
+      "score": 8.22,
+      "scored_by": 196587,
+      "members": 465086
+    },
+    {
+      "id": 16664,
+      "score": 8.22,
+      "scored_by": 135779,
+      "members": 259946
+    },
+    {
+      "id": 11977,
+      "score": 8.22,
+      "scored_by": 108023,
+      "members": 215879
+    },
+    {
+      "id": 5690,
+      "score": 8.22,
+      "scored_by": 71996,
+      "members": 133292
+    },
+    {
+      "id": 372,
+      "score": 8.22,
+      "scored_by": 70704,
+      "members": 123517
+    },
+    {
+      "id": 1842,
+      "score": 8.22,
+      "scored_by": 45788,
+      "members": 74301
+    },
+    {
+      "id": 813,
+      "score": 8.21,
+      "scored_by": 902367,
+      "members": 1319585
+    },
+    {
+      "id": 38680,
+      "score": 8.21,
+      "scored_by": 447224,
+      "members": 940043
+    },
+    {
+      "id": 2966,
+      "score": 8.21,
+      "scored_by": 413827,
+      "members": 868111
+    },
+    {
+      "id": 53393,
+      "score": 8.21,
+      "scored_by": 289063,
+      "members": 621882
+    },
+    {
+      "id": 35466,
+      "score": 8.21,
+      "scored_by": 264785,
+      "members": 444372
+    },
+    {
+      "id": 52578,
+      "score": 8.21,
+      "scored_by": 225803,
+      "members": 434349
+    },
+    {
+      "id": 12115,
+      "score": 8.21,
+      "scored_by": 152799,
+      "members": 245919
+    },
+    {
+      "id": 38249,
+      "score": 8.21,
+      "scored_by": 146691,
+      "members": 247437
+    },
+    {
+      "id": 59027,
+      "score": 8.21,
+      "scored_by": 117604,
+      "members": 328099
+    },
+    {
+      "id": 627,
+      "score": 8.21,
+      "scored_by": 54114,
+      "members": 107931
+    },
+    {
+      "id": 35110,
+      "score": 8.21,
+      "scored_by": 44046,
+      "members": 108334
+    },
+    {
+      "id": 1453,
+      "score": 8.21,
+      "scored_by": 21280,
+      "members": 82658
+    },
+    {
+      "id": 40853,
+      "score": 8.21,
+      "scored_by": 18381,
+      "members": 42115
+    },
+    {
+      "id": 47794,
+      "score": 8.21,
+      "scored_by": 2115,
+      "members": 13092
+    },
+    {
+      "id": 23847,
+      "score": 8.2,
+      "scored_by": 743392,
+      "members": 1155485
+    },
+    {
+      "id": 50602,
+      "score": 8.2,
+      "scored_by": 611635,
+      "members": 1121414
+    },
+    {
+      "id": 16894,
+      "score": 8.2,
+      "scored_by": 585716,
+      "members": 923677
+    },
+    {
+      "id": 18115,
+      "score": 8.2,
+      "scored_by": 482632,
+      "members": 894883
+    },
+    {
+      "id": 51179,
+      "score": 8.2,
+      "scored_by": 435321,
+      "members": 743635
+    },
+    {
+      "id": 38003,
+      "score": 8.2,
+      "scored_by": 375661,
+      "members": 705292
+    },
+    {
+      "id": 36946,
+      "score": 8.2,
+      "scored_by": 321991,
+      "members": 465277
+    },
+    {
+      "id": 39247,
+      "score": 8.2,
+      "scored_by": 307747,
+      "members": 609087
+    },
+    {
+      "id": 55866,
+      "score": 8.2,
+      "scored_by": 157651,
+      "members": 340106
+    },
+    {
+      "id": 6811,
+      "score": 8.2,
+      "scored_by": 153010,
+      "members": 305046
+    },
+    {
+      "id": 9863,
+      "score": 8.2,
+      "scored_by": 88440,
+      "members": 237805
+    },
+    {
+      "id": 3091,
+      "score": 8.2,
+      "scored_by": 70206,
+      "members": 155002
+    },
+    {
+      "id": 40784,
+      "score": 8.2,
+      "scored_by": 56145,
+      "members": 97207
+    },
+    {
+      "id": 5460,
+      "score": 8.2,
+      "scored_by": 36508,
+      "members": 65039
+    },
+    {
+      "id": 32843,
+      "score": 8.2,
+      "scored_by": 15940,
+      "members": 44038
+    },
+    {
+      "id": 52684,
+      "score": 8.2,
+      "scored_by": 2873,
+      "members": 7609
+    },
+    {
+      "id": 40052,
+      "score": 8.19,
+      "scored_by": 355497,
+      "members": 743075
+    },
+    {
+      "id": 37171,
+      "score": 8.19,
+      "scored_by": 250420,
+      "members": 531947
+    },
+    {
+      "id": 53065,
+      "score": 8.19,
+      "scored_by": 192423,
+      "members": 449857
+    },
+    {
+      "id": 186,
+      "score": 8.19,
+      "scored_by": 151926,
+      "members": 261637
+    },
+    {
+      "id": 49114,
+      "score": 8.19,
+      "scored_by": 149661,
+      "members": 342357
+    },
+    {
+      "id": 44055,
+      "score": 8.19,
+      "scored_by": 106657,
+      "members": 234947
+    },
+    {
+      "id": 18617,
+      "score": 8.19,
+      "scored_by": 64550,
+      "members": 130218
+    },
+    {
+      "id": 19123,
+      "score": 8.19,
+      "scored_by": 34714,
+      "members": 80781
+    },
+    {
+      "id": 39166,
+      "score": 8.19,
+      "scored_by": 16599,
+      "members": 47452
+    },
+    {
+      "id": 49590,
+      "score": 8.19,
+      "scored_by": 15844,
+      "members": 64385
+    },
+    {
+      "id": 60420,
+      "score": 8.19,
+      "scored_by": 946,
+      "members": 2271
+    },
+    {
+      "id": 42897,
+      "score": 8.18,
+      "scored_by": 985018,
+      "members": 1619491
+    },
+    {
+      "id": 22297,
+      "score": 8.18,
+      "scored_by": 727395,
+      "members": 1168808
+    },
+    {
+      "id": 7791,
+      "score": 8.18,
+      "scored_by": 412284,
+      "members": 749876
+    },
+    {
+      "id": 232,
+      "score": 8.18,
+      "scored_by": 233545,
+      "members": 483728
+    },
+    {
+      "id": 10800,
+      "score": 8.18,
+      "scored_by": 194611,
+      "members": 494307
+    },
+    {
+      "id": 235,
+      "score": 8.18,
+      "scored_by": 169667,
+      "members": 376484
+    },
+    {
+      "id": 34636,
+      "score": 8.18,
+      "scored_by": 159899,
+      "members": 361619
+    },
+    {
+      "id": 18,
+      "score": 8.18,
+      "scored_by": 118789,
+      "members": 213557
+    },
+    {
+      "id": 23623,
+      "score": 8.18,
+      "scored_by": 107206,
+      "members": 213175
+    },
+    {
+      "id": 138,
+      "score": 8.18,
+      "scored_by": 92231,
+      "members": 181751
+    },
+    {
+      "id": 40729,
+      "score": 8.18,
+      "scored_by": 91665,
+      "members": 229641
+    },
+    {
+      "id": 4107,
+      "score": 8.18,
+      "scored_by": 89782,
+      "members": 191747
+    },
+    {
+      "id": 18195,
+      "score": 8.18,
+      "scored_by": 81290,
+      "members": 176406
+    },
+    {
+      "id": 56009,
+      "score": 8.18,
+      "scored_by": 67602,
+      "members": 257041
+    },
+    {
+      "id": 37514,
+      "score": 8.18,
+      "scored_by": 60367,
+      "members": 161961
+    },
+    {
+      "id": 34537,
+      "score": 8.18,
+      "scored_by": 57307,
+      "members": 140818
+    },
+    {
+      "id": 1142,
+      "score": 8.18,
+      "scored_by": 56557,
+      "members": 124436
+    },
+    {
+      "id": 558,
+      "score": 8.18,
+      "scored_by": 47839,
+      "members": 76523
+    },
+    {
+      "id": 3226,
+      "score": 8.18,
+      "scored_by": 42965,
+      "members": 69603
+    },
+    {
+      "id": 6864,
+      "score": 8.18,
+      "scored_by": 34468,
+      "members": 86064
+    },
+    {
+      "id": 32005,
+      "score": 8.18,
+      "scored_by": 26123,
+      "members": 47047
+    },
+    {
+      "id": 38088,
+      "score": 8.18,
+      "scored_by": 22400,
+      "members": 62861
+    },
+    {
+      "id": 36370,
+      "score": 8.18,
+      "scored_by": 15015,
+      "members": 41108
+    },
+    {
+      "id": 42894,
+      "score": 8.18,
+      "scored_by": 13951,
+      "members": 53518
+    },
+    {
+      "id": 29831,
+      "score": 8.18,
+      "scored_by": 4528,
+      "members": 13976
+    },
+    {
+      "id": 49574,
+      "score": 8.18,
+      "scored_by": 3053,
+      "members": 9330
+    },
+    {
+      "id": 52299,
+      "score": 8.17,
+      "scored_by": 692151,
+      "members": 1115783
+    },
+    {
+      "id": 1519,
+      "score": 8.17,
+      "scored_by": 340489,
+      "members": 572490
+    },
+    {
+      "id": 7674,
+      "score": 8.17,
+      "scored_by": 310248,
+      "members": 655473
+    },
+    {
+      "id": 40911,
+      "score": 8.17,
+      "scored_by": 208751,
+      "members": 503988
+    },
+    {
+      "id": 38234,
+      "score": 8.17,
+      "scored_by": 135558,
+      "members": 219928
+    },
+    {
+      "id": 57433,
+      "score": 8.17,
+      "scored_by": 65447,
+      "members": 205650
+    },
+    {
+      "id": 37078,
+      "score": 8.17,
+      "scored_by": 57584,
+      "members": 112667
+    },
+    {
+      "id": 33323,
+      "score": 8.17,
+      "scored_by": 36931,
+      "members": 73417
+    },
+    {
+      "id": 962,
+      "score": 8.17,
+      "scored_by": 32139,
+      "members": 85742
+    },
+    {
+      "id": 59228,
+      "score": 8.17,
+      "scored_by": 24858,
+      "members": 71465
+    },
+    {
+      "id": 39592,
+      "score": 8.17,
+      "scored_by": 12845,
+      "members": 28364
+    },
+    {
+      "id": 59654,
+      "score": 8.17,
+      "scored_by": 10788,
+      "members": 58244
+    },
+    {
+      "id": 55655,
+      "score": 8.17,
+      "scored_by": 2048,
+      "members": 5205
+    },
+    {
+      "id": 853,
+      "score": 8.16,
+      "scored_by": 726262,
+      "members": 1223337
+    },
+    {
+      "id": 51019,
+      "score": 8.16,
+      "scored_by": 667756,
+      "members": 1099236
+    },
+    {
+      "id": 47,
+      "score": 8.16,
+      "scored_by": 560377,
+      "members": 949141
+    },
+    {
+      "id": 32867,
+      "score": 8.16,
+      "scored_by": 541982,
+      "members": 948570
+    },
+    {
+      "id": 33674,
+      "score": 8.16,
+      "scored_by": 507695,
+      "members": 945151
+    },
+    {
+      "id": 1889,
+      "score": 8.16,
+      "scored_by": 267112,
+      "members": 518903
+    },
+    {
+      "id": 57181,
+      "score": 8.16,
+      "scored_by": 147279,
+      "members": 321824
+    },
+    {
+      "id": 1382,
+      "score": 8.16,
+      "scored_by": 5335,
+      "members": 13027
+    },
+    {
+      "id": 50159,
+      "score": 8.16,
+      "scored_by": 990,
+      "members": 37582
+    },
+    {
+      "id": 40852,
+      "score": 8.15,
+      "scored_by": 680022,
+      "members": 1192756
+    },
+    {
+      "id": 48549,
+      "score": 8.15,
+      "scored_by": 287374,
+      "members": 596390
+    },
+    {
+      "id": 49052,
+      "score": 8.15,
+      "scored_by": 129586,
+      "members": 254579
+    },
+    {
+      "id": 49909,
+      "score": 8.15,
+      "scored_by": 108838,
+      "members": 203708
+    },
+    {
+      "id": 1430,
+      "score": 8.15,
+      "scored_by": 79053,
+      "members": 138243
+    },
+    {
+      "id": 721,
+      "score": 8.15,
+      "scored_by": 70618,
+      "members": 184568
+    },
+    {
+      "id": 53127,
+      "score": 8.15,
+      "scored_by": 62135,
+      "members": 117856
+    },
+    {
+      "id": 59833,
+      "score": 8.15,
+      "scored_by": 32696,
+      "members": 79088
+    },
+    {
+      "id": 44042,
+      "score": 8.15,
+      "scored_by": 18105,
+      "members": 58531
+    },
+    {
+      "id": 49521,
+      "score": 8.15,
+      "scored_by": 12609,
+      "members": 38839
+    },
+    {
+      "id": 54650,
+      "score": 8.15,
+      "scored_by": 1662,
+      "members": 4748
+    },
+    {
+      "id": 34572,
+      "score": 8.14,
+      "scored_by": 975521,
+      "members": 1885299
+    },
+    {
+      "id": 30503,
+      "score": 8.14,
+      "scored_by": 942360,
+      "members": 1550695
+    },
+    {
+      "id": 50709,
+      "score": 8.14,
+      "scored_by": 288005,
+      "members": 589638
+    },
+    {
+      "id": 25537,
+      "score": 8.14,
+      "scored_by": 284023,
+      "members": 513920
+    },
+    {
+      "id": 16662,
+      "score": 8.14,
+      "scored_by": 219566,
+      "members": 384354
+    },
+    {
+      "id": 38481,
+      "score": 8.14,
+      "scored_by": 103133,
+      "members": 265278
+    },
+    {
+      "id": 3701,
+      "score": 8.14,
+      "scored_by": 48760,
+      "members": 179773
+    },
+    {
+      "id": 50528,
+      "score": 8.14,
+      "scored_by": 47023,
+      "members": 120537
+    },
+    {
+      "id": 55911,
+      "score": 8.14,
+      "scored_by": 39647,
+      "members": 105929
+    },
+    {
+      "id": 9890,
+      "score": 8.14,
+      "scored_by": 18787,
+      "members": 44312
+    },
+    {
+      "id": 37962,
+      "score": 8.14,
+      "scored_by": 13095,
+      "members": 36196
+    },
+    {
+      "id": 28223,
+      "score": 8.13,
+      "scored_by": 1078963,
+      "members": 1909192
+    },
+    {
+      "id": 37430,
+      "score": 8.13,
+      "scored_by": 985122,
+      "members": 1627905
+    },
+    {
+      "id": 48736,
+      "score": 8.13,
+      "scored_by": 798333,
+      "members": 1304418
+    },
+    {
+      "id": 14713,
+      "score": 8.13,
+      "scored_by": 371642,
+      "members": 724233
+    },
+    {
+      "id": 54789,
+      "score": 8.13,
+      "scored_by": 217738,
+      "members": 467395
+    },
+    {
+      "id": 54856,
+      "score": 8.13,
+      "scored_by": 204117,
+      "members": 451458
+    },
+    {
+      "id": 39792,
+      "score": 8.13,
+      "scored_by": 149006,
+      "members": 368102
+    },
+    {
+      "id": 28675,
+      "score": 8.13,
+      "scored_by": 143804,
+      "members": 292015
+    },
+    {
+      "id": 4477,
+      "score": 8.13,
+      "scored_by": 77937,
+      "members": 130439
+    },
+    {
+      "id": 31715,
+      "score": 8.13,
+      "scored_by": 60969,
+      "members": 108350
+    },
+    {
+      "id": 731,
+      "score": 8.13,
+      "scored_by": 47474,
+      "members": 82083
+    },
+    {
+      "id": 49053,
+      "score": 8.13,
+      "scored_by": 45609,
+      "members": 102059
+    },
+    {
+      "id": 21469,
+      "score": 8.13,
+      "scored_by": 43775,
+      "members": 63569
+    },
+    {
+      "id": 50325,
+      "score": 8.13,
+      "scored_by": 33667,
+      "members": 63358
+    },
+    {
+      "id": 56738,
+      "score": 8.13,
+      "scored_by": 27192,
+      "members": 69906
+    },
+    {
+      "id": 41361,
+      "score": 8.13,
+      "scored_by": 22054,
+      "members": 67210
+    },
+    {
+      "id": 35857,
+      "score": 8.13,
+      "scored_by": 18327,
+      "members": 48873
+    },
+    {
+      "id": 10153,
+      "score": 8.13,
+      "scored_by": 11772,
+      "members": 26913
+    },
+    {
+      "id": 3371,
+      "score": 8.13,
+      "scored_by": 9839,
+      "members": 26923
+    },
+    {
+      "id": 121,
+      "score": 8.12,
+      "scored_by": 929757,
+      "members": 1551951
+    },
+    {
+      "id": 49596,
+      "score": 8.12,
+      "scored_by": 490351,
+      "members": 883282
+    },
+    {
+      "id": 11597,
+      "score": 8.12,
+      "scored_by": 452704,
+      "members": 771837
+    },
+    {
+      "id": 1604,
+      "score": 8.12,
+      "scored_by": 269685,
+      "members": 585584
+    },
+    {
+      "id": 50612,
+      "score": 8.12,
+      "scored_by": 220395,
+      "members": 381433
+    },
+    {
+      "id": 51122,
+      "score": 8.12,
+      "scored_by": 84591,
+      "members": 258509
+    },
+    {
+      "id": 1827,
+      "score": 8.12,
+      "scored_by": 80454,
+      "members": 234774
+    },
+    {
+      "id": 1364,
+      "score": 8.12,
+      "scored_by": 41277,
+      "members": 70101
+    },
+    {
+      "id": 25313,
+      "score": 8.12,
+      "scored_by": 19890,
+      "members": 45414
+    },
+    {
+      "id": 17739,
+      "score": 8.12,
+      "scored_by": 7296,
+      "members": 16818
+    },
+    {
+      "id": 28171,
+      "score": 8.11,
+      "scored_by": 1052849,
+      "members": 1741572
+    },
+    {
+      "id": 20899,
+      "score": 8.11,
+      "scored_by": 958865,
+      "members": 1357131
+    },
+    {
+      "id": 36296,
+      "score": 8.11,
+      "scored_by": 268597,
+      "members": 553189
+    },
+    {
+      "id": 50416,
+      "score": 8.11,
+      "scored_by": 158376,
+      "members": 339457
+    },
+    {
+      "id": 40542,
+      "score": 8.11,
+      "scored_by": 151544,
+      "members": 248008
+    },
+    {
+      "id": 40421,
+      "score": 8.11,
+      "scored_by": 142663,
+      "members": 262727
+    },
+    {
+      "id": 49709,
+      "score": 8.11,
+      "scored_by": 134820,
+      "members": 336417
+    },
+    {
+      "id": 18689,
+      "score": 8.11,
+      "scored_by": 123622,
+      "members": 265062
+    },
+    {
+      "id": 8129,
+      "score": 8.11,
+      "scored_by": 119527,
+      "members": 263557
+    },
+    {
+      "id": 59459,
+      "score": 8.11,
+      "scored_by": 102054,
+      "members": 206960
+    },
+    {
+      "id": 15059,
+      "score": 8.11,
+      "scored_by": 89380,
+      "members": 171480
+    },
+    {
+      "id": 239,
+      "score": 8.11,
+      "scored_by": 78883,
+      "members": 269457
+    },
+    {
+      "id": 29755,
+      "score": 8.11,
+      "scored_by": 49756,
+      "members": 123861
+    },
+    {
+      "id": 9130,
+      "score": 8.11,
+      "scored_by": 47950,
+      "members": 81027
+    },
+    {
+      "id": 30364,
+      "score": 8.11,
+      "scored_by": 43473,
+      "members": 111499
+    },
+    {
+      "id": 15323,
+      "score": 8.11,
+      "scored_by": 41193,
+      "members": 76389
+    },
+    {
+      "id": 6467,
+      "score": 8.11,
+      "scored_by": 35866,
+      "members": 62733
+    },
+    {
+      "id": 52826,
+      "score": 8.11,
+      "scored_by": 21464,
+      "members": 68262
+    },
+    {
+      "id": 302,
+      "score": 8.11,
+      "scored_by": 19095,
+      "members": 57680
+    },
+    {
+      "id": 40435,
+      "score": 8.11,
+      "scored_by": 10683,
+      "members": 28067
+    },
+    {
+      "id": 339,
+      "score": 8.1,
+      "scored_by": 353311,
+      "members": 892376
+    },
+    {
+      "id": 52347,
+      "score": 8.1,
+      "scored_by": 234769,
+      "members": 452006
+    },
+    {
+      "id": 12859,
+      "score": 8.1,
+      "scored_by": 197251,
+      "members": 314029
+    },
+    {
+      "id": 35608,
+      "score": 8.1,
+      "scored_by": 162594,
+      "members": 300753
+    },
+    {
+      "id": 53411,
+      "score": 8.1,
+      "scored_by": 159549,
+      "members": 351219
+    },
+    {
+      "id": 2581,
+      "score": 8.1,
+      "scored_by": 127487,
+      "members": 233880
+    },
+    {
+      "id": 53888,
+      "score": 8.1,
+      "scored_by": 115487,
+      "members": 245143
+    },
+    {
+      "id": 30370,
+      "score": 8.1,
+      "scored_by": 75618,
+      "members": 146043
+    },
+    {
+      "id": 1566,
+      "score": 8.1,
+      "scored_by": 50252,
+      "members": 107759
+    },
+    {
+      "id": 30831,
+      "score": 8.09,
+      "scored_by": 1378022,
+      "members": 2137270
+    },
+    {
+      "id": 6746,
+      "score": 8.09,
+      "scored_by": 689867,
+      "members": 1486204
+    },
+    {
+      "id": 46569,
+      "score": 8.09,
+      "scored_by": 512661,
+      "members": 932373
+    },
+    {
+      "id": 2236,
+      "score": 8.09,
+      "scored_by": 475595,
+      "members": 836288
+    },
+    {
+      "id": 50380,
+      "score": 8.09,
+      "scored_by": 159296,
+      "members": 328753
+    },
+    {
+      "id": 16918,
+      "score": 8.09,
+      "scored_by": 138510,
+      "members": 312500
+    },
+    {
+      "id": 32902,
+      "score": 8.09,
+      "scored_by": 134097,
+      "members": 298177
+    },
+    {
+      "id": 3702,
+      "score": 8.09,
+      "scored_by": 113471,
+      "members": 224111
+    },
+    {
+      "id": 31051,
+      "score": 8.09,
+      "scored_by": 61759,
+      "members": 117671
+    },
+    {
+      "id": 6336,
+      "score": 8.09,
+      "scored_by": 54793,
+      "members": 107202
+    },
+    {
+      "id": 12069,
+      "score": 8.09,
+      "scored_by": 36295,
+      "members": 63102
+    },
+    {
+      "id": 59898,
+      "score": 8.09,
+      "scored_by": 26797,
+      "members": 84482
+    },
+    {
+      "id": 38081,
+      "score": 8.09,
+      "scored_by": 22735,
+      "members": 45368
+    },
+    {
+      "id": 32122,
+      "score": 8.09,
+      "scored_by": 17453,
+      "members": 37319
+    },
+    {
+      "id": 58689,
+      "score": 8.09,
+      "scored_by": 3741,
+      "members": 7041
+    },
+    {
+      "id": 59306,
+      "score": 8.09,
+      "scored_by": 2078,
+      "members": 5835
+    },
+    {
+      "id": 23283,
+      "score": 8.08,
+      "scored_by": 667529,
+      "members": 1273794
+    },
+    {
+      "id": 28025,
+      "score": 8.08,
+      "scored_by": 251479,
+      "members": 442896
+    },
+    {
+      "id": 31658,
+      "score": 8.08,
+      "scored_by": 208439,
+      "members": 345965
+    },
+    {
+      "id": 66,
+      "score": 8.08,
+      "scored_by": 182266,
+      "members": 422592
+    },
+    {
+      "id": 57524,
+      "score": 8.08,
+      "scored_by": 170985,
+      "members": 324953
+    },
+    {
+      "id": 40815,
+      "score": 8.08,
+      "scored_by": 147527,
+      "members": 251287
+    },
+    {
+      "id": 50796,
+      "score": 8.08,
+      "scored_by": 106955,
+      "members": 272640
+    },
+    {
+      "id": 18661,
+      "score": 8.08,
+      "scored_by": 76805,
+      "members": 148297
+    },
+    {
+      "id": 135,
+      "score": 8.08,
+      "scored_by": 66686,
+      "members": 149498
+    },
+    {
+      "id": 4938,
+      "score": 8.08,
+      "scored_by": 31123,
+      "members": 65431
+    },
+    {
+      "id": 34076,
+      "score": 8.08,
+      "scored_by": 27534,
+      "members": 69251
+    },
+    {
+      "id": 56653,
+      "score": 8.08,
+      "scored_by": 14716,
+      "members": 35528
+    },
+    {
+      "id": 851,
+      "score": 8.08,
+      "scored_by": 12923,
+      "members": 39929
+    },
+    {
+      "id": 1471,
+      "score": 8.08,
+      "scored_by": 12677,
+      "members": 31435
+    },
+    {
+      "id": 60048,
+      "score": 8.08,
+      "scored_by": 5170,
+      "members": 12108
+    },
+    {
+      "id": 51335,
+      "score": 8.08,
+      "scored_by": 4035,
+      "members": 10814
+    },
+    {
+      "id": 24833,
+      "score": 8.07,
+      "scored_by": 1296312,
+      "members": 2200650
+    },
+    {
+      "id": 39198,
+      "score": 8.07,
+      "scored_by": 161458,
+      "members": 343368
+    },
+    {
+      "id": 4722,
+      "score": 8.07,
+      "scored_by": 147167,
+      "members": 286220
+    },
+    {
+      "id": 31251,
+      "score": 8.07,
+      "scored_by": 135224,
+      "members": 271759
+    },
+    {
+      "id": 3901,
+      "score": 8.07,
+      "scored_by": 116125,
+      "members": 186550
+    },
+    {
+      "id": 3927,
+      "score": 8.07,
+      "scored_by": 99361,
+      "members": 161190
+    },
+    {
+      "id": 42429,
+      "score": 8.07,
+      "scored_by": 94923,
+      "members": 192530
+    },
+    {
+      "id": 31149,
+      "score": 8.07,
+      "scored_by": 41073,
+      "members": 85134
+    },
+    {
+      "id": 1257,
+      "score": 8.07,
+      "scored_by": 38121,
+      "members": 63152
+    },
+    {
+      "id": 62405,
+      "score": 8.07,
+      "scored_by": 33487,
+      "members": 79324
+    },
+    {
+      "id": 2951,
+      "score": 8.07,
+      "scored_by": 31617,
+      "members": 60807
+    },
+    {
+      "id": 1486,
+      "score": 8.07,
+      "scored_by": 29734,
+      "members": 78193
+    },
+    {
+      "id": 59828,
+      "score": 8.07,
+      "scored_by": 24132,
+      "members": 54504
+    },
+    {
+      "id": 3016,
+      "score": 8.07,
+      "scored_by": 19866,
+      "members": 39829
+    },
+    {
+      "id": 36369,
+      "score": 8.07,
+      "scored_by": 16142,
+      "members": 33704
+    },
+    {
+      "id": 62543,
+      "score": 8.07,
+      "scored_by": 14681,
+      "members": 30723
+    },
+    {
+      "id": 32282,
+      "score": 8.06,
+      "scored_by": 760221,
+      "members": 1202633
+    },
+    {
+      "id": 48661,
+      "score": 8.06,
+      "scored_by": 351749,
+      "members": 603383
+    },
+    {
+      "id": 53887,
+      "score": 8.06,
+      "scored_by": 330277,
+      "members": 668367
+    },
+    {
+      "id": 48895,
+      "score": 8.06,
+      "scored_by": 321553,
+      "members": 629358
+    },
+    {
+      "id": 22145,
+      "score": 8.06,
+      "scored_by": 231915,
+      "members": 441671
+    },
+    {
+      "id": 56063,
+      "score": 8.06,
+      "scored_by": 38048,
+      "members": 109404
+    },
+    {
+      "id": 1367,
+      "score": 8.06,
+      "scored_by": 36120,
+      "members": 62564
+    },
+    {
+      "id": 21419,
+      "score": 8.06,
+      "scored_by": 27138,
+      "members": 48899
+    },
+    {
+      "id": 59229,
+      "score": 8.06,
+      "scored_by": 19623,
+      "members": 161314
+    },
+    {
+      "id": 56980,
+      "score": 8.06,
+      "scored_by": 19090,
+      "members": 60414
+    },
+    {
+      "id": 61339,
+      "score": 8.06,
+      "scored_by": 17631,
+      "members": 54347
+    },
+    {
+      "id": 10643,
+      "score": 8.06,
+      "scored_by": 17457,
+      "members": 41752
+    },
+    {
+      "id": 2449,
+      "score": 8.06,
+      "scored_by": 16797,
+      "members": 44341
+    },
+    {
+      "id": 54791,
+      "score": 8.06,
+      "scored_by": 13774,
+      "members": 48630
+    },
+    {
+      "id": 59841,
+      "score": 8.06,
+      "scored_by": 11955,
+      "members": 50567
+    },
+    {
+      "id": 49320,
+      "score": 8.06,
+      "scored_by": 10206,
+      "members": 20724
+    },
+    {
+      "id": 3665,
+      "score": 8.06,
+      "scored_by": 8278,
+      "members": 22625
+    },
+    {
+      "id": 2004,
+      "score": 8.06,
+      "scored_by": 5437,
+      "members": 18792
+    },
+    {
+      "id": 33486,
+      "score": 8.05,
+      "scored_by": 1844064,
+      "members": 2716911
+    },
+    {
+      "id": 6547,
+      "score": 8.05,
+      "scored_by": 1343517,
+      "members": 2192351
+    },
+    {
+      "id": 12189,
+      "score": 8.05,
+      "scored_by": 687235,
+      "members": 1472705
+    },
+    {
+      "id": 51096,
+      "score": 8.05,
+      "scored_by": 455735,
+      "members": 786920
+    },
+    {
+      "id": 35062,
+      "score": 8.05,
+      "scored_by": 423716,
+      "members": 1012513
+    },
+    {
+      "id": 27833,
+      "score": 8.05,
+      "scored_by": 196439,
+      "members": 401366
+    },
+    {
+      "id": 237,
+      "score": 8.05,
+      "scored_by": 188474,
+      "members": 458560
+    },
+    {
+      "id": 24277,
+      "score": 8.05,
+      "scored_by": 83648,
+      "members": 150341
+    },
+    {
+      "id": 1974,
+      "score": 8.05,
+      "scored_by": 13822,
+      "members": 45025
+    },
+    {
+      "id": 50587,
+      "score": 8.05,
+      "scored_by": 12228,
+      "members": 40887
+    },
+    {
+      "id": 44218,
+      "score": 8.05,
+      "scored_by": 4322,
+      "members": 12514
+    },
+    {
+      "id": 51836,
+      "score": 8.05,
+      "scored_by": 1985,
+      "members": 6886
+    },
+    {
+      "id": 4224,
+      "score": 8.04,
+      "scored_by": 1465379,
+      "members": 2354300
+    },
+    {
+      "id": 11771,
+      "score": 8.04,
+      "scored_by": 768895,
+      "members": 1305878
+    },
+    {
+      "id": 13759,
+      "score": 8.04,
+      "scored_by": 742514,
+      "members": 1318765
+    },
+    {
+      "id": 889,
+      "score": 8.04,
+      "scored_by": 533630,
+      "members": 1104303
+    },
+    {
+      "id": 227,
+      "score": 8.04,
+      "scored_by": 465302,
+      "members": 892338
+    },
+    {
+      "id": 2025,
+      "score": 8.04,
+      "scored_by": 453175,
+      "members": 1003115
+    },
+    {
+      "id": 25013,
+      "score": 8.04,
+      "scored_by": 451591,
+      "members": 933779
+    },
+    {
+      "id": 38668,
+      "score": 8.04,
+      "scored_by": 314484,
+      "members": 628943
+    },
+    {
+      "id": 1943,
+      "score": 8.04,
+      "scored_by": 305772,
+      "members": 608054
+    },
+    {
+      "id": 8425,
+      "score": 8.04,
+      "scored_by": 247185,
+      "members": 601322
+    },
+    {
+      "id": 268,
+      "score": 8.04,
+      "scored_by": 244488,
+      "members": 456328
+    },
+    {
+      "id": 51367,
+      "score": 8.04,
+      "scored_by": 215198,
+      "members": 347115
+    },
+    {
+      "id": 21557,
+      "score": 8.04,
+      "scored_by": 182505,
+      "members": 332681
+    },
+    {
+      "id": 4155,
+      "score": 8.04,
+      "scored_by": 172138,
+      "members": 277784
+    },
+    {
+      "id": 23317,
+      "score": 8.04,
+      "scored_by": 134272,
+      "members": 271790
+    },
+    {
+      "id": 40907,
+      "score": 8.04,
+      "scored_by": 68001,
+      "members": 174532
+    },
+    {
+      "id": 781,
+      "score": 8.04,
+      "scored_by": 43404,
+      "members": 72331
+    },
+    {
+      "id": 53410,
+      "score": 8.04,
+      "scored_by": 38121,
+      "members": 102275
+    },
+    {
+      "id": 40080,
+      "score": 8.04,
+      "scored_by": 25880,
+      "members": 56682
+    },
+    {
+      "id": 1096,
+      "score": 8.04,
+      "scored_by": 19754,
+      "members": 46091
+    },
+    {
+      "id": 19815,
+      "score": 8.03,
+      "scored_by": 1619505,
+      "members": 2547115
+    },
+    {
+      "id": 18679,
+      "score": 8.03,
+      "scored_by": 1006057,
+      "members": 1840204
+    },
+    {
+      "id": 55701,
+      "score": 8.03,
+      "scored_by": 441813,
+      "members": 757930
+    },
+    {
+      "id": 2034,
+      "score": 8.03,
+      "scored_by": 316292,
+      "members": 647305
+    },
+    {
+      "id": 27821,
+      "score": 8.03,
+      "scored_by": 213597,
+      "members": 347236
+    },
+    {
+      "id": 27989,
+      "score": 8.03,
+      "scored_by": 211536,
+      "members": 508738
+    },
+    {
+      "id": 4901,
+      "score": 8.03,
+      "scored_by": 185496,
+      "members": 329110
+    },
+    {
+      "id": 1559,
+      "score": 8.03,
+      "scored_by": 165284,
+      "members": 323280
+    },
+    {
+      "id": 2164,
+      "score": 8.03,
+      "scored_by": 46110,
+      "members": 158895
+    },
+    {
+      "id": 1363,
+      "score": 8.03,
+      "scored_by": 40597,
+      "members": 68845
+    },
+    {
+      "id": 4918,
+      "score": 8.03,
+      "scored_by": 36235,
+      "members": 75952
+    },
+    {
+      "id": 1506,
+      "score": 8.03,
+      "scored_by": 35261,
+      "members": 62241
+    },
+    {
+      "id": 59675,
+      "score": 8.03,
+      "scored_by": 25959,
+      "members": 73892
+    },
+    {
+      "id": 589,
+      "score": 8.03,
+      "scored_by": 12750,
+      "members": 30096
+    },
+    {
+      "id": 9204,
+      "score": 8.03,
+      "scored_by": 9465,
+      "members": 22897
+    },
+    {
+      "id": 52846,
+      "score": 8.03,
+      "scored_by": 2878,
+      "members": 4784
+    },
+    {
+      "id": 20,
+      "score": 8.02,
+      "scored_by": 2129090,
+      "members": 3097109
+    },
+    {
+      "id": 34822,
+      "score": 8.02,
+      "scored_by": 276047,
+      "members": 593773
+    },
+    {
+      "id": 38993,
+      "score": 8.02,
+      "scored_by": 196218,
+      "members": 360081
+    },
+    {
+      "id": 41402,
+      "score": 8.02,
+      "scored_by": 185157,
+      "members": 369239
+    },
+    {
+      "id": 72,
+      "score": 8.02,
+      "scored_by": 181310,
+      "members": 310690
+    },
+    {
+      "id": 33161,
+      "score": 8.02,
+      "scored_by": 159480,
+      "members": 272758
+    },
+    {
+      "id": 58913,
+      "score": 8.02,
+      "scored_by": 104150,
+      "members": 283640
+    },
+    {
+      "id": 49782,
+      "score": 8.02,
+      "scored_by": 58784,
+      "members": 139443
+    },
+    {
+      "id": 535,
+      "score": 8.02,
+      "scored_by": 39870,
+      "members": 75864
+    },
+    {
+      "id": 82,
+      "score": 8.02,
+      "scored_by": 38768,
+      "members": 70050
+    },
+    {
+      "id": 52107,
+      "score": 8.02,
+      "scored_by": 13765,
+      "members": 49212
+    },
+    {
+      "id": 1065,
+      "score": 8.02,
+      "scored_by": 11855,
+      "members": 39960
+    },
+    {
+      "id": 44235,
+      "score": 8.02,
+      "scored_by": 11515,
+      "members": 19542
+    },
+    {
+      "id": 41781,
+      "score": 8.02,
+      "scored_by": 5698,
+      "members": 12595
+    },
+    {
+      "id": 9996,
+      "score": 8.02,
+      "scored_by": 5553,
+      "members": 31965
+    },
+    {
+      "id": 60570,
+      "score": 8.02,
+      "scored_by": 550,
+      "members": 1517
+    },
+    {
+      "id": 14513,
+      "score": 8.01,
+      "scored_by": 583073,
+      "members": 1117020
+    },
+    {
+      "id": 6045,
+      "score": 8.01,
+      "scored_by": 518772,
+      "members": 1065065
+    },
+    {
+      "id": 5681,
+      "score": 8.01,
+      "scored_by": 306660,
+      "members": 548370
+    },
+    {
+      "id": 34626,
+      "score": 8.01,
+      "scored_by": 245224,
+      "members": 405662
+    },
+    {
+      "id": 3783,
+      "score": 8.01,
+      "scored_by": 146693,
+      "members": 242296
+    },
+    {
+      "id": 44931,
+      "score": 8.01,
+      "scored_by": 95742,
+      "members": 178591
+    },
+    {
+      "id": 23777,
+      "score": 8.01,
+      "scored_by": 62788,
+      "members": 155103
+    },
+    {
+      "id": 153,
+      "score": 8.01,
+      "scored_by": 49437,
+      "members": 171901
+    },
+    {
+      "id": 37870,
+      "score": 8.01,
+      "scored_by": 20405,
+      "members": 43776
+    },
+    {
+      "id": 34376,
+      "score": 8.01,
+      "scored_by": 6317,
+      "members": 16681
+    },
+    {
+      "id": 62927,
+      "score": 8.01,
+      "scored_by": 1494,
+      "members": 8995
+    },
+    {
+      "id": 14813,
+      "score": 8.0,
+      "scored_by": 918246,
+      "members": 1558131
+    },
+    {
+      "id": 39783,
+      "score": 8.0,
+      "scored_by": 492574,
+      "members": 806558
+    },
+    {
+      "id": 2759,
+      "score": 8.0,
+      "scored_by": 378635,
+      "members": 614991
+    },
+    {
+      "id": 42923,
+      "score": 8.0,
+      "scored_by": 319036,
+      "members": 627526
+    },
+    {
+      "id": 1482,
+      "score": 8.0,
+      "scored_by": 296779,
+      "members": 729084
+    },
+    {
+      "id": 16049,
+      "score": 8.0,
+      "scored_by": 216373,
+      "members": 412588
+    },
+    {
+      "id": 6211,
+      "score": 8.0,
+      "scored_by": 130966,
+      "members": 313502
+    },
+    {
+      "id": 387,
+      "score": 8.0,
+      "scored_by": 114589,
+      "members": 332949
+    },
+    {
+      "id": 6421,
+      "score": 8.0,
+      "scored_by": 79110,
+      "members": 168601
+    },
+    {
+      "id": 6171,
+      "score": 8.0,
+      "scored_by": 63743,
+      "members": 116281
+    },
+    {
+      "id": 27663,
+      "score": 8.0,
+      "scored_by": 56919,
+      "members": 96087
+    },
+    {
+      "id": 81,
+      "score": 8.0,
+      "scored_by": 51550,
+      "members": 93857
+    },
+    {
+      "id": 9963,
+      "score": 8.0,
+      "scored_by": 30749,
+      "members": 53600
+    },
+    {
+      "id": 59226,
+      "score": 8.0,
+      "scored_by": 30686,
+      "members": 84380
+    },
+    {
+      "id": 2563,
+      "score": 8.0,
+      "scored_by": 18853,
+      "members": 42022
+    },
+    {
+      "id": 59001,
+      "score": 8.0,
+      "scored_by": 12836,
+      "members": 16759
+>>>>>>> 1cb400c506b91118dbbf2c14584dc74f8beff6f2
     }
   ]
 }
