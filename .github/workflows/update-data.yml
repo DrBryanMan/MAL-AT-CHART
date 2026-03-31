@@ -2,8 +2,8 @@ name: Update MAL Data
 
 on:
   schedule:
-    # Щодня о 23:00 за Києвом (UTC+3 → 20:00 UTC)
-    - cron: '0 23 * * *'
+    # Щодня о 03:00 за Києвом (UTC+3 → 00:00 UTC)
+    - cron: '0 0 * * *'
   workflow_dispatch: # ручний запуск через вкладку Actions у GitHub
 
 jobs:
