@@ -290,7 +290,7 @@ def main() -> None:
     MAL_OUT_DIR.mkdir(parents=True, exist_ok=True)
     HIKKA_OUT_DIR.mkdir(parents=True, exist_ok=True)
 
-    today = dt_date.today().isoformat()
+    today = (dt_date.today() - timedelta(days=1)).isoformat()
 
     mal_file   = MAL_OUT_DIR   / f"{today}.json"
     hikka_file = HIKKA_OUT_DIR / f"{today}.json"
