@@ -3,55 +3,12 @@ import os
 import shutil
 import re
 
+from hikka_score_utils import WR_MIN_VOTES, reorder_snapshot_fields, resolve_average_score, restore_raw_score
+
 # Шлях до папки зі снепшотами
 BASE_PATH = os.path.join('..', 'snapshots')
-WR_MIN_VOTES = 10   # m — мінімальний поріг голосів
 
 # ── Відновлення сирої оцінки з weighted_score ────────────────────────────────
-
-
-def truncate_score(value):
-    if value is None:
-        return None
-    return int(value * 100) / 100
-
-
-def solve_raw_mean_score(anime_list, m=WR_MIN_VOTES):
-    """
-    Виводить середню сиру оцінку C із системи:
-      W = (v / (v + m)) * R + (m / (v + m)) * C
-      C = average(R)
-    де W — нативна weighted_score Hikka.
-    """
-    valid_entries = [
-        (item.get("weighted_score"), item.get("scored_by"))
-        for item in anime_list
-        if item.get("weighted_score") is not None and item.get("scored_by")
-    ]
-
-    if not valid_entries:
-        return 0.0
-
-    numerator   = 0.0
-    denominator = 0.0
-
-    for weighted, scored_by in valid_entries:
-        v = scored_by
-        numerator   += ((v + m) / v) * weighted
-        denominator += 1 + (m / v)
-
-    return truncate_score(numerator / denominator) if denominator else 0.0
-
-
-def restore_raw_score(weighted_score, scored_by, C, m=WR_MIN_VOTES):
-    """R = ((v + m) * W - m * C) / v"""
-    if weighted_score is None or not scored_by:
-        return None
-    v = scored_by
-
-    raw_value = (((v + m) * weighted_score) - (m * C)) / v
-
-    return truncate_score(raw_value)
 
 
 def apply_restored_scores(anime_list, average_score):
@@ -123,7 +80,7 @@ for root, dirs, files in os.walk(BASE_PATH):
 
         average_score_updated = False
         if is_hikka:
-            average_score = solve_raw_mean_score(data[key])
+            average_score = resolve_average_score(data[key])
             if data.get('average_score') != average_score:
                 data['average_score'] = average_score
                 average_score_updated = True
@@ -156,6 +113,7 @@ for root, dirs, files in os.walk(BASE_PATH):
                 status_msg = "Бекап створено (перша копія)"
             else:
                 status_msg = "Бекап вже існує"
+            data = reorder_snapshot_fields(data)
         else:
             status_msg = "Без бекапу (MAL)"
 
