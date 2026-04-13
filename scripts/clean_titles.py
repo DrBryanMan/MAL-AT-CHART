@@ -49,11 +49,14 @@ def restore_raw_score(weighted_score, scored_by, C, m=WR_MIN_VOTES):
 
 
 def apply_restored_scores(anime_list):
-    """Обчислює та записує відновлений сирий score на основі weighted_score."""
+    """Обчислює та записує відновлений сирий score лише для нових записів."""
     C = solve_raw_mean_score(anime_list)
     updated = 0
 
     for item in anime_list:
+        if item.get("score") is not None:
+            continue
+
         restored_score = restore_raw_score(
             item.get("weighted_score"),
             item.get("scored_by"),
@@ -67,6 +70,13 @@ def apply_restored_scores(anime_list):
             updated += 1
 
     return updated
+
+
+def hikka_snapshot_needs_processing(anime_list):
+    return any(
+        item.get("weighted_score") is not None and item.get("score") is None
+        for item in anime_list
+    )
 
 # ── Основна обробка ───────────────────────────────────────────────────────────
 
@@ -100,6 +110,9 @@ for root, dirs, files in os.walk(BASE_PATH):
         rel_path   = os.path.relpath(file_path, BASE_PATH)
         path_parts = rel_path.split(os.sep)
         is_hikka   = '-hikka' in path_parts[0]
+
+        if is_hikka and not hikka_snapshot_needs_processing(data[key]):
+            continue
 
         original_count = len(data[key])
 
