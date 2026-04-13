@@ -253,20 +253,27 @@ def fetch_all_hikka(session: requests.Session) -> list[dict]:
 
 # ── Збереження ────────────────────────────────────────────────────────────────
 
-def _build_snapshot(entries: list[dict], date: str, source: str) -> dict:
-    return {
+def _build_snapshot(entries: list[dict], date: str, source: str, min_score: float | None = None) -> dict:
+    snapshot = {
         "date":      date,
         "timestamp": datetime.now().strftime("%Y%m%d%H%M%S"),
         "source":    source,
-        "min_score": MAL_SCORE_MIN,
         "total":     len(entries),
         "anime":     entries,
     }
+    if min_score is not None:
+        snapshot["min_score"] = min_score
+    return snapshot
 
 
 def save_snapshot(entries: list[dict], date: str, out_dir: Path, source: str) -> None:
     out_file = out_dir / f"{date}.json"
-    snapshot = _build_snapshot(entries, date, source)
+    snapshot = _build_snapshot(
+        entries,
+        date,
+        source,
+        min_score=MAL_SCORE_MIN if out_dir == MAL_OUT_DIR else None,
+    )
     out_file.write_text(
         json.dumps(snapshot, ensure_ascii=False, indent=2),
         encoding="utf-8",

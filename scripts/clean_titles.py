@@ -10,6 +10,12 @@ WR_MIN_VOTES = 10   # m — мінімальний поріг голосів
 # ── Відновлення сирої оцінки з weighted_score ────────────────────────────────
 
 
+def truncate_score(value):
+    if value is None:
+        return None
+    return int(value * 100) / 100
+
+
 def solve_raw_mean_score(anime_list, m=WR_MIN_VOTES):
     """
     Виводить середню сиру оцінку C із системи:
@@ -34,7 +40,7 @@ def solve_raw_mean_score(anime_list, m=WR_MIN_VOTES):
         numerator   += ((v + m) / v) * weighted
         denominator += 1 + (m / v)
 
-    return numerator / denominator if denominator else 0.0
+    return truncate_score(numerator / denominator) if denominator else 0.0
 
 
 def restore_raw_score(weighted_score, scored_by, C, m=WR_MIN_VOTES):
@@ -45,12 +51,11 @@ def restore_raw_score(weighted_score, scored_by, C, m=WR_MIN_VOTES):
 
     raw_value = (((v + m) * weighted_score) - (m * C)) / v
 
-    return int(raw_value * 100) / 100
+    return truncate_score(raw_value)
 
 
-def apply_restored_scores(anime_list):
+def apply_restored_scores(anime_list, average_score):
     """Обчислює та записує відновлений сирий score лише для нових записів."""
-    C = solve_raw_mean_score(anime_list)
     updated = 0
 
     for item in anime_list:
@@ -60,7 +65,7 @@ def apply_restored_scores(anime_list):
         restored_score = restore_raw_score(
             item.get("weighted_score"),
             item.get("scored_by"),
-            C,
+            average_score,
         )
         if restored_score is None:
             continue
@@ -116,7 +121,15 @@ for root, dirs, files in os.walk(BASE_PATH):
 
         original_count = len(data[key])
 
-        # 3. Фільтрація: прибираємо тільки тих, у кого members відомий і <= 9
+        average_score_updated = False
+        if is_hikka:
+            average_score = solve_raw_mean_score(data[key])
+            if data.get('average_score') != average_score:
+                data['average_score'] = average_score
+                average_score_updated = True
+            data.pop('min_score', None)
+
+        # 3. Фільтрація: прибираємо тільки тих, у кого scored_by відомий і < 10
         data[key] = [
             item for item in data[key]
             if item.get('scored_by') is None or item.get('scored_by') >= WR_MIN_VOTES
@@ -127,10 +140,10 @@ for root, dirs, files in os.walk(BASE_PATH):
         # 4. Відновлена сира оцінка — тільки для хікки
         restored_added = 0
         if is_hikka:
-            restored_added = apply_restored_scores(data[key])
+            restored_added = apply_restored_scores(data[key], average_score)
 
         # Не перезаписуємо файл, якщо фактичних змін немає
-        if not filtered and restored_added == 0:
+        if not filtered and restored_added == 0 and not average_score_updated:
             continue
 
         # 5. Бекап для хікки — лише перший раз
@@ -155,6 +168,8 @@ for root, dirs, files in os.walk(BASE_PATH):
             parts.append(f"-{removed}")
         if restored_added:
             parts.append("score відновлено")
+        if average_score_updated:
+            parts.append("average_score оновлено")
         print(f"Оновлено: {rel_path} ({', '.join(parts) or 'без змін'}) | {status_msg}")
 
 print("Обробку завершено.")

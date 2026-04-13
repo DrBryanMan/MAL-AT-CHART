@@ -190,12 +190,19 @@ function renderHikkaSummary() {
     return;
   }
 
+  const averageFromSnapshot = snap => {
+    if (Number.isFinite(snap?.average_score) && snap.average_score > 0) return snap.average_score;
+
+    const ratedAnime = snap?.anime?.filter(a => Number.isFinite(a.score) && a.score > 0) ?? [];
+    if (!ratedAnime.length) return null;
+
+    const totalScore = ratedAnime.reduce((sum, anime) => sum + anime.score, 0);
+    return totalScore / ratedAnime.length;
+  };
+
   const ratedAnime = state.latestSnap.anime.filter(a => Number.isFinite(a.score) && a.score > 0);
-  const totalScore = ratedAnime.reduce((sum, anime) => sum + anime.score, 0);
-  const averageScore = ratedAnime.length ? totalScore / ratedAnime.length : 0;
-  const monthRatedAnime = state.latestMonthSnap?.anime?.filter(a => Number.isFinite(a.score) && a.score > 0) ?? [];
-  const monthTotalScore = monthRatedAnime.reduce((sum, anime) => sum + anime.score, 0);
-  const monthAverageScore = monthRatedAnime.length ? monthTotalScore / monthRatedAnime.length : null;
+  const averageScore = averageFromSnapshot(state.latestSnap) ?? 0;
+  const monthAverageScore = averageFromSnapshot(state.latestMonthSnap);
   const delta = monthAverageScore === null ? null : averageScore - monthAverageScore;
   const deltaRounded = delta === null ? null : Number(delta.toFixed(3));
   const formattedDate = new Intl.DateTimeFormat('uk-UA', {
@@ -209,7 +216,7 @@ function renderHikkaSummary() {
   deltaEl.textContent = deltaRounded === null
     ? 'new'
     : `${deltaRounded > 0 ? '+' : deltaRounded < 0 ? '-' : '±'}${Math.abs(deltaRounded).toFixed(3)}`;
-  countEl.textContent = `На основі ${ratedAnime.length.toLocaleString('uk-UA')} аніме`;
+  countEl.textContent = `${ratedAnime.length.toLocaleString('uk-UA')} аніме після фільтра`;
   dateEl.textContent = `Актуально на ${formattedDate}`;
   deltaEl.title = state.latestMonthSnap?.date
     ? `Зміна відносно ${state.latestMonthSnap.date}`
