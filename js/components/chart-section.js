@@ -183,7 +183,7 @@ export function renderChartSection(
       : '';
     const borderClass = row.rank <= 3 ? ` rank-top-${row.rank}` : '';
     const mainScoreTooltipAttr = document.documentElement.dataset.mode === 'hikka' && row.rawScore != null
-      ? `data-score-tooltip="Це зважена оцінка | Сира оцінка: ${fmtScore(row.rawScore)}"`
+      ? `data-score-tooltip="Це зважена оцінка | Сира оцінка: ~${fmtScore(row.rawScore)}"`
       : '';
     const maxScoreHTML = historicalRecord
       ? `<span class="score-badge score-badge--record" data-score-tooltip="Максимум уперше досягнуто ${formatDateShort(historicalRecord.date)}">
