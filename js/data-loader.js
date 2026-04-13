@@ -42,12 +42,8 @@ function normalizeMALSnapshot(snap) {
   };
 }
 
-/** Нормалізує сирий знімок Хікки + weighted_score для розрахунків */
-function normalizeHikkaSnapshot(snap, fullSnap = null) {
-  const rawScoreById = new Map(
-    (fullSnap?.anime ?? []).map(a => [a.id, a.score ?? null])
-  );
-
+/** Нормалізує Hikka-знімок: score = сира оцінка, weightedScore = нативна оцінка Hikka */
+function normalizeHikkaSnapshot(snap) {
   return {
     ...snap,
     date: snap.date ?? snap.date_scraped ?? null,
@@ -56,8 +52,8 @@ function normalizeHikkaSnapshot(snap, fullSnap = null) {
       slug:     a.slug,
       title:    a.title_en ?? a.title ?? a.title_ja ?? '',
       title_ua: a.title_ua ?? null,
-      score:    a.weighted_score ?? a.score,
-      rawScore: rawScoreById.get(a.id) ?? a.score ?? null,
+      score:    a.score ?? a.weighted_score ?? null,
+      weightedScore: a.weighted_score ?? null,
       scored_by:a.scored_by ?? 0,
       members:  a.members ?? 0,
     })),
@@ -73,14 +69,11 @@ export async function loadSnapshotsIndex(source = 'mal') {
 }
 
 export async function loadSnapshot(date, source = 'mal') {
-  const { snapshotsDir, fullSnapshotsDir } = getSourcePaths(source);
+  const { snapshotsDir } = getSourcePaths(source);
   
   if (source === 'hikka') {
-    const [snap, fullSnap] = await Promise.all([
-      fetchJSON(`${snapshotsDir}${date}.json`),
-      fetchJSON(`${fullSnapshotsDir}${date}.json`).catch(() => null),
-    ]);
-    return normalizeHikkaSnapshot(snap, fullSnap);
+    const snap = await fetchJSON(`${snapshotsDir}${date}.json`);
+    return normalizeHikkaSnapshot(snap);
   }
   const snap = await fetchJSON(`${snapshotsDir}${date}.json`);
   return normalizeMALSnapshot(snap);   // MAL тепер завжди нормалізується з fallback

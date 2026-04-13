@@ -182,8 +182,8 @@ export function renderChartSection(
       ? `<span class="delta ${deltaClass(row.membersDelta)}">${fmtDelta(row.membersDelta)}</span>`
       : '';
     const borderClass = row.rank <= 3 ? ` rank-top-${row.rank}` : '';
-    const mainScoreTooltipAttr = document.documentElement.dataset.mode === 'hikka' && row.rawScore != null
-      ? `data-score-tooltip="Це зважена оцінка | Сира оцінка: ${fmtScore(row.rawScore)}"`
+    const mainScoreTooltipAttr = document.documentElement.dataset.mode === 'hikka' && row.weightedScore != null
+      ? `data-score-tooltip="Це сира оцінка | Нативна оцінка Hikka: ${fmtScore(row.weightedScore)}"`
       : '';
     const maxScoreHTML = historicalRecord
       ? `<span class="score-badge score-badge--record" data-score-tooltip="Максимум уперше досягнуто ${formatDateShort(historicalRecord.date)}">

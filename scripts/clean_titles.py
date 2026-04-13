@@ -7,40 +7,66 @@ import re
 BASE_PATH = os.path.join('..', 'snapshots')
 WR_MIN_VOTES = 10   # m — мінімальний поріг голосів
 
-# ── Зважена оцінка (Weighted Rank) ───────────────────────────────────────────
+# ── Відновлення сирої оцінки з weighted_score ────────────────────────────────
 
 
-def mean_score(anime_list):
-    scores = [a["score"] for a in anime_list if a.get("score") is not None]
-    return sum(scores) / len(scores) if scores else 0.0
+def solve_raw_mean_score(anime_list, m=WR_MIN_VOTES):
+    """
+    Виводить середню сиру оцінку C із системи:
+      W = (v / (v + m)) * R + (m / (v + m)) * C
+      C = average(R)
+    де W — нативна weighted_score Hikka.
+    """
+    valid_entries = [
+        (item.get("weighted_score"), item.get("scored_by"))
+        for item in anime_list
+        if item.get("weighted_score") is not None and item.get("scored_by")
+    ]
 
-def weighted_score(score, scored_by, C, m=WR_MIN_VOTES):
-    """WR = (v / (v + m)) * S + (m / (v + m)) * C"""
-    if score is None or not scored_by:
+    if not valid_entries:
+        return 0.0
+
+    numerator   = 0.0
+    denominator = 0.0
+
+    for weighted, scored_by in valid_entries:
+        v = scored_by
+        numerator   += ((v + m) / v) * weighted
+        denominator += 1 + (m / v)
+
+    return numerator / denominator if denominator else 0.0
+
+
+def restore_raw_score(weighted_score, scored_by, C, m=WR_MIN_VOTES):
+    """R = ((v + m) * W - m * C) / v"""
+    if weighted_score is None or not scored_by:
         return None
     v = scored_by
-    
-    raw_value = (v / (v + m)) * score + (m / (v + m)) * C
-    
+
+    raw_value = (((v + m) * weighted_score) - (m * C)) / v
+
     return int(raw_value * 100) / 100
 
-def apply_weighted_scores(anime_list):
-    """Обчислює та записує weighted_score лише для записів, де його ще немає."""
-    C = mean_score(anime_list)
-    added = 0
-    for item in anime_list:
-        if item.get("weighted_score") is not None:
-            continue
 
-        item["weighted_score"] = weighted_score(
-            item.get("score"),
+def apply_restored_scores(anime_list):
+    """Обчислює та записує відновлений сирий score на основі weighted_score."""
+    C = solve_raw_mean_score(anime_list)
+    updated = 0
+
+    for item in anime_list:
+        restored_score = restore_raw_score(
+            item.get("weighted_score"),
             item.get("scored_by"),
             C,
         )
-        if item.get("weighted_score") is not None:
-            added += 1
+        if restored_score is None:
+            continue
 
-    return added
+        if item.get("score") != restored_score:
+            item["score"] = restored_score
+            updated += 1
+
+    return updated
 
 # ── Основна обробка ───────────────────────────────────────────────────────────
 
@@ -85,13 +111,13 @@ for root, dirs, files in os.walk(BASE_PATH):
         data['total'] = len(data[key])
         filtered = len(data[key]) < original_count
 
-        # 4. Зважена оцінка — тільки для хікки
-        wr_added = 0
+        # 4. Відновлена сира оцінка — тільки для хікки
+        restored_added = 0
         if is_hikka:
-            wr_added = apply_weighted_scores(data[key])
+            restored_added = apply_restored_scores(data[key])
 
         # Не перезаписуємо файл, якщо фактичних змін немає
-        if not filtered and wr_added == 0:
+        if not filtered and restored_added == 0:
             continue
 
         # 5. Бекап для хікки — лише перший раз
@@ -114,8 +140,8 @@ for root, dirs, files in os.walk(BASE_PATH):
         parts = []
         if removed:
             parts.append(f"-{removed}")
-        if wr_added:
-            parts.append("WR додано")
+        if restored_added:
+            parts.append("score відновлено")
         print(f"Оновлено: {rel_path} ({', '.join(parts) or 'без змін'}) | {status_msg}")
 
 print("Обробку завершено.")

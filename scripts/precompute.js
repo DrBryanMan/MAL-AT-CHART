@@ -36,7 +36,7 @@ function normalizeAnimeForPrecompute(a, isHikka) {
     return {
       id:        a.id,
       title:     a.title_en ?? a.title ?? a.title_ja ?? '',
-      score:     a.weighted_score ?? a.score,
+      score:     a.score ?? a.weighted_score ?? null,
       scored_by: a.scored_by ?? 0,
       members:   a.members ?? 0,
     };

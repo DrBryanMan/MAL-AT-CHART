@@ -10,6 +10,7 @@ MAL-дані:
 Hikka-дані:
   - Сортування: native_score:desc, native_scored_by:desc
   - Зупиняється коли native_score is None
+  - native_score зберігається у weighted_score
   - Вихід: ./snapshots/anime-hikka/YYYY-MM-DD.json
 
 Залежності: pip install requests
@@ -189,9 +190,9 @@ def fetch_all_mal(session: requests.Session) -> list[dict]:
 
 def extract_hikka_entry(item: dict) -> dict:
     return {
-        "id":        item.get("mal_id"),
-        "score":     item.get("native_score"),
-        "scored_by": item.get("native_scored_by"),
+        "id":             item.get("mal_id"),
+        "weighted_score": item.get("native_score"),
+        "scored_by":      item.get("native_scored_by"),
     }
 
 
