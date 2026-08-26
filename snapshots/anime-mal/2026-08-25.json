@@ -1,0 +1,5385 @@
+{
+  "date": "2026-08-25",
+  "timestamp": "20260825000000",
+  "source": "api.myanimelist.net/v2/anime/ranking",
+  "min_score": 8.0,
+  "total": 768,
+  "anime": [
+    {
+      "id": 52991,
+      "title": "Sousou no Frieren",
+      "score": 9.25,
+      "scored_by": 927866,
+      "members": 1504672
+    },
+    {
+      "id": 61316,
+      "title": "Re:Zero kara Hajimeru Isekai Seikatsu 4th Season",
+      "score": 9.11,
+      "scored_by": 100261,
+      "members": 317187
+    },
+    {
+      "id": 60636,
+      "title": "Bleach: Sennen Kessen-hen - Kashin-tan",
+      "score": 9.1,
+      "scored_by": 22187,
+      "members": 150500
+    },
+    {
+      "id": 5114,
+      "title": "Fullmetal Alchemist: Brotherhood",
+      "score": 9.11,
+      "scored_by": 2336834,
+      "members": 3727840
+    },
+    {
+      "id": 61469,
+      "title": "Steel Ball Run: JoJo no Kimyou na Bouken",
+      "score": 9.09,
+      "scored_by": 104063,
+      "members": 230039
+    },
+    {
+      "id": 9253,
+      "title": "Steins;Gate",
+      "score": 9.07,
+      "scored_by": 1537160,
+      "members": 2846428
+    },
+    {
+      "id": 57555,
+      "title": "Chainsaw Man Movie: Reze-hen",
+      "score": 9.05,
+      "scored_by": 351563,
+      "members": 539937
+    },
+    {
+      "id": 39486,
+      "title": "Gintama: The Final",
+      "score": 9.05,
+      "scored_by": 88698,
+      "members": 187790
+    },
+    {
+      "id": 28977,
+      "title": "Gintama°",
+      "score": 9.05,
+      "scored_by": 274972,
+      "members": 698283
+    },
+    {
+      "id": 38524,
+      "title": "Shingeki no Kyojin Season 3 Part 2",
+      "score": 9.05,
+      "scored_by": 1819951,
+      "members": 2632605
+    },
+    {
+      "id": 11061,
+      "title": "Hunter x Hunter (2011)",
+      "score": 9.02,
+      "scored_by": 2007181,
+      "members": 3233917
+    },
+    {
+      "id": 820,
+      "title": "Ginga Eiyuu Densetsu",
+      "score": 9.02,
+      "scored_by": 89097,
+      "members": 368864
+    },
+    {
+      "id": 9969,
+      "title": "Gintama'",
+      "score": 9.02,
+      "scored_by": 260317,
+      "members": 621277
+    },
+    {
+      "id": 15417,
+      "title": "Gintama': Enchousen",
+      "score": 9.02,
+      "scored_by": 181020,
+      "members": 361739
+    },
+    {
+      "id": 60022,
+      "title": "One Piece Fan Letter",
+      "score": 9.0,
+      "scored_by": 117903,
+      "members": 164666
+    },
+    {
+      "id": 41467,
+      "title": "Bleach: Sennen Kessen-hen",
+      "score": 8.98,
+      "scored_by": 394765,
+      "members": 727065
+    },
+    {
+      "id": 34096,
+      "title": "Gintama.",
+      "score": 8.98,
+      "scored_by": 161793,
+      "members": 352584
+    },
+    {
+      "id": 43608,
+      "title": "Kaguya-sama wa Kokurasetai: Ultra Romantic",
+      "score": 8.94,
+      "scored_by": 649269,
+      "members": 1134117
+    },
+    {
+      "id": 4181,
+      "title": "Clannad: After Story",
+      "score": 8.93,
+      "scored_by": 705996,
+      "members": 1298742
+    },
+    {
+      "id": 42938,
+      "title": "Fruits Basket: The Final",
+      "score": 8.93,
+      "scored_by": 285086,
+      "members": 572873
+    },
+    {
+      "id": 918,
+      "title": "Gintama",
+      "score": 8.93,
+      "scored_by": 428032,
+      "members": 1166794
+    },
+    {
+      "id": 28851,
+      "title": "Koe no Katachi",
+      "score": 8.93,
+      "scored_by": 1825486,
+      "members": 2654981
+    },
+    {
+      "id": 2904,
+      "title": "Code Geass: Hangyaku no Lelouch R2",
+      "score": 8.92,
+      "scored_by": 1313426,
+      "members": 1979178
+    },
+    {
+      "id": 35180,
+      "title": "3-gatsu no Lion 2nd Season",
+      "score": 8.9,
+      "scored_by": 217303,
+      "members": 443115
+    },
+    {
+      "id": 58514,
+      "title": "Kusuriya no Hitorigoto 2nd Season",
+      "score": 8.9,
+      "scored_by": 287851,
+      "members": 542964
+    },
+    {
+      "id": 19,
+      "title": "Monster",
+      "score": 8.9,
+      "scored_by": 523635,
+      "members": 1356280
+    },
+    {
+      "id": 15335,
+      "title": "Gintama Movie 2: Kanketsu-hen - Yorozuya yo Eien Nare",
+      "score": 8.89,
+      "scored_by": 145769,
+      "members": 264615
+    },
+    {
+      "id": 37491,
+      "title": "Gintama. Shirogane no Tamashii-hen - Kouhan-sen",
+      "score": 8.88,
+      "scored_by": 108501,
+      "members": 229133
+    },
+    {
+      "id": 35247,
+      "title": "Owarimonogatari 2nd Season",
+      "score": 8.86,
+      "scored_by": 212584,
+      "members": 441936
+    },
+    {
+      "id": 51535,
+      "title": "Shingeki no Kyojin: The Final Season - Kanketsu-hen",
+      "score": 8.86,
+      "scored_by": 545664,
+      "members": 891891
+    },
+    {
+      "id": 40682,
+      "title": "Kingdom 3rd Season",
+      "score": 8.85,
+      "scored_by": 57307,
+      "members": 137297
+    },
+    {
+      "id": 59978,
+      "title": "Sousou no Frieren 2nd Season",
+      "score": 8.85,
+      "scored_by": 287468,
+      "members": 601702
+    },
+    {
+      "id": 54492,
+      "title": "Kusuriya no Hitorigoto",
+      "score": 8.84,
+      "scored_by": 503825,
+      "members": 888821
+    },
+    {
+      "id": 59571,
+      "title": "Shingeki no Kyojin Movie: Kanketsu-hen - The Last Attack",
+      "score": 8.84,
+      "scored_by": 47676,
+      "members": 98893
+    },
+    {
+      "id": 49387,
+      "title": "Vinland Saga Season 2",
+      "score": 8.83,
+      "scored_by": 504763,
+      "members": 885897
+    },
+    {
+      "id": 37987,
+      "title": "Violet Evergarden Movie",
+      "score": 8.83,
+      "scored_by": 349203,
+      "members": 743294
+    },
+    {
+      "id": 32281,
+      "title": "Kimi no Na wa.",
+      "score": 8.82,
+      "scored_by": 2106822,
+      "members": 3063470
+    },
+    {
+      "id": 2921,
+      "title": "Ashita no Joe 2",
+      "score": 8.81,
+      "scored_by": 27121,
+      "members": 70093
+    },
+    {
+      "id": 36838,
+      "title": "Gintama. Shirogane no Tamashii-hen",
+      "score": 8.81,
+      "scored_by": 117409,
+      "members": 240811
+    },
+    {
+      "id": 40028,
+      "title": "Shingeki no Kyojin: The Final Season",
+      "score": 8.78,
+      "scored_by": 1547935,
+      "members": 2327260
+    },
+    {
+      "id": 263,
+      "title": "Hajime no Ippo",
+      "score": 8.77,
+      "scored_by": 348781,
+      "members": 707041
+    },
+    {
+      "id": 31758,
+      "title": "Kizumonogatari III: Reiketsu-hen",
+      "score": 8.77,
+      "scored_by": 302663,
+      "members": 519855
+    },
+    {
+      "id": 37510,
+      "title": "Mob Psycho 100 II",
+      "score": 8.77,
+      "scored_by": 1105544,
+      "members": 1751819
+    },
+    {
+      "id": 48583,
+      "title": "Shingeki no Kyojin: The Final Season Part 2",
+      "score": 8.77,
+      "scored_by": 957217,
+      "members": 1594602
+    },
+    {
+      "id": 37521,
+      "title": "Vinland Saga",
+      "score": 8.77,
+      "scored_by": 1087734,
+      "members": 1861912
+    },
+    {
+      "id": 32935,
+      "title": "Haikyuu!! Karasuno Koukou vs. Shiratorizawa Gakuen Koukou",
+      "score": 8.77,
+      "scored_by": 883451,
+      "members": 1342746
+    },
+    {
+      "id": 199,
+      "title": "Sen to Chihiro no Kamikakushi",
+      "score": 8.77,
+      "scored_by": 1426456,
+      "members": 2050256
+    },
+    {
+      "id": 17074,
+      "title": "Monogatari Series: Second Season",
+      "score": 8.76,
+      "scored_by": 383340,
+      "members": 725680
+    },
+    {
+      "id": 1,
+      "title": "Cowboy Bebop",
+      "score": 8.75,
+      "scored_by": 1073307,
+      "members": 2081648
+    },
+    {
+      "id": 60489,
+      "title": "Takopii no Genzai",
+      "score": 8.74,
+      "scored_by": 194536,
+      "members": 348475
+    },
+    {
+      "id": 48569,
+      "title": "86 Part 2",
+      "score": 8.73,
+      "scored_by": 386616,
+      "members": 661014
+    },
+    {
+      "id": 39894,
+      "title": "Hibike! Euphonium 3",
+      "score": 8.73,
+      "scored_by": 40710,
+      "members": 101308
+    },
+    {
+      "id": 50160,
+      "title": "Kingdom 4th Season",
+      "score": 8.73,
+      "scored_by": 42457,
+      "members": 93415
+    },
+    {
+      "id": 21,
+      "title": "One Piece",
+      "score": 8.73,
+      "scored_by": 1553472,
+      "members": 2720886
+    },
+    {
+      "id": 47917,
+      "title": "Bocchi the Rock!",
+      "score": 8.72,
+      "scored_by": 494621,
+      "members": 819634
+    },
+    {
+      "id": 52215,
+      "title": "Chi. Chikyuu no Undou ni Tsuite",
+      "score": 8.72,
+      "scored_by": 128945,
+      "members": 315541
+    },
+    {
+      "id": 58788,
+      "title": "Ikoku Nikki",
+      "score": 8.72,
+      "scored_by": 45855,
+      "members": 125193
+    },
+    {
+      "id": 53223,
+      "title": "Kingdom 5th Season",
+      "score": 8.72,
+      "scored_by": 30332,
+      "members": 65565
+    },
+    {
+      "id": 50172,
+      "title": "Mob Psycho 100 III",
+      "score": 8.72,
+      "scored_by": 460888,
+      "members": 884068
+    },
+    {
+      "id": 24701,
+      "title": "Mushishi Zoku Shou 2nd Season",
+      "score": 8.72,
+      "scored_by": 117578,
+      "members": 295787
+    },
+    {
+      "id": 60098,
+      "title": "Boku no Hero Academia: Final Season",
+      "score": 8.71,
+      "scored_by": 182147,
+      "members": 340715
+    },
+    {
+      "id": 1575,
+      "title": "Code Geass: Hangyaku no Lelouch",
+      "score": 8.71,
+      "scored_by": 1540846,
+      "members": 2504304
+    },
+    {
+      "id": 52198,
+      "title": "Kaguya-sama wa Kokurasetai: First Kiss wa Owaranai",
+      "score": 8.71,
+      "scored_by": 225202,
+      "members": 395234
+    },
+    {
+      "id": 53998,
+      "title": "Bleach: Sennen Kessen-hen - Ketsubetsu-tan",
+      "score": 8.69,
+      "scored_by": 247050,
+      "members": 432696
+    },
+    {
+      "id": 62276,
+      "title": "Guimi Zhi Zhu Specials",
+      "score": 8.69,
+      "scored_by": 8471,
+      "members": 19664
+    },
+    {
+      "id": 44074,
+      "title": "Shiguang Dailiren",
+      "score": 8.69,
+      "scored_by": 194856,
+      "members": 494139
+    },
+    {
+      "id": 45649,
+      "title": "The First Slam Dunk",
+      "score": 8.69,
+      "scored_by": 37766,
+      "members": 79918
+    },
+    {
+      "id": 51009,
+      "title": "Jujutsu Kaisen 2nd Season",
+      "score": 8.69,
+      "scored_by": 863862,
+      "members": 1450628
+    },
+    {
+      "id": 47778,
+      "title": "Kimetsu no Yaiba: Yuukaku-hen",
+      "score": 8.69,
+      "scored_by": 1139802,
+      "members": 1774907
+    },
+    {
+      "id": 21939,
+      "title": "Mushishi Zoku Shou",
+      "score": 8.69,
+      "scored_by": 129235,
+      "members": 329874
+    },
+    {
+      "id": 44,
+      "title": "Rurouni Kenshin: Meiji Kenkaku Romantan - Tsuioku-hen",
+      "score": 8.69,
+      "scored_by": 144823,
+      "members": 294147
+    },
+    {
+      "id": 33095,
+      "title": "Shouwa Genroku Rakugo Shinjuu: Sukeroku Futatabi-hen",
+      "score": 8.69,
+      "scored_by": 70236,
+      "members": 203732
+    },
+    {
+      "id": 33352,
+      "title": "Violet Evergarden",
+      "score": 8.69,
+      "scored_by": 1105753,
+      "members": 2025803
+    },
+    {
+      "id": 245,
+      "title": "Great Teacher Onizuka",
+      "score": 8.68,
+      "scored_by": 454775,
+      "members": 932881
+    },
+    {
+      "id": 60058,
+      "title": "[Oshi no Ko] 3rd Season",
+      "score": 8.68,
+      "scored_by": 131489,
+      "members": 293490
+    },
+    {
+      "id": 56784,
+      "title": "Bleach: Sennen Kessen-hen - Soukoku-tan",
+      "score": 8.67,
+      "scored_by": 171254,
+      "members": 317139
+    },
+    {
+      "id": 55690,
+      "title": "Boku no Kokoro no Yabai Yatsu 2nd Season",
+      "score": 8.67,
+      "scored_by": 184671,
+      "members": 323204
+    },
+    {
+      "id": 5258,
+      "title": "Hajime no Ippo: New Challenger",
+      "score": 8.67,
+      "scored_by": 192092,
+      "members": 331367
+    },
+    {
+      "id": 431,
+      "title": "Howl no Ugoku Shiro",
+      "score": 8.67,
+      "scored_by": 1038148,
+      "members": 1509051
+    },
+    {
+      "id": 164,
+      "title": "Mononoke Hime",
+      "score": 8.67,
+      "scored_by": 897265,
+      "members": 1396500
+    },
+    {
+      "id": 53447,
+      "title": "Tu Bian Yingxiong X",
+      "score": 8.67,
+      "scored_by": 120099,
+      "members": 266076
+    },
+    {
+      "id": 61930,
+      "title": "Uma Musume: Cinderella Gray Part 2",
+      "score": 8.67,
+      "scored_by": 38676,
+      "members": 73651
+    },
+    {
+      "id": 61517,
+      "title": "Kingdom 6th Season",
+      "score": 8.66,
+      "scored_by": 19374,
+      "members": 42203
+    },
+    {
+      "id": 61952,
+      "title": "Luo Xiaohei Zhanji 2",
+      "score": 8.66,
+      "scored_by": 3778,
+      "members": 14028
+    },
+    {
+      "id": 59192,
+      "title": "Kimetsu no Yaiba Movie 1: Mugenjou-hen - Akaza Sairai",
+      "score": 8.65,
+      "scored_by": 226147,
+      "members": 416958
+    },
+    {
+      "id": 457,
+      "title": "Mushishi",
+      "score": 8.65,
+      "scored_by": 300198,
+      "members": 916681
+    },
+    {
+      "id": 35760,
+      "title": "Shingeki no Kyojin Season 3",
+      "score": 8.65,
+      "scored_by": 1837319,
+      "members": 2704851
+    },
+    {
+      "id": 2001,
+      "title": "Tengen Toppa Gurren Lagann",
+      "score": 8.65,
+      "scored_by": 988127,
+      "members": 1789408
+    },
+    {
+      "id": 40434,
+      "title": "Mo Dao Zu Shi: Wanjie Pian",
+      "score": 8.64,
+      "scored_by": 35521,
+      "members": 98131
+    },
+    {
+      "id": 57864,
+      "title": "Monogatari Series: Off & Monster Season",
+      "score": 8.64,
+      "scored_by": 41537,
+      "members": 107296
+    },
+    {
+      "id": 23273,
+      "title": "Shigatsu wa Kimi no Uso",
+      "score": 8.64,
+      "scored_by": 1488685,
+      "members": 2454889
+    },
+    {
+      "id": 50399,
+      "title": "Tian Guan Cifu Er",
+      "score": 8.64,
+      "scored_by": 26355,
+      "members": 67066
+    },
+    {
+      "id": 57647,
+      "title": "Uma Musume: Pretty Derby - Shin Jidai no Tobira",
+      "score": 8.64,
+      "scored_by": 40441,
+      "members": 65227
+    },
+    {
+      "id": 33050,
+      "title": "Fate/stay night Movie: Heaven's Feel - III. Spring Song",
+      "score": 8.63,
+      "scored_by": 227440,
+      "members": 415185
+    },
+    {
+      "id": 11665,
+      "title": "Natsume Yuujinchou Shi",
+      "score": 8.63,
+      "scored_by": 118399,
+      "members": 268106
+    },
+    {
+      "id": 22135,
+      "title": "Ping Pong the Animation",
+      "score": 8.63,
+      "scored_by": 207069,
+      "members": 446348
+    },
+    {
+      "id": 42310,
+      "title": "Cyberpunk: Edgerunners",
+      "score": 8.61,
+      "scored_by": 749477,
+      "members": 1104603
+    },
+    {
+      "id": 1535,
+      "title": "Death Note",
+      "score": 8.61,
+      "scored_by": 3042802,
+      "members": 4354857
+    },
+    {
+      "id": 52742,
+      "title": "Haikyuu!! Movie: Gomisuteba no Kessen",
+      "score": 8.61,
+      "scored_by": 115129,
+      "members": 238857
+    },
+    {
+      "id": 34599,
+      "title": "Made in Abyss",
+      "score": 8.61,
+      "scored_by": 847344,
+      "members": 1572822
+    },
+    {
+      "id": 46102,
+      "title": "Odd Taxi",
+      "score": 8.61,
+      "scored_by": 255328,
+      "members": 520764
+    },
+    {
+      "id": 49413,
+      "title": "Shiguang Dailiren II",
+      "score": 8.61,
+      "scored_by": 84241,
+      "members": 178726
+    },
+    {
+      "id": 4565,
+      "title": "Tengen Toppa Gurren Lagann Movie 2: Lagann-hen",
+      "score": 8.61,
+      "scored_by": 114510,
+      "members": 241791
+    },
+    {
+      "id": 50250,
+      "title": "Chiikawa",
+      "score": 8.61,
+      "scored_by": 7534,
+      "members": 24709
+    },
+    {
+      "id": 49818,
+      "title": "Guimi Zhi Zhu: Xiaochou Pian",
+      "score": 8.61,
+      "scored_by": 85041,
+      "members": 225395
+    },
+    {
+      "id": 28891,
+      "title": "Haikyuu!! Second Season",
+      "score": 8.61,
+      "scored_by": 1037937,
+      "members": 1583429
+    },
+    {
+      "id": 19647,
+      "title": "Hajime no Ippo: Rising",
+      "score": 8.61,
+      "scored_by": 166390,
+      "members": 303619
+    },
+    {
+      "id": 40591,
+      "title": "Kaguya-sama wa Kokurasetai? Tensai-tachi no Renai Zunousen",
+      "score": 8.61,
+      "scored_by": 972953,
+      "members": 1521755
+    },
+    {
+      "id": 33,
+      "title": "Kenpuu Denki Berserk",
+      "score": 8.61,
+      "scored_by": 420403,
+      "members": 780330
+    },
+    {
+      "id": 58125,
+      "title": "Look Back",
+      "score": 8.61,
+      "scored_by": 150119,
+      "members": 261445
+    },
+    {
+      "id": 34591,
+      "title": "Natsume Yuujinchou Roku",
+      "score": 8.61,
+      "scored_by": 77149,
+      "members": 207707
+    },
+    {
+      "id": 54898,
+      "title": "Bungou Stray Dogs 5th Season",
+      "score": 8.6,
+      "scored_by": 125350,
+      "members": 267485
+    },
+    {
+      "id": 36862,
+      "title": "Made in Abyss Movie 3: Fukaki Tamashii no Reimei",
+      "score": 8.6,
+      "scored_by": 310515,
+      "members": 546481
+    },
+    {
+      "id": 61607,
+      "title": "Shiguang Dailiren III",
+      "score": 8.6,
+      "scored_by": 1364,
+      "members": 34728
+    },
+    {
+      "id": 57658,
+      "title": "Jujutsu Kaisen: Shimetsu Kaiyuu - Zenpen",
+      "score": 8.59,
+      "scored_by": 290964,
+      "members": 565255
+    },
+    {
+      "id": 41084,
+      "title": "Made in Abyss: Retsujitsu no Ougonkyou",
+      "score": 8.59,
+      "scored_by": 267383,
+      "members": 550033
+    },
+    {
+      "id": 45576,
+      "title": "Mushoku Tensei: Isekai Ittara Honki Dasu Part 2",
+      "score": 8.59,
+      "scored_by": 727228,
+      "members": 1153625
+    },
+    {
+      "id": 38329,
+      "title": "Seishun Buta Yarou wa Yumemiru Shoujo no Yume wo Minai",
+      "score": 8.59,
+      "scored_by": 528721,
+      "members": 835978
+    },
+    {
+      "id": 7311,
+      "title": "Suzumiya Haruhi no Shoushitsu",
+      "score": 8.59,
+      "scored_by": 331950,
+      "members": 655484
+    },
+    {
+      "id": 52701,
+      "title": "Dungeon Meshi",
+      "score": 8.58,
+      "scored_by": 314706,
+      "members": 609830
+    },
+    {
+      "id": 37991,
+      "title": "JoJo no Kimyou na Bouken Part 5: Ougon no Kaze",
+      "score": 8.58,
+      "scored_by": 801492,
+      "members": 1192948
+    },
+    {
+      "id": 28957,
+      "title": "Mushishi Zoku Shou: Suzu no Shizuku",
+      "score": 8.58,
+      "scored_by": 56600,
+      "members": 142335
+    },
+    {
+      "id": 877,
+      "title": "Nana",
+      "score": 8.58,
+      "scored_by": 308916,
+      "members": 797548
+    },
+    {
+      "id": 3786,
+      "title": "Shin Evangelion Movie:||",
+      "score": 8.58,
+      "scored_by": 197124,
+      "members": 431512
+    },
+    {
+      "id": 16498,
+      "title": "Shingeki no Kyojin",
+      "score": 8.58,
+      "scored_by": 3104202,
+      "members": 4417008
+    },
+    {
+      "id": 59193,
+      "title": "Mushoku Tensei III: Isekai Ittara Honki Dasu",
+      "score": 8.57,
+      "scored_by": 46183,
+      "members": 307585
+    },
+    {
+      "id": 55823,
+      "title": "Natsume Yuujinchou Shichi",
+      "score": 8.57,
+      "scored_by": 19466,
+      "members": 60817
+    },
+    {
+      "id": 32,
+      "title": "Shinseiki Evangelion Movie: Air/Magokoro wo, Kimi ni",
+      "score": 8.57,
+      "scored_by": 707451,
+      "members": 1059034
+    },
+    {
+      "id": 59636,
+      "title": "Uma Musume: Cinderella Gray",
+      "score": 8.57,
+      "scored_by": 56522,
+      "members": 110950
+    },
+    {
+      "id": 40776,
+      "title": "Haikyuu!! To the Top Part 2",
+      "score": 8.56,
+      "scored_by": 561961,
+      "members": 941165
+    },
+    {
+      "id": 36098,
+      "title": "Kimi no Suizou wo Tabetai",
+      "score": 8.56,
+      "scored_by": 681294,
+      "members": 1139890
+    },
+    {
+      "id": 31757,
+      "title": "Kizumonogatari II: Nekketsu-hen",
+      "score": 8.56,
+      "scored_by": 300371,
+      "members": 494999
+    },
+    {
+      "id": 32983,
+      "title": "Natsume Yuujinchou Go",
+      "score": 8.56,
+      "scored_by": 84453,
+      "members": 207853
+    },
+    {
+      "id": 10379,
+      "title": "Natsume Yuujinchou San",
+      "score": 8.56,
+      "scored_by": 127742,
+      "members": 274227
+    },
+    {
+      "id": 12355,
+      "title": "Ookami Kodomo no Ame to Yuki",
+      "score": 8.56,
+      "scored_by": 489378,
+      "members": 874877
+    },
+    {
+      "id": 437,
+      "title": "Perfect Blue",
+      "score": 8.56,
+      "scored_by": 451427,
+      "members": 837366
+    },
+    {
+      "id": 170,
+      "title": "Slam Dunk",
+      "score": 8.56,
+      "scored_by": 152961,
+      "members": 342393
+    },
+    {
+      "id": 30484,
+      "title": "Steins;Gate 0",
+      "score": 8.56,
+      "scored_by": 480907,
+      "members": 967350
+    },
+    {
+      "id": 7785,
+      "title": "Yojouhan Shinwa Taikei",
+      "score": 8.55,
+      "scored_by": 158297,
+      "members": 501812
+    },
+    {
+      "id": 49701,
+      "title": "Doupo Cangqiong: San Nian Zhi Yue",
+      "score": 8.53,
+      "scored_by": 5116,
+      "members": 11797
+    },
+    {
+      "id": 578,
+      "title": "Hotaru no Haka",
+      "score": 8.53,
+      "scored_by": 467023,
+      "members": 779248
+    },
+    {
+      "id": 63375,
+      "title": "Nippon Sangoku",
+      "score": 8.53,
+      "scored_by": 45543,
+      "members": 119982
+    },
+    {
+      "id": 25777,
+      "title": "Shingeki no Kyojin Season 2",
+      "score": 8.53,
+      "scored_by": 2091347,
+      "members": 3058882
+    },
+    {
+      "id": 28735,
+      "title": "Shouwa Genroku Rakugo Shinjuu",
+      "score": 8.53,
+      "scored_by": 100205,
+      "members": 317639
+    },
+    {
+      "id": 11741,
+      "title": "Fate/Zero 2nd Season",
+      "score": 8.52,
+      "scored_by": 762968,
+      "members": 1206148
+    },
+    {
+      "id": 40456,
+      "title": "Kimetsu no Yaiba Movie: Mugen Ressha-hen",
+      "score": 8.52,
+      "scored_by": 1198919,
+      "members": 1805151
+    },
+    {
+      "id": 21329,
+      "title": "Mushishi: Hihamukage",
+      "score": 8.52,
+      "scored_by": 73872,
+      "members": 155033
+    },
+    {
+      "id": 5300,
+      "title": "Zoku Natsume Yuujinchou",
+      "score": 8.52,
+      "scored_by": 135179,
+      "members": 268727
+    },
+    {
+      "id": 52034,
+      "title": "[Oshi no Ko]",
+      "score": 8.52,
+      "scored_by": 636556,
+      "members": 1076284
+    },
+    {
+      "id": 40417,
+      "title": "Fruits Basket 2nd Season",
+      "score": 8.52,
+      "scored_by": 307493,
+      "members": 593247
+    },
+    {
+      "id": 7472,
+      "title": "Gintama Movie 1: Shinyaku Benizakura-hen",
+      "score": 8.52,
+      "scored_by": 102938,
+      "members": 179038
+    },
+    {
+      "id": 205,
+      "title": "Samurai Champloo",
+      "score": 8.52,
+      "scored_by": 692543,
+      "members": 1366038
+    },
+    {
+      "id": 40664,
+      "title": "Shoujo☆Kageki Revue Starlight Movie",
+      "score": 8.52,
+      "scored_by": 11479,
+      "members": 26764
+    },
+    {
+      "id": 12365,
+      "title": "Bakuman. 3rd Season",
+      "score": 8.51,
+      "scored_by": 204543,
+      "members": 350057
+    },
+    {
+      "id": 35843,
+      "title": "Gintama. Porori-hen",
+      "score": 8.51,
+      "scored_by": 113904,
+      "members": 224920
+    },
+    {
+      "id": 31933,
+      "title": "JoJo no Kimyou na Bouken Part 4: Diamond wa Kudakenai",
+      "score": 8.51,
+      "scored_by": 894040,
+      "members": 1292979
+    },
+    {
+      "id": 53273,
+      "title": "JoJo no Kimyou na Bouken Part 6: Stone Ocean Part 3",
+      "score": 8.51,
+      "scored_by": 212682,
+      "members": 323902
+    },
+    {
+      "id": 61903,
+      "title": "Kaguya-sama wa Kokurasetai: Otona e no Kaidan",
+      "score": 8.51,
+      "scored_by": 57955,
+      "members": 118189
+    },
+    {
+      "id": 801,
+      "title": "Koukaku Kidoutai: Stand Alone Complex 2nd GIG",
+      "score": 8.51,
+      "scored_by": 110149,
+      "members": 244512
+    },
+    {
+      "id": 11981,
+      "title": "Mahou Shoujo Madoka★Magica Movie 3: Hangyaku no Monogatari",
+      "score": 8.51,
+      "scored_by": 253639,
+      "members": 428091
+    },
+    {
+      "id": 58567,
+      "title": "Ore dake Level Up na Ken Season 2: Arise from the Shadow",
+      "score": 8.51,
+      "scored_by": 527546,
+      "members": 820700
+    },
+    {
+      "id": 61322,
+      "title": "Dr. Stone: Science Future Part 2",
+      "score": 8.5,
+      "scored_by": 130654,
+      "members": 251079
+    },
+    {
+      "id": 60557,
+      "title": "Fanren Xiu Xian Zhuan 4th Season",
+      "score": 8.5,
+      "scored_by": 1497,
+      "members": 3482
+    },
+    {
+      "id": 58222,
+      "title": "Given Movie 3: Umi e",
+      "score": 8.5,
+      "scored_by": 11878,
+      "members": 34396
+    },
+    {
+      "id": 59986,
+      "title": "Grand Blue Season 2",
+      "score": 8.5,
+      "scored_by": 99821,
+      "members": 215464
+    },
+    {
+      "id": 4282,
+      "title": "Kara no Kyoukai Movie 5: Mujun Rasen",
+      "score": 8.5,
+      "scored_by": 140633,
+      "members": 255764
+    },
+    {
+      "id": 35839,
+      "title": "Sora yori mo Tooi Basho",
+      "score": 8.5,
+      "scored_by": 238230,
+      "members": 559605
+    },
+    {
+      "id": 55791,
+      "title": "[Oshi no Ko] 2nd Season",
+      "score": 8.5,
+      "scored_by": 274056,
+      "members": 538547
+    },
+    {
+      "id": 40748,
+      "title": "Jujutsu Kaisen",
+      "score": 8.49,
+      "scored_by": 2043355,
+      "members": 3099598
+    },
+    {
+      "id": 32182,
+      "title": "Mob Psycho 100",
+      "score": 8.49,
+      "scored_by": 1440684,
+      "members": 2353087
+    },
+    {
+      "id": 55809,
+      "title": "Xian Ni",
+      "score": 8.49,
+      "scored_by": 3365,
+      "members": 12621
+    },
+    {
+      "id": 38474,
+      "title": "Yuru Camp△ Season 2",
+      "score": 8.49,
+      "scored_by": 115053,
+      "members": 256842
+    },
+    {
+      "id": 3297,
+      "title": "Aria the Origination",
+      "score": 8.48,
+      "scored_by": 35004,
+      "members": 143711
+    },
+    {
+      "id": 40834,
+      "title": "Ousama Ranking",
+      "score": 8.48,
+      "scored_by": 405696,
+      "members": 769457
+    },
+    {
+      "id": 60988,
+      "title": "Tian Guan Cifu Short Films",
+      "score": 8.48,
+      "scored_by": 2740,
+      "members": 12395
+    },
+    {
+      "id": 51553,
+      "title": "Tongari Boushi no Atelier",
+      "score": 8.48,
+      "scored_by": 185570,
+      "members": 434353
+    },
+    {
+      "id": 12431,
+      "title": "Uchuu Kyoudai",
+      "score": 8.48,
+      "scored_by": 56206,
+      "members": 212510
+    },
+    {
+      "id": 30654,
+      "title": "Ansatsu Kyoushitsu 2nd Season",
+      "score": 8.47,
+      "scored_by": 984065,
+      "members": 1586900
+    },
+    {
+      "id": 59845,
+      "title": "Kaoru Hana wa Rin to Saku",
+      "score": 8.47,
+      "scored_by": 251920,
+      "members": 495908
+    },
+    {
+      "id": 10165,
+      "title": "Nichijou",
+      "score": 8.47,
+      "scored_by": 405381,
+      "members": 993956
+    },
+    {
+      "id": 30276,
+      "title": "One Punch Man",
+      "score": 8.47,
+      "scored_by": 2443424,
+      "members": 3553376
+    },
+    {
+      "id": 63832,
+      "title": "Seihantai na Kimi to Boku 2nd Season",
+      "score": 8.47,
+      "scored_by": 15338,
+      "members": 103028
+    },
+    {
+      "id": 44070,
+      "title": "Tian Guan Cifu Special",
+      "score": 8.47,
+      "scored_by": 31350,
+      "members": 61671
+    },
+    {
+      "id": 37779,
+      "title": "Yakusoku no Neverland",
+      "score": 8.47,
+      "scored_by": 1411534,
+      "members": 2178203
+    },
+    {
+      "id": 37379,
+      "title": "Chihayafuru 3",
+      "score": 8.46,
+      "scored_by": 71843,
+      "members": 159054
+    },
+    {
+      "id": 57779,
+      "title": "Dorohedoro Season 2",
+      "score": 8.46,
+      "scored_by": 34187,
+      "members": 94827
+    },
+    {
+      "id": 33049,
+      "title": "Fate/stay night Movie: Heaven's Feel - II. Lost Butterfly",
+      "score": 8.46,
+      "scored_by": 264685,
+      "members": 445321
+    },
+    {
+      "id": 63019,
+      "title": "Prism Rondo",
+      "score": 8.46,
+      "scored_by": 26315,
+      "members": 70663
+    },
+    {
+      "id": 6114,
+      "title": "Rainbow: Nisha Rokubou no Shichinin",
+      "score": 8.46,
+      "scored_by": 168197,
+      "members": 428697
+    },
+    {
+      "id": 47194,
+      "title": "Summertime Render",
+      "score": 8.46,
+      "scored_by": 298812,
+      "members": 695096
+    },
+    {
+      "id": 392,
+      "title": "Yuu☆Yuu☆Hakusho",
+      "score": 8.46,
+      "scored_by": 361167,
+      "members": 761515
+    },
+    {
+      "id": 36649,
+      "title": "Banana Fish",
+      "score": 8.44,
+      "scored_by": 419222,
+      "members": 975753
+    },
+    {
+      "id": 62896,
+      "title": "Chou Kaguya-hime!",
+      "score": 8.44,
+      "scored_by": 54802,
+      "members": 108541
+    },
+    {
+      "id": 44087,
+      "title": "Gintama: The Semi-Final",
+      "score": 8.44,
+      "scored_by": 48367,
+      "members": 95141
+    },
+    {
+      "id": 37105,
+      "title": "Grand Blue",
+      "score": 8.44,
+      "scored_by": 492834,
+      "members": 925118
+    },
+    {
+      "id": 38450,
+      "title": "Mo Dao Zu Shi: Xian Yun Pian",
+      "score": 8.44,
+      "scored_by": 56390,
+      "members": 120185
+    },
+    {
+      "id": 60544,
+      "title": "Nezha Zhi Mo Tong Nao Hai",
+      "score": 8.44,
+      "scored_by": 6034,
+      "members": 12708
+    },
+    {
+      "id": 31181,
+      "title": "Owarimonogatari",
+      "score": 8.44,
+      "scored_by": 253877,
+      "members": 515246
+    },
+    {
+      "id": 11577,
+      "title": "Steins;Gate Movie: Fuka Ryouiki no Déjà vu",
+      "score": 8.44,
+      "scored_by": 386967,
+      "members": 650251
+    },
+    {
+      "id": 61483,
+      "title": "Tenmaku no Jaadugar",
+      "score": 8.44,
+      "scored_by": 10459,
+      "members": 77193
+    },
+    {
+      "id": 136,
+      "title": "Hunter x Hunter",
+      "score": 8.44,
+      "scored_by": 317950,
+      "members": 655790
+    },
+    {
+      "id": 26055,
+      "title": "JoJo no Kimyou na Bouken Part 3: Stardust Crusaders - Egypt-hen",
+      "score": 8.44,
+      "scored_by": 898970,
+      "members": 1270297
+    },
+    {
+      "id": 61335,
+      "title": "Medalist 2nd Season",
+      "score": 8.44,
+      "scored_by": 21949,
+      "members": 46571
+    },
+    {
+      "id": 37208,
+      "title": "Mo Dao Zu Shi",
+      "score": 8.44,
+      "scored_by": 89941,
+      "members": 258664
+    },
+    {
+      "id": 35737,
+      "title": "Pluto",
+      "score": 8.44,
+      "scored_by": 115213,
+      "members": 262224
+    },
+    {
+      "id": 36999,
+      "title": "Zoku Owarimonogatari",
+      "score": 8.44,
+      "scored_by": 123268,
+      "members": 255910
+    },
+    {
+      "id": 40059,
+      "title": "Golden Kamuy 3rd Season",
+      "score": 8.43,
+      "scored_by": 101306,
+      "members": 204913
+    },
+    {
+      "id": 20583,
+      "title": "Haikyuu!!",
+      "score": 8.43,
+      "scored_by": 1362564,
+      "members": 2198844
+    },
+    {
+      "id": 39741,
+      "title": "Violet Evergarden Gaiden: Eien to Jidou Shuki Ningyou",
+      "score": 8.43,
+      "scored_by": 288398,
+      "members": 490716
+    },
+    {
+      "id": 44511,
+      "title": "Chainsaw Man",
+      "score": 8.42,
+      "scored_by": 1180705,
+      "members": 2019882
+    },
+    {
+      "id": 38889,
+      "title": "Kono Oto Tomare! Part 2",
+      "score": 8.42,
+      "scored_by": 109147,
+      "members": 206034
+    },
+    {
+      "id": 467,
+      "title": "Koukaku Kidoutai: Stand Alone Complex",
+      "score": 8.42,
+      "scored_by": 173870,
+      "members": 429256
+    },
+    {
+      "id": 24687,
+      "title": "Mushishi Zoku Shou: Odoro no Michi",
+      "score": 8.42,
+      "scored_by": 54440,
+      "members": 112173
+    },
+    {
+      "id": 36538,
+      "title": "Natsume Yuujinchou Movie: Utsusemi ni Musubu",
+      "score": 8.42,
+      "scored_by": 31260,
+      "members": 85161
+    },
+    {
+      "id": 42203,
+      "title": "Re:Zero kara Hajimeru Isekai Seikatsu 2nd Season Part 2",
+      "score": 8.42,
+      "scored_by": 658507,
+      "members": 1102979
+    },
+    {
+      "id": 54857,
+      "title": "Re:Zero kara Hajimeru Isekai Seikatsu 3rd Season",
+      "score": 8.42,
+      "scored_by": 260636,
+      "members": 538784
+    },
+    {
+      "id": 36885,
+      "title": "Saenai Heroine no Sodatekata Fine",
+      "score": 8.42,
+      "scored_by": 95942,
+      "members": 207393
+    },
+    {
+      "id": 25781,
+      "title": "Shingeki no Kyojin: Kuinaki Sentaku",
+      "score": 8.42,
+      "scored_by": 339410,
+      "members": 570294
+    },
+    {
+      "id": 50330,
+      "title": "Bungou Stray Dogs 4th Season",
+      "score": 8.41,
+      "scored_by": 153187,
+      "members": 367736
+    },
+    {
+      "id": 21899,
+      "title": "Gintama: Yorinuki Gintama-san on Theater 2D",
+      "score": 8.41,
+      "scored_by": 18467,
+      "members": 49136
+    },
+    {
+      "id": 62542,
+      "title": "Grand Blue Season 3",
+      "score": 8.41,
+      "scored_by": 10355,
+      "members": 99963
+    },
+    {
+      "id": 30709,
+      "title": "Kamisama Hajimemashita: Kako-hen",
+      "score": 8.41,
+      "scored_by": 92524,
+      "members": 187466
+    },
+    {
+      "id": 56538,
+      "title": "Kimi ni Todoke 3rd Season",
+      "score": 8.41,
+      "scored_by": 45989,
+      "members": 120662
+    },
+    {
+      "id": 2246,
+      "title": "Mononoke",
+      "score": 8.41,
+      "scored_by": 107308,
+      "members": 372708
+    },
+    {
+      "id": 33255,
+      "title": "Saiki Kusuo no Ψ-nan",
+      "score": 8.41,
+      "scored_by": 711263,
+      "members": 1274405
+    },
+    {
+      "id": 34612,
+      "title": "Saiki Kusuo no Ψ-nan 2",
+      "score": 8.41,
+      "scored_by": 437897,
+      "members": 732814
+    },
+    {
+      "id": 50265,
+      "title": "Spy x Family",
+      "score": 8.41,
+      "scored_by": 1186019,
+      "members": 1928659
+    },
+    {
+      "id": 40730,
+      "title": "Tian Guan Cifu",
+      "score": 8.41,
+      "scored_by": 78533,
+      "members": 180447
+    },
+    {
+      "id": 53672,
+      "title": "Violet Evergarden: Recollections",
+      "score": 8.41,
+      "scored_by": 17618,
+      "members": 49752
+    },
+    {
+      "id": 55772,
+      "title": "Golden Kamuy: Saishuushou",
+      "score": 8.4,
+      "scored_by": 20122,
+      "members": 65015
+    },
+    {
+      "id": 62340,
+      "title": "Guangyin Zhi Wai",
+      "score": 8.4,
+      "scored_by": 893,
+      "members": 2624
+    },
+    {
+      "id": 37999,
+      "title": "Kaguya-sama wa Kokurasetai: Tensai-tachi no Renai Zunousen",
+      "score": 8.4,
+      "scored_by": 1229188,
+      "members": 1968415
+    },
+    {
+      "id": 49722,
+      "title": "Karakai Jouzu no Takagi-san Movie",
+      "score": 8.4,
+      "scored_by": 45054,
+      "members": 98332
+    },
+    {
+      "id": 38040,
+      "title": "Kono Subarashii Sekai ni Shukufuku wo! Movie: Kurenai Densetsu",
+      "score": 8.4,
+      "scored_by": 569252,
+      "members": 900413
+    },
+    {
+      "id": 36275,
+      "title": "Natsume Yuujinchou Roku Specials",
+      "score": 8.4,
+      "scored_by": 24473,
+      "members": 54527
+    },
+    {
+      "id": 35851,
+      "title": "Sayonara no Asa ni Yakusoku no Hana wo Kazarou",
+      "score": 8.4,
+      "scored_by": 220915,
+      "members": 503100
+    },
+    {
+      "id": 45556,
+      "title": "Wu Liuqi: Xuanwu Guo Pian",
+      "score": 8.4,
+      "scored_by": 47289,
+      "members": 86964
+    },
+    {
+      "id": 50183,
+      "title": "Blue Giant",
+      "score": 8.39,
+      "scored_by": 18799,
+      "members": 50990
+    },
+    {
+      "id": 57334,
+      "title": "Dandadan",
+      "score": 8.39,
+      "scored_by": 623874,
+      "members": 1019747
+    },
+    {
+      "id": 51039,
+      "title": "Doupo Cangqiong: Nian Fan",
+      "score": 8.39,
+      "scored_by": 4363,
+      "members": 12807
+    },
+    {
+      "id": 35557,
+      "title": "Houseki no Kuni",
+      "score": 8.39,
+      "scored_by": 222835,
+      "members": 526268
+    },
+    {
+      "id": 38000,
+      "title": "Kimetsu no Yaiba",
+      "score": 8.39,
+      "scored_by": 2397034,
+      "members": 3499398
+    },
+    {
+      "id": 37515,
+      "title": "Made in Abyss Movie 2: Hourou Suru Tasogare",
+      "score": 8.39,
+      "scored_by": 71245,
+      "members": 168513
+    },
+    {
+      "id": 9756,
+      "title": "Mahou Shoujo Madoka★Magica",
+      "score": 8.39,
+      "scored_by": 827750,
+      "members": 1429603
+    },
+    {
+      "id": 5028,
+      "title": "Major S5",
+      "score": 8.39,
+      "scored_by": 43965,
+      "members": 76293
+    },
+    {
+      "id": 2402,
+      "title": "Ashita no Joe",
+      "score": 8.38,
+      "scored_by": 30492,
+      "members": 116936
+    },
+    {
+      "id": 5,
+      "title": "Cowboy Bebop: Tengoku no Tobira",
+      "score": 8.38,
+      "scored_by": 234018,
+      "members": 415989
+    },
+    {
+      "id": 60543,
+      "title": "Dandadan 2nd Season",
+      "score": 8.38,
+      "scored_by": 318995,
+      "members": 587953
+    },
+    {
+      "id": 39167,
+      "title": "Girls & Panzer: Saishuushou Part 4",
+      "score": 8.38,
+      "scored_by": 10446,
+      "members": 28475
+    },
+    {
+      "id": 40787,
+      "title": "Josee to Tora to Sakana-tachi",
+      "score": 8.38,
+      "scored_by": 284430,
+      "members": 545281
+    },
+    {
+      "id": 37965,
+      "title": "Kaze ga Tsuyoku Fuiteiru",
+      "score": 8.38,
+      "scored_by": 152648,
+      "members": 339448
+    },
+    {
+      "id": 11979,
+      "title": "Mahou Shoujo Madoka★Magica Movie 2: Eien no Monogatari",
+      "score": 8.38,
+      "scored_by": 109315,
+      "members": 223123
+    },
+    {
+      "id": 55318,
+      "title": "Medalist",
+      "score": 8.38,
+      "scored_by": 41275,
+      "members": 97627
+    },
+    {
+      "id": 4921,
+      "title": "Ramayana: The Legend of Prince Rama",
+      "score": 8.38,
+      "scored_by": 7420,
+      "members": 15963
+    },
+    {
+      "id": 31646,
+      "title": "3-gatsu no Lion",
+      "score": 8.36,
+      "scored_by": 303868,
+      "members": 744026
+    },
+    {
+      "id": 14397,
+      "title": "Chihayafuru 2",
+      "score": 8.36,
+      "scored_by": 139264,
+      "members": 254722
+    },
+    {
+      "id": 5941,
+      "title": "Cross Game",
+      "score": 8.36,
+      "scored_by": 53882,
+      "members": 133658
+    },
+    {
+      "id": 32366,
+      "title": "Gintama°: Aizome Kaori-hen",
+      "score": 8.36,
+      "scored_by": 49420,
+      "members": 93792
+    },
+    {
+      "id": 38883,
+      "title": "Haikyuu!! To the Top",
+      "score": 8.36,
+      "scored_by": 656062,
+      "members": 1065647
+    },
+    {
+      "id": 185,
+      "title": "Initial D First Stage",
+      "score": 8.36,
+      "scored_by": 221871,
+      "members": 447518
+    },
+    {
+      "id": 60570,
+      "title": "Ling Long 2nd Season",
+      "score": 8.36,
+      "scored_by": 906,
+      "members": 2248
+    },
+    {
+      "id": 55888,
+      "title": "Mushoku Tensei II: Isekai Ittara Honki Dasu Part 2",
+      "score": 8.36,
+      "scored_by": 353922,
+      "members": 606844
+    },
+    {
+      "id": 30,
+      "title": "Shinseiki Evangelion",
+      "score": 8.36,
+      "scored_by": 1232199,
+      "members": 2058927
+    },
+    {
+      "id": 46095,
+      "title": "Vivy: Fluorite Eye's Song",
+      "score": 8.36,
+      "scored_by": 276847,
+      "members": 618290
+    },
+    {
+      "id": 38475,
+      "title": "Yuru Camp△ Movie",
+      "score": 8.36,
+      "scored_by": 36093,
+      "members": 96204
+    },
+    {
+      "id": 22789,
+      "title": "Barakamon",
+      "score": 8.36,
+      "scored_by": 364719,
+      "members": 720666
+    },
+    {
+      "id": 10534,
+      "title": "Doraemon Movie 31: Shin Nobita to Tetsujin Heidan - Habatake Tenshi-tachi",
+      "score": 8.36,
+      "scored_by": 14836,
+      "members": 23223
+    },
+    {
+      "id": 37822,
+      "title": "Douluo Dalu 2nd Season",
+      "score": 8.36,
+      "scored_by": 10673,
+      "members": 24425
+    },
+    {
+      "id": 6945,
+      "title": "Gintama: Shiroyasha Koutan",
+      "score": 8.36,
+      "scored_by": 37074,
+      "members": 76150
+    },
+    {
+      "id": 48561,
+      "title": "Jujutsu Kaisen 0 Movie",
+      "score": 8.36,
+      "scored_by": 822091,
+      "members": 1304531
+    },
+    {
+      "id": 9617,
+      "title": "K-On! Movie",
+      "score": 8.36,
+      "scored_by": 211477,
+      "members": 359368
+    },
+    {
+      "id": 5205,
+      "title": "Kara no Kyoukai Movie 7: Satsujin Kousatsu (Go)",
+      "score": 8.36,
+      "scored_by": 119576,
+      "members": 220955
+    },
+    {
+      "id": 49721,
+      "title": "Karakai Jouzu no Takagi-san 3",
+      "score": 8.36,
+      "scored_by": 97959,
+      "members": 215260
+    },
+    {
+      "id": 572,
+      "title": "Kaze no Tani no Nausicaä",
+      "score": 8.36,
+      "scored_by": 260575,
+      "members": 419028
+    },
+    {
+      "id": 9260,
+      "title": "Kizumonogatari I: Tekketsu-hen",
+      "score": 8.36,
+      "scored_by": 316662,
+      "members": 588099
+    },
+    {
+      "id": 56523,
+      "title": "Tunshi Xingkong 3rd Season",
+      "score": 8.36,
+      "scored_by": 2637,
+      "members": 5566
+    },
+    {
+      "id": 338,
+      "title": "Versailles no Bara",
+      "score": 8.36,
+      "scored_by": 34601,
+      "members": 117017
+    },
+    {
+      "id": 37095,
+      "title": "Violet Evergarden: Kitto \"Ai\" wo Shiru Hi ga Kuru no Darou",
+      "score": 8.36,
+      "scored_by": 225310,
+      "members": 376862
+    },
+    {
+      "id": 41457,
+      "title": "86",
+      "score": 8.35,
+      "scored_by": 523497,
+      "members": 1000276
+    },
+    {
+      "id": 57067,
+      "title": "Fanren Xiu Xian Zhuan: Xinghai Feichi",
+      "score": 8.35,
+      "scored_by": 1943,
+      "members": 4389
+    },
+    {
+      "id": 49310,
+      "title": "Fruits Basket: Prelude",
+      "score": 8.35,
+      "scored_by": 51667,
+      "members": 133833
+    },
+    {
+      "id": 41025,
+      "title": "Fumetsu no Anata e",
+      "score": 8.35,
+      "scored_by": 432369,
+      "members": 1013525
+    },
+    {
+      "id": 55102,
+      "title": "Girls Band Cry",
+      "score": 8.35,
+      "scored_by": 57124,
+      "members": 142557
+    },
+    {
+      "id": 31988,
+      "title": "Hibike! Euphonium 2",
+      "score": 8.35,
+      "scored_by": 137820,
+      "members": 259904
+    },
+    {
+      "id": 53540,
+      "title": "Meitantei Conan Movie 26: Kurogane no Submarine",
+      "score": 8.35,
+      "scored_by": 9956,
+      "members": 19874
+    },
+    {
+      "id": 39808,
+      "title": "Non Non Biyori Nonstop",
+      "score": 8.35,
+      "scored_by": 54636,
+      "members": 140694
+    },
+    {
+      "id": 39547,
+      "title": "Yahari Ore no Seishun Love Comedy wa Machigatteiru. Kan",
+      "score": 8.35,
+      "scored_by": 464854,
+      "members": 834009
+    },
+    {
+      "id": 2251,
+      "title": "Baccano!",
+      "score": 8.34,
+      "scored_by": 400898,
+      "members": 965685
+    },
+    {
+      "id": 62277,
+      "title": "Gintama Movie 3: Yoshiwara Daienjou",
+      "score": 8.34,
+      "scored_by": 869,
+      "members": 13228
+    },
+    {
+      "id": 777,
+      "title": "Hellsing Ultimate",
+      "score": 8.34,
+      "scored_by": 531061,
+      "members": 1031605
+    },
+    {
+      "id": 46654,
+      "title": "IDOLiSH7 Third Beat! Part 2",
+      "score": 8.34,
+      "scored_by": 6125,
+      "members": 18251
+    },
+    {
+      "id": 58390,
+      "title": "Yofukashi no Uta Season 2",
+      "score": 8.34,
+      "scored_by": 104379,
+      "members": 262844
+    },
+    {
+      "id": 10030,
+      "title": "Bakuman. 2nd Season",
+      "score": 8.33,
+      "scored_by": 223097,
+      "members": 374099
+    },
+    {
+      "id": 58919,
+      "title": "Hyakuemu.",
+      "score": 8.33,
+      "scored_by": 50019,
+      "members": 85478
+    },
+    {
+      "id": 10937,
+      "title": "Kidou Senshi Gundam: The Origin",
+      "score": 8.32,
+      "scored_by": 36849,
+      "members": 85613
+    },
+    {
+      "id": 49926,
+      "title": "Kimetsu no Yaiba: Mugen Ressha-hen",
+      "score": 8.33,
+      "scored_by": 607938,
+      "members": 1002980
+    },
+    {
+      "id": 49458,
+      "title": "Kono Subarashii Sekai ni Shukufuku wo! 3",
+      "score": 8.33,
+      "scored_by": 251398,
+      "members": 568920
+    },
+    {
+      "id": 20651,
+      "title": "Natsume Yuujinchou: Itsuka Yuki no Hi ni",
+      "score": 8.33,
+      "scored_by": 39004,
+      "members": 87524
+    },
+    {
+      "id": 39587,
+      "title": "Re:Zero kara Hajimeru Isekai Seikatsu 2nd Season",
+      "score": 8.33,
+      "scored_by": 779100,
+      "members": 1313216
+    },
+    {
+      "id": 62076,
+      "title": "Super no Ura de Yani Suu Futari",
+      "score": 8.33,
+      "scored_by": 53614,
+      "members": 217271
+    },
+    {
+      "id": 39551,
+      "title": "Tensei shitara Slime Datta Ken 2nd Season",
+      "score": 8.33,
+      "scored_by": 661889,
+      "members": 1137929
+    },
+    {
+      "id": 56524,
+      "title": "Tunshi Xingkong 4th Season",
+      "score": 8.33,
+      "scored_by": 2305,
+      "members": 6535
+    },
+    {
+      "id": 5081,
+      "title": "Bakemonogatari",
+      "score": 8.32,
+      "scored_by": 777683,
+      "members": 1504723
+    },
+    {
+      "id": 28701,
+      "title": "Fate/stay night: Unlimited Blade Works 2nd Season",
+      "score": 8.32,
+      "scored_by": 611414,
+      "members": 931017
+    },
+    {
+      "id": 42886,
+      "title": "Ginga Eiyuu Densetsu: Die Neue These - Gekitotsu",
+      "score": 8.32,
+      "scored_by": 10253,
+      "members": 26893
+    },
+    {
+      "id": 51805,
+      "title": "Ginga Eiyuu Densetsu: Die Neue These - Sakubou",
+      "score": 8.32,
+      "scored_by": 7758,
+      "members": 19439
+    },
+    {
+      "id": 137,
+      "title": "Hunter x Hunter: Original Video Animation",
+      "score": 8.32,
+      "scored_by": 70959,
+      "members": 138249
+    },
+    {
+      "id": 22535,
+      "title": "Kiseijuu: Sei no Kakuritsu",
+      "score": 8.32,
+      "scored_by": 1263462,
+      "members": 2061831
+    },
+    {
+      "id": 7655,
+      "title": "Major S6",
+      "score": 8.32,
+      "scored_by": 39132,
+      "members": 67702
+    },
+    {
+      "id": 39535,
+      "title": "Mushoku Tensei: Isekai Ittara Honki Dasu",
+      "score": 8.32,
+      "scored_by": 999304,
+      "members": 1615691
+    },
+    {
+      "id": 1210,
+      "title": "NHK ni Youkoso!",
+      "score": 8.32,
+      "scored_by": 378812,
+      "members": 851317
+    },
+    {
+      "id": 5040,
+      "title": "One Outs",
+      "score": 8.32,
+      "scored_by": 123894,
+      "members": 259333
+    },
+    {
+      "id": 13601,
+      "title": "Psycho-Pass",
+      "score": 8.32,
+      "scored_by": 835906,
+      "members": 1763733
+    },
+    {
+      "id": 2559,
+      "title": "Romeo no Aoi Sora",
+      "score": 8.32,
+      "scored_by": 19117,
+      "members": 56440
+    },
+    {
+      "id": 12029,
+      "title": "Uchuu Senkan Yamato 2199",
+      "score": 8.32,
+      "scored_by": 42079,
+      "members": 127317
+    },
+    {
+      "id": 42941,
+      "title": "Uma Musume: Pretty Derby Season 2",
+      "score": 8.32,
+      "scored_by": 63424,
+      "members": 117537
+    },
+    {
+      "id": 55357,
+      "title": "Bocchi the Rock! Movie",
+      "score": 8.31,
+      "scored_by": 9405,
+      "members": 74446
+    },
+    {
+      "id": 31043,
+      "title": "Boku dake ga Inai Machi",
+      "score": 8.31,
+      "scored_by": 1493353,
+      "members": 2319391
+    },
+    {
+      "id": 30230,
+      "title": "Diamond no Ace: Second Season",
+      "score": 8.31,
+      "scored_by": 83855,
+      "members": 152688
+    },
+    {
+      "id": 5420,
+      "title": "Kemono no Souja Erin",
+      "score": 8.31,
+      "scored_by": 22873,
+      "members": 95252
+    },
+    {
+      "id": 40211,
+      "title": "Luo Xiaohei Zhanji (Movie)",
+      "score": 8.31,
+      "scored_by": 15188,
+      "members": 47006
+    },
+    {
+      "id": 34534,
+      "title": "Natsume Yuujinchou Go Specials",
+      "score": 8.31,
+      "scored_by": 24505,
+      "members": 52952
+    },
+    {
+      "id": 51440,
+      "title": "Sasaki to Miyano Movie: Sotsugyou-hen",
+      "score": 8.31,
+      "scored_by": 23814,
+      "members": 63432
+    },
+    {
+      "id": 10162,
+      "title": "Usagi Drop",
+      "score": 8.31,
+      "scored_by": 256544,
+      "members": 528651
+    },
+    {
+      "id": 55644,
+      "title": "Dr. Stone: New World Part 2",
+      "score": 8.3,
+      "scored_by": 245304,
+      "members": 449901
+    },
+    {
+      "id": 22507,
+      "title": "Initial D Final Stage",
+      "score": 8.3,
+      "scored_by": 86948,
+      "members": 169832
+    },
+    {
+      "id": 60568,
+      "title": "Jiyi Guanli Ju (2026)",
+      "score": 8.3,
+      "scored_by": 1110,
+      "members": 18780
+    },
+    {
+      "id": 59897,
+      "title": "Kobayashi-san Chi no Maid Dragon: Samishigariya no Ryuu",
+      "score": 8.3,
+      "scored_by": 17293,
+      "members": 64228
+    },
+    {
+      "id": 1365,
+      "title": "Meitantei Conan Movie 06: Baker Street no Bourei",
+      "score": 8.3,
+      "scored_by": 51179,
+      "members": 86350
+    },
+    {
+      "id": 59408,
+      "title": "Mononoke Movie 2: Hinezumi",
+      "score": 8.3,
+      "scored_by": 7189,
+      "members": 24055
+    },
+    {
+      "id": 59953,
+      "title": "Mushen Ji",
+      "score": 8.3,
+      "scored_by": 13153,
+      "members": 16311
+    },
+    {
+      "id": 4081,
+      "title": "Natsume Yuujinchou",
+      "score": 8.3,
+      "scored_by": 201285,
+      "members": 593865
+    },
+    {
+      "id": 5341,
+      "title": "Ookami to Koushinryou II",
+      "score": 8.3,
+      "scored_by": 291155,
+      "members": 524396
+    },
+    {
+      "id": 56752,
+      "title": "Shiguang Dailiren: Yingdu Pian",
+      "score": 8.3,
+      "scored_by": 30661,
+      "members": 72529
+    },
+    {
+      "id": 49233,
+      "title": "Youjo Senki II",
+      "score": 8.3,
+      "scored_by": 13909,
+      "members": 257550
+    },
+    {
+      "id": 57,
+      "title": "Beck",
+      "score": 8.28,
+      "scored_by": 152365,
+      "members": 381478
+    },
+    {
+      "id": 3784,
+      "title": "Evangelion Movie 2: Ha",
+      "score": 8.28,
+      "scored_by": 370188,
+      "members": 600911
+    },
+    {
+      "id": 6594,
+      "title": "Katanagatari",
+      "score": 8.28,
+      "scored_by": 224536,
+      "members": 597803
+    },
+    {
+      "id": 24415,
+      "title": "Kuroko no Basket 3rd Season",
+      "score": 8.28,
+      "scored_by": 518195,
+      "members": 840550
+    },
+    {
+      "id": 1735,
+      "title": "Naruto: Shippuuden",
+      "score": 8.28,
+      "scored_by": 1845044,
+      "members": 2782312
+    },
+    {
+      "id": 6675,
+      "title": "Redline",
+      "score": 8.28,
+      "scored_by": 228794,
+      "members": 432404
+    },
+    {
+      "id": 12531,
+      "title": "Sakamichi no Apollon",
+      "score": 8.28,
+      "scored_by": 183455,
+      "members": 419207
+    },
+    {
+      "id": 10863,
+      "title": "Steins;Gate: Oukoubakko no Poriomania",
+      "score": 8.28,
+      "scored_by": 299648,
+      "members": 479765
+    },
+    {
+      "id": 2150,
+      "title": "Tanoshii Muumin Ikka",
+      "score": 8.28,
+      "scored_by": 14034,
+      "members": 33966
+    },
+    {
+      "id": 41487,
+      "title": "Tensei shitara Slime Datta Ken 2nd Season Part 2",
+      "score": 8.28,
+      "scored_by": 541952,
+      "members": 934124
+    },
+    {
+      "id": 759,
+      "title": "Tokyo Godfathers",
+      "score": 8.28,
+      "scored_by": 167041,
+      "members": 335064
+    },
+    {
+      "id": 50407,
+      "title": "Wu Shan Wu Xing: Xichuan Huan Zi Lin",
+      "score": 8.28,
+      "scored_by": 6546,
+      "members": 19929
+    },
+    {
+      "id": 43325,
+      "title": "Yuukoku no Moriarty Part 2",
+      "score": 8.28,
+      "scored_by": 140283,
+      "members": 296765
+    },
+    {
+      "id": 50159,
+      "title": "Zombieland Saga Movie: Yumeginga Paradise",
+      "score": 8.28,
+      "scored_by": 5631,
+      "members": 42509
+    },
+    {
+      "id": 9989,
+      "title": "Ano Hi Mita Hana no Namae wo Bokutachi wa Mada Shiranai.",
+      "score": 8.27,
+      "scored_by": 1041921,
+      "members": 1722479
+    },
+    {
+      "id": 38731,
+      "title": "Diamond no Ace: Act II",
+      "score": 8.27,
+      "scored_by": 52000,
+      "members": 103748
+    },
+    {
+      "id": 36371,
+      "title": "Ginga Eiyuu Densetsu: Die Neue These - Seiran 3",
+      "score": 8.27,
+      "scored_by": 15250,
+      "members": 30943
+    },
+    {
+      "id": 39533,
+      "title": "Given",
+      "score": 8.27,
+      "scored_by": 351601,
+      "members": 645957
+    },
+    {
+      "id": 17389,
+      "title": "Kingdom 2nd Season",
+      "score": 8.27,
+      "scored_by": 76222,
+      "members": 153332
+    },
+    {
+      "id": 486,
+      "title": "Kino no Tabi: The Beautiful World",
+      "score": 8.27,
+      "scored_by": 107131,
+      "members": 361362
+    },
+    {
+      "id": 11917,
+      "title": "Major: World Series",
+      "score": 8.28,
+      "scored_by": 22176,
+      "members": 40395
+    },
+    {
+      "id": 54870,
+      "title": "Seishun Buta Yarou wa Randoseru Girl no Yume wo Minai",
+      "score": 8.27,
+      "scored_by": 90033,
+      "members": 197710
+    },
+    {
+      "id": 52684,
+      "title": "Shen Yin Wangzuo 2nd Season",
+      "score": 8.27,
+      "scored_by": 3197,
+      "members": 8124
+    },
+    {
+      "id": 49571,
+      "title": "Tunshi Xingkong 2nd Season",
+      "score": 8.27,
+      "scored_by": 3542,
+      "members": 9462
+    },
+    {
+      "id": 59150,
+      "title": "Wu Liuqi: Jiyi Suipian",
+      "score": 8.27,
+      "scored_by": 8764,
+      "members": 21605
+    },
+    {
+      "id": 30346,
+      "title": "Doukyuusei",
+      "score": 8.27,
+      "scored_by": 160498,
+      "members": 300223
+    },
+    {
+      "id": 55830,
+      "title": "Fate/strange Fake",
+      "score": 8.27,
+      "scored_by": 72295,
+      "members": 188107
+    },
+    {
+      "id": 19363,
+      "title": "Gin no Saji 2nd Season",
+      "score": 8.27,
+      "scored_by": 95110,
+      "members": 156247
+    },
+    {
+      "id": 35111,
+      "title": "Haikyuu!! Movie 4: Concept no Tatakai",
+      "score": 8.27,
+      "scored_by": 43614,
+      "members": 108126
+    },
+    {
+      "id": 43,
+      "title": "Koukaku Kidoutai",
+      "score": 8.27,
+      "scored_by": 368442,
+      "members": 717584
+    },
+    {
+      "id": 45,
+      "title": "Rurouni Kenshin: Meiji Kenkaku Romantan",
+      "score": 8.27,
+      "scored_by": 248902,
+      "members": 528306
+    },
+    {
+      "id": 60371,
+      "title": "Seihantai na Kimi to Boku",
+      "score": 8.27,
+      "scored_by": 119050,
+      "members": 244178
+    },
+    {
+      "id": 23327,
+      "title": "Space☆Dandy 2nd Season",
+      "score": 8.27,
+      "scored_by": 96744,
+      "members": 184236
+    },
+    {
+      "id": 32188,
+      "title": "Steins;Gate: Kyoukaimenjou no Missing Link - Divide By Zero",
+      "score": 8.27,
+      "scored_by": 164111,
+      "members": 293993
+    },
+    {
+      "id": 38826,
+      "title": "Tenki no Ko",
+      "score": 8.27,
+      "scored_by": 688430,
+      "members": 1147699
+    },
+    {
+      "id": 37520,
+      "title": "Dororo",
+      "score": 8.26,
+      "scored_by": 709515,
+      "members": 1395897
+    },
+    {
+      "id": 44412,
+      "title": "Doupo Cangqiong 4th Season",
+      "score": 8.26,
+      "scored_by": 5090,
+      "members": 10604
+    },
+    {
+      "id": 38691,
+      "title": "Dr. Stone",
+      "score": 8.26,
+      "scored_by": 1197586,
+      "members": 1986259
+    },
+    {
+      "id": 57592,
+      "title": "Dr. Stone: Science Future",
+      "score": 8.26,
+      "scored_by": 164322,
+      "members": 329143
+    },
+    {
+      "id": 62568,
+      "title": "Dr. Stone: Science Future Part 3",
+      "score": 8.26,
+      "scored_by": 79847,
+      "members": 189097
+    },
+    {
+      "id": 53111,
+      "title": "Dungeon ni Deai wo Motomeru no wa Machigatteiru Darou ka IV: Shin Shou - Yakusai-hen",
+      "score": 8.26,
+      "scored_by": 160467,
+      "members": 302517
+    },
+    {
+      "id": 10087,
+      "title": "Fate/Zero",
+      "score": 8.26,
+      "scored_by": 920676,
+      "members": 1617048
+    },
+    {
+      "id": 9735,
+      "title": "Gintama: Shinyaku Benizakura-hen",
+      "score": 8.26,
+      "scored_by": 21225,
+      "members": 48161
+    },
+    {
+      "id": 265,
+      "title": "Hajime no Ippo: Mashiba vs. Kimura",
+      "score": 8.26,
+      "scored_by": 79286,
+      "members": 129995
+    },
+    {
+      "id": 10408,
+      "title": "Hotarubi no Mori e",
+      "score": 8.26,
+      "scored_by": 490612,
+      "members": 885651
+    },
+    {
+      "id": 34036,
+      "title": "Meitantei Conan: Episode One - Chiisaku Natta Meitantei",
+      "score": 8.26,
+      "scored_by": 16610,
+      "members": 34857
+    },
+    {
+      "id": 25835,
+      "title": "Shirobako",
+      "score": 8.26,
+      "scored_by": 150272,
+      "members": 473809
+    },
+    {
+      "id": 513,
+      "title": "Tenkuu no Shiro Laputa",
+      "score": 8.26,
+      "scored_by": 338338,
+      "members": 543576
+    },
+    {
+      "id": 2685,
+      "title": "Tsubasa: Tokyo Revelations",
+      "score": 8.26,
+      "scored_by": 46843,
+      "members": 102273
+    },
+    {
+      "id": 56215,
+      "title": "Yi Nian Yong Heng 3rd Season",
+      "score": 8.26,
+      "scored_by": 1552,
+      "members": 4712
+    },
+    {
+      "id": 34798,
+      "title": "Yuru Camp△",
+      "score": 8.26,
+      "scored_by": 242127,
+      "members": 548609
+    },
+    {
+      "id": 3002,
+      "title": "Gyakkyou Burai Kaiji: Ultimate Survivor",
+      "score": 8.25,
+      "scored_by": 180232,
+      "members": 396784
+    },
+    {
+      "id": 264,
+      "title": "Hajime no Ippo: Champion Road",
+      "score": 8.25,
+      "scored_by": 96129,
+      "members": 159597
+    },
+    {
+      "id": 139,
+      "title": "Hunter x Hunter: Greed Island Final",
+      "score": 8.25,
+      "scored_by": 84282,
+      "members": 158360
+    },
+    {
+      "id": 60852,
+      "title": "Koori no Jouheki",
+      "score": 8.25,
+      "scored_by": 60905,
+      "members": 142697
+    },
+    {
+      "id": 31812,
+      "title": "Kuroshitsuji Movie: Book of the Atlantic",
+      "score": 8.25,
+      "scored_by": 106423,
+      "members": 229048
+    },
+    {
+      "id": 1698,
+      "title": "Nodame Cantabile",
+      "score": 8.25,
+      "scored_by": 134861,
+      "members": 334372
+    },
+    {
+      "id": 31240,
+      "title": "Re:Zero kara Hajimeru Isekai Seikatsu",
+      "score": 8.25,
+      "scored_by": 1594816,
+      "members": 2502208
+    },
+    {
+      "id": 1033,
+      "title": "Sennen Joyuu",
+      "score": 8.25,
+      "scored_by": 96797,
+      "members": 214280
+    },
+    {
+      "id": 58572,
+      "title": "Shangri-La Frontier: Kusoge Hunter, Kamige ni Idoman to su 2nd Season",
+      "score": 8.25,
+      "scored_by": 144269,
+      "members": 283706
+    },
+    {
+      "id": 440,
+      "title": "Shoujo Kakumei Utena",
+      "score": 8.25,
+      "scored_by": 73181,
+      "members": 252782
+    },
+    {
+      "id": 35838,
+      "title": "Shoujo Shuumatsu Ryokou",
+      "score": 8.25,
+      "scored_by": 155128,
+      "members": 411845
+    },
+    {
+      "id": 523,
+      "title": "Tonari no Totoro",
+      "score": 8.25,
+      "scored_by": 764621,
+      "members": 1177111
+    },
+    {
+      "id": 54029,
+      "title": "Wu Liuqi: Anying Suming",
+      "score": 8.25,
+      "scored_by": 21570,
+      "members": 42305
+    },
+    {
+      "id": 54959,
+      "title": "BanG Dream! It's MyGO!!!!!",
+      "score": 8.24,
+      "scored_by": 21437,
+      "members": 44288
+    },
+    {
+      "id": 37989,
+      "title": "Golden Kamuy 2nd Season",
+      "score": 8.24,
+      "scored_by": 132367,
+      "members": 243330
+    },
+    {
+      "id": 10271,
+      "title": "Gyakkyou Burai Kaiji: Hakairoku-hen",
+      "score": 8.24,
+      "scored_by": 118787,
+      "members": 216253
+    },
+    {
+      "id": 45577,
+      "title": "IDOLiSH7 Third Beat!",
+      "score": 8.24,
+      "scored_by": 9301,
+      "members": 27240
+    },
+    {
+      "id": 54595,
+      "title": "Kage no Jitsuryokusha ni Naritakute! 2nd Season",
+      "score": 8.24,
+      "scored_by": 311086,
+      "members": 554227
+    },
+    {
+      "id": 25681,
+      "title": "Kamisama Hajimemashita◎",
+      "score": 8.24,
+      "scored_by": 253755,
+      "members": 478042
+    },
+    {
+      "id": 15227,
+      "title": "Kono Sekai no Katasumi ni",
+      "score": 8.24,
+      "scored_by": 85277,
+      "members": 211493
+    },
+    {
+      "id": 32937,
+      "title": "Kono Subarashii Sekai ni Shukufuku wo! 2",
+      "score": 8.24,
+      "scored_by": 1104238,
+      "members": 1672760
+    },
+    {
+      "id": 512,
+      "title": "Majo no Takkyuubin",
+      "score": 8.24,
+      "scored_by": 435762,
+      "members": 673748
+    },
+    {
+      "id": 36990,
+      "title": "Non Non Biyori Movie: Vacation",
+      "score": 8.24,
+      "scored_by": 41624,
+      "members": 87477
+    },
+    {
+      "id": 329,
+      "title": "Planetes",
+      "score": 8.24,
+      "scored_by": 83811,
+      "members": 284723
+    },
+    {
+      "id": 13125,
+      "title": "Shinsekai yori",
+      "score": 8.24,
+      "scored_by": 290926,
+      "members": 828321
+    },
+    {
+      "id": 2418,
+      "title": "Stranger: Mukou Hadan",
+      "score": 8.24,
+      "scored_by": 173305,
+      "members": 357295
+    },
+    {
+      "id": 44940,
+      "title": "World Trigger 3rd Season",
+      "score": 8.24,
+      "scored_by": 56400,
+      "members": 143659
+    },
+    {
+      "id": 33051,
+      "title": "Kidou Senshi Gundam: Tekketsu no Orphans 2nd Season",
+      "score": 8.23,
+      "scored_by": 91056,
+      "members": 163076
+    },
+    {
+      "id": 35677,
+      "title": "Liz to Aoi Tori",
+      "score": 8.23,
+      "scored_by": 68004,
+      "members": 165887
+    },
+    {
+      "id": 11977,
+      "title": "Mahou Shoujo Madoka★Magica Movie 1: Hajimari no Monogatari",
+      "score": 8.23,
+      "scored_by": 109464,
+      "members": 219481
+    },
+    {
+      "id": 585,
+      "title": "Mimi wo Sumaseba",
+      "score": 8.23,
+      "scored_by": 232225,
+      "members": 412566
+    },
+    {
+      "id": 37450,
+      "title": "Seishun Buta Yarou wa Bunny Girl Senpai no Yume wo Minai",
+      "score": 8.23,
+      "scored_by": 1256805,
+      "members": 1989550
+    },
+    {
+      "id": 50594,
+      "title": "Suzume no Tojimari",
+      "score": 8.23,
+      "scored_by": 290039,
+      "members": 520459
+    },
+    {
+      "id": 37055,
+      "title": "Youjo Senki Movie",
+      "score": 8.23,
+      "scored_by": 185131,
+      "members": 345146
+    },
+    {
+      "id": 28805,
+      "title": "Bakemono no Ko",
+      "score": 8.22,
+      "scored_by": 241591,
+      "members": 459677
+    },
+    {
+      "id": 372,
+      "title": "Cardcaptor Sakura Movie 2: Fuuin Sareta Card",
+      "score": 8.22,
+      "scored_by": 71175,
+      "members": 124844
+    },
+    {
+      "id": 11843,
+      "title": "Danshi Koukousei no Nichijou",
+      "score": 8.22,
+      "scored_by": 445594,
+      "members": 894431
+    },
+    {
+      "id": 16664,
+      "title": "Kaguya-hime no Monogatari",
+      "score": 8.22,
+      "scored_by": 138186,
+      "members": 265112
+    },
+    {
+      "id": 1453,
+      "title": "Maison Ikkoku",
+      "score": 8.22,
+      "scored_by": 21345,
+      "members": 84338
+    },
+    {
+      "id": 1842,
+      "title": "Major S3",
+      "score": 8.22,
+      "scored_by": 45917,
+      "members": 74809
+    },
+    {
+      "id": 5690,
+      "title": "Nodame Cantabile Finale",
+      "score": 8.22,
+      "scored_by": 72195,
+      "members": 134036
+    },
+    {
+      "id": 40853,
+      "title": "Stand By Me Doraemon 2",
+      "score": 8.22,
+      "scored_by": 18913,
+      "members": 43098
+    },
+    {
+      "id": 6,
+      "title": "Trigun",
+      "score": 8.22,
+      "scored_by": 404663,
+      "members": 843448
+    },
+    {
+      "id": 12115,
+      "title": "Berserk: Ougon Jidai-hen III - Kourin",
+      "score": 8.21,
+      "scored_by": 154576,
+      "members": 249474
+    },
+    {
+      "id": 49918,
+      "title": "Boku no Hero Academia 6th Season",
+      "score": 8.21,
+      "scored_by": 439325,
+      "members": 845498
+    },
+    {
+      "id": 36946,
+      "title": "Dragon Ball Super: Broly",
+      "score": 8.21,
+      "scored_by": 330145,
+      "members": 477778
+    },
+    {
+      "id": 813,
+      "title": "Dragon Ball Z",
+      "score": 8.21,
+      "scored_by": 913838,
+      "members": 1338933
+    },
+    {
+      "id": 59062,
+      "title": "Gachiakuta",
+      "score": 8.21,
+      "scored_by": 246717,
+      "members": 543223
+    },
+    {
+      "id": 35110,
+      "title": "Haikyuu!! Movie 3: Sainou to Sense",
+      "score": 8.21,
+      "scored_by": 45577,
+      "members": 111838
+    },
+    {
+      "id": 59654,
+      "title": "Jujutsu Kaisen: Kaigyoku/Gyokusetsu",
+      "score": 8.21,
+      "scored_by": 16047,
+      "members": 66909
+    },
+    {
+      "id": 48316,
+      "title": "Kage no Jitsuryokusha ni Naritakute!",
+      "score": 8.21,
+      "scored_by": 485138,
+      "members": 892261
+    },
+    {
+      "id": 627,
+      "title": "Major S1",
+      "score": 8.21,
+      "scored_by": 54315,
+      "members": 108875
+    },
+    {
+      "id": 2966,
+      "title": "Ookami to Koushinryou",
+      "score": 8.21,
+      "scored_by": 417115,
+      "members": 878183
+    },
+    {
+      "id": 35466,
+      "title": "ReLIFE: Kanketsu-hen",
+      "score": 8.21,
+      "scored_by": 269889,
+      "members": 453983
+    },
+    {
+      "id": 38249,
+      "title": "Saiki Kusuo no Ψ-nan: Kanketsu-hen",
+      "score": 8.21,
+      "scored_by": 150027,
+      "members": 253622
+    },
+    {
+      "id": 59027,
+      "title": "Spy x Family Season 3",
+      "score": 8.21,
+      "scored_by": 149427,
+      "members": 372523
+    },
+    {
+      "id": 60420,
+      "title": "Cang Yuan Tu 2",
+      "score": 8.19,
+      "scored_by": 1157,
+      "members": 2677
+    },
+    {
+      "id": 38680,
+      "title": "Fruits Basket 1st Season",
+      "score": 8.19,
+      "scored_by": 456193,
+      "members": 961425
+    },
+    {
+      "id": 18617,
+      "title": "Girls & Panzer Movie",
+      "score": 8.19,
+      "scored_by": 65693,
+      "members": 132528
+    },
+    {
+      "id": 186,
+      "title": "Initial D Second Stage",
+      "score": 8.19,
+      "scored_by": 155083,
+      "members": 267354
+    },
+    {
+      "id": 6811,
+      "title": "InuYasha: Kanketsu-hen",
+      "score": 8.19,
+      "scored_by": 154588,
+      "members": 309032
+    },
+    {
+      "id": 52588,
+      "title": "Kaijuu 8-gou",
+      "score": 8.19,
+      "scored_by": 436133,
+      "members": 755301
+    },
+    {
+      "id": 16894,
+      "title": "Kuroko no Basket 2nd Season",
+      "score": 8.19,
+      "scored_by": 593797,
+      "members": 937562
+    },
+    {
+      "id": 18115,
+      "title": "Magi: The Kingdom of Magic",
+      "score": 8.19,
+      "scored_by": 487090,
+      "members": 905349
+    },
+    {
+      "id": 5460,
+      "title": "Meitantei Conan Movie 13: Shikkoku no Chaser",
+      "score": 8.19,
+      "scored_by": 36696,
+      "members": 65686
+    },
+    {
+      "id": 32843,
+      "title": "Senki Zesshou Symphogear XV",
+      "score": 8.19,
+      "scored_by": 15930,
+      "members": 44468
+    },
+    {
+      "id": 9863,
+      "title": "SKET Dance",
+      "score": 8.19,
+      "scored_by": 88885,
+      "members": 240435
+    },
+    {
+      "id": 53393,
+      "title": "Tengoku Daimakyou",
+      "score": 8.19,
+      "scored_by": 299732,
+      "members": 646352
+    },
+    {
+      "id": 40784,
+      "title": "Wu Liuqi: Zui Qiang Fa Xing Shi",
+      "score": 8.19,
+      "scored_by": 57610,
+      "members": 100454
+    },
+    {
+      "id": 3091,
+      "title": "xxxHOLiC◆Kei",
+      "score": 8.19,
+      "scored_by": 70622,
+      "members": 156995
+    },
+    {
+      "id": 23847,
+      "title": "Yahari Ore no Seishun Love Comedy wa Machigatteiru. Zoku",
+      "score": 8.19,
+      "scored_by": 755319,
+      "members": 1176406
+    },
+    {
+      "id": 37171,
+      "title": "Asobi Asobase",
+      "score": 8.19,
+      "scored_by": 254656,
+      "members": 542565
+    },
+    {
+      "id": 52578,
+      "title": "Boku no Kokoro no Yabai Yatsu",
+      "score": 8.19,
+      "scored_by": 238635,
+      "members": 459137
+    },
+    {
+      "id": 38003,
+      "title": "Bungou Stray Dogs 3rd Season",
+      "score": 8.19,
+      "scored_by": 382341,
+      "members": 718107
+    },
+    {
+      "id": 232,
+      "title": "Cardcaptor Sakura",
+      "score": 8.19,
+      "scored_by": 235847,
+      "members": 490869
+    },
+    {
+      "id": 62927,
+      "title": "Fangkai Nage Nuwu",
+      "score": 8.19,
+      "scored_by": 15348,
+      "members": 35934
+    },
+    {
+      "id": 39166,
+      "title": "Girls & Panzer: Saishuushou Part 3",
+      "score": 8.19,
+      "scored_by": 17359,
+      "members": 49114
+    },
+    {
+      "id": 40052,
+      "title": "Great Pretender",
+      "score": 8.19,
+      "scored_by": 361473,
+      "members": 758142
+    },
+    {
+      "id": 138,
+      "title": "Hunter x Hunter: Greed Island",
+      "score": 8.19,
+      "scored_by": 93166,
+      "members": 184033
+    },
+    {
+      "id": 7791,
+      "title": "K-On!!",
+      "score": 8.19,
+      "scored_by": 418200,
+      "members": 762662
+    },
+    {
+      "id": 39247,
+      "title": "Kobayashi-san Chi no Maid Dragon S",
+      "score": 8.19,
+      "scored_by": 313689,
+      "members": 619490
+    },
+    {
+      "id": 37514,
+      "title": "Made in Abyss Movie 1: Tabidachi no Yoake",
+      "score": 8.19,
+      "scored_by": 61969,
+      "members": 165840
+    },
+    {
+      "id": 32005,
+      "title": "Meitantei Conan Movie 20: Junkoku no Nightmare",
+      "score": 8.19,
+      "scored_by": 26304,
+      "members": 47665
+    },
+    {
+      "id": 51179,
+      "title": "Mushoku Tensei II: Isekai Ittara Honki Dasu",
+      "score": 8.19,
+      "scored_by": 465534,
+      "members": 789272
+    },
+    {
+      "id": 19123,
+      "title": "One Piece: Episode of Merry - Mou Hitori no Nakama no Monogatari",
+      "score": 8.19,
+      "scored_by": 34930,
+      "members": 81592
+    },
+    {
+      "id": 50602,
+      "title": "Spy x Family Part 2",
+      "score": 8.19,
+      "scored_by": 633349,
+      "members": 1157367
+    },
+    {
+      "id": 49114,
+      "title": "Vanitas no Karte Part 2",
+      "score": 8.19,
+      "scored_by": 154442,
+      "members": 352229
+    },
+    {
+      "id": 49574,
+      "title": "Yi Nian Yong Heng 2nd Season",
+      "score": 8.19,
+      "scored_by": 3258,
+      "members": 9855
+    },
+    {
+      "id": 49590,
+      "title": "Yojouhan Time Machine Blues",
+      "score": 8.19,
+      "scored_by": 16362,
+      "members": 66359
+    },
+    {
+      "id": 55866,
+      "title": "Yubisaki to Renren",
+      "score": 8.19,
+      "scored_by": 167478,
+      "members": 360301
+    },
+    {
+      "id": 34636,
+      "title": "Ballroom e Youkoso",
+      "score": 8.18,
+      "scored_by": 161387,
+      "members": 366076
+    },
+    {
+      "id": 1519,
+      "title": "Black Lagoon: The Second Barrage",
+      "score": 8.18,
+      "scored_by": 344943,
+      "members": 581171
+    },
+    {
+      "id": 38088,
+      "title": "Digimon Adventure: Last Evolution Kizuna",
+      "score": 8.18,
+      "scored_by": 22658,
+      "members": 63735
+    },
+    {
+      "id": 22297,
+      "title": "Fate/stay night: Unlimited Blade Works",
+      "score": 8.18,
+      "scored_by": 738444,
+      "members": 1188052
+    },
+    {
+      "id": 59551,
+      "title": "Ganbare! Nakamura-kun!!",
+      "score": 8.18,
+      "scored_by": 22703,
+      "members": 66119
+    },
+    {
+      "id": 36370,
+      "title": "Ginga Eiyuu Densetsu: Die Neue These - Seiran 2",
+      "score": 8.18,
+      "scored_by": 15323,
+      "members": 41771
+    },
+    {
+      "id": 1142,
+      "title": "Hachimitsu to Clover II",
+      "score": 8.18,
+      "scored_by": 56645,
+      "members": 125116
+    },
+    {
+      "id": 42897,
+      "title": "Horimiya",
+      "score": 8.18,
+      "scored_by": 1021533,
+      "members": 1678724
+    },
+    {
+      "id": 18,
+      "title": "Initial D Fourth Stage",
+      "score": 8.18,
+      "scored_by": 121088,
+      "members": 218145
+    },
+    {
+      "id": 18195,
+      "title": "Little Busters! Refrain",
+      "score": 8.18,
+      "scored_by": 81577,
+      "members": 177813
+    },
+    {
+      "id": 558,
+      "title": "Major S2",
+      "score": 8.18,
+      "scored_by": 47995,
+      "members": 77058
+    },
+    {
+      "id": 3226,
+      "title": "Major S4",
+      "score": 8.18,
+      "scored_by": 43074,
+      "members": 70042
+    },
+    {
+      "id": 235,
+      "title": "Meitantei Conan",
+      "score": 8.18,
+      "scored_by": 171217,
+      "members": 381150
+    },
+    {
+      "id": 40729,
+      "title": "Nomad: Megalo Box 2",
+      "score": 8.18,
+      "scored_by": 92938,
+      "members": 232467
+    },
+    {
+      "id": 23623,
+      "title": "Non Non Biyori Repeat",
+      "score": 8.18,
+      "scored_by": 108003,
+      "members": 215223
+    },
+    {
+      "id": 44055,
+      "title": "Sasaki to Miyano",
+      "score": 8.18,
+      "scored_by": 111022,
+      "members": 243310
+    },
+    {
+      "id": 4107,
+      "title": "Tengen Toppa Gurren Lagann Movie 1: Gurren-hen",
+      "score": 8.18,
+      "scored_by": 91012,
+      "members": 194702
+    },
+    {
+      "id": 59983,
+      "title": "Tsue to Tsurugi no Wistoria Season 2",
+      "score": 8.18,
+      "scored_by": 96771,
+      "members": 218241
+    },
+    {
+      "id": 6864,
+      "title": "xxxHOLiC Rou",
+      "score": 8.18,
+      "scored_by": 34594,
+      "members": 86823
+    },
+    {
+      "id": 34537,
+      "title": "Yoru wa Mijikashi Arukeyo Otome",
+      "score": 8.18,
+      "scored_by": 58113,
+      "members": 143558
+    },
+    {
+      "id": 962,
+      "title": "Aria the Natural",
+      "score": 8.17,
+      "scored_by": 32312,
+      "members": 86852
+    },
+    {
+      "id": 7674,
+      "title": "Bakuman.",
+      "score": 8.17,
+      "scored_by": 312416,
+      "members": 662329
+    },
+    {
+      "id": 10800,
+      "title": "Chihayafuru",
+      "score": 8.17,
+      "scored_by": 196386,
+      "members": 500569
+    },
+    {
+      "id": 33323,
+      "title": "Kamisama Hajimemashita: Kamisama, Shiawase ni Naru",
+      "score": 8.17,
+      "scored_by": 37497,
+      "members": 74862
+    },
+    {
+      "id": 39592,
+      "title": "Kidou Senshi Gundam: The Origin - Zenya Akai Suisei",
+      "score": 8.17,
+      "scored_by": 12895,
+      "members": 28920
+    },
+    {
+      "id": 59228,
+      "title": "Kuroshitsuji: Midori no Majo-hen",
+      "score": 8.17,
+      "scored_by": 27756,
+      "members": 77700
+    },
+    {
+      "id": 42894,
+      "title": "Natsume Yuujinchou: Ishi Okoshi to Ayashiki Raihousha",
+      "score": 8.17,
+      "scored_by": 14109,
+      "members": 54189
+    },
+    {
+      "id": 38234,
+      "title": "One Piece Movie 14: Stampede",
+      "score": 8.17,
+      "scored_by": 138304,
+      "members": 225006
+    },
+    {
+      "id": 37078,
+      "title": "Quanzhi Gaoshou Specials",
+      "score": 8.17,
+      "scored_by": 57603,
+      "members": 113326
+    },
+    {
+      "id": 57433,
+      "title": "Seishun Buta Yarou wa Santa Claus no Yume wo Minai",
+      "score": 8.17,
+      "scored_by": 78150,
+      "members": 228847
+    },
+    {
+      "id": 29831,
+      "title": "Tamayura: Sotsugyou Shashin Part 4 - Ashita",
+      "score": 8.17,
+      "scored_by": 4296,
+      "members": 13935
+    },
+    {
+      "id": 40911,
+      "title": "Yuukoku no Moriarty",
+      "score": 8.17,
+      "scored_by": 213915,
+      "members": 516580
+    },
+    {
+      "id": 47,
+      "title": "Akira",
+      "score": 8.16,
+      "scored_by": 570384,
+      "members": 967744
+    },
+    {
+      "id": 32867,
+      "title": "Bungou Stray Dogs 2nd Season",
+      "score": 8.16,
+      "scored_by": 549744,
+      "members": 963002
+    },
+    {
+      "id": 61240,
+      "title": "Futsutsuka na Akujo dewa Gozaimasu ga: Suuguu Chouso Torikae Den",
+      "score": 8.16,
+      "scored_by": 9495,
+      "members": 66720
+    },
+    {
+      "id": 1889,
+      "title": "Higurashi no Naku Koro ni Kai",
+      "score": 8.16,
+      "scored_by": 269492,
+      "members": 524415
+    },
+    {
+      "id": 55825,
+      "title": "Jigokuraku 2nd Season",
+      "score": 8.16,
+      "scored_by": 159274,
+      "members": 414913
+    },
+    {
+      "id": 1430,
+      "title": "Lupin III: Cagliostro no Shiro",
+      "score": 8.16,
+      "scored_by": 79676,
+      "members": 139752
+    },
+    {
+      "id": 33674,
+      "title": "No Game No Life: Zero",
+      "score": 8.16,
+      "scored_by": 514176,
+      "members": 958554
+    },
+    {
+      "id": 853,
+      "title": "Ouran Koukou Host Club",
+      "score": 8.16,
+      "scored_by": 736580,
+      "members": 1244126
+    },
+    {
+      "id": 53065,
+      "title": "Sono Bisque Doll wa Koi wo Suru Season 2",
+      "score": 8.16,
+      "scored_by": 231622,
+      "members": 504364
+    },
+    {
+      "id": 59970,
+      "title": "Tensei shitara Slime Datta Ken 4th Season",
+      "score": 8.16,
+      "scored_by": 41619,
+      "members": 243676
+    },
+    {
+      "id": 1382,
+      "title": "Yuusha-Ou GaoGaiGar Final",
+      "score": 8.16,
+      "scored_by": 5136,
+      "members": 13043
+    },
+    {
+      "id": 49052,
+      "title": "Ao Ashi",
+      "score": 8.15,
+      "scored_by": 134760,
+      "members": 264554
+    },
+    {
+      "id": 57181,
+      "title": "Ao no Hako",
+      "score": 8.15,
+      "scored_by": 164705,
+      "members": 352697
+    },
+    {
+      "id": 40852,
+      "title": "Dr. Stone: Stone Wars",
+      "score": 8.15,
+      "scored_by": 699327,
+      "members": 1224068
+    },
+    {
+      "id": 50528,
+      "title": "Golden Kamuy 4th Season",
+      "score": 8.15,
+      "scored_by": 50111,
+      "members": 126141
+    },
+    {
+      "id": 721,
+      "title": "Princess Tutu",
+      "score": 8.15,
+      "scored_by": 70957,
+      "members": 187470
+    },
+    {
+      "id": 55911,
+      "title": "The Fable",
+      "score": 8.15,
+      "scored_by": 42779,
+      "members": 114158
+    },
+    {
+      "id": 34572,
+      "title": "Black Clover",
+      "score": 8.14,
+      "scored_by": 1001513,
+      "members": 1933878
+    },
+    {
+      "id": 54789,
+      "title": "Boku no Hero Academia 7th Season",
+      "score": 8.14,
+      "scored_by": 243305,
+      "members": 504727
+    },
+    {
+      "id": 55655,
+      "title": "Cang Yuan Tu",
+      "score": 8.14,
+      "scored_by": 2247,
+      "members": 5787
+    },
+    {
+      "id": 48549,
+      "title": "Dr. Stone: New World",
+      "score": 8.14,
+      "scored_by": 305185,
+      "members": 624585
+    },
+    {
+      "id": 25537,
+      "title": "Fate/stay night Movie: Heaven's Feel - I. Presage Flower",
+      "score": 8.14,
+      "scored_by": 290260,
+      "members": 524151
+    },
+    {
+      "id": 53127,
+      "title": "Fate/strange Fake: Whispers of Dawn",
+      "score": 8.14,
+      "scored_by": 69513,
+      "members": 128064
+    },
+    {
+      "id": 3701,
+      "title": "Kaiba",
+      "score": 8.14,
+      "scored_by": 49355,
+      "members": 183878
+    },
+    {
+      "id": 61186,
+      "title": "Kamiina Botan, Yoeru Sugata wa Yuri no Hana",
+      "score": 8.14,
+      "scored_by": 19152,
+      "members": 60659
+    },
+    {
+      "id": 16662,
+      "title": "Kaze Tachinu",
+      "score": 8.14,
+      "scored_by": 224024,
+      "members": 393289
+    },
+    {
+      "id": 51019,
+      "title": "Kimetsu no Yaiba: Katanakaji no Sato-hen",
+      "score": 8.14,
+      "scored_by": 696779,
+      "members": 1144325
+    },
+    {
+      "id": 49909,
+      "title": "Kotarou wa Hitorigurashi",
+      "score": 8.14,
+      "scored_by": 112611,
+      "members": 211332
+    },
+    {
+      "id": 35857,
+      "title": "Lupin III: Part 5",
+      "score": 8.14,
+      "scored_by": 18379,
+      "members": 49469
+    },
+    {
+      "id": 50709,
+      "title": "Lycoris Recoil",
+      "score": 8.14,
+      "scored_by": 296079,
+      "members": 607119
+    },
+    {
+      "id": 9890,
+      "title": "Major: Message",
+      "score": 8.14,
+      "scored_by": 18691,
+      "members": 44428
+    },
+    {
+      "id": 49521,
+      "title": "Non Non Biyori Nonstop: Bukatsu wo Ganbatta",
+      "score": 8.14,
+      "scored_by": 12929,
+      "members": 39787
+    },
+    {
+      "id": 30503,
+      "title": "Noragami Aragoto",
+      "score": 8.14,
+      "scored_by": 951153,
+      "members": 1567264
+    },
+    {
+      "id": 52299,
+      "title": "Ore dake Level Up na Ken",
+      "score": 8.14,
+      "scored_by": 736172,
+      "members": 1182125
+    },
+    {
+      "id": 21469,
+      "title": "Stand By Me Doraemon",
+      "score": 8.14,
+      "scored_by": 44454,
+      "members": 64755
+    },
+    {
+      "id": 38481,
+      "title": "Toaru Kagaku no Railgun T",
+      "score": 8.14,
+      "scored_by": 104534,
+      "members": 269003
+    },
+    {
+      "id": 28223,
+      "title": "Death Parade",
+      "score": 8.13,
+      "scored_by": 1091091,
+      "members": 1936253
+    },
+    {
+      "id": 41361,
+      "title": "Eiga Daisuki Pompo-san",
+      "score": 8.13,
+      "scored_by": 22950,
+      "members": 70762
+    },
+    {
+      "id": 39792,
+      "title": "Eizouken ni wa Te wo Dasu na!",
+      "score": 8.13,
+      "scored_by": 150837,
+      "members": 374000
+    },
+    {
+      "id": 3371,
+      "title": "Ginga Eiyuu Densetsu Gaiden",
+      "score": 8.13,
+      "scored_by": 10011,
+      "members": 27458
+    },
+    {
+      "id": 49053,
+      "title": "Given: Uragawa no Sonzai",
+      "score": 8.13,
+      "scored_by": 46826,
+      "members": 104496
+    },
+    {
+      "id": 29755,
+      "title": "Haikyuu!! Movie 1: Owari to Hajimari",
+      "score": 8.13,
+      "scored_by": 51765,
+      "members": 127993
+    },
+    {
+      "id": 17739,
+      "title": "Hidamari Sketch: Sae Hiro Sotsugyou-hen",
+      "score": 8.13,
+      "scored_by": 7276,
+      "members": 17048
+    },
+    {
+      "id": 44042,
+      "title": "Holo no Graffiti",
+      "score": 8.13,
+      "scored_by": 17863,
+      "members": 58619
+    },
+    {
+      "id": 37962,
+      "title": "IDOLiSH7 Second Beat!",
+      "score": 8.13,
+      "scored_by": 13171,
+      "members": 36627
+    },
+    {
+      "id": 731,
+      "title": "Interstella5555: The 5tory of The 5ecret 5tar 5ystem",
+      "score": 8.13,
+      "scored_by": 48178,
+      "members": 83691
+    },
+    {
+      "id": 14713,
+      "title": "Kamisama Hajimemashita",
+      "score": 8.13,
+      "scored_by": 378804,
+      "members": 739312
+    },
+    {
+      "id": 59833,
+      "title": "Kono Subarashii Sekai ni Shukufuku wo! 3: Bonus Stage",
+      "score": 8.13,
+      "scored_by": 37557,
+      "members": 87673
+    },
+    {
+      "id": 28675,
+      "title": "Kyoukai no Kanata Movie 2: I'll Be Here - Mirai-hen",
+      "score": 8.13,
+      "scored_by": 145194,
+      "members": 295437
+    },
+    {
+      "id": 10153,
+      "title": "Mahou Shoujo Lyrical Nanoha: The Movie 2nd A's",
+      "score": 8.13,
+      "scored_by": 11877,
+      "members": 27471
+    },
+    {
+      "id": 4477,
+      "title": "Nodame Cantabile: Paris-hen",
+      "score": 8.13,
+      "scored_by": 78101,
+      "members": 131211
+    },
+    {
+      "id": 51122,
+      "title": "Ookami to Koushinryou: Merchant Meets the Wise Wolf",
+      "score": 8.13,
+      "scored_by": 88739,
+      "members": 268937
+    },
+    {
+      "id": 54650,
+      "title": "Precure All Stars Movie F",
+      "score": 8.13,
+      "scored_by": 1670,
+      "members": 4896
+    },
+    {
+      "id": 37430,
+      "title": "Tensei shitara Slime Datta Ken",
+      "score": 8.13,
+      "scored_by": 1011384,
+      "members": 1675786
+    },
+    {
+      "id": 31715,
+      "title": "Working!!! Lord of the Takanashi",
+      "score": 8.13,
+      "scored_by": 61381,
+      "members": 109352
+    },
+    {
+      "id": 18689,
+      "title": "Diamond no Ace",
+      "score": 8.11,
+      "scored_by": 125446,
+      "members": 270068
+    },
+    {
+      "id": 121,
+      "title": "Fullmetal Alchemist",
+      "score": 8.11,
+      "scored_by": 937824,
+      "members": 1570127
+    },
+    {
+      "id": 25313,
+      "title": "Gintama': Futon ni Haitte kara Buki Nokoshi ni Kizuite Neru ni Nerenai Toki mo Aru",
+      "score": 8.11,
+      "scored_by": 20159,
+      "members": 46089
+    },
+    {
+      "id": 30364,
+      "title": "Haikyuu!! Movie 2: Shousha to Haisha",
+      "score": 8.11,
+      "scored_by": 44717,
+      "members": 114513
+    },
+    {
+      "id": 54856,
+      "title": "Horimiya: Piece",
+      "score": 8.11,
+      "scored_by": 219232,
+      "members": 477963
+    },
+    {
+      "id": 15059,
+      "title": "Initial D Fifth Stage",
+      "score": 8.11,
+      "scored_by": 91177,
+      "members": 175302
+    },
+    {
+      "id": 1604,
+      "title": "Katekyou Hitman Reborn!",
+      "score": 8.11,
+      "scored_by": 271086,
+      "members": 590684
+    },
+    {
+      "id": 1364,
+      "title": "Meitantei Conan Movie 05: Tengoku e no Countdown",
+      "score": 8.11,
+      "scored_by": 41584,
+      "members": 70891
+    },
+    {
+      "id": 40435,
+      "title": "Mo Dao Zu Shi Q",
+      "score": 8.11,
+      "scored_by": 10521,
+      "members": 28267
+    },
+    {
+      "id": 11597,
+      "title": "Nisemonogatari",
+      "score": 8.11,
+      "scored_by": 457209,
+      "members": 780583
+    },
+    {
+      "id": 1827,
+      "title": "Seirei no Moribito",
+      "score": 8.11,
+      "scored_by": 80913,
+      "members": 237937
+    },
+    {
+      "id": 56738,
+      "title": "Shinigami Bocchan to Kuro Maid 3rd Season",
+      "score": 8.11,
+      "scored_by": 28717,
+      "members": 73875
+    },
+    {
+      "id": 48736,
+      "title": "Sono Bisque Doll wa Koi wo Suru",
+      "score": 8.11,
+      "scored_by": 836538,
+      "members": 1364627
+    },
+    {
+      "id": 56009,
+      "title": "Yuusha-kei ni Shosu: Choubatsu Yuusha 9004-tai Keimu Kiroku",
+      "score": 8.11,
+      "scored_by": 154529,
+      "members": 349709
+    },
+    {
+      "id": 30370,
+      "title": "Akatsuki no Yona OVA",
+      "score": 8.11,
+      "scored_by": 76387,
+      "members": 147687
+    },
+    {
+      "id": 50612,
+      "title": "Dr. Stone: Ryuusui",
+      "score": 8.11,
+      "scored_by": 232961,
+      "members": 402086
+    },
+    {
+      "id": 49709,
+      "title": "Fumetsu no Anata e Season 2",
+      "score": 8.11,
+      "scored_by": 141382,
+      "members": 347635
+    },
+    {
+      "id": 239,
+      "title": "Gankutsuou",
+      "score": 8.11,
+      "scored_by": 79456,
+      "members": 273667
+    },
+    {
+      "id": 40421,
+      "title": "Given Movie 1",
+      "score": 8.11,
+      "scored_by": 145450,
+      "members": 267768
+    },
+    {
+      "id": 36296,
+      "title": "Hinamatsuri",
+      "score": 8.11,
+      "scored_by": 271090,
+      "members": 559896
+    },
+    {
+      "id": 20899,
+      "title": "JoJo no Kimyou na Bouken Part 3: Stardust Crusaders",
+      "score": 8.11,
+      "scored_by": 984997,
+      "members": 1394338
+    },
+    {
+      "id": 8129,
+      "title": "Kuragehime",
+      "score": 8.11,
+      "scored_by": 121101,
+      "members": 267837
+    },
+    {
+      "id": 6467,
+      "title": "Meitantei Conan Movie 14: Tenkuu no Lost Ship",
+      "score": 8.11,
+      "scored_by": 36108,
+      "members": 63453
+    },
+    {
+      "id": 302,
+      "title": "Mirai Shounen Conan",
+      "score": 8.11,
+      "scored_by": 19039,
+      "members": 58603
+    },
+    {
+      "id": 40542,
+      "title": "Saiki Kusuo no Ψ-nan: Ψ-shidou-hen",
+      "score": 8.11,
+      "scored_by": 154660,
+      "members": 253734
+    },
+    {
+      "id": 9130,
+      "title": "Saint Seiya: The Lost Canvas - Meiou Shinwa 2",
+      "score": 8.11,
+      "scored_by": 48163,
+      "members": 81705
+    },
+    {
+      "id": 28171,
+      "title": "Shokugeki no Souma",
+      "score": 8.11,
+      "scored_by": 1062447,
+      "members": 1761001
+    },
+    {
+      "id": 59459,
+      "title": "Silent Witch: Chinmoku no Majo no Kakushigoto",
+      "score": 8.11,
+      "scored_by": 118433,
+      "members": 236289
+    },
+    {
+      "id": 52826,
+      "title": "Tsurune: Tsunagari no Issha",
+      "score": 8.11,
+      "scored_by": 22024,
+      "members": 70059
+    },
+    {
+      "id": 35608,
+      "title": "Chuunibyou demo Koi ga Shitai! Movie: Take On Me",
+      "score": 8.1,
+      "scored_by": 166052,
+      "members": 307363
+    },
+    {
+      "id": 59229,
+      "title": "Enen no Shouboutai: San no Shou Part 2",
+      "score": 8.1,
+      "scored_by": 87486,
+      "members": 216602
+    },
+    {
+      "id": 38081,
+      "title": "Girls & Panzer: Saishuushou Part 2",
+      "score": 8.1,
+      "scored_by": 23528,
+      "members": 47008
+    },
+    {
+      "id": 2581,
+      "title": "Kidou Senshi Gundam 00",
+      "score": 8.1,
+      "scored_by": 128404,
+      "members": 236338
+    },
+    {
+      "id": 62811,
+      "title": "Kimi no Koto ga Daidaidaidaidaisuki na 100-nin no Kanojo 3rd Season",
+      "score": 8.1,
+      "scored_by": 10041,
+      "members": 73698
+    },
+    {
+      "id": 1566,
+      "title": "Koukaku Kidoutai: Stand Alone Complex - Solid State Society",
+      "score": 8.1,
+      "scored_by": 50629,
+      "members": 109306
+    },
+    {
+      "id": 60310,
+      "title": "Mairimashita! Iruma-kun 4th Season",
+      "score": 8.1,
+      "scored_by": 12058,
+      "members": 90087
+    },
+    {
+      "id": 12859,
+      "title": "One Piece Film: Z",
+      "score": 8.1,
+      "scored_by": 200285,
+      "members": 319763
+    },
+    {
+      "id": 15323,
+      "title": "One Piece: Episode of Nami - Koukaishi no Namida to Nakama no Kizuna",
+      "score": 8.1,
+      "scored_by": 41354,
+      "members": 77041
+    },
+    {
+      "id": 339,
+      "title": "Serial Experiments Lain",
+      "score": 8.1,
+      "scored_by": 364003,
+      "members": 918791
+    },
+    {
+      "id": 52347,
+      "title": "Shangri-La Frontier: Kusoge Hunter, Kamige ni Idoman to su",
+      "score": 8.1,
+      "scored_by": 254177,
+      "members": 487228
+    },
+    {
+      "id": 51335,
+      "title": "Shen Yin Wangzuo",
+      "score": 8.1,
+      "scored_by": 4220,
+      "members": 11420
+    },
+    {
+      "id": 50416,
+      "title": "Skip to Loafer",
+      "score": 8.1,
+      "scored_by": 164175,
+      "members": 353255
+    },
+    {
+      "id": 53888,
+      "title": "Spy x Family Movie: Code: White",
+      "score": 8.1,
+      "scored_by": 125189,
+      "members": 260854
+    },
+    {
+      "id": 58689,
+      "title": "Yuanshen: Jinzhong Ge",
+      "score": 8.1,
+      "scored_by": 3960,
+      "members": 7510
+    },
+    {
+      "id": 59306,
+      "title": "Zhan Shen: Fanchen Shenyu",
+      "score": 8.1,
+      "scored_by": 2413,
+      "members": 7004
+    },
+    {
+      "id": 49596,
+      "title": "Blue Lock",
+      "score": 8.09,
+      "scored_by": 516730,
+      "members": 924292
+    },
+    {
+      "id": 63130,
+      "title": "Boku no Hero Academia: More",
+      "score": 8.09,
+      "scored_by": 37912,
+      "members": 73631
+    },
+    {
+      "id": 53411,
+      "title": "Buddy Daddies",
+      "score": 8.09,
+      "scored_by": 166315,
+      "members": 365751
+    },
+    {
+      "id": 3702,
+      "title": "Detroit Metal City",
+      "score": 8.09,
+      "scored_by": 114014,
+      "members": 226199
+    },
+    {
+      "id": 6746,
+      "title": "Durarara!!",
+      "score": 8.09,
+      "scored_by": 694506,
+      "members": 1503037
+    },
+    {
+      "id": 16918,
+      "title": "Gin no Saji",
+      "score": 8.09,
+      "scored_by": 139531,
+      "members": 316425
+    },
+    {
+      "id": 32122,
+      "title": "Gintama°: Umai-mono wa Atomawashi ni Suru to Yokodorisareru kara Yappari Saki ni Kue",
+      "score": 8.09,
+      "scored_by": 17644,
+      "members": 37831
+    },
+    {
+      "id": 12069,
+      "title": "Hajime no Ippo: Boxer no Kobushi",
+      "score": 8.09,
+      "scored_by": 36614,
+      "members": 63932
+    },
+    {
+      "id": 18661,
+      "title": "Kamisama Hajimemashita OVA",
+      "score": 8.09,
+      "scored_by": 78166,
+      "members": 151135
+    },
+    {
+      "id": 6336,
+      "title": "Kidou Senshi Gundam Unicorn",
+      "score": 8.09,
+      "scored_by": 55386,
+      "members": 108612
+    },
+    {
+      "id": 30831,
+      "title": "Kono Subarashii Sekai ni Shukufuku wo!",
+      "score": 8.09,
+      "scored_by": 1399852,
+      "members": 2177528
+    },
+    {
+      "id": 31051,
+      "title": "Kuroko no Basket: Saikou no Present desu",
+      "score": 8.09,
+      "scored_by": 62481,
+      "members": 119335
+    },
+    {
+      "id": 32902,
+      "title": "Mahoutsukai no Yome: Hoshi Matsu Hito",
+      "score": 8.09,
+      "scored_by": 134995,
+      "members": 300687
+    },
+    {
+      "id": 2236,
+      "title": "Toki wo Kakeru Shoujo",
+      "score": 8.09,
+      "scored_by": 479626,
+      "members": 845738
+    },
+    {
+      "id": 66,
+      "title": "Azumanga Daiou The Animation",
+      "score": 8.08,
+      "scored_by": 186897,
+      "members": 436062
+    },
+    {
+      "id": 56653,
+      "title": "BanG Dream! Ave Mujica",
+      "score": 8.08,
+      "scored_by": 16335,
+      "members": 38827
+    },
+    {
+      "id": 1471,
+      "title": "City Hunter 2",
+      "score": 8.08,
+      "scored_by": 12731,
+      "members": 31902
+    },
+    {
+      "id": 59898,
+      "title": "City The Animation",
+      "score": 8.08,
+      "scored_by": 30420,
+      "members": 92936
+    },
+    {
+      "id": 135,
+      "title": "Hikaru no Go",
+      "score": 8.08,
+      "scored_by": 67102,
+      "members": 151339
+    },
+    {
+      "id": 46569,
+      "title": "Jigokuraku",
+      "score": 8.08,
+      "scored_by": 545136,
+      "members": 985618
+    },
+    {
+      "id": 50796,
+      "title": "Kimi wa Houkago Insomnia",
+      "score": 8.08,
+      "scored_by": 111521,
+      "members": 284458
+    },
+    {
+      "id": 31658,
+      "title": "Kuroko no Basket Movie 4: Last Game",
+      "score": 8.08,
+      "scored_by": 213254,
+      "members": 354187
+    },
+    {
+      "id": 851,
+      "title": "Kyou kara Ore wa!!",
+      "score": 8.08,
+      "scored_by": 13034,
+      "members": 40925
+    },
+    {
+      "id": 50380,
+      "title": "Paripi Koumei",
+      "score": 8.08,
+      "scored_by": 161762,
+      "members": 333929
+    },
+    {
+      "id": 31149,
+      "title": "Persona 3 the Movie 4: Winter of Rebirth",
+      "score": 8.08,
+      "scored_by": 41840,
+      "members": 87060
+    },
+    {
+      "id": 4938,
+      "title": "Tsubasa: Shunraiki",
+      "score": 8.08,
+      "scored_by": 31094,
+      "members": 65755
+    },
+    {
+      "id": 28025,
+      "title": "Tsukimonogatari",
+      "score": 8.08,
+      "scored_by": 254236,
+      "members": 448037
+    },
+    {
+      "id": 34076,
+      "title": "Uchouten Kazoku 2",
+      "score": 8.08,
+      "scored_by": 27587,
+      "members": 69773
+    },
+    {
+      "id": 23283,
+      "title": "Zankyou no Terror",
+      "score": 8.08,
+      "scored_by": 678022,
+      "members": 1297165
+    },
+    {
+      "id": 24833,
+      "title": "Ansatsu Kyoushitsu",
+      "score": 8.07,
+      "scored_by": 1318892,
+      "members": 2242440
+    },
+    {
+      "id": 3901,
+      "title": "Baccano! Specials",
+      "score": 8.07,
+      "scored_by": 116801,
+      "members": 187984
+    },
+    {
+      "id": 3016,
+      "title": "Ginga Eiyuu Densetsu: Arata naru Tatakai no Overture",
+      "score": 8.07,
+      "scored_by": 20350,
+      "members": 40874
+    },
+    {
+      "id": 36369,
+      "title": "Ginga Eiyuu Densetsu: Die Neue These - Seiran 1",
+      "score": 8.07,
+      "scored_by": 16481,
+      "members": 34446
+    },
+    {
+      "id": 2951,
+      "title": "Gintama: Nanigoto mo Saisho ga Kanjin nanode Tashou Senobisuru Kurai ga Choudoyoi",
+      "score": 8.07,
+      "scored_by": 31920,
+      "members": 61511
+    },
+    {
+      "id": 54791,
+      "title": "Given Movie 2: Hiiragi Mix",
+      "score": 8.07,
+      "scored_by": 16009,
+      "members": 52604
+    },
+    {
+      "id": 40815,
+      "title": "Honzuki no Gekokujou: Shisho ni Naru Tame ni wa Shudan wo Erandeiraremasen 2nd Season",
+      "score": 8.07,
+      "scored_by": 154270,
+      "members": 263653
+    },
+    {
+      "id": 61339,
+      "title": "Jibaku Shounen Hanako-kun 2 Part 2",
+      "score": 8.07,
+      "scored_by": 20684,
+      "members": 61167
+    },
+    {
+      "id": 39198,
+      "title": "Kanata no Astra",
+      "score": 8.07,
+      "scored_by": 163896,
+      "members": 350876
+    },
+    {
+      "id": 3927,
+      "title": "Kidou Senshi Gundam 00 Second Season",
+      "score": 8.07,
+      "scored_by": 100085,
+      "members": 162821
+    },
+    {
+      "id": 31251,
+      "title": "Kidou Senshi Gundam: Tekketsu no Orphans",
+      "score": 8.07,
+      "scored_by": 137268,
+      "members": 277018
+    },
+    {
+      "id": 1486,
+      "title": "Kodomo no Omocha (TV)",
+      "score": 8.07,
+      "scored_by": 29707,
+      "members": 79957
+    },
+    {
+      "id": 57524,
+      "title": "Make Heroine ga Oosugiru!",
+      "score": 8.07,
+      "scored_by": 183552,
+      "members": 348647
+    },
+    {
+      "id": 1257,
+      "title": "Saint Seiya: Meiou Hades Juuni Kyuu-hen",
+      "score": 8.07,
+      "scored_by": 38327,
+      "members": 63783
+    },
+    {
+      "id": 4722,
+      "title": "Skip Beat!",
+      "score": 8.07,
+      "scored_by": 148054,
+      "members": 289242
+    },
+    {
+      "id": 61633,
+      "title": "Tu Bian Yingxiong X Concept Movie",
+      "score": 8.07,
+      "scored_by": 842,
+      "members": 3560
+    },
+    {
+      "id": 44218,
+      "title": "Tunshi Xingkong",
+      "score": 8.07,
+      "scored_by": 4529,
+      "members": 13276
+    },
+    {
+      "id": 42429,
+      "title": "Honzuki no Gekokujou: Shisho ni Naru Tame ni wa Shudan wo Erandeiraremasen 3rd Season",
+      "score": 8.06,
+      "scored_by": 101441,
+      "members": 204309
+    },
+    {
+      "id": 1096,
+      "title": "Kidou Keisatsu Patlabor 2 the Movie",
+      "score": 8.06,
+      "scored_by": 20097,
+      "members": 47540
+    },
+    {
+      "id": 2449,
+      "title": "Koukaku Kidoutai: Stand Alone Complex - The Laughing Man",
+      "score": 8.06,
+      "scored_by": 16971,
+      "members": 45020
+    },
+    {
+      "id": 22145,
+      "title": "Kuroshitsuji: Book of Circus",
+      "score": 8.06,
+      "scored_by": 234562,
+      "members": 447358
+    },
+    {
+      "id": 1367,
+      "title": "Meitantei Conan Movie 08: Ginyoku no Magician",
+      "score": 8.06,
+      "scored_by": 36324,
+      "members": 63205
+    },
+    {
+      "id": 21419,
+      "title": "Meitantei Conan Movie 18: Ijigen no Sniper",
+      "score": 8.06,
+      "scored_by": 27297,
+      "members": 49439
+    },
+    {
+      "id": 56063,
+      "title": "NieR:Automata Ver1.1a Part 2",
+      "score": 8.06,
+      "scored_by": 40455,
+      "members": 114540
+    },
+    {
+      "id": 48895,
+      "title": "Overlord IV",
+      "score": 8.06,
+      "scored_by": 331985,
+      "members": 648164
+    },
+    {
+      "id": 59828,
+      "title": "Shoushimin Series 2nd Season",
+      "score": 8.06,
+      "scored_by": 25994,
+      "members": 58568
+    },
+    {
+      "id": 6547,
+      "title": "Angel Beats!",
+      "score": 8.05,
+      "scored_by": 1356008,
+      "members": 2218785
+    },
+    {
+      "id": 38668,
+      "title": "Dorohedoro",
+      "score": 8.05,
+      "scored_by": 329158,
+      "members": 660029
+    },
+    {
+      "id": 27833,
+      "title": "Durarara!!x2 Ketsu",
+      "score": 8.05,
+      "scored_by": 197978,
+      "members": 405365
+    },
+    {
+      "id": 3665,
+      "title": "Ginga Eiyuu Densetsu Gaiden (1999)",
+      "score": 8.05,
+      "scored_by": 8421,
+      "members": 23112
+    },
+    {
+      "id": 10643,
+      "title": "Gintama: Dai Hanseikai",
+      "score": 8.05,
+      "scored_by": 17643,
+      "members": 42229
+    },
+    {
+      "id": 1974,
+      "title": "Glass no Kamen (2005)",
+      "score": 8.05,
+      "scored_by": 13644,
+      "members": 45398
+    },
+    {
+      "id": 48661,
+      "title": "JoJo no Kimyou na Bouken Part 6: Stone Ocean",
+      "score": 8.05,
+      "scored_by": 371359,
+      "members": 631237
+    },
+    {
+      "id": 56980,
+      "title": "Karasu wa Aruji wo Erabanai",
+      "score": 8.05,
+      "scored_by": 19902,
+      "members": 63871
+    },
+    {
+      "id": 237,
+      "title": "Koukyoushihen Eureka Seven",
+      "score": 8.05,
+      "scored_by": 189368,
+      "members": 463574
+    },
+    {
+      "id": 35062,
+      "title": "Mahoutsukai no Yome",
+      "score": 8.05,
+      "scored_by": 429236,
+      "members": 1028906
+    },
+    {
+      "id": 49320,
+      "title": "Meitantei Conan Movie 25: Halloween no Hanayome",
+      "score": 8.05,
+      "scored_by": 10403,
+      "members": 21314
+    },
+    {
+      "id": 1943,
+      "title": "Paprika",
+      "score": 8.05,
+      "scored_by": 313325,
+      "members": 623815
+    },
+    {
+      "id": 32282,
+      "title": "Shokugeki no Souma: Ni no Sara",
+      "score": 8.05,
+      "scored_by": 766841,
+      "members": 1215460
+    },
+    {
+      "id": 53887,
+      "title": "Spy x Family Season 2",
+      "score": 8.05,
+      "scored_by": 350293,
+      "members": 701035
+    },
+    {
+      "id": 62936,
+      "title": "Toumei na Yoru ni Kakeru Kimi to, Me ni Mienai Koi wo Shita.",
+      "score": 8.05,
+      "scored_by": 10714,
+      "members": 73576
+    },
+    {
+      "id": 24277,
+      "title": "Yowamushi Pedal: Grande Road",
+      "score": 8.05,
+      "scored_by": 84180,
+      "members": 151766
+    },
+    {
+      "id": 25013,
+      "title": "Akatsuki no Yona",
+      "score": 8.03,
+      "scored_by": 457844,
+      "members": 948944
+    },
+    {
+      "id": 889,
+      "title": "Black Lagoon",
+      "score": 8.03,
+      "scored_by": 541588,
+      "members": 1125198
+    },
+    {
+      "id": 33486,
+      "title": "Boku no Hero Academia 2nd Season",
+      "score": 8.03,
+      "scored_by": 1871358,
+      "members": 2761268
+    },
+    {
+      "id": 2025,
+      "title": "Darker than Black: Kuro no Keiyakusha",
+      "score": 8.03,
+      "scored_by": 456196,
+      "members": 1014868
+    },
+    {
+      "id": 227,
+      "title": "FLCL",
+      "score": 8.03,
+      "scored_by": 471102,
+      "members": 906787
+    },
+    {
+      "id": 268,
+      "title": "Golden Boy",
+      "score": 8.03,
+      "scored_by": 249541,
+      "members": 467478
+    },
+    {
+      "id": 8425,
+      "title": "Gosick",
+      "score": 8.03,
+      "scored_by": 250194,
+      "members": 612081
+    },
+    {
+      "id": 50587,
+      "title": "Gridman Universe",
+      "score": 8.03,
+      "scored_by": 12722,
+      "members": 42689
+    },
+    {
+      "id": 2004,
+      "title": "Hanada Shounen-shi",
+      "score": 8.03,
+      "scored_by": 5217,
+      "members": 18986
+    },
+    {
+      "id": 12189,
+      "title": "Hyouka",
+      "score": 8.03,
+      "scored_by": 695683,
+      "members": 1493249
+    },
+    {
+      "id": 11771,
+      "title": "Kuroko no Basket",
+      "score": 8.03,
+      "scored_by": 780471,
+      "members": 1327391
+    },
+    {
+      "id": 23317,
+      "title": "Kuroshitsuji: Book of Murder",
+      "score": 8.03,
+      "scored_by": 135800,
+      "members": 275240
+    },
+    {
+      "id": 781,
+      "title": "Meitantei Conan Movie 03: Seikimatsu no Majutsushi",
+      "score": 8.03,
+      "scored_by": 43782,
+      "members": 73217
+    },
+    {
+      "id": 21557,
+      "title": "Omoide no Marnie",
+      "score": 8.03,
+      "scored_by": 185355,
+      "members": 338615
+    },
+    {
+      "id": 59841,
+      "title": "Ore dake Level Up na Ken: ReAwakening",
+      "score": 8.03,
+      "scored_by": 13189,
+      "members": 53800
+    },
+    {
+      "id": 40080,
+      "title": "Quanzhi Gaoshou: Dianfeng Rongyao",
+      "score": 8.03,
+      "scored_by": 25971,
+      "members": 57412
+    },
+    {
+      "id": 13759,
+      "title": "Sakura-sou no Pet na Kanojo",
+      "score": 8.03,
+      "scored_by": 749674,
+      "members": 1334938
+    },
+    {
+      "id": 40907,
+      "title": "World Trigger 2nd Season",
+      "score": 8.03,
+      "scored_by": 69480,
+      "members": 178396
+    },
+    {
+      "id": 53410,
+      "title": "Yuru Camp△ Season 3",
+      "score": 8.03,
+      "scored_by": 39991,
+      "members": 106001
+    },
+    {
+      "id": 4901,
+      "title": "Black Lagoon: Roberta's Blood Trail",
+      "score": 8.02,
+      "scored_by": 188405,
+      "members": 335413
+    },
+    {
+      "id": 58877,
+      "title": "Diamond no Ace: Act II Second Season",
+      "score": 8.02,
+      "scored_by": 6787,
+      "members": 23147
+    },
+    {
+      "id": 51836,
+      "title": "Douluo Dalu II: Jueshi Tangmen",
+      "score": 8.02,
+      "scored_by": 2156,
+      "members": 7525
+    },
+    {
+      "id": 27821,
+      "title": "Fate/stay night: Unlimited Blade Works Prologue",
+      "score": 8.02,
+      "scored_by": 216621,
+      "members": 352780
+    },
+    {
+      "id": 62405,
+      "title": "Fujimoto Tatsuki 17-26",
+      "score": 8.02,
+      "scored_by": 41168,
+      "members": 97954
+    },
+    {
+      "id": 589,
+      "title": "Ginga Nagareboshi Gin",
+      "score": 8.02,
+      "scored_by": 12672,
+      "members": 30364
+    },
+    {
+      "id": 64398,
+      "title": "Guangyin Zhi Wai 2",
+      "score": 8.02,
+      "scored_by": 226,
+      "members": 1043
+    },
+    {
+      "id": 27989,
+      "title": "Hibike! Euphonium",
+      "score": 8.02,
+      "scored_by": 214299,
+      "members": 517112
+    },
+    {
+      "id": 9996,
+      "title": "Hyouge Mono",
+      "score": 8.02,
+      "scored_by": 5395,
+      "members": 32443
+    },
+    {
+      "id": 51367,
+      "title": "JoJo no Kimyou na Bouken Part 6: Stone Ocean Part 2",
+      "score": 8.02,
+      "scored_by": 232297,
+      "members": 371898
+    },
+    {
+      "id": 82,
+      "title": "Kidou Senshi Gundam 0080: Pocket no Naka no Sensou",
+      "score": 8.02,
+      "scored_by": 39516,
+      "members": 71622
+    },
+    {
+      "id": 18679,
+      "title": "Kill la Kill",
+      "score": 8.02,
+      "scored_by": 1016695,
+      "members": 1865103
+    },
+    {
+      "id": 2034,
+      "title": "Lovely★Complex",
+      "score": 8.02,
+      "scored_by": 323670,
+      "members": 665680
+    },
+    {
+      "id": 1363,
+      "title": "Meitantei Conan Movie 04: Hitomi no Naka no Ansatsusha",
+      "score": 8.02,
+      "scored_by": 40926,
+      "members": 69655
+    },
+    {
+      "id": 1506,
+      "title": "Meitantei Conan Movie 10: Tantei-tachi no Requiem",
+      "score": 8.02,
+      "scored_by": 35444,
+      "members": 62856
+    },
+    {
+      "id": 52107,
+      "title": "Mononoke Movie 1: Karakasa",
+      "score": 8.02,
+      "scored_by": 15532,
+      "members": 53567
+    },
+    {
+      "id": 19815,
+      "title": "No Game No Life",
+      "score": 8.02,
+      "scored_by": 1635514,
+      "members": 2578435
+    },
+    {
+      "id": 9204,
+      "title": "Omae Umasou da na",
+      "score": 8.02,
+      "scored_by": 9384,
+      "members": 23113
+    },
+    {
+      "id": 4155,
+      "title": "One Piece Film: Strong World",
+      "score": 8.02,
+      "scored_by": 174055,
+      "members": 281674
+    },
+    {
+      "id": 49782,
+      "title": "Shadows House 2nd Season",
+      "score": 8.02,
+      "scored_by": 60258,
+      "members": 142717
+    },
+    {
+      "id": 1559,
+      "title": "Shijou Saikyou no Deshi Kenichi",
+      "score": 8.02,
+      "scored_by": 166448,
+      "members": 326826
+    },
+    {
+      "id": 23777,
+      "title": "Shingeki no Kyojin Movie 2: Jiyuu no Tsubasa",
+      "score": 8.02,
+      "scored_by": 65302,
+      "members": 160416
+    },
+    {
+      "id": 4224,
+      "title": "Toradora!",
+      "score": 8.02,
+      "scored_by": 1483823,
+      "members": 2389378
+    },
+    {
+      "id": 4918,
+      "title": "xxxHOLiC Shunmuki",
+      "score": 8.02,
+      "scored_by": 36340,
+      "members": 76744
+    },
+    {
+      "id": 51096,
+      "title": "Youkoso Jitsuryoku Shijou Shugi no Kyoushitsu e 2nd Season",
+      "score": 8.02,
+      "scored_by": 480278,
+      "members": 825888
+    },
+    {
+      "id": 59675,
+      "title": "Apocalypse Hotel",
+      "score": 8.02,
+      "scored_by": 29317,
+      "members": 82457
+    },
+    {
+      "id": 41781,
+      "title": "BanG Dream! Movie: Episode of Roselia - II: Song I Am.",
+      "score": 8.02,
+      "scored_by": 5835,
+      "members": 13000
+    },
+    {
+      "id": 2164,
+      "title": "Dennou Coil",
+      "score": 8.02,
+      "scored_by": 46280,
+      "members": 161214
+    },
+    {
+      "id": 72,
+      "title": "Full Metal Panic? Fumoffu",
+      "score": 8.02,
+      "scored_by": 182321,
+      "members": 313962
+    },
+    {
+      "id": 58913,
+      "title": "Hikaru ga Shinda Natsu",
+      "score": 8.02,
+      "scored_by": 126250,
+      "members": 323481
+    },
+    {
+      "id": 41402,
+      "title": "Mairimashita! Iruma-kun 2nd Season",
+      "score": 8.02,
+      "scored_by": 192290,
+      "members": 382720
+    },
+    {
+      "id": 20,
+      "title": "Naruto",
+      "score": 8.02,
+      "scored_by": 2164132,
+      "members": 3152723
+    },
+    {
+      "id": 44235,
+      "title": "Pui Pui Molcar",
+      "score": 8.02,
+      "scored_by": 11489,
+      "members": 19757
+    },
+    {
+      "id": 535,
+      "title": "Slayers Next",
+      "score": 8.02,
+      "scored_by": 39834,
+      "members": 76508
+    },
+    {
+      "id": 1065,
+      "title": "Touch",
+      "score": 8.02,
+      "scored_by": 11684,
+      "members": 40370
+    },
+    {
+      "id": 33161,
+      "title": "Yahari Ore no Seishun Love Comedy wa Machigatteiru. Zoku OVA",
+      "score": 8.02,
+      "scored_by": 161881,
+      "members": 277637
+    },
+    {
+      "id": 37870,
+      "title": "BanG Dream! 3rd Season",
+      "score": 8.01,
+      "scored_by": 20669,
+      "members": 44667
+    },
+    {
+      "id": 50207,
+      "title": "Fanren Xiu Xian Zhuan 2nd Season",
+      "score": 8.01,
+      "scored_by": 2333,
+      "members": 5621
+    },
+    {
+      "id": 153,
+      "title": "Juuni Kokuki",
+      "score": 8.01,
+      "scored_by": 49913,
+      "members": 176237
+    },
+    {
+      "id": 38993,
+      "title": "Karakai Jouzu no Takagi-san 2",
+      "score": 8.01,
+      "scored_by": 198693,
+      "members": 365291
+    },
+    {
+      "id": 6045,
+      "title": "Kimi ni Todoke",
+      "score": 8.01,
+      "scored_by": 529045,
+      "members": 1088285
+    },
+    {
+      "id": 34626,
+      "title": "Kono Subarashii Sekai ni Shukufuku wo! 2: Kono Subarashii Geijutsu ni Shukufuku wo!",
+      "score": 8.01,
+      "scored_by": 248779,
+      "members": 412426
+    },
+    {
+      "id": 5681,
+      "title": "Summer Wars",
+      "score": 8.01,
+      "scored_by": 309160,
+      "members": 554791
+    },
+    {
+      "id": 34822,
+      "title": "Tsuki ga Kirei",
+      "score": 8.01,
+      "scored_by": 279664,
+      "members": 603716
+    },
+    {
+      "id": 42640,
+      "title": "Wan Sheng Jie 2",
+      "score": 8.01,
+      "scored_by": 8089,
+      "members": 15890
+    },
+    {
+      "id": 62543,
+      "title": "Watashi ga Koibito ni Nareru Wake Nai jan, Muri Muri! (※Muri ja Nakatta!?) (TV Special)",
+      "score": 8.01,
+      "scored_by": 19350,
+      "members": 38028
+    },
+    {
+      "id": 34376,
+      "title": "Yuuki Yuuna wa Yuusha de Aru: Washio Sumi no Shou 3 - Yakusoku",
+      "score": 8.01,
+      "scored_by": 6163,
+      "members": 16685
+    },
+    {
+      "id": 39783,
+      "title": "5-toubun no Hanayome ∬",
+      "score": 8.0,
+      "scored_by": 509880,
+      "members": 833117
+    },
+    {
+      "id": 48411,
+      "title": "Aria the Benedizione",
+      "score": 8.0,
+      "scored_by": 4384,
+      "members": 12199
+    },
+    {
+      "id": 2563,
+      "title": "Aria the OVA: Arietta",
+      "score": 8.0,
+      "scored_by": 18875,
+      "members": 42442
+    },
+    {
+      "id": 27663,
+      "title": "Baby Steps 2nd Season",
+      "score": 8.0,
+      "scored_by": 57111,
+      "members": 96607
+    },
+    {
+      "id": 269,
+      "title": "Bleach",
+      "score": 8.0,
+      "scored_by": 1280043,
+      "members": 2242864
+    },
+    {
+      "id": 1482,
+      "title": "D.Gray-man",
+      "score": 8.0,
+      "scored_by": 298482,
+      "members": 736540
+    },
+    {
+      "id": 2759,
+      "title": "Evangelion Movie 1: Jo",
+      "score": 8.0,
+      "scored_by": 385119,
+      "members": 625892
+    },
+    {
+      "id": 6421,
+      "title": "Fullmetal Alchemist: Brotherhood Specials",
+      "score": 8.0,
+      "scored_by": 79903,
+      "members": 170672
+    },
+    {
+      "id": 59817,
+      "title": "Girls Band Cry Movie",
+      "score": 8.0,
+      "scored_by": 657,
+      "members": 9691
+    },
+    {
+      "id": 387,
+      "title": "Haibane Renmei",
+      "score": 8.0,
+      "scored_by": 117770,
+      "members": 345118
+    },
+    {
+      "id": 3783,
+      "title": "Kara no Kyoukai Movie 3: Tsuukaku Zanryuu",
+      "score": 8.0,
+      "scored_by": 148034,
+      "members": 244925
+    },
+    {
+      "id": 81,
+      "title": "Kidou Senshi Gundam: Dai 08 MS Shoutai",
+      "score": 8.0,
+      "scored_by": 52197,
+      "members": 95528
+    },
+    {
+      "id": 55701,
+      "title": "Kimetsu no Yaiba: Hashira Geiko-hen",
+      "score": 8.0,
+      "scored_by": 473799,
+      "members": 805928
+    },
+    {
+      "id": 14513,
+      "title": "Magi: The Labyrinth of Magic",
+      "score": 8.0,
+      "scored_by": 589038,
+      "members": 1132326
+    },
+    {
+      "id": 9963,
+      "title": "Meitantei Conan Movie 15: Chinmoku no Quarter",
+      "score": 8.0,
+      "scored_by": 30933,
+      "members": 54175
+    },
+    {
+      "id": 50593,
+      "title": "Natsu e no Tunnel, Sayonara no Deguchi",
+      "score": 8.0,
+      "scored_by": 111156,
+      "members": 267998
+    },
+    {
+      "id": 6171,
+      "title": "Saint Seiya: The Lost Canvas - Meiou Shinwa",
+      "score": 8.0,
+      "scored_by": 64179,
+      "members": 117560
+    },
+    {
+      "id": 16049,
+      "title": "Toaru Kagaku no Railgun S",
+      "score": 8.0,
+      "scored_by": 217909,
+      "members": 416532
+    },
+    {
+      "id": 6211,
+      "title": "Tokyo Magnitude 8.0",
+      "score": 8.0,
+      "scored_by": 131722,
+      "members": 316273
+    },
+    {
+      "id": 44931,
+      "title": "Tonikaku Kawaii: SNS",
+      "score": 8.0,
+      "scored_by": 98195,
+      "members": 183731
+    },
+    {
+      "id": 59939,
+      "title": "Tunshi Xingkong Movie: Xueluo Dalu",
+      "score": 8.0,
+      "scored_by": 929,
+      "members": 2336
+    },
+    {
+      "id": 49587,
+      "title": "Wan Sheng Jie 3",
+      "score": 8.0,
+      "scored_by": 5213,
+      "members": 11008
+    },
+    {
+      "id": 14813,
+      "title": "Yahari Ore no Seishun Love Comedy wa Machigatteiru.",
+      "score": 8.0,
+      "scored_by": 933126,
+      "members": 1587428
+    }
+  ]
+}
